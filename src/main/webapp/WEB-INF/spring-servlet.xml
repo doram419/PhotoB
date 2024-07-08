@@ -19,4 +19,8 @@
     	<context:exclude-filter type="annotation" expression="org.springframework.stereotype.Service" />
     	<context:exclude-filter type="annotation" expression="org.springframework.stereotype.Repository" />
 	</context:component-scan>
+	
+	<!-- 정적 자원의 요청을 디폴트 서블릿으로 위임 -->
+	<mvc:annotation-driven></mvc:annotation-driven>
+	<mvc:default-servlet-handler />
 </beans>
