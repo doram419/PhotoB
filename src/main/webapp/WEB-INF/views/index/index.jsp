@@ -139,46 +139,12 @@
         <a href="#photobook">포토북 제작</a>
         <a href="#order">주문</a>
         <a href="#board">게시판</a>
-        <a href="#admin">관리자</a>
     </nav>
     
     <div class="container">
         <section id="home">
             <h2>환영합니다!</h2>
             <p>포토 다이어리에서 당신만의 특별한 추억을 만들어보세요.</p>
-        </section>
-        
-        <section id="login" class="form">
-            <h2>로그인</h2>
-            <form id="login-form">
-                <input type="email" id="login-email" placeholder="이메일" required>
-                <input type="password" id="login-password" placeholder="비밀번호" required>
-                <button type="submit">로그인</button>
-            </form>
-        </section>
-        
-        <section id="register" class="form">
-            <h2>회원가입</h2>
-            <form id="register-form">
-                <input type="email" id="register-email" placeholder="이메일" required>
-                <input type="password" id="register-password" placeholder="비밀번호" required>
-                <input type="password" id="register-password-confirm" placeholder="비밀번호 확인" required>
-                <input type="text" id="register-name" placeholder="이름" required>
-                <input type="tel" id="register-phone" placeholder="전화번호" required>
-                <input type="text" id="register-address" placeholder="주소" required>
-                <button type="submit">가입하기</button>
-            </form>
-        </section>
-        
-        <section id="profile" class="form">
-            <h2>프로필 관리</h2>
-            <form id="profile-form">
-                <input type="text" id="profile-name" placeholder="이름">
-                <input type="tel" id="profile-phone" placeholder="전화번호">
-                <input type="text" id="profile-address" placeholder="주소">
-                <input type="file" id="profile-picture" accept="image/*">
-                <button type="submit">프로필 업데이트</button>
-            </form>
         </section>
         
         <section id="photobook">
@@ -227,18 +193,6 @@
             </form>
             <div id="post-list">
                 <!-- 게시글이 여기에 동적으로 추가됩니다 -->
-            </div>
-        </section>
-        
-        <section id="admin" class="admin-panel">
-            <h2>관리자 패널</h2>
-            <h3>고객 관리</h3>
-            <div id="customer-list">
-                <!-- 고객 목록이 여기에 동적으로 추가됩니다 -->
-            </div>
-            <h3>주문 관리</h3>
-            <div id="order-list">
-                <!-- 주문 목록이 여기에 동적으로 추가됩니다 -->
             </div>
         </section>
     </div>
