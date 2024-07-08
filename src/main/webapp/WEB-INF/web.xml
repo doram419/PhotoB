@@ -21,4 +21,15 @@
   	<servlet-name>spring</servlet-name>
   	<url-pattern>/</url-pattern>
   </servlet-mapping>
+  
+   <!-- Context Loader Listener 등록 -->
+  <listener>
+  	<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+  </listener>
+  
+  <!-- Listener 설정 정보 -->
+  <context-param>
+  	<param-name>contextConfigLocation</param-name>
+  	<param-value>/WEB-INF/applicationContext.xml</param-value>
+  </context-param>
 </web-app>
