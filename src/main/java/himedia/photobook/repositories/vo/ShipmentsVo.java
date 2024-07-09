@@ -1,0 +1,67 @@
+package himedia.photobook.repositories.vo;
+
+import java.util.Date;
+
+//최초 작성자 : 김지환
+public class ShipmentsVo {
+	// 필드
+	private Long shipmentId;
+	private String orderId;
+	private Date shipmentDate;
+	/**
+	 * R:준비 P:준비중 F:배송완료
+	 * */
+	private String shipmentStatus;
+	
+	// 생성자
+	public ShipmentsVo() {
+	}
+	
+	public ShipmentsVo(Long shipmentId, String orderId, Date shipmentDate, String shipmentStatus) {
+		super();
+		this.shipmentId = shipmentId;
+		this.orderId = orderId;
+		this.shipmentDate = shipmentDate;
+		this.shipmentStatus = shipmentStatus;
+	}
+
+	// Getters / Setters
+	public Long getShipmentId() {
+		return shipmentId;
+	}
+
+	public void setShipmentId(Long shipmentId) {
+		this.shipmentId = shipmentId;
+	}
+
+	public String getOrderId() {
+		return orderId;
+	}
+
+	public void setOrderId(String orderId) {
+		this.orderId = orderId;
+	}
+
+	public Date getShipmentDate() {
+		return shipmentDate;
+	}
+
+	public void setShipmentDate(Date shipmentDate) {
+		this.shipmentDate = shipmentDate;
+	}
+
+	public String getShipmentStatus() {
+		return shipmentStatus;
+	}
+
+	public void setShipmentStatus(String shipmentStatus) {
+		this.shipmentStatus = shipmentStatus;
+	}
+
+	// toString
+	@Override
+	public String toString() {
+		return "ShipmentsVo [shipmentId=" + shipmentId + ", orderId=" + orderId + ", shipmentDate=" + shipmentDate
+				+ ", shipmentStatus=" + shipmentStatus + "]";
+	}
+}
