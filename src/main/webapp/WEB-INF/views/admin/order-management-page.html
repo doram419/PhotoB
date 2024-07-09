@@ -4,9 +4,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>주문 관리</title>
-    <link rel="stylesheet" href="/admin.css/common-style.css">
+    <!-- TODO START: 추후에 jsp파일로 바꿀 때, 서버 경로로 변경하기  
+		<link type="text/css" 
+			rel="stylesheet" 
+			href='<c:url value="/css/common-style.css"/>'/>
+	-->
+    <link rel="stylesheet" href="/css/common-style.css">
+    <!-- TODO END -->
 </head>
 <body>
+   <!-- TODO START: 추후에 jsp파일로 바꿀 때, 떼서 import하기  
+		<c:import url="/WEB-INF/views/admin/includes/admin_header.jsp"></c:import>
+	-->
     <div class="sidebar">
         <div class="sidebar-header">
             <h3>관리자 패널</h3>
@@ -19,6 +28,7 @@
             <li><a href="dashboard-page.html">설정</a></li>
         </ul>
     </div>
+    <!-- TODO END -->  
     <div class="main-content">
         <div class="header">
             <h2>주문 관리</h2>
@@ -66,5 +76,12 @@
             </div>
         </div>
     </div>
+    <!-- TODO START: 추후에 jsp파일로 바꿀 때, 떼서 import하기  
+		<c:import url="/WEB-INF/views/admin/includes/admin_footer.jsp"></c:import>
+	-->
+  	<footer>
+    	<p>&copy; 2024 포토북 제작 서비스. All rights reserved.</p>
+	</footer>
+	<!-- TODO END -->  
 </body>
 </html>
