@@ -3,5 +3,5 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
 <footer>
-    <p>&copy; 2023 포토북 제작 서비스. All rights reserved.</p>
+    <p>&copy; 2024 포토북 제작 서비스. All rights reserved.</p>
 </footer>
