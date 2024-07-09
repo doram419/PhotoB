@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>포토북 제작 - 포토북 제작 서비스</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* 포토북 제작 페이지 전용 스타일 */
+        .photobook-container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        
+        .photobook-container h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        
+        .form-group select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        
+        .form-group input[type="file"] {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        
+        .form-group button {
+            width: 100%;
+            padding: 10px;
+            background-color: #4a90e2;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        
+        .form-group button:hover {
+            background-color: #3672c4;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>포토북 제작 서비스</h1>
+        <nav>
+            <ul>
+                <li><a href="index.html">홈</a></li>
+                <li><a href="profile.html">프로필 관리</a></li>
+                <li><a href="photobook.html">포토북 제작</a></li>
+                <li><a href="order.html">주문</a></li>
+                <li><a href="board.html">게시판</a></li>
+            </ul>
+        </nav>
+    </header>
+    
+    <main>
+        <section class="photobook-container">
+            <h2>포토북 제작</h2>
+            <form action="create_photobook.html" method="post" enctype="multipart/form-data">
+                <div class="form-group">
+                    <label for="size">사이즈 선택:</label>
+                    <select id="size" name="size">
+                        <option value="7x7">7x7</option>
+                        <option value="10x10">10x10</option>
+                        <option value="12x12">12x12</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="cover">커버 재질 선택:</label>
+                    <select id="cover" name="cover">
+                        <option value="plastic">플라스틱</option>
+                        <option value="leather">가죽</option>
+                        <option value="paper">종이</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="coating">코팅 선택:</label>
+                    <select id="coating" name="coating">
+                        <option value="coated">코팅</option>
+                        <option value="uncoated">코팅 안함</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="photos">사진 업로드:</label>
+                    <input type="file" id="photos" name="photos" multiple required>
+                </div>
+                <div class="form-group">
+                    <button type="submit">포토북 제작</button>
+                </div>
+            </form>
+        </section>
+    </main>
+    
+    <footer>
+        <p>&copy; 2023 포토북 제작 서비스. All rights reserved.</p>
+    </footer>
+</body>
+</html>
