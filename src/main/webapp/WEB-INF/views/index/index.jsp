@@ -21,13 +21,13 @@
     </header>
     
     <nav>
-        <a href="#home">홈</a>
-        <a href="#login">로그인</a>
-        <a href="#register">회원가입</a>
-        <a href="#photobook">포토북 제작</a>
-        <a href="#order">주문</a>
-        <a href="#board">게시판</a>
-        <a href="#admin">관리자</a>
+        <a href="home.jsp">홈</a>
+        <a href="login.jsp">로그인</a>
+        <a href="register.jsp">회원가입</a>
+        <a href="photobook.jsp">포토북 제작</a>
+        <a href="order.jsp">주문</a>
+        <a href="board.jsp">게시판</a>
+        <a href="admin.jsp">관리자</a>
     </nav>
     
     <div class="container">
