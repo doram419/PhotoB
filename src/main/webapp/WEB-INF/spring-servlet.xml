@@ -23,4 +23,5 @@
 	<!-- 정적 자원의 요청을 디폴트 서블릿으로 위임 -->
 	<mvc:annotation-driven></mvc:annotation-driven>
 	<mvc:default-servlet-handler />
+	
 </beans>
