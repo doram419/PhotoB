@@ -1,40 +1,31 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+
 <!DOCTYPE html>
+
 <html lang="ko">
+
 <head>
-    <meta charset="UTF-8">
+	<meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>관리자 대시보드</title>
-    <!-- TODO START: 추후에 jsp파일로 바꿀 때, 서버 경로로 변경하기  
-		<link type="text/css" 
-			rel="stylesheet" 
-			href='<c:url value="/css/common-style.css"/>'/>
-	-->
-    <link rel="stylesheet" href="/css/common-style.css">
-    <!-- TODO END -->
+	<link type="text/css" 
+		rel="stylesheet" 
+		href='<c:url value="/css/common-style.css"/>'/>
 </head>
+
 <body>
-     <!-- TODO START: 추후에 jsp파일로 바꿀 때, 떼서 import하기  
-		<c:import url="/WEB-INF/views/admin/includes/admin_header.jsp"></c:import>
-	-->
-    <div class="sidebar">
-        <div class="sidebar-header">
-            <h3>관리자 패널</h3>
-        </div>
-        <ul class="sidebar-menu">
-            <li><a href="admin-pages.html">대시보드</a></li>
-            <li><a href="customer-management-page.html">고객 관리</a></li>
-            <li><a href="order-management-page.html">주문 관리</a></li>
-            <li><a href="customer-service-page.html">고객 센터</a></li>
-            <li><a href="dashboard-page.html">설정</a></li>
-        </ul>
-    </div>
-    <!-- TODO END -->  
+	<c:import url="/WEB-INF/views/admin/includes/admin_header.jsp"></c:import>
+
     <div class="main-content">
         <div class="header">
             <h2>대시보드</h2>
         </div>
         <div class="card">
-            <div class="card-header">최근 주문 내역</div>
+            <div class="card-header">
+                최근 주문 내역
+            </div>
             <div class="card-body">
                 <table class="table">
                     <thead>
@@ -52,13 +43,21 @@
                             <td>2024-07-09 14:30</td>
                             <td>배송 완료</td>
                         </tr>
+                        <tr>
+                            <td>1002</td>
+                            <td>김철수</td>
+                            <td>2024-07-09 15:45</td>
+                            <td>배송 중</td>
+                        </tr>
                         <!-- 추가 주문 데이터 -->
                     </tbody>
                 </table>
             </div>
         </div>
         <div class="card">
-            <div class="card-header">최근 회원 가입 내역</div>
+            <div class="card-header">
+                최근 회원 가입 내역
+            </div>
             <div class="card-body">
                 <table class="table">
                     <thead>
@@ -74,18 +73,18 @@
                             <td>이영희</td>
                             <td>2024-07-08</td>
                         </tr>
+                        <tr>
+                            <td>user002</td>
+                            <td>박민수</td>
+                            <td>2024-07-09</td>
+                        </tr>
                         <!-- 추가 회원 데이터 -->
                     </tbody>
                 </table>
             </div>
         </div>
     </div>
-    <!-- TODO START: 추후에 jsp파일로 바꿀 때, 떼서 import하기  
-		<c:import url="/WEB-INF/views/admin/includes/admin_footer.jsp"></c:import>
-	-->
-  	<footer>
-    	<p>&copy; 2024 포토북 제작 서비스. All rights reserved.</p>
-	</footer>
-	<!-- TODO END -->  
+  	
+	<c:import url="/WEB-INF/views/admin/includes/admin_footer.jsp"></c:import>
 </body>
 </html>
