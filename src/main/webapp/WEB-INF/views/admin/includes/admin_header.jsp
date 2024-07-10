@@ -11,6 +11,6 @@
 	    <li><a href="cm">고객 관리</a></li>
 	    <li><a href="om">주문 관리</a></li>
 	    <li><a href="cs">고객 센터</a></li>
-	    <li><a href="dashboard-page.html">설정</a></li>
+	    <li><a href="dash">설정</a></li>
     </ul>
 </div>

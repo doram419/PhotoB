@@ -25,4 +25,12 @@ public class AdminController {
 	public String customerService() {
 		return "/WEB-INF/views/admin/customer-service-page.jsp";
 	}
+	
+	/**
+	 * db로 줄이지 않은 이유는 data base의 약자와 겹치기 때문
+	 * */
+	@RequestMapping({"/dashboard", "dash"})
+	public String dashboard() {
+		return "/WEB-INF/views/admin/dashboard-page.jsp";
+	}
 }
