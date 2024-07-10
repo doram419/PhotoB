@@ -25,4 +25,9 @@ public class UsersController {
 	public String photobook(){
 		return "/WEB-INF/views/users/users_photobook.jsp";
 	}
+	
+	@RequestMapping({"/order"})
+	public String order(){
+		return "/WEB-INF/views/users/users_order.jsp";
+	}
 }
