@@ -20,4 +20,9 @@ public class AdminController {
 	public String orderManagement() {
 		return "/WEB-INF/views/admin/order-management-page.jsp";
 	}
+	
+	@RequestMapping({"/customerService", "cs"})
+	public String customerService() {
+		return "/WEB-INF/views/admin/customer-service-page.jsp";
+	}
 }
