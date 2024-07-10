@@ -6,9 +6,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 @RequestMapping("/users")
 public class UsersController {
-	@RequestMapping({"/home", "/index", ""})
+	@RequestMapping({"/home", "/index", "", "/"})
 	public String home(){
-		return "/WEB-INF/views/users/users_board.jsp";
+		return "/WEB-INF/views/users/users_index.jsp";
 	}
 	
 	@RequestMapping({"/board"})
