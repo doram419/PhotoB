@@ -4,8 +4,8 @@
 
 <head>
     <link type="text/css" 
-    	rel="stylesheet" 
-    	href='<c:url value="/css/common-style.css"/>'/>
+		rel="stylesheet" 
+		href='<c:url value="/css/header-footer.css"/>'>
 </head>
 
 <header>

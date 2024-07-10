@@ -3,15 +3,17 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
 <!DOCTYPE html>
-<html>
+
+<html lang="ko"> 
+
 <head>
     <meta charset="UTF-8">
     <title>게시판 - 포토북 제작 서비스</title>
-
-    <link type="text/css" 
+	<link type="text/css" 
 		rel="stylesheet" 
-		href='<c:url value="/css/common-style.css"/>'/>
+		href='<c:url value="/css/common-style.css"/>'>
 </head>
+
 <body>
     <c:import url="/WEB-INF/views/users/includes/users_header.jsp"></c:import>
     
@@ -47,9 +49,7 @@
             <!--write.html 만들어야함-->
         </section>
     </main>
+	<c:import url="/WEB-INF/views/users/includes/users_footer.jsp"></c:import>
 
-    <footer>
-        <p>&copy; 2024 포토북 제작 서비스. All rights reserved.</p>
-    </footer>
 </body>
 </html>
