@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -63,12 +64,12 @@
         <div class="logo">로고</div>
         <nav>
             <ul id="navMenu">
-                <li><a href="#">홈</a></li>
-                <li class="auth-required"><a href="photobook.html">포토북 만들기</a></li>
-                <li class="auth-required"><a href="order.html">주문내역</a></li>
-                <li class="auth-required"><a href="board.html">게시판</a></li>
-                <li id="adminLink" style="display: none;"><a href="admin.html" class="admin-menu">관리자 페이지</a></li>
-                <li id="loginLink"><a href="login.html">로그인/회원가입</a></li>
+       <li><a href="<c:url value='/' />">홈</a></li>
+                <li class="auth-required"><a href="<c:url value='/photobook.html' />">포토북 만들기</a></li>
+                <li class="auth-required"><a href="<c:url value='/order.html' />">주문내역</a></li>
+                <li class="auth-required"><a href="<c:url value='/board.html' />">게시판</a></li>
+                <li id="adminLink" style="display: none;"><a href="<c:url value='/admin.html' />" class="admin-menu">관리자 페이지</a></li>
+                <li id="loginLink"><a href="<c:url value='/users/login' />">로그인/회원가입</a></li>
             </ul>
         </nav>
     </header>
@@ -121,11 +122,11 @@
             } else {
                 authRequired.forEach(item => item.style.display = 'none');
                 adminLink.style.display = 'none';
-                ctaButton.href = 'login.html';
+                ctaButton.href = 'users/login.html';
                 ctaButton.addEventListener('click', function(e) {
                     e.preventDefault();
                     alert('포토북 만들기는 로그인 후 이용 가능합니다.');
-                    window.location.href = 'login.html';
+                    window.location.href = 'users/login';
                 });
             }
         }
