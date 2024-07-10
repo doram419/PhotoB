@@ -1,26 +1,23 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ page import="java.util.Date" %>
-<%@ page import="java.text.SimpleDateFormat" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+    
 <!DOCTYPE html>
+
 <html lang="ko">
+
 <head>
-    <meta charset="UTF-8">
+	<meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>주문 관리</title>
-    <link rel="stylesheet" href="style.css">
+	<link type="text/css" 
+		rel="stylesheet" 
+		href='<c:url value="/css/common-style.css"/>'/>
 </head>
-<body>
-    <div class="sidebar">
-        <div class="sidebar-header">
-            <h3>관리자 패널</h3>
-        </div>
-        <ul class="sidebar-menu">
-            <li><a href="index.jsp">대시보드</a></li>
-            <li><a href="customers.jsp">고객 관리</a></li>
-            <li><a href="orders.jsp">주문 관리</a></li>
-            <li><a href="customer-service.jsp">고객 센터</a></li>
-        </ul>
-    </div>
+
+<body> 
+	<c:import url="/WEB-INF/views/admin/includes/admin_header.jsp"></c:import>
+	
     <div class="main-content">
         <div class="header">
             <h2>주문 관리</h2>
@@ -28,9 +25,9 @@
         <div class="card">
             <div class="card-header">주문 검색</div>
             <div class="card-body">
-                <form action="searchOrder.jsp" method="GET">
+                <form>
                     <div class="form-group">
-                        <input type="text" name="searchTerm" placeholder="주문번호 또는 고객ID 검색">
+                        <input type="text" placeholder="주문번호 또는 고객ID 검색">
                     </div>
                     <button type="submit" class="btn btn-primary">검색</button>
                 </form>
@@ -51,22 +48,24 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <%-- 여기에 주문 데이터를 동적으로 생성하는 Java 코드를 추가할 수 있습니다 --%>
                         <tr>
                             <td>1001</td>
                             <td>김철수</td>
-                            <td><%= new SimpleDateFormat("yyyy-MM-dd HH:mm").format(new Date()) %></td>
+                            <td>2024-07-09 15:30</td>
                             <td>배송중</td>
                             <td>50,000원</td>
                             <td>
-                                <button class="btn btn-primary" onclick="location.href='orderDetail.jsp?id=1001'">상세보기</button>
-                                <button class="btn btn-primary" onclick="location.href='changeOrderStatus.jsp?id=1001'">상태변경</button>
+                                <button class="btn btn-primary">상세보기</button>
+                                <button class="btn btn-primary">상태변경</button>
                             </td>
                         </tr>
+                        <!-- 추가 주문 데이터 -->
                     </tbody>
                 </table>
             </div>
         </div>
     </div>
+   
+	<c:import url="/WEB-INF/views/admin/includes/admin_footer.jsp"></c:import>
 </body>
 </html>
