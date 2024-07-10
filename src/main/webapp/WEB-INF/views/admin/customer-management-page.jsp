@@ -1,24 +1,23 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+    
 <!DOCTYPE html>
+
 <html lang="ko">
+
 <head>
-    <meta charset="UTF-8">
+	<meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>고객 관리</title>
-    <link rel="stylesheet" href="/admin.css/common-style.css">
+	<link type="text/css" 
+		rel="stylesheet" 
+		href='<c:url value="/css/common-style.css"/>'/>
 </head>
+
 <body>
-    <div class="sidebar">
-        <div class="sidebar-header">
-            <h3>관리자 패널</h3>
-        </div>
-        <ul class="sidebar-menu">
-            <li><a href="/admin.html/admin-pages.html">대시보드</a></li>
-            <li><a href="/admin.html/customer-management-page.html">고객 관리</a></li>
-            <li><a href="/admin.html/order-management-page.html">주문 관리</a></li>
-            <li><a href="/admin.html/customer-service-page.html">고객 센터</a></li>
-            <li><a href="/admin.html/dashboard-page.html">설정</a></li>
-        </ul>
-    </div>
+	<c:import url="/WEB-INF/views/admin/includes/admin_header.jsp"></c:import>
+ 
     <div class="main-content">
         <div class="header">
             <h2>고객 관리</h2>
@@ -64,5 +63,7 @@
             </div>
         </div>
     </div>
+  
+	<c:import url="/WEB-INF/views/admin/includes/admin_footer.jsp"></c:import>
 </body>
 </html>
