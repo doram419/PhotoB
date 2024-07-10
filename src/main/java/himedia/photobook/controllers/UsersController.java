@@ -20,4 +20,9 @@ public class UsersController {
 	public String profile(){
 		return "/WEB-INF/views/users/users_profile.jsp";
 	}
+	
+	@RequestMapping({"/photobook", "pb", "photo"})
+	public String photobook(){
+		return "/WEB-INF/views/users/users_photobook.jsp";
+	}
 }
