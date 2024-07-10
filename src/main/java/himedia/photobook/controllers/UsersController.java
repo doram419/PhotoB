@@ -11,8 +11,11 @@ public class UsersController {
 
     @GetMapping("/login")
     public String login() {
-    	System.out.println("로그인 떳씁니다");
     	return "/WEB-INF/views/users/login.jsp";
+    }
+    @GetMapping("/register")
+    public String register()	{
+    	return "/WEB-INF/views/users/register.jsp";
     }
     
 }
