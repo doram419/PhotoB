@@ -10,16 +10,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>나만의 포토북 서비스</title>
-    
-    <link type="text/css" 
-		rel="stylesheet" 
-		href='<c:url value="/css/header-footer.css"/>'>
+
 	<link type="text/css" 
 		rel="stylesheet" 
 		href='<c:url value="/css/home_index_style.css"/>'>
-	<link type="text/css" 
-		rel="stylesheet" 
-		href='<c:url value="/css/common-style.css"/>'>
+
 </head>
 
 <body>

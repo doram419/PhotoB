@@ -15,4 +15,9 @@ public class UsersController {
 	public String board(){
 		return "/WEB-INF/views/users/users_board.jsp";
 	}
+	
+	@RequestMapping({"/profile"})
+	public String profile(){
+		return "/WEB-INF/views/users/users_profile.jsp";
+	}
 }
