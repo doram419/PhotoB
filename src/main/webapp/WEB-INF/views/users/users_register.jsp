@@ -6,7 +6,7 @@
 <head>
     <meta charset="UTF-8">
     <title>회원가입 - 포토북 제작 서비스</title>
-    <link rel="stylesheet" href="css/header-footer.css">
+    <link rel="stylesheet" href="css/header_footer.css">
 </head>
 <body>
     <header>

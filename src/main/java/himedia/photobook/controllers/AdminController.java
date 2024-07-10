@@ -31,6 +31,6 @@ public class AdminController {
 	 * */
 	@RequestMapping({"/dashboard", "/dash"})
 	public String dashboard() {
-		return "/WEB-INF/views/admin_admin/dashboard.jsp";
+		return "/WEB-INF/views/admin/admin_dashboard.jsp";
 	}
 }
