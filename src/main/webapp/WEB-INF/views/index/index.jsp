@@ -64,7 +64,7 @@
         <div class="logo">로고</div>
         <nav>
             <ul id="navMenu">
-       <li><a href="<c:url value='/' />">홈</a></li>
+       			<li><a href="<c:url value='/' />">홈</a></li>
                 <li class="auth-required"><a href="<c:url value='/photobook.html' />">포토북 만들기</a></li>
                 <li class="auth-required"><a href="<c:url value='/order.html' />">주문내역</a></li>
                 <li class="auth-required"><a href="<c:url value='/board.html' />">게시판</a></li>
@@ -73,6 +73,7 @@
             </ul>
         </nav>
     </header>
+    
     <main>
         <section class="hero">
             <h1>나만의 특별한 순간을 포토북으로</h1>
