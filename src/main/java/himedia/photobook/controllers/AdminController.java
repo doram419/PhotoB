@@ -15,4 +15,9 @@ public class AdminController {
 	public String customerManagement() {
 		return "/WEB-INF/views/admin/customer-management-page.jsp";
 	}
+	
+	@RequestMapping({"/orderManagement", "orderManage", "om"})
+	public String orderManagement() {
+		return "/WEB-INF/views/admin/order-management-page.jsp";
+	}
 }
