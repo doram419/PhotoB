@@ -1,5 +1,5 @@
 package himedia.photobook.controllers;
 
-public class UserController {
+public class UsersController {
 
 }
