@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class UsersController {
   @GetMapping("/login")
     public String login() {
-    	return "/WEB-INF/views/users/login.jsp";
+    	return "/WEB-INF/views/users/users_login.jsp";
   }
   
 	@RequestMapping({"/home", "/index", "", "/"})
