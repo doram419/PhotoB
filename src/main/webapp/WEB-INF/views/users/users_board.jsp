@@ -7,11 +7,13 @@
 <head>
     <meta charset="UTF-8">
     <title>게시판 - 포토북 제작 서비스</title>
-    <link rel="stylesheet" href="css/header-footer.css">
-    <link rel="stylesheet" href="css/common-style.css">
+
+    <link type="text/css" 
+		rel="stylesheet" 
+		href='<c:url value="/css/common-style.css"/>'/>
 </head>
 <body>
-    <c:import url="/WEB-INF/views/admin/includes/users_header.jsp"></c:import>
+    <c:import url="/WEB-INF/views/users/includes/users_header.jsp"></c:import>
     
     <main>
         <section id="board">

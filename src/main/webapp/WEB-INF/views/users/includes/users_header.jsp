@@ -2,6 +2,12 @@
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
+<head>
+    <link type="text/css" 
+    	rel="stylesheet" 
+    	href='<c:url value="/css/common-style.css"/>'/>
+</head>
+
 <header>
     <h1>포토북 제작 서비스</h1>
     <nav>

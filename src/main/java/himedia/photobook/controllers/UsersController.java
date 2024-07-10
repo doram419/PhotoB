@@ -1,5 +1,13 @@
 package himedia.photobook.controllers;
 
-public class UsersController {
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
 
+@Controller
+@RequestMapping("/users")
+public class UsersController {
+	@RequestMapping({"/board"})
+	public String board(){
+		return "/WEB-INF/views/users/users_board.jsp";
+	}
 }
