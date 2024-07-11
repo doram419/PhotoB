@@ -1,23 +1,21 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+      
 <!DOCTYPE html>
+
 <html>
+
 <head>
     <meta charset="UTF-8">
     <title>주문 - 포토북 제작 서비스</title>
-    <link rel="stylesheet" href="css/header-footer.css">
+    <link type="text/css" 
+		rel="stylesheet" 
+		href='<c:url value="/css/header_footer.css"/>'>
 </head>
+
 <body>
-    <header>
-        <h1>포토북 제작 서비스</h1>
-        <nav>
-            <ul>
-                <li><a href="home_index.html">홈</a></li>
-                <li><a href="profile.html">프로필 관리</a></li>
-                <li><a href="photobook.html">포토북 제작</a></li>
-                <li><a href="order.html">주문</a></li>
-                <li><a href="board.html">게시판</a></li>
-            </ul>
-        </nav>
-    </header>
+    <c:import url="/WEB-INF/views/users/includes/users_header.jsp"></c:import>
 
     <main>
         <section id="order">
@@ -52,8 +50,6 @@
         </section>
     </main>
 
-    <footer>
-        <p>&copy; 2024 포토북 제작 서비스. All rights reserved.</p>
-    </footer>
+ 	<c:import url="/WEB-INF/views/users/includes/users_footer.jsp"></c:import>
 </body>
 </html>
