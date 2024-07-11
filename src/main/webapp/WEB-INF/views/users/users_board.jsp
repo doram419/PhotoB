@@ -32,7 +32,9 @@
                 <tbody>
                     <tr>
                         <td>1</td>
-                        <td><a href="post.html">포토북 제작 문의드립니다.</a></td>
+                        <td>
+                        	<a href="post.html">포토북 제작 문의드립니다.</a>
+                        </td>
                         <!--pose.html 만들어야함-->
                         <td>사용자1</td>
                         <td>2023-06-01</td>
