@@ -1,5 +1,7 @@
 package himedia.photobook.controllers;
 
+//import himedia.photobook.services.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -7,13 +9,17 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 @RequestMapping("/users")
 public class UsersController {
-  @GetMapping("/login")
-    public String login() {
-    	return "/WEB-INF/views/users/login.jsp";
-  }
-  
-	@RequestMapping({"/home", "/index", "", "/"})
-	public String home(){
+	@Autowired
+	//private UserService userService;
+
+	@GetMapping("/login")
+	public String login() {
+
+		return "/WEB-INF/views/users/users_login.jsp";
+	}
+
+	@RequestMapping({ "/home", "/index", "", "/" })
+	public String home() {
 		return "/WEB-INF/views/users/users_index.jsp";
 	}
 	
