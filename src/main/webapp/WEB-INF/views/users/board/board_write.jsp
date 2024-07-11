@@ -32,6 +32,8 @@
 	    </form>
     </div>
     
+    <p> <a href="<c:url value="/board"/>">돌아가기</a> </p>
+    
     <c:import url="/WEB-INF/views/users/includes/users_footer.jsp"></c:import>
 </body>
 
