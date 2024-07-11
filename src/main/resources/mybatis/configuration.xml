@@ -6,17 +6,13 @@
 <configuration>
 	<!-- 별칭 등록 -->
 	<typeAliases>
-		<!-- 
 		<typeAlias 
-			type="himedia.photobook.repositories.vo."
-			alias="" />
-		 -->
+			type="himedia.photobook.repositories.vo.UsersVo"
+			alias="UsersVo" />
 	</typeAliases>
 	
 	<!-- MyBatis 매퍼 -->
-	<mappers>
-	<!--  
-		<mapper resource="/mybatis/mappers/.xml" />
-	-->
+	<mappers> 
+		<mapper resource="/mybatis/mappers/users.xml" />
 	</mappers>
 </configuration>

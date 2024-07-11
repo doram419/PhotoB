@@ -5,7 +5,7 @@
 <head>
     <link type="text/css" 
 		rel="stylesheet" 
-		href='<c:url value="/css/header-footer.css"/>'>
+		href='<c:url value="/css/header_footer.css"/>'>
 </head>
   
 <footer>

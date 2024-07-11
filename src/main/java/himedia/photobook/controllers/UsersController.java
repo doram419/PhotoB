@@ -1,16 +1,21 @@
 package himedia.photobook.controllers;
 
-//import himedia.photobook.services.UserService;
+
+import himedia.photobook.repositories.vo.UsersVo;
+import himedia.photobook.services.UserService;
+import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 @RequestMapping("/users")
 public class UsersController {
 	@Autowired
-	//private UserService userService;
+	private UserService userService;
 
 	@GetMapping("/login")
 	public String login() {
@@ -22,24 +27,60 @@ public class UsersController {
 	public String home() {
 		return "/WEB-INF/views/users/users_index.jsp";
 	}
-	
-	@RequestMapping({"/board"})
-	public String board(){
+
+	@RequestMapping({ "/board" })
+	public String board() {
 		return "/WEB-INF/views/users/users_board.jsp";
 	}
-	
-	@RequestMapping({"/profile"})
-	public String profile(){
+
+	@RequestMapping({ "/profile" })
+	public String profile() {
 		return "/WEB-INF/views/users/users_profile.jsp";
 	}
-	
-	@RequestMapping({"/photobook", "pb", "photo"})
-	public String photobook(){
+
+	@RequestMapping({ "/photobook", "pb", "photo" })
+	public String photobook() {
 		return "/WEB-INF/views/users/users_photobook.jsp";
 	}
-	
-	@RequestMapping({"/order"})
-	public String order(){
+
+	@RequestMapping({ "/order" })
+	public String order() {
 		return "/WEB-INF/views/users/users_order.jsp";
+	}
+
+	@PostMapping("/login")
+	public ModelAndView loginProcess(String email, String password, HttpSession session) {
+		UsersVo user = userService.login(email, password);
+		if (user != null) {
+			session.setAttribute("user", user);
+			return new ModelAndView("redirect:/");
+		} else {
+			ModelAndView mv = new ModelAndView("/WEB-INF/views/users/users_login.jsp");
+			mv.addObject("error", "Invalid email or password");
+			return mv;
+		}
+	}
+
+	@GetMapping("/register")
+	public String register() {
+		return "/WEB-INF/views/users/users_register.jsp";
+	}
+
+	@PostMapping("/register")
+	public ModelAndView registerProcess(UsersVo user) {
+		boolean isRegistered = userService.register(user);
+		if (isRegistered) {
+			return new ModelAndView("redirect:/users/login");
+		} else {
+			ModelAndView mv = new ModelAndView("/WEB-INF/views/users/users_register.jsp");
+			mv.addObject("error", "Registration failed. Email already exists.");
+			return mv;
+		}
+	}
+
+	@GetMapping("/logout")
+	public String logout(HttpSession session) {
+		session.invalidate();
+		return "redirect:/";
 	}
 }

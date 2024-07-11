@@ -2,7 +2,7 @@ package himedia.photobook.repositories.vo;
 
 // 작성자: 유승원
 public class UsersVo {
-	private Long userId;
+	private String userId;
 	private String email;
 	private String password;
 	private String userName;
@@ -14,7 +14,7 @@ public class UsersVo {
 		
 	}
 
-	public UsersVo(Long userId, String email, String password, String userName, String address, String phoneNumber,
+	public UsersVo(String userId, String email, String password, String userName, String address, String phoneNumber,
 			String role) {
 		super();
 		this.userId = userId;
@@ -26,11 +26,11 @@ public class UsersVo {
 		this.role = role;
 	}
 
-	public Long getUserId() {
+	public String getUserId() {
 		return userId;
 	}
 
-	public void setUserId(Long userId) {
+	public void setUserId(String userId) {
 		this.userId = userId;
 	}
 
