@@ -47,8 +47,9 @@
                     </tr>
                 </tbody>
             </table>
+            
             <a href="write.html" class="button">글쓰기</a>
-            <!--write.html 만들어야함-->
+
         </section>
     </main>
 	<c:import url="/WEB-INF/views/users/includes/users_footer.jsp"></c:import>
