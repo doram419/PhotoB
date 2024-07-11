@@ -48,7 +48,7 @@
                 </tbody>
             </table>
             
-            <a href="write.html" class="button">글쓰기</a>
+           <p> <a href="<c:url value="/board/write"/>">글쓰기</a> </p>
 
         </section>
     </main>
