@@ -5,7 +5,7 @@ import java.util.Date;
 // 작성자 : 유승원
 public class OrdersVo {
 	private String orderId;
-	private String userId;
+	private Long userId;
 	private String albumId;
 	private Date orderDate;
 	private String total;
@@ -15,7 +15,7 @@ public class OrdersVo {
 		
 	}
 
-	public OrdersVo(String orderId, String userId, String albumId, Date orderDate, String total, Long oQuantity) {
+	public OrdersVo(String orderId, Long userId, String albumId, Date orderDate, String total, Long oQuantity) {
 		super();
 		this.orderId = orderId;
 		this.userId = userId;
@@ -33,11 +33,11 @@ public class OrdersVo {
 		this.orderId = orderId;
 	}
 
-	public String getUserId() {
+	public Long getUserId() {
 		return userId;
 	}
 
-	public void setUserId(String userId) {
+	public void setUserId(Long userId) {
 		this.userId = userId;
 	}
 
