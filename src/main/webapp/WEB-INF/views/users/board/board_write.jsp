@@ -22,8 +22,6 @@
     
     <div class="content">
         <p>글 작성하기</p>
-        
-        
     </div>
     
     <c:import url="/WEB-INF/views/users/includes/users_footer.jsp"></c:import>

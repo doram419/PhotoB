@@ -28,11 +28,6 @@ public class UsersController {
 		return "/WEB-INF/views/users/users_index.jsp";
 	}
 
-	@RequestMapping({ "/board" })
-	public String board() {
-		return "/WEB-INF/views/users/users_board.jsp";
-	}
-
 	@RequestMapping({ "/profile" })
 	public String profile() {
 		return "/WEB-INF/views/users/users_profile.jsp";
