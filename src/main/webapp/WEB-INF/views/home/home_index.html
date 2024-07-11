@@ -38,11 +38,40 @@
         <section class="popular-templates">
             <h2>인기 템플릿</h2>
             <!-- 템플릿 미리보기 이미지들 -->
+              <div class="template-preview">
+            <img src="https://via.placeholder.com/100x70" alt="템플릿 1">
+        </div>
+        
+        <div class="template-preview">
+            <img src="https://via.placeholder.com/100x70" alt="템플릿 2">
+        </div>
+        
+        <div class="template-preview">
+            <img src="https://via.placeholder.com/100x70" alt="템플릿 3">
+        </div>
+        
+        <div class="template-preview">
+            <img src="https://via.placeholder.com/100x70" alt="템플릿 4">
+        </div>
         </section>
 
         <section class="customer-reviews">
             <h2>고객 리뷰</h2>
             <!-- 리뷰 내용 -->
+              <form id="review-form">
+            <div class="form-group">
+                <label for="review-text">리뷰 내용</label>
+                <textarea id="review-text" name="review-text" rows="2" placeholder="리뷰를 작성해주세요..." required></textarea>
+            </div>
+             <div class="form-group">
+                <label for="reviewer-name">리뷰어 이름</label>
+                <input type="text" id="reviewer-name" name="reviewer-name" placeholder="이름을 입력하세요..." required>
+            </div>
+            
+            <div class="form-group">
+                <button type="submit" class="submit-btn">리뷰 제출하기</button>
+            </div>
+        </form>
         </section>
     </main>
 
