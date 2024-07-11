@@ -34,18 +34,19 @@
         
     <!-- 댓글 기능 지원 -->
     <hr>
+   	<p>댓글</p>
     <table>
+	    <tr>
+	    	<td>2</td>
+       		<td>답변드립니다</td>
+       		<td>관리자</td>
+       		<td>2023-06-02</td>
+	    </tr>
     <c:forEach items="${commentList}" var="commentVo" varStatus="status">
 		<tr>
 			<td>${commentVo.no}</td>
-		</tr>
-		<tr>
 			<td>${commentVo.user_name}</td>
-		</tr>
-		<tr>
 			<td>${commentVo.content}</td>
-		</tr>
-		<tr>
 			<td>${commentVo.post_date}</td>
 		</tr>
 	</c:forEach>   
