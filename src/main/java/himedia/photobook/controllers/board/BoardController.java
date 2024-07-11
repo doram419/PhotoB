@@ -20,4 +20,9 @@ public class BoardController {
 	public String write() {
 		return "/WEB-INF/views/users/board/board_write.jsp";
 	}
+	
+	@GetMapping({ "/post" })
+	public String showPost() {
+		return "/WEB-INF/views/users/board/board_post.jsp";
+	}
 }
