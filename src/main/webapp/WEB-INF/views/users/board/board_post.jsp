@@ -24,19 +24,14 @@
 <body>
 	<c:import url="/WEB-INF/views/users/includes/users_header.jsp"></c:import>
 	
+	<!-- postVo 요청 혹은 각 데이터를 요청 -->
 	<h1>${title}</h1>
-   
-    <div class="main-content">
-	    <form method="POST" action="<c:url value="/board/write"/>" >
-	    	<label for="title">글 제목</label>
-	   		<input type="text" id="title" name="title" required>
-	   		<br>
-	   		<label for="content">글 내용</label>
-	   		<textarea id="content" name="content" rows="10" col="50">문의사항은 여기 적어주세요</textarea>
-	        <button type="submit">글 작성</button>
-	    </form>
-    </div>
-    
+  
+    <p>글번호 : ${no}</p>
+    <p>작성자 : ${users_name}</p>
+    <p>내용 : ${content}</p>
+                        
+    <p><a href="<c:url value="/board"/>">돌아가기</a></p>
     <c:import url="/WEB-INF/views/users/includes/users_footer.jsp"></c:import>
 </body>
 
