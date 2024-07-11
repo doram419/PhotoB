@@ -1,11 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="himedia.photobook.repositories.UsersRepository">
-    <select id="findByEmail" resultType="himedia.photobook.repositories.vo.UsersVo">
+
+    <insert id="insert">
+        INSERT INTO USERS (USER_ID, EMAIL, PASSWORD, USER_NAME, ROLE, CREATED_AT, UPDATED_AT)
+        VALUES (#{userId}, #{email}, #{password}, #{userName}, #{role}, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP)
+    </insert>
+
+    <select id="selectUserByEmail" resultType="himedia.photobook.repositories.vo.UsersVo">
         SELECT * FROM USERS
         WHERE EMAIL = #{email}
     </select>
 
-    <insert id="save">
-        INSERT INTO USERS (USER_ID, EMAIL, PASSWORD, USER_NAME, CREATED_AT, UPDATED_AT)
-        VALUES (#{userId}, #{email}, #{password}, #{userName}, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP)
-    </insert>
+    <select id="selectUserByEmailAndPassword" resultType="himedia.photobook.repositories.vo.UsersVo">
+        SELECT * FROM USERS
+        WHERE EMAIL = #{email} AND PASSWORD = #{password}
+    </select>
 </mapper>
