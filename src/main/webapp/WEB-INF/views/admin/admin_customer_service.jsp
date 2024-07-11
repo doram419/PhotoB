@@ -1,8 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ page import="java.util.Date" %>
-<%@ page import="java.text.SimpleDateFormat" %>
     
 <!DOCTYPE html>
 
@@ -53,13 +51,13 @@
                         <%-- 여기에 문의 데이터를 동적으로 생성하는 Java 코드를 추가할 수 있습니다 --%>
                         <tr>
                             <td>1</td>
-                            <td>박영희</td>
+                            <td>나그네</td>
                             <td>배송 관련 문의</td>
-                            <td><%= new SimpleDateFormat("yyyy-MM-dd").format(new Date()) %></td>
+                            <td></td>
                             <td>답변대기</td>
                             <td>
-                                <button class="btn btn-primary" onclick="location.href='inquiryDetail.jsp?id=1'">상세보기</button>
-                                <button class="btn btn-primary" onclick="location.href='respondInquiry.jsp?id=1'">답변하기</button>
+                                <button class="btn btn-primary" onclick="location.href='board_post'">상세보기</button>
+                                <button class="btn btn-primary" onclick="location.href='board_write'">답변하기</button>
                             </td>
                         </tr>
                     </tbody>
