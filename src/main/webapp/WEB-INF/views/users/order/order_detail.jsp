@@ -56,7 +56,6 @@
 	                        <td>${orderVo.oQuantity}</td>
 	                        <td>${orderVo.total}원</td>
 	                        <!-- orderStatus의 값에 맞는 설명 출력 -->
-
 	                        <td>${orderStatus}</td>      
                     	</tr>
                 	</c:forEach>
