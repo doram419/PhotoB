@@ -7,12 +7,12 @@
 <html lang="ko">
 
 <head>
-	<meta charset="UTF-8">
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>관리자 대시보드</title>
 	<link type="text/css" 
 		rel="stylesheet" 
-		href='<c:url value="/css/common-style.css"/>'/>
+		href='<c:url value="/css/common_style.css"/>'/>
 </head>
 
 <body>
@@ -23,9 +23,7 @@
             <h2>대시보드</h2>
         </div>
         <div class="card">
-            <div class="card-header">
-                최근 주문 내역
-            </div>
+            <div class="card-header">최근 주문 내역</div>
             <div class="card-body">
                 <table class="table">
                     <thead>
@@ -43,21 +41,13 @@
                             <td>2024-07-09 14:30</td>
                             <td>배송 완료</td>
                         </tr>
-                        <tr>
-                            <td>1002</td>
-                            <td>김철수</td>
-                            <td>2024-07-09 15:45</td>
-                            <td>배송 중</td>
-                        </tr>
                         <!-- 추가 주문 데이터 -->
                     </tbody>
                 </table>
             </div>
         </div>
         <div class="card">
-            <div class="card-header">
-                최근 회원 가입 내역
-            </div>
+            <div class="card-header">최근 회원 가입 내역</div>
             <div class="card-body">
                 <table class="table">
                     <thead>
@@ -73,18 +63,13 @@
                             <td>이영희</td>
                             <td>2024-07-08</td>
                         </tr>
-                        <tr>
-                            <td>user002</td>
-                            <td>박민수</td>
-                            <td>2024-07-09</td>
-                        </tr>
                         <!-- 추가 회원 데이터 -->
                     </tbody>
                 </table>
             </div>
         </div>
     </div>
-  	
-	<c:import url="/WEB-INF/views/admin/includes/admin_footer.jsp"></c:import>
+    
+	<c:import url="/WEB-INF/views/admin/includes/admin_footer.jsp"></c:import> 
 </body>
 </html>

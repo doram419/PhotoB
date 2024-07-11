@@ -2,6 +2,12 @@
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
+<head>
+	<link type="text/css" 
+		rel="stylesheet" 
+		href='<c:url value="/css/header_footer.css"/>'/>
+</head>
+
 <div class="sidebar">
     <div class="sidebar-header">
         <h3>관리자 패널</h3>
