@@ -7,13 +7,12 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class UserService {
-
     @Autowired
     private UsersDao userDao;
 
-    public boolean register(UsersVo user) {
+   public boolean register(UsersVo user) {
         // 이메일 중복 체크
-        UsersVo existingUser = userDao.selectUser(user.getEmail());
+        UsersVo existingUser = userDao.selectUserByEmail(user.getEmail());
         if (existingUser != null) {
             return false;
         }
@@ -23,13 +22,13 @@ public class UserService {
         user.setPassword(encryptedPassword);
         
         // 회원가입 처리
-        int result = userDao.insert(user);
-        return result > 0;
+       	  int result = userDao.insert(user);
+       	  return result > 0;
     }
 
     public UsersVo login(String email, String password) {
         // 이메일과 비밀번호로 사용자 조회
-        UsersVo user = userDao.selectUser(email, password);
+        UsersVo user = userDao.selectUserByEmailAndPassword(email, password);
         return user;
     }
 
