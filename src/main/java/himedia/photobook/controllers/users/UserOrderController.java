@@ -1,12 +1,12 @@
-package himedia.photobook.controllers.order;
+package himedia.photobook.controllers.users;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping({ "/order" })
-public class OrderController {
-	@RequestMapping({"/",""})
+@RequestMapping({ "/user"})
+public class UserOrderController {
+	@RequestMapping({"/order"})
 	public String order() {
 		return "/WEB-INF/views/users/users_order.jsp";
 	}
