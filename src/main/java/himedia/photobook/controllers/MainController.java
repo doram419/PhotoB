@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class MainController {
     @RequestMapping({"/"})
     public String welcome() { System.out.println("ㅎㅇ");
-        return "/WEB-INF/views/index/index.jsp";
+        return "/WEB-INF/views/users/users_index.jsp";
        
     }
 }
