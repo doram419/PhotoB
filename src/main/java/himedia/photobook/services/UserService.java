@@ -11,10 +11,9 @@ public class UserService {
     private UsersDao userDao;
 
    public boolean register(UsersVo user) {
-        // 이메일 중복 체크
         UsersVo existingUser = userDao.selectUserByEmail(user.getEmail());
         if (existingUser != null) {
-            return false;
+            return false;	
         }
 
         // 비밀번호 암호화 (구현 필요)
@@ -26,12 +25,16 @@ public class UserService {
        	  return result > 0;
     }
 
-    public UsersVo login(String email, String password) {
-        // 이메일과 비밀번호로 사용자 조회
-        UsersVo user = userDao.selectUserByEmailAndPassword(email, password);
-        return user;
-    }
-
+   public UsersVo login(String email, String password) {
+	    UsersVo user = userDao.selectUserByEmail(email);
+	    if (user != null) {
+	        String encryptedPassword = encryptPassword(password);
+	        if (user.getPassword().equals(encryptedPassword)) {
+	            return user;
+	        }
+	    }
+	    return null;
+	}
     private String encryptPassword(String password) {
         // 비밀번호 암호화 로직 구현 (예: BCrypt)
         // 여기서는 간단히 "encrypted_" 접두사를 붙이는 것으로 대체
