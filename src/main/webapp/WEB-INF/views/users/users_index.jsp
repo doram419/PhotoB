@@ -23,7 +23,7 @@
     <main>
         <section class="hero">
             <h1>나만의 특별한 순간을 포토북으로</h1>
-            <a href="photobook.html" class="cta-button">나만의 포토북 만들기</a>
+            <a href="photobook.jsp" class="cta-button">나만의 포토북 만들기</a>
         </section>
 
         <section class="popular-templates">
