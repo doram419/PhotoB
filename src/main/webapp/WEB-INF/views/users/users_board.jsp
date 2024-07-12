@@ -1,26 +1,22 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
 <!DOCTYPE html>
-<html>
+
+<html lang="ko"> 
+
 <head>
     <meta charset="UTF-8">
     <title>게시판 - 포토북 제작 서비스</title>
-    <link rel="stylesheet" href="css/header-footer.css">
-    <link rel="stylesheet" href="css/common-style.css">
+	<link type="text/css" 
+		rel="stylesheet" 
+		href='<c:url value="/css/common_style.css"/>'>
 </head>
-<body>
-    <header>
-        <h1>포토북 제작 서비스</h1>
-        <nav>
-            <ul>
-                <li><a href="home_index.html">홈</a></li>
-                <li><a href="profile.html">프로필 관리</a></li>
-                <li><a href="photobook.html">포토북 제작</a></li>
-                <li><a href="order.html">주문</a></li>
-                <li><a href="board.html">게시판</a></li>
-            </ul>
-        </nav>
-    </header>
 
+<body>
+    <c:import url="/WEB-INF/views/users/includes/users_header.jsp"></c:import>
+    
     <main>
         <section id="board">
             <h2>게시판</h2>
@@ -37,7 +33,7 @@
                     <tr>
                         <td>1</td>
                         <td><a href="post.html">포토북 제작 문의드립니다.</a></td>
-                        <!--post.html 만들어야함-->
+                        <!--pose.html 만들어야함-->
                         <td>사용자1</td>
                         <td>2023-06-01</td>
                     </tr>
@@ -53,9 +49,7 @@
             <!--write.html 만들어야함-->
         </section>
     </main>
+	<c:import url="/WEB-INF/views/users/includes/users_footer.jsp"></c:import>
 
-    <footer>
-        <p>&copy; 2024 포토북 제작 서비스. All rights reserved.</p>
-    </footer>
 </body>
 </html>

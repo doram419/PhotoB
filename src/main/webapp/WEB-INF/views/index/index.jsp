@@ -1,7 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
+
 <html lang="ko">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -63,15 +66,24 @@
         <div class="logo">로고</div>
         <nav>
             <ul id="navMenu">
-                <li><a href="#">홈</a></li>
-                <li class="auth-required"><a href="photobook.html">포토북 만들기</a></li>
-                <li class="auth-required"><a href="order.html">주문내역</a></li>
-                <li class="auth-required"><a href="board.html">게시판</a></li>
-                <li id="adminLink" style="display: none;"><a href="admin.html" class="admin-menu">관리자 페이지</a></li>
-                <li id="loginLink"><a href="login.html">로그인/회원가입</a></li>
+       			<li><a href="<c:url value='/' />">홈</a></li>
+<c:choose>
+    <c:when test="${not empty sessionScope.user}">
+        <li><a href="<c:url value='/photobook.html' />">포토북 만들기</a></li>
+        <li><a href="<c:url value='/order.html' />">주문내역</a></li>
+        <li><a href="<c:url value='/board.html' />">게시판</a></li>
+        <c:if test="${sessionScope.user.role == 'A'}">
+            <li><a href="<c:url value='/admin.html' />" class="admin-menu">관리자 페이지</a></li>
+        </c:if>
+    </c:when>
+    <c:otherwise>
+        <li><a href="<c:url value='/users/login' />">로그인/회원가입</a></li>
+    </c:otherwise>
+</c:choose>
             </ul>
         </nav>
     </header>
+    
     <main>
         <section class="hero">
             <h1>나만의 특별한 순간을 포토북으로</h1>
@@ -121,11 +133,11 @@
             } else {
                 authRequired.forEach(item => item.style.display = 'none');
                 adminLink.style.display = 'none';
-                ctaButton.href = 'login.html';
+                ctaButton.href = 'users/login.html';
                 ctaButton.addEventListener('click', function(e) {
                     e.preventDefault();
                     alert('포토북 만들기는 로그인 후 이용 가능합니다.');
-                    window.location.href = 'login.html';
+                    window.location.href = 'users/login';
                 });
             }
         }

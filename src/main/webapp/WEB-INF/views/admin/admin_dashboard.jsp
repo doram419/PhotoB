@@ -12,7 +12,7 @@
     <title>관리자 대시보드</title>
 	<link type="text/css" 
 		rel="stylesheet" 
-		href='<c:url value="/css/common-style.css"/>'/>
+		href='<c:url value="/css/common_style.css"/>'/>
 </head>
 
 <body>
@@ -64,7 +64,7 @@
                             <td>2024-07-08</td>
                         </tr>
                         <!-- 추가 회원 데이터 -->
-                    </tbody>
+                    </tbody>	
                 </table>
             </div>
         </div>
