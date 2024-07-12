@@ -4,7 +4,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping({ "/order" })
+@RequestMapping({ "/users/order" })
 public class OrderController {
 	@RequestMapping({"/",""})
 	public String order() {
