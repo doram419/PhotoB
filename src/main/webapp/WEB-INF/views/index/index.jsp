@@ -72,6 +72,7 @@
         <li><a href="<c:url value='/photobook.html' />">포토북 만들기</a></li>
         <li><a href="<c:url value='/order.html' />">주문내역</a></li>
         <li><a href="<c:url value='/board.html' />">게시판</a></li>
+        <li><a href="/logout">로그아웃</a></li>
         <c:if test="${sessionScope.user.role == 'A'}">
             <li><a href="<c:url value='/admin.html' />" class="admin-menu">관리자 페이지</a></li>
         </c:if>
@@ -87,7 +88,7 @@
     <main>
         <section class="hero">
             <h1>나만의 특별한 순간을 포토북으로</h1>
-            <a href="photobook.html" class="cta-button" id="ctaButton">나만의 포토북 만들기</a>
+            <a href="<c:url value='/users/photobook'/>" class="cta-button" id="ctaButton">나만의 포토북 만들기</a>
         </section>
         <section class="popular-templates">
             <h2>인기 템플릿</h2>
@@ -105,6 +106,7 @@
     <script>
         // 로그인 상태를 확인하는 함수 (실제 구현 필요)
         function isLoggedIn() {
+        	
             // 여기에 실제 로그인 상태 확인 로직 구현
             return false; // 예시로 항상 로그아웃 상태 반환
         }
