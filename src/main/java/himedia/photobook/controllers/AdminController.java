@@ -44,7 +44,7 @@ public class AdminController {
 	public String shipment() {
 		return "/WEB-INF/views/admin/admin_delivery.jsp";
 		
-
+	}
 
 	@GetMapping("/update")
 	public String customerUpdate() {
