@@ -45,6 +45,10 @@ public class AdminController {
 		return "/WEB-INF/views/admin/admin_delivery.jsp";
 		
 	}
+	@RequestMapping("/product")
+	public String product() {
+		return "/WEB-INF/views/admin/admin_product.jsp";
+	}
 
 	@GetMapping("/update")
 	public String customerUpdate() {

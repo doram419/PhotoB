@@ -56,8 +56,8 @@
                             <td></td>
                             <td>답변대기</td>
                             <td>
-                                <button class="btn btn-primary" onclick="location.href='board_post'">상세보기</button>
-                                <button class="btn btn-primary" onclick="location.href='board_write'">답변하기</button>
+                            	<a href="<c:url value="/board/post"/>"><button class="btn btn-primary">상세보기</button></a>
+                                <a href="<c:url value="/board/write"/>"><button class="btn btn-primary">답변하기</button></a>
                             </td>
                         </tr>
                     </tbody>

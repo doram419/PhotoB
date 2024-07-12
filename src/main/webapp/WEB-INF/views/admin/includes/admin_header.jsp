@@ -14,10 +14,13 @@
 	<ul class="sidebar-menu">
 		<li><a href="<c:url value="/admin/home"/>">대시보드</a></li>
 		<li><a href="<c:url value="/admin/cm"/>">고객 관리</a></li>
+		<li><a href="<c:url value="/admin/product"/>">제품 관리</a></li>
 		<li><a href="<c:url value="/admin/om"/>">주문 관리</a>
 			<ul>
+				
 				<li><a href="<c:url value="/admin/delivery"/>">배송 관리</a></li>
 				<li><a href="<c:url value="/admin/refund"/>">환불 관리</a></li>
+				
 			</ul>
 		</li>
 		<li><a href="<c:url value="/admin/cs"/>">고객 센터</a></li>
