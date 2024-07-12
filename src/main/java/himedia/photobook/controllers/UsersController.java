@@ -1,5 +1,6 @@
 package himedia.photobook.controllers;
 
+
 import himedia.photobook.repositories.vo.UsersVo;
 
 import himedia.photobook.services.UserService;
@@ -14,7 +15,6 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 @RequestMapping("/users")
 public class UsersController {
-
 	@Autowired
 	private UserService userService;
 
@@ -29,11 +29,6 @@ public class UsersController {
 		return "/WEB-INF/views/users/users_index.jsp";
 	}
 
-	@RequestMapping({ "/board" })
-	public String board() {
-		return "/WEB-INF/views/users/users_board.jsp";
-	}
-
 	@RequestMapping({ "/profile" })
 	public String profile() {
 		return "/WEB-INF/views/users/users_profile.jsp";
@@ -43,7 +38,11 @@ public class UsersController {
 	public String photobook() {
 		return "/WEB-INF/views/users/users_photobook.jsp";
 	}
-
+	
+	@PostMapping("/create_photobook")
+	public String create_photobook() {
+	    return "/WEB-INF/views/users/users_create_photobook.jsp";
+	}
 	@RequestMapping({ "/order" })
 	public String order() {
 		return "/WEB-INF/views/users/users_order.jsp";
@@ -57,7 +56,7 @@ public class UsersController {
 			return new ModelAndView("redirect:/");
 		} else {
 			ModelAndView mv = new ModelAndView("/WEB-INF/views/users/users_login.jsp");
-			mv.addObject("error", "Invalid email or password");
+			mv.addObject("error", "다시.");
 			return mv;
 		}
 	}
@@ -70,13 +69,14 @@ public class UsersController {
 	@PostMapping("/register")
 	public ModelAndView registerProcess(UsersVo user) {
 		boolean isRegistered = userService.register(user);
-		if (isRegistered) {
-			return new ModelAndView("redirect:/users/login");
-		} else {
+//		if (isRegistered) {
+//			return new ModelAndView("redirect:/users/login");
+//		} else {
 			ModelAndView mv = new ModelAndView("/WEB-INF/views/users/users_register.jsp");
-			mv.addObject("error", "Registration failed. Email already exists.");
+			mv.addObject("error", "다시.");
 			return mv;
-		}
+//		}
+		
 	}
 
 	@GetMapping("/logout")

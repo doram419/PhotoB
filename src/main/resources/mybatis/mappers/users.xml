@@ -1,19 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="himedia.photobook.repositories.UsersRepository">
-
-    <insert id="insert">
-        INSERT INTO USERS (USER_ID, EMAIL, PASSWORD, USER_NAME, ROLE, CREATED_AT, UPDATED_AT)
-        VALUES (#{userId}, #{email}, #{password}, #{userName}, #{role}, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP)
+<mapper namespace="users">
+	<insert id="insert" parameterType="UsersVo">
+     	INSERT INTO USERS (USER_ID, EMAIL, PASSWORD, USER_NAME, ADDRESS, PHONE_NUMBER, ROLE) 
+        VALUES ('USER' || LPAD((SELECT NVL(MAX(TO_NUMBER(SUBSTR(USER_ID, 5))) + 1, 1) FROM USERS), 4, '0'),
+        	 #{email}, #{password}, #{userName}, #{address}, #{phoneNumber}, #{role})
     </insert>
-
-    <select id="selectUserByEmail" resultType="himedia.photobook.repositories.vo.UsersVo">
+    <select id="selectUserByEmail" parameterType="string" resultType="UsersVo">
         SELECT * FROM USERS
         WHERE EMAIL = #{email}
     </select>
 
-    <select id="selectUserByEmailAndPassword" resultType="himedia.photobook.repositories.vo.UsersVo">
+    <select id="selectUserByEmailAndPassword" parameterType="map" resultType="UsersVo">
         SELECT * FROM USERS
         WHERE EMAIL = #{email} AND PASSWORD = #{password}
     </select>

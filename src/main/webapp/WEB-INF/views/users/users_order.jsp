@@ -31,19 +31,29 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>ORDER-001</td>
+                	<c:forEach items="${orderList}" var="{orderVo}">
+                	<tr>
+                		<td> 
+                        	<!-- orderVo로 출력하고 no가져올 필요 있음 -->
+                        	<a href="<c:url value="/order/detail?orderId=${no}"/>">
+                        		ORDER-001 
+                        	</a>
+                        </td>
                         <td>포토북 1</td>
                         <td>1</td>
                         <td>30,000원</td>
                         <td>주문 완료</td>
-                    </tr>
+                	<tr>
+                	</c:forEach>
                     <tr>
-                        <td>ORDER-002</td>
-                        <td>포토북 2</td>
-                        <td>2</td>
-                        <td>50,000원</td>
-                        <td>제작 중</td>
+                        <td> 
+                        	<!-- orderVo로 출력하고 no가져올 필요 있음 -->
+                        	<a href="<c:url value="/order/detail"/>">ORDER-001</a>
+                        </td>
+                        <td>포토북 1</td>
+                        <td>1</td>
+                        <td>30,000원</td>
+                        <td>주문 완료</td>
                     </tr>
                 </tbody>
             </table>

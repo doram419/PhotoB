@@ -6,7 +6,8 @@ public class RefundVo {
 	private Long refundId;
 	private String orderId;
 	/**
-	 * R: 준비, F: 완료
+	 * P(Preparing Refund): 준비
+	 * F(Finished Refund): 완료
 	 * */
 	private String refundStatus;
 

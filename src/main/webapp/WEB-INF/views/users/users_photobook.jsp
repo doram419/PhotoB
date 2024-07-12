@@ -20,7 +20,7 @@
     <main>
         <section class="photobook-container">
             <h2>포토북 제작</h2>
-            <form action="create_photobook.html" method="post" enctype="multipart/form-data">
+            <form action="<c:url value='/users/create_photobook'/>" method="post" enctype="multipart/form-data">
                 <div class="form-group">
                     <label for="size">사이즈 선택:</label>
                     <select id="size" name="size">
