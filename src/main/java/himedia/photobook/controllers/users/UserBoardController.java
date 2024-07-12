@@ -16,12 +16,12 @@ public class UserBoardController {
 		return "/WEB-INF/views/users/users_board.jsp";
 	}
 	
-	@GetMapping({ "/write" })
+	@GetMapping({ "/board/write" })
 	public String write() {
 		return "/WEB-INF/views/users/board/board_write.jsp";
 	}
 	
-	@GetMapping({ "/post" })
+	@GetMapping({ "/board/post" })
 	public String showPost() {
 		return "/WEB-INF/views/users/board/board_post.jsp";
 	}
