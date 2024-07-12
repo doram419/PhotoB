@@ -16,7 +16,7 @@
             <li><a href="<c:url value="/users/profile"/>">프로필 관리</a></li>
             <li><a href="<c:url value="/users/photobook"/>">포토북 제작</a></li>
             <li><a href="<c:url value="/users/order"/>">주문</a></li>
-            <li><a href="<c:url value="/users/board"/>">게시판</a></li>
+            <li><a href="<c:url value="/board"/>">게시판</a></li>
         </ul>
     </nav>
 </header>

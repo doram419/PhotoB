@@ -1,5 +1,6 @@
 package himedia.photobook.controllers;
 
+
 import himedia.photobook.repositories.vo.UsersVo;
 
 import himedia.photobook.services.UserService;
@@ -14,7 +15,6 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 @RequestMapping("/users")
 public class UsersController {
-
 	@Autowired
 	private UserService userService;
 
@@ -27,11 +27,6 @@ public class UsersController {
 	@RequestMapping({ "/home", "/index", "", "/" })
 	public String home() {
 		return "/WEB-INF/views/users/users_index.jsp";
-	}
-
-	@RequestMapping({ "/board" })
-	public String board() {
-		return "/WEB-INF/views/users/users_board.jsp";
 	}
 
 	@RequestMapping({ "/profile" })
