@@ -1,29 +1,31 @@
 package himedia.photobook.controllers;
 
 import org.springframework.stereotype.Controller;
+
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
 @RequestMapping({"/admin"})
 public class AdminController {
 	@RequestMapping({"","/home"})
 	public String home() {
-		return "/WEB-INF/views/admin/admin_pages.jsp";
+		return "admin/admin_pages";
 	}
 	
 	@RequestMapping({"/customerManagement", "/customerManage", "/cm"})
 	public String customerManagement() {
-		return "/WEB-INF/views/admin/admin_customer_management.jsp";
+		return "admin/admin_customer_management";
 	}
 	
 	@RequestMapping({"/orderManagement", "/orderManage", "/om"})
 	public String orderManagement() {
-		return "/WEB-INF/views/admin/admin_order_management.jsp";
+		return "admin/admin_order_management";
 	}
 	
 	@RequestMapping({"/customerService", "/cs"})
 	public String customerService() {
-		return "/WEB-INF/views/admin/admin_customer_service.jsp";
+		return "admin/admin_customer_service";
 	}
 	
 	/**
@@ -31,6 +33,28 @@ public class AdminController {
 	 * */
 	@RequestMapping({"/dashboard", "/dash"})
 	public String dashboard() {
-		return "/WEB-INF/views/admin/admin_dashboard.jsp";
+		return "admin/admin_dashboard";
 	}
+
+	@RequestMapping("/refund")
+	public String refund() {
+		return "/WEB-INF/views/admin/admin_refund.jsp";
+	}
+	@RequestMapping("/delivery")
+	public String shipment() {
+		return "/WEB-INF/views/admin/admin_delivery.jsp";
+		
+	}
+
+	@GetMapping("/update")
+	public String customerUpdate() {
+		return "/WEB-INF/views/admin/admin_customer_update.jsp";
+	}
+	
+	@GetMapping("/delete")
+	public String customerDelete() {
+		return "/WEB-INF/views/admin/admin_customer_delete.jsp";
+
+	}
+
 }
