@@ -3,6 +3,7 @@ package himedia.photobook.exceptions;
 import himedia.photobook.repositories.vo.UsersVo;
 
 public class UsersDaoException extends RuntimeException {
+	private static final long serialVersionUID = 1L;
 		private UsersVo userVo = null;
 
 		public UsersDaoException() {

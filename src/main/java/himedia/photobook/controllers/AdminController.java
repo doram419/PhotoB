@@ -33,4 +33,14 @@ public class AdminController {
 	public String dashboard() {
 		return "/WEB-INF/views/admin/admin_dashboard.jsp";
 	}
+	@RequestMapping("/refund")
+	public String refund() {
+		return "/WEB-INF/views/admin/admin_refund.jsp";
+	}
+	@RequestMapping("/delivery")
+	public String shipment() {
+		return "/WEB-INF/views/admin/admin_delivery.jsp";
+		
+	}
+	
 }
