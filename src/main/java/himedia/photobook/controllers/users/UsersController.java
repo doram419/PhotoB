@@ -1,4 +1,4 @@
-package himedia.photobook.controllers;
+package himedia.photobook.controllers.users;
 
 
 import himedia.photobook.repositories.vo.UsersVo;
