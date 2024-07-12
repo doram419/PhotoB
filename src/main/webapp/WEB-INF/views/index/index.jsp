@@ -67,11 +67,19 @@
         <nav>
             <ul id="navMenu">
        			<li><a href="<c:url value='/' />">홈</a></li>
-                <li class="auth-required"><a href="<c:url value='/photobook.html' />">포토북 만들기</a></li>
-                <li class="auth-required"><a href="<c:url value='/order.html' />">주문내역</a></li>
-                <li class="auth-required"><a href="<c:url value='/board.html' />">게시판</a></li>
-                <li id="adminLink" style="display: none;"><a href="<c:url value='/admin.html' />" class="admin-menu">관리자 페이지</a></li>
-                <li id="loginLink"><a href="<c:url value='/users/login' />">로그인/회원가입</a></li>
+<c:choose>
+    <c:when test="${not empty sessionScope.user}">
+        <li><a href="<c:url value='/photobook.html' />">포토북 만들기</a></li>
+        <li><a href="<c:url value='/order.html' />">주문내역</a></li>
+        <li><a href="<c:url value='/board.html' />">게시판</a></li>
+        <c:if test="${sessionScope.user.role == 'A'}">
+            <li><a href="<c:url value='/admin.html' />" class="admin-menu">관리자 페이지</a></li>
+        </c:if>
+    </c:when>
+    <c:otherwise>
+        <li><a href="<c:url value='/users/login' />">로그인/회원가입</a></li>
+    </c:otherwise>
+</c:choose>
             </ul>
         </nav>
     </header>
