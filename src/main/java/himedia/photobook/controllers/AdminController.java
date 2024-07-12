@@ -43,7 +43,6 @@ public class AdminController {
 	@RequestMapping("/delivery")
 	public String shipment() {
 		return "/WEB-INF/views/admin/admin_delivery.jsp";
-		
 	}
 
 	@GetMapping("/update")
@@ -54,7 +53,6 @@ public class AdminController {
 	@GetMapping("/delete")
 	public String customerDelete() {
 		return "/WEB-INF/views/admin/admin_customer_delete.jsp";
-
 	}
 
 }
