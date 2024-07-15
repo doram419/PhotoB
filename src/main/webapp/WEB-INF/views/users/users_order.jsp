@@ -40,8 +40,22 @@
                         <td>${infoMap['ordersVo'].total}원</td>
                         <td>${infoMap['ordersVo'].oQuantity}</td>
                         <td>${infoMap['status']}</td>
-                        <!-- detail과 연결 필요 -->
-                      	<td> <button>조회</button> </td> 
+                        <td> 
+	                        <form method="post" 
+	                        	action="<c:url value="/users/order/detail"/>">
+	                        	<input type="hidden" name="ordersId" 
+	                        		value="${infoMap['ordersVo'].orderId}"/>
+	                        	<input type="hidden" name="albumId" 
+	                        		value="${infoMap['ordersVo'].albumId}"/>
+	                        	<input type="hidden" name="orderDate"
+	                        		value="${infoMap['ordersVo'].orderDate}"/>
+	                        	<input type="hidden" name="oQuantity"
+	                        		value="${infoMap['ordersVo'].oQuantity}"/>
+	                        	<input type="hidden" name="status"
+	                        		value="${infoMap['status']}"/>
+	                      		<button>조회</button> 
+	                      	</form>
+                      	</td> 
                 	</tr>
                 </c:forEach>             
                 </tbody>
