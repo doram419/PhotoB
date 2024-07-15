@@ -31,7 +31,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                <c:forEach items="${orderList}" var="orderVo" varStatus="status">
+                <c:forEach items="${orderInfos}" var="orderVo" varStatus="status">
                 	<tr>
                 		<!-- detail과 연결 필요 -->
                 		<td><a href="#">${orderVo.orderId}</a></td>

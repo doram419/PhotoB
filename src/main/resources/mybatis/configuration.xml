@@ -12,11 +12,15 @@
 		<typeAlias 
 			type="himedia.photobook.repositories.vo.OrdersVo"
 			alias="OrdersVo" />
+		<typeAlias 
+			type="himedia.photobook.repositories.vo.AlbumVo"
+			alias="AlbumVo" />
 	</typeAliases>
 	
 	<!-- MyBatis 매퍼 -->
 	<mappers> 
 		<mapper resource="mybatis/mappers/users.xml" />
 		<mapper resource="mybatis/mappers/orders.xml" />
+		<mapper resource="mybatis/mappers/album.xml" />
 	</mappers>
 </configuration>
