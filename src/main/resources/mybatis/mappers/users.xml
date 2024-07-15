@@ -16,4 +16,11 @@
         SELECT * FROM USERS
         WHERE EMAIL = #{email} AND PASSWORD = #{password}
     </select>
+    
+     <select id="searchUsers" parameterType="string" resultType="UsersVo">
+        SELECT * FROM USERS
+        WHERE USER_NAME LIKE '%' || #{keyword} || '%'
+           OR EMAIL LIKE '%' || #{keyword} || '%'
+           OR PHONE_NUMBER LIKE '%' || #{keyword} || '%'
+    </select>
 </mapper>

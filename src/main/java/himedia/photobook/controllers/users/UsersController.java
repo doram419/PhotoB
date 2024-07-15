@@ -1,18 +1,18 @@
 package himedia.photobook.controllers.users;
 
 
-import himedia.photobook.repositories.vo.UsersVo;
-
-import himedia.photobook.services.UserService;
-import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
+
+import himedia.photobook.repositories.vo.UsersVo;
+import himedia.photobook.services.UserService;
+import jakarta.servlet.http.HttpSession;
 
 @Controller
 @RequestMapping("/users")
@@ -74,6 +74,13 @@ public class UsersController {
 	public String register() {
 		return "/WEB-INF/views/users/users_register.jsp";
 	}
+	
+	@GetMapping("/search")
+    public ResponseEntity<List<UsersVo>> searchUsers(@RequestParam String keyword) {
+        List<UsersVo> users = userService.searchUsers(keyword);
+        model.addAttribute("users", users);
+        return ResponseEntity.ok(users);
+    }
 
 	@PostMapping("/register")
 	public ModelAndView registerProcess(UsersVo user) {
@@ -94,4 +101,5 @@ public class UsersController {
 		
 		return "redirect:/";
 	}
+	
 	}
