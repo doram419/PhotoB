@@ -45,17 +45,6 @@
                         <td>주문 완료</td>
                 	<tr>
                 	</c:forEach>
-                	<!-- 더미 데이터 시작 *01~ -->
-                    <tr>
-                        <td> 
-                        	<a href="<c:url value="/order/detail{}"/>">ORDER-001</a>
-                        </td>
-                        <td>포토북 1</td>
-                        <td>1</td>
-                        <td>30,000원</td>
-                        <td>주문 완료</td>
-                    </tr>
-                    <!-- ~01* 여기까지 -->
                 </tbody>
             </table>
         </section>
