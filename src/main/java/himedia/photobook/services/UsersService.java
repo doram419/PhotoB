@@ -1,5 +1,4 @@
 package himedia.photobook.services;
-
 import himedia.photobook.repositories.dao.UsersDao;
 import himedia.photobook.repositories.vo.UsersVo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,10 +24,13 @@ public class UsersService {
        	  return result > 0;
     }
 
+   	// 로그인
    public UsersVo login(String email, String password) {
-	    UsersVo user = userDao.selectUserByEmail(email);
+	   String encryptedPassword = encryptPassword(password);
+	    UsersVo user = userDao.selectUserByEmailAndPassword(email, encryptedPassword);
 	    if (user != null) {
-	        String encryptedPassword = encryptPassword(password);
+	      
+	        
 	        if (user.getPassword().equals(encryptedPassword)) {
 	            return user;
 	        }
@@ -40,4 +42,7 @@ public class UsersService {
         // 여기서는 간단히 "encrypted_" 접두사를 붙이는 것으로 대체
         return "encrypted_" + password;
     }
+   
 }
+
+

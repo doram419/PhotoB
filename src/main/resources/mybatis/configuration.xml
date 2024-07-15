@@ -30,5 +30,6 @@
 		<mapper resource="mybatis/mappers/album.xml" />
 		<mapper resource="mybatis/mappers/shipments.xml" />
 		<mapper resource="mybatis/mappers/refund.xml" />
+		<mapper resource="mybatis/mappers/profile.xml" />
 	</mappers>
 </configuration>

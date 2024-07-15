@@ -17,18 +17,18 @@
     <main>
         <section id="profile">
             <h2>프로필 관리</h2>
-            <form action="profile_update.html" method="post">
+             <form action="<c:url value='/users/profile/update'/>" method="post">
                 <div>
-                    <label for="name">이름:</label>
-                    <input type="text" id="name" name="name" required>
+                    <label for="userName">이름:</label>
+                    <input type="text" id="userName" name="userName" required>
                 </div>
                 <div>
-                    <label for="email">이메일:</label>
-                    <input type="email" id="email" name="email" required>
+                    <label for="password">비밀번호:</label>
+                    <input type="password" id="password" name="password" required>
                 </div>
                 <div>
-                    <label for="phone">전화번호:</label>
-                    <input type="tel" id="phone" name="phone" required>
+                    <label for="phoneNumber">전화번호:</label>
+                    <input type="phoneNumber" id="phoneNumber" name="phoneNumber" required>
                 </div>
                 <div>
                     <label for="address">주소:</label>
