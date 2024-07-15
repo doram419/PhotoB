@@ -24,10 +24,13 @@ public class UserService {
        	  return result > 0;
     }
 
+   	// 로그인
    public UsersVo login(String email, String password) {
-	    UsersVo user = userDao.selectUserByEmail(email);
+	   String encryptedPassword = encryptPassword(password);
+	    UsersVo user = userDao.selectUserByEmailAndPassword(email, encryptedPassword);
 	    if (user != null) {
-	        String encryptedPassword = encryptPassword(password);
+	      
+	        
 	        if (user.getPassword().equals(encryptedPassword)) {
 	            return user;
 	        }

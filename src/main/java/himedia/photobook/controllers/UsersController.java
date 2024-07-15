@@ -52,20 +52,20 @@ public class UsersController {
 			@RequestParam(value = "password", required = false, defaultValue = "") String password,
 
 			HttpSession session) {
-		System.out.println("email:" + email);
-		System.out.println("password:" + password); //확인용
 		if (email.length() == 0 || password.length() == 0) {
 			return "redirect:/users/home";
 		}
 
 		UsersVo authUser = userService.login(email, password);
-
+		
+		System.out.println("로그인 안됨1"+authUser);
 		if (authUser != null) {
 
 			session.setAttribute("authUser", authUser);
 
 			return "redirect:/users/home";
 		} else {
+			System.out.println("로그인 안됨2"+authUser);
 			return "redirect:/users/login";
 		}
 	}

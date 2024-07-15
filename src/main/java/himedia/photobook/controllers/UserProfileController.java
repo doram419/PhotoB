@@ -23,6 +23,7 @@ public class UserProfileController {
 System.out.println("currentusr:"+currentUser);
 		if (currentUser != null) {
 			// 업데이트된 필드만 currentUser에 적용
+				
 			//if (updatedUser.getUserName() != null) {
 				currentUser.setUserName(updatedUser.getUserName());
 			//}
