@@ -39,9 +39,9 @@
                         <td>${infoMap['ordersVo'].orderDate}</td>
                         <td>${infoMap['ordersVo'].total}원</td>
                         <td>${infoMap['ordersVo'].oQuantity}</td>
-                        <td><!-- 주문 상태 가져올 필요 있음 --></td>
+                        <td>${infoMap['status']}</td>
                         <!-- detail과 연결 필요 -->
-                      	<td><button>조회</button> </td> 
+                      	<td> <button>조회</button> </td> 
                 	</tr>
                 </c:forEach>             
                 </tbody>
