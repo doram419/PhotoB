@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Photo Book</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            padding: 20px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px; /* 각 포토북 사이의 간격 설정 */
+        }
+        .photo-page {
+            width: calc(25% - 20px); /* 전체 너비의 25%, 간격 제외 */
+            margin-bottom: 20px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            border-radius: 5px;
+            overflow: hidden;
+        }
+        .photo-page img {
+            display: block;
+            width: 100%;
+            height: auto;
+        }
+        .photo-page .caption {
+            text-align: center;
+            padding: 10px;
+            font-style: italic;
+            color: #666;
+        }
+        .photo-link {
+            display: block;
+            text-decoration: none;
+            color: inherit;
+        }
+    </style>
+</head>
+<body>
+    
+    <div class="photo-page">
+        <a href="photoclicktest.html" class="photo-link">
+            <img src="https://cdn.pixabay.com/photo/2024/06/21/08/21/hut-8843868_1280.jpg" alt="Photo 1">
+            <div class="caption">For example</div>
+        </a>
+    </div>
+
+    <div class="photo-page">
+        <a href="photo2.html" class="photo-link">
+            <img src="photo2.jpg" alt="Photo 2">
+            <div class="caption">Family gathering at the beach</div>
+        </a>
+    </div>
+
+    <div class="photo-page">
+        <a href="photo3.html" class="photo-link">
+            <img src="photo3.jpg" alt="Photo 3">
+            <div class="caption">Exploring ancient ruins</div>
+        </a>
+    </div>
+
+    <div class="photo-page">
+        <a href="photo4.html" class="photo-link">
+            <img src="photo4.jpg" alt="Photo 4">
+            <div class="caption">City skyline at night</div>
+        </a>
+    </div>
+
+    <!-- Add more photo pages as needed -->
+
+</body>
+</html>
+

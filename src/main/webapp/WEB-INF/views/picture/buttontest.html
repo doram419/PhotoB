@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Tooltip Example</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            padding: 20px;
+        }
+        .photo-page {
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;            
+            margin-bottom: 20px;
+        }
+        .photo-page img {
+            width: 90px;
+            height: auto;
+            border-radius: 5px;
+            margin-right: 10px; /* 이미지와 툴팁 사이 간격 설정 */
+        }
+        .tooltip {
+            background-color: rgba(0, 0, 0, 0.8);
+            color: white;
+            padding: 10px;
+            border-radius: 5px;
+            opacity: 0; /* 처음에는 안 보이도록 설정 */
+            transition: opacity 0.3s ease;
+            width: 200px; /* 툴팁 너비 */
+            text-align: center; /* 텍스트 가운데 정렬 */
+        }
+        .photo-page:hover .tooltip {
+            opacity: 1; /* 마우스를 올리면 툴팁 보이기 */
+        }
+    </style>
+</head>
+<body>
+    
+    <div class="photo-page">
+        <div>
+            <img src="https://media.istockphoto.com/id/946854272/vector/set-of-blank-book-cover-template.jpg?s=612x612&w=0&k=20&c=9Qs_A8THVQG2jNKr_NiOjhaUMfeMfqzvGJ71BGxKQbE=" alt="하드 커버">
+        </div>
+        <div class="tooltip">딱딱하고 두꺼운 종이로 만들어짐</div>
+    </div>
+
+    <div class="photo-page">
+        <div>
+            <img src="https://media.istockphoto.com/id/477245034/vector/blank-cover-3d-magazine-mock-template.jpg?s=612x612&w=0&k=20&c=9vfVt8z1R_zdBzPrc36ZIkE0ArxCDk--2en0ckGvOqg=" alt="소프트 커버">
+        </div>
+        <div class="tooltip">유연한 재질로 만들어짐</div>
+    </div>
+
+    <div class="photo-page">
+        <div>
+            <img src="https://media.istockphoto.com/id/1130869955/photo/blue-standing-hardcover-book-isolated-perspective-view.jpg?s=612x612&w=0&k=20&c=23nLujx9DI6fSngxQ9PG3sb2BYgVkO6UXJn2t5BRh-w=" alt="리넨 커버">
+        </div>
+        <div class="tooltip">고급스러운 리넨 소재로 만들어짐</div>
+    </div>
+
+    <div class="photo-page">
+        <div>
+            <img src="https://media.istockphoto.com/id/588593044/photo/dark-green-and-silver-leather-cover.jpg?s=612x612&w=0&k=20&c=iGNWOnG8B7dgwd681vNS6VC-a3ZZSkXFv8Qr1Z5ZpSg=" alt="가죽 커버">
+        </div>
+        <div class="tooltip">고급스러운 가죽 소재로 만들어짐</div>
+    </div>
+
+</body>
+</html>
+
