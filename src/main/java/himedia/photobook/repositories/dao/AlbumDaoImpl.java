@@ -4,6 +4,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import himedia.photobook.exceptions.UsersAlbumException;
 import himedia.photobook.repositories.vo.AlbumVo;
 
 /**
@@ -20,7 +21,13 @@ public class AlbumDaoImpl {
 	 * 앨범 ID로 album 튜플을 가져오는 메서드
 	 * exception 처리 필요함
 	 * */
-	public AlbumVo selectOneById(String albumId) throws IllegalArgumentException{
-		return session.selectOne(albumId);
+	public AlbumVo selectOneById(String albumId){
+		try {
+			return session.selectOne(albumId);
+			
+		}catch (Exception e) {
+			throw new UsersAlbumException(
+					"UserAlbumException::SelectOneById01 [일치하는 albumId가 없습니다.]");
+		}
 	}
 }

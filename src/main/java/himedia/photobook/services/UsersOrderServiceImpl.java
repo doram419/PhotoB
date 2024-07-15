@@ -43,9 +43,6 @@ public class UsersOrderServiceImpl {
 			albumVo = albumDao.selectOneById(ordersVo.getAlbumId());
 			if(albumVo != null) {
 				orderInfos.put("albumVo", albumVo);
-			} else {
-				// 일치하는 albumId가 없으면 로그 띄우기, 나중에 로거로
-				System.out.println("UsersOrderService::getOrderInfo [일치하는 albumId가 없습니다.]");
 			}
 			
 			orderInfoList.add(orderInfos);

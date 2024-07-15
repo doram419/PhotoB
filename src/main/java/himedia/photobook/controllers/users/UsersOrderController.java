@@ -26,9 +26,4 @@ public class UsersOrderController {
 		
 		return "/WEB-INF/views/users/users_order.jsp";
 	}
-	
-//	@RequestMapping({"{}",""})
-//	public String order() {
-//		return "/WEB-INF/views/users/users_order.jsp";
-//	}
 }
