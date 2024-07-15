@@ -9,7 +9,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import himedia.photobook.repositories.vo.UsersVo;
 import himedia.photobook.services.UsersOrderServiceImpl;
+import jakarta.servlet.http.HttpSession;
 
 @Controller
 @RequestMapping({ "/users"})
@@ -18,8 +20,13 @@ public class UsersOrderController {
 	private UsersOrderServiceImpl orderService;
 	
 	@GetMapping({"/order"})
-	public String order(Model model) {
-		List<Map<String, Object>> orderInfos = orderService.getOrderInfos();
+	public String order(Model model, HttpSession session) {
+		UsersVo user = (UsersVo) session.getAttribute("authUser");
+		System.out.println("user : " + user);
+		String userId = user.getUserId();
+		System.out.println("user_id : " + userId);
+		
+		List<Map<String, Object>> orderInfos = orderService.getOrderInfos(userId);
 		
 		model.addAttribute("orderInfos", orderInfos);
 		

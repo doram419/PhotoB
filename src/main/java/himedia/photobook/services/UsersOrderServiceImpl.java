@@ -36,10 +36,10 @@ public class UsersOrderServiceImpl {
 	/**
 	 * 주문 조회에 필요한 정보들을 담아서 보내주는 메서드
 	 **/
-	public List<Map<String, Object>> getOrderInfos(){
+	public List<Map<String, Object>> getOrderInfos(String userId){
 		List<Map<String, Object>> orderInfoList = new ArrayList<Map<String, Object>>();
-		List<OrdersVo> orderList = orderDao.selectAll();
 		Map<String, Object> orderInfos = null;
+		List<OrdersVo> orderList = orderDao.selectAllOrdersByUserId(userId);
 		AlbumVo albumVo = null;
 		String orderStatus = null;
 		

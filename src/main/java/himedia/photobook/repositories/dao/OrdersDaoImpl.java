@@ -18,7 +18,8 @@ public class OrdersDaoImpl {
 	@Autowired
 	private SqlSession session;
 	
-	public List<OrdersVo> selectAll(){
-		return session.selectList("orders.selectAll");
+	public List<OrdersVo> selectAllOrdersByUserId(String userId){
+		System.out.println(userId);
+		return session.selectList("orders.selectAllOrdersByUserId", userId);
 	}
 }
