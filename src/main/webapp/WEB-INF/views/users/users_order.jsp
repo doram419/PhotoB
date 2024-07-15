@@ -16,7 +16,6 @@
 
 <body>
     <c:import url="/WEB-INF/views/users/includes/users_header.jsp"></c:import>
-
     <main>
         <section id="order">
             <h2>주문</h2>
@@ -32,12 +31,12 @@
                     </tr>
                 </thead>
                 <tbody>
-                <c:forEach items="${orderList}" var="{orderVo}">
+                <c:forEach items="${orderList}" var="orderVo" varStatus="status">
                 	<tr>
-                		<td>${orderVo.orderId}</td>
+                		<td><a href="#">${orderVo.orderId}</a></td>
                         <td><!-- 제품 이름 albumId를 통해서 들고 오기--></td>
                         <td>${orderVo.orderDate}</td>
-                        <td>${orderVo.total}</td>
+                        <td>${orderVo.total}원</td>
                         <td>${orderVo.oQuantity}</td>
                         <td><!-- 주문 상태 가져올 필요 있음 -->
                 	<tr>
