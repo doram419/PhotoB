@@ -16,4 +16,6 @@
         SELECT * FROM USERS
         WHERE EMAIL = #{email} AND PASSWORD = #{password}
     </select>
+    
+   
 </mapper>

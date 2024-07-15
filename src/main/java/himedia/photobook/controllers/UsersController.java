@@ -46,7 +46,7 @@ public class UsersController {
 		return "/WEB-INF/views/users/users_create_photobook.jsp";
 	}
 
-	@PostMapping("/login") // 로그인 실패 메세지 출력기능 구현 필요!!! (회원가입 실패 메세지 출력 참고 users_register.jsp)
+	@PostMapping("/login") // 로그인 실패 메세지 출력기능 구현 필요!!!
 	public String loginAction(@RequestParam(value = "email", required = false, defaultValue = "") String email,
 
 			@RequestParam(value = "password", required = false, defaultValue = "") String password,
@@ -94,4 +94,7 @@ public class UsersController {
 		
 		return "redirect:/";
 	}
-	}
+
+
+
+}
