@@ -24,27 +24,24 @@
                 <thead>
                     <tr>
                         <th>주문 번호</th>
-                        <th>제품</th>
-                        <th>수량</th>
+                        <th>제품 이름</th>
+                        <th>주문 일자</th> 
                         <th>가격</th>
+                        <th>수량</th>
                         <th>주문 상태</th>
                     </tr>
                 </thead>
                 <tbody>
-                	<c:forEach items="${orderList}" var="{orderVo}">
+                <c:forEach items="${orderList}" var="{orderVo}">
                 	<tr>
-                		<td> 
-                        	<!-- orderVo로 출력하고 no가져올 필요 있음 -->
-                        	<a href="<c:url value="/order/detail?orderId=${no}"/>">
-                        		ORDER-001 
-                        	</a>
-                        </td>
-                        <td>포토북 1</td>
-                        <td>1</td>
-                        <td>30,000원</td>
-                        <td>주문 완료</td>
+                		<td>${orderVo.orderId}</td>
+                        <td><!-- 제품 이름 albumId를 통해서 들고 오기--></td>
+                        <td>${orderVo.orderDate}</td>
+                        <td>${orderVo.total}</td>
+                        <td>${orderVo.oQuantity}</td>
+                        <td><!-- 주문 상태 가져올 필요 있음 -->
                 	<tr>
-                	</c:forEach>
+                </c:forEach>             
                 </tbody>
             </table>
         </section>

@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class UserOrderController {
 	@RequestMapping({"/order"})
 	public String order() {
+		
+		
 		return "/WEB-INF/views/users/users_order.jsp";
 	}
 	

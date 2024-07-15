@@ -18,6 +18,9 @@ public class UserOrderServiceImpl {
 	@Autowired
 	private OrdersDaoImpl orderDao;
 	
+	/**
+	 * order table에 저장된 모든 튜플들을 들고 오는 메서드
+	 * */
 	public List<OrdersVo> selectAll() {
 		return orderDao.selectAll();
 	}
