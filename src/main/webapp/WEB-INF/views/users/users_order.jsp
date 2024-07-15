@@ -28,19 +28,21 @@
                         <th>가격</th>
                         <th>수량</th>
                         <th>주문 상태</th>
+                        <th>비고</th>
                     </tr>
                 </thead>
                 <tbody>
                 <c:forEach items="${orderInfos}" var="infoMap">				
                 	<tr>
-                		<!-- detail과 연결 필요 -->
-                		<td><a href="#">${infoMap['ordersVo'].orderId}</a></td>
+                		<td>${infoMap['ordersVo'].orderId}</a></td>
                         <td>${infoMap['albumVo'].albumId}</td>
                         <td>${infoMap['ordersVo'].orderDate}</td>
                         <td>${infoMap['ordersVo'].total}원</td>
                         <td>${infoMap['ordersVo'].oQuantity}</td>
-                        <td><!-- 주문 상태 가져올 필요 있음 -->
-                	<tr>
+                        <td><!-- 주문 상태 가져올 필요 있음 --></td>
+                        <!-- detail과 연결 필요 -->
+                      	<td><button>조회</button> </td> 
+                	</tr>
                 </c:forEach>             
                 </tbody>
             </table>

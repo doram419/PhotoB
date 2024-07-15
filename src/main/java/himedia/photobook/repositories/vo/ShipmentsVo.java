@@ -14,7 +14,7 @@ public class ShipmentsVo {
 	 * B(Before Shipping): 배송중 
 	 * C(Complete):배송완료, 
 	 * R(Refund): 환불
-	 * */
+	 **/
 	private String shipmentStatus;
 	
 	// 생성자
