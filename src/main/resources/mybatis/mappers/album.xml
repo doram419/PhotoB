@@ -9,6 +9,6 @@
 		FROM
 		 	ALBUM
 		WHERE
-			albumID = #{value}
+			ALBUM_ID = #{value}
 	</select>
 </mapper>

@@ -23,11 +23,12 @@ public class AlbumDaoImpl {
 	 * */
 	public AlbumVo selectOneById(String albumId){
 		try {
-			return session.selectOne(albumId);
+			return session.selectOne("album.selectByID", albumId);
 			
 		}catch (Exception e) {
+			e.printStackTrace();
 			throw new UsersAlbumException(
-					"UserAlbumException::SelectOneById01 [일치하는 albumId가 없습니다.]");
+					"UserAlbumException::SelectOneById01 [에러 발생]");
 		}
 	}
 }

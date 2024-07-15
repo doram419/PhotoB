@@ -22,7 +22,6 @@ public class UsersOrderController {
 		List<Map<String, Object>> orderInfos = orderService.getOrderInfos();
 		
 		model.addAttribute("orderInfos", orderInfos);
-		System.out.println(orderInfos);
 		
 		return "/WEB-INF/views/users/users_order.jsp";
 	}
