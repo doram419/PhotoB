@@ -33,6 +33,7 @@
                 <tbody>
                 <c:forEach items="${orderList}" var="orderVo" varStatus="status">
                 	<tr>
+                		<!-- detail과 연결 필요 -->
                 		<td><a href="#">${orderVo.orderId}</a></td>
                         <td><!-- 제품 이름 albumId를 통해서 들고 오기--></td>
                         <td>${orderVo.orderDate}</td>
