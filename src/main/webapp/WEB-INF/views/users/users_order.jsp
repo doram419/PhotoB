@@ -31,11 +31,20 @@
                     </tr>
                 </thead>
                 <tbody>
-                <c:forEach items="${orderInfos}" var="orderVo" varStatus="status">
+                <c:forEach items="${orderInfos}" var="infoMap" varStatus="status">
+					<!-- orderVo 키를 가진 맵은 OrderVo 객체로 등록-->
+                	<c:if test="${infoMap.key eq 'ordersVo'}">
+						<c:set var="orderVo" value="${infoMap.value}"/>
+					</c:if>
+					<!-- AlbumVo 키를 가진 맵은 AlbumVo 객체로 등록-->
+                	<c:if test="${infoMap.key eq 'albumVo'}">
+						<c:set var="albumVo" value="${infoMap.value}"/>
+					</c:if>
+
                 	<tr>
                 		<!-- detail과 연결 필요 -->
                 		<td><a href="#">${orderVo.orderId}</a></td>
-                        <td><!-- 제품 이름 albumId를 통해서 들고 오기--></td>
+                        <td>${albumVo.albumId}</td>
                         <td>${orderVo.orderDate}</td>
                         <td>${orderVo.total}원</td>
                         <td>${orderVo.oQuantity}</td>
