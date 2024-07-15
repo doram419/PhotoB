@@ -12,6 +12,8 @@ import himedia.photobook.repositories.vo.UsersVo;
 public class UserService {
     @Autowired
     private UsersDao userDao;
+    
+    
 
    public boolean register(UsersVo user) {
         UsersVo existingUser = userDao.selectUserByEmail(user.getEmail());
@@ -44,6 +46,7 @@ public class UserService {
         return "encrypted_" + password;
     }
     
+    // 관리자 고객검색
     public List<UsersVo> searchUsers(String keyword) {
         return userDao.searchUsers(keyword);
     }

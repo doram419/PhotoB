@@ -25,30 +25,29 @@
         <div class="card">
             <div class="card-header">고객 검색</div>
             <div class="card-body">
-                <form>
+                <form method="get" action="<c:url value='/admin/search'/>">
                     <div class="form-group">
                     <label for="search-category">검색 분류:</label>
                     <select id="search-category" name="search-category">
                             <option value="all">전체</option>
-                            <option value="name">이름</option>
-                            <option value="id">회원 ID</option>
-                            <option value="email">이메일</option>
-                            <option value="phone">핸드폰</option>
+                            <option value="USER_NAME">이름</option>
+                            <option value="USER_ID">회원 ID</option>
+                            <option value="EMAIL">이메일</option>
+                            <option value="PHONE_NUMBER">핸드폰</option>
                         </select>
                         <label for="search-input">검색어:</label>
-                        <input type="text" placeholder="검색어를 입력하세요">
+                        <input type="text" name="keyword" placeholder="검색어를 입력하세요">
                     </div>
                     <div class="form-group">
                         <label>기간 검색:</label>
                         <select id="date-type" name="date-type">
                             <option value="registration">가입날짜</option>
-                            <option value="last-access">최근접속</option>
                         </select>
                         <input type="date" id="start-date" name="start-date">
                         <input type="date" id="end-date" name="end-date">
                     </div>
                     <button type="submit" class="btn btn-primary">검색</button>
-                    <button type="submit" class="btn btn-primary">초기화</button>
+                    <button type="reset" class="btn btn-secondary">초기화</button>
                 </form>
             </div>
         </div>
@@ -63,28 +62,31 @@
                             <th>회원ID</th>
                             <th>이메일</th>
                             <th>핸드폰</th>
-                            <th>가입일</th>
-                            <th>최근접속</th>
+                            <th>주소</th>
+                            <th>역할</th><!-- 가입일 추가필요 --> 
                             <th>작업</th>
                         </tr>
                     </thead>
                     <tbody>
+                    	<c:forEach var="user" items="${userList}" varStatus="status">
                         <tr>
                             <td>${status.index + 1}</td>
-                            <td>${customer.name}</td>
-                            <td>${customer.memberId}</td>
-                            <td>${customer.email}</td>
-                            <td>${customer.phone}</td>
-                            <td>${customer.registrationDate}</td>
-                            <td>${customer.lastAccessDate}</td>
+                                <td>${user.USER_NAME}</td>
+                                <td>${user.USER_ID}</td>
+                                <td>${user.EMAIL}</td>
+                                <td>${user.PHONE_NUMBER}</td>
+                                <td>${user.ADDRESS}</td>
+                                <td>${user.ROLE}</td>
                             <td>
-                                <a href="<c:url value="/admin/update"/>"><button class="btn btn-primary">수정</button></a>
-                                
-                                <a href="<c:url value="/admin/delete"/>"><button class="btn btn-primary">삭제</button></a>
-                                
+                                <a href="<c:url value='/admin/update?userId=${user.USER_ID}'/>">
+                                        <button class="btn btn-primary">수정</button>
+                                </a>
+                                <a href="<c:url value='/admin/delete?userId=${user.USER_ID}'/>">
+                                        <button class="btn btn-danger">삭제</button>
+                                </a>
                             </td>
                         </tr>
-                        <!-- 추가 고객 데이터 -->
+                      </c:forEach>
                     </tbody>
                 </table>
             </div>

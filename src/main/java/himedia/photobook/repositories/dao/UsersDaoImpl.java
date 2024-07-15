@@ -1,5 +1,6 @@
 package himedia.photobook.repositories.dao;
 import java.util.HashMap;
+
 import java.util.List;
 import java.util.Map;
 import org.apache.ibatis.session.SqlSession;
@@ -47,5 +48,11 @@ public class UsersDaoImpl implements UsersDao {
 
 		UsersVo userVo = sqlSession.selectOne("users.selectUserByEmailAndPassword", userMap);
 		return userVo;
+	}
+
+	@Override
+	public List<UsersVo> searchUsers(String keyword) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

@@ -1,8 +1,6 @@
 package himedia.photobook.controllers.users;
 
-
 import org.springframework.beans.factory.annotation.Autowired;
-
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -74,13 +72,6 @@ public class UsersController {
 	public String register() {
 		return "/WEB-INF/views/users/users_register.jsp";
 	}
-	
-	@GetMapping("/search")
-    public ResponseEntity<List<UsersVo>> searchUsers(@RequestParam String keyword) {
-        List<UsersVo> users = userService.searchUsers(keyword);
-        model.addAttribute("users", users);
-        return ResponseEntity.ok(users);
-    }
 
 	@PostMapping("/register")
 	public ModelAndView registerProcess(UsersVo user) {
