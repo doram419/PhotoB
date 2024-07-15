@@ -6,7 +6,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import himedia.photobook.repositories.vo.UsersVo;
+import himedia.photobook.repositories.vo.OrdersVo;
 
 /**
  * 배운 것과 다르게 interface 구현은 하지 않음
@@ -18,7 +18,7 @@ public class OrdersDaoImpl {
 	@Autowired
 	private SqlSession session;
 	
-	public List<UsersVo> selectAll(){
+	public List<OrdersVo> selectAll(){
 		return session.selectList("orders.selectAll");
 	}
 }
