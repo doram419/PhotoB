@@ -44,8 +44,12 @@ public class UsersDaoImpl implements UsersDao {
 		Map<String, String> userMap = new HashMap<>();
 		userMap.put("email", email);
 		userMap.put("password", password); // 여기 파라미터타입 users.xml에 명시하지 않아도 되는지 모르겠음. 일단 안했음.
-
+		System.out.println(email);
+		System.out.println(password);
 		UsersVo userVo = sqlSession.selectOne("users.selectUserByEmailAndPassword", userMap);
+		System.out.println("이건 널 나오면 안됨:"+userVo); // null반환
 		return userVo;
 	}
+	
+	 
 }
