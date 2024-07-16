@@ -13,7 +13,7 @@ import jakarta.servlet.http.HttpSession;
 @RequestMapping("/users/profile")
 public class UserProfileController {
 	@Autowired
-	private UserProfileService userprofileService;
+	private UserProfileService userProfileService;
 
 	@PostMapping("/update")
 	public String updateProfile(UsersVo updatedUser, HttpSession session) {
@@ -37,7 +37,7 @@ System.out.println("currentusr:"+currentUser);
 				currentUser.setAddress(updatedUser.getAddress());
 			//}
 
-			boolean isUpdated = userprofileService.updateProfile(currentUser);
+			boolean isUpdated = userProfileService.updateProfile(currentUser);
 			if (isUpdated) {
 				session.setAttribute("authUser", currentUser);
 				return "redirect:/users/profile";

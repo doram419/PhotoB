@@ -37,10 +37,11 @@
                     </select>
                 </div>
                 <div class="form-group">
-                    <label for="coating">코팅 선택:</label>
-                    <select id="coating" name="coating">
-                        <option value="coated">코팅</option>
-                        <option value="uncoated">코팅 안함</option>
+                    <label for="color">색깔 선택:</label>
+                    <select id="color" name="color">
+                        <option value="blue">파란색</option>
+                        <option value="gray">회색</option>
+                        <option value="brown">갈색</option>
                     </select>
                 </div>
                 <div class="form-group">

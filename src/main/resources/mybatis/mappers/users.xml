@@ -12,11 +12,11 @@
         	 #{email}, #{password}, #{userName}, #{address}, #{phoneNumber}, #{role})
 
     </insert>	
-    <select id="selectUserByEmail" parameterType="string" resultType="UsersVo">
+  <!--   <select id="selectUserByEmail" parameterType="string" resultType="UsersVo">
         SELECT * FROM USERS
         WHERE EMAIL = #{email}
 
-    </insert>
+    </insert> -->
     <select id="selectUserByEmail" parameterType="String" resultType="UsersVo">
         SELECT 
         	USER_ID as userId, EMAIL, PASSWORD, 
