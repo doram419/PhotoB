@@ -35,11 +35,11 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <c:forEach items="${deliveryInfos}" var="infoMap">				
+                        <c:forEach items="${refundInfos}" var="infoMap">				
                         <tr>
 	                		<td>${infoMap['ordersVo'].orderId}</td>
-	                        <td>${infoMap['usersVo'].userName}</td>
-	                        <td>${infoMap['refundVo'].refundId}</td>
+	                        <td>${infoMap['userName']}</td>
+	                        <td>${infoMap['refundId']}</td>
 	                        <td>${infoMap['ordersVo'].orderDate}</td>
 	                        <td>${infoMap['ordersVo'].total}</td>
 	                        <td>${infoMap['status']}</td>

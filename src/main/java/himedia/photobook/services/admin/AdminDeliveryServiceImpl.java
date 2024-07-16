@@ -40,6 +40,8 @@ public class AdminDeliveryServiceImpl {
 		ShipmentsVo shipmentsVo = null;  
 		String status = null;
 		
+		// 주문이 들어오면 무조건 배송 테이블이 생긴다
+		// 그래서 order가 기준
 		List<OrdersVo> orderList = orderDao.selectAllOrders();
 		
 		for (OrdersVo ordersVo : orderList) {
