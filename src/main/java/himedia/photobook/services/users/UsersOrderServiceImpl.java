@@ -72,7 +72,6 @@ public class UsersOrderServiceImpl {
 	 * */
 	private String statusToWord(String statusCode) {
 		String word = null;
-		System.out.println(statusCode);
 		
 		if(statusCode.equals("A"))
 			word = "배송 준비";

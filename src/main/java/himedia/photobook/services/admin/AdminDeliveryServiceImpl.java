@@ -10,11 +10,13 @@ import org.springframework.stereotype.Service;
 
 import himedia.photobook.repositories.dao.OrdersDaoImpl;
 import himedia.photobook.repositories.vo.OrdersVo;
+import himedia.photobook.repositories.vo.UsersVo;
 
 @Service("adminDeliveryService")
 public class AdminDeliveryServiceImpl {
 	@Autowired
 	private OrdersDaoImpl orderDao;
+	
 	
 	/**
 	 * 배송 관리에 필요한 정보들을 모두 리턴해주는 함수
@@ -22,10 +24,13 @@ public class AdminDeliveryServiceImpl {
 	public List<Map<String, Object>> getDeliveryInfos(){
 		List<Map<String, Object>> deliveryInfoList = new ArrayList<Map<String, Object>>();
 		Map<String, Object> deliveryInfos = null;
+		UsersVo usersVo = null;
+		
 		List<OrdersVo> orderList = orderDao.selectAllOrders();
 		
 		for (OrdersVo ordersVo : orderList) {
 			deliveryInfos = new HashMap<String, Object>();	
+//			usersVo = 
 			
 			deliveryInfos.put("ordersVo", ordersVo);
 			

@@ -38,6 +38,7 @@ public class UsersDaoImpl implements UsersDao {
 	    }
 	    return null;
 	}
+	
 	@Override
 	// 비번, 이메일로 조회. 로그인에 쓸거
 	public UsersVo selectUserByEmailAndPassword(String email, String password) {
@@ -50,6 +51,12 @@ public class UsersDaoImpl implements UsersDao {
 		System.out.println("이건 널 나오면 안됨:"+userVo); // null반환
 		return userVo;
 	}
-	
-	 
+
+	/**
+	 * userId로 유저 정보를 조회 할 수 있는 메서드
+	 * */
+	@Override
+	public UsersVo selectUserByUserId(String userId) {
+		return sqlSession.selectOne("userId", userId);
+	}
 }
