@@ -24,17 +24,16 @@
                 <div class="form-group">
                     <label for="size">사이즈 선택:</label>
                     <select id="size" name="size">
-                        <option value="7x7">7x7</option>
-                        <option value="10x10">10x10</option>
-                        <option value="12x12">12x12</option>
+                        <option value="S">S</option>
+                        <option value="M">M</option>
+                        <option value="B">B</option>
                     </select>
                 </div>
                 <div class="form-group">
                     <label for="cover">커버 재질 선택:</label>
                     <select id="cover" name="cover">
-                        <option value="plastic">플라스틱</option>
+                        <option value="linen">천</option>
                         <option value="leather">가죽</option>
-                        <option value="paper">종이</option>
                     </select>
                 </div>
                 <div class="form-group">

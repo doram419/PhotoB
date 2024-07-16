@@ -50,6 +50,7 @@
 								<c:set var="orderStatus" value="${orderMap.value}"/>
 							</c:if>
                 		</c:forEach>
+                		
                 		<tr>
 	                        <td>${orderVo.orderId}</td>
 	                        <td>${orderVo.albumId}</td>

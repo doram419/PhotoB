@@ -1,5 +1,7 @@
 package himedia.photobook.repositories.dao;
+
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -47,4 +49,21 @@ public class UsersDaoImpl implements UsersDao {
 		UsersVo userVo = sqlSession.selectOne("users.selectUserByEmailAndPassword", userMap);
 		return userVo;
 	}
+
+	@Override
+	public List<UsersVo> getAllUser() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public UsersVo getOneUser(String name) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+	
+	
+	
 }
