@@ -24,9 +24,9 @@
 		            <li><a href="<c:url value='/admin/home' />" class="admin-menu">관리자 페이지</a></li>
 		        </c:if>
     		</c:when>
-	    <c:otherwise>
-	        <li><a href="<c:url value='/users/login' />">로그인/회원가입</a></li>
-	    </c:otherwise>
+		    <c:otherwise>
+		        <li><a href="<c:url value='/users/login' />">로그인/회원가입</a></li>
+		    </c:otherwise>
 		</c:choose>
 		</ul>
 	</nav>
