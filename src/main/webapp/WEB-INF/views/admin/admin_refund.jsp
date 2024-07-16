@@ -14,11 +14,21 @@
 </head>
 <body>
 	<c:import url="/WEB-INF/views/admin/includes/admin_header.jsp"></c:import>
-	
 
 	<div class="main-content">
-        <div class="header">
-            <h2>대시보드</h2>
+	<div class="header">
+            <h2>환불 조회</h2>
+        </div>
+        <div class="card">
+            <div class="card-header">환불 검색</div>
+            <div class="card-body">
+                <form>
+                    <div class="form-group">
+                        <input type="text" placeholder="주문번호 또는 고객ID 검색">
+                    </div>
+                    <button type="submit" class="btn btn-primary">검색</button>
+                </form>
+            </div>
         </div>
         <div class="card">
             <div class="card-header">환불 목록</div>
