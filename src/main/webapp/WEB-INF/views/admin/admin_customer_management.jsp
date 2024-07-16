@@ -63,14 +63,14 @@
                             <th>이메일</th>
                             <th>핸드폰</th>
                             <th>주소</th>
-                            <th>역할</th><!-- 가입일 추가필요 --> 
+                            <th>가입일</th>
                             <th>작업</th>
                         </tr>
                     </thead>
                     <tbody>
                     	<c:forEach var="user" items="${userList}" varStatus="status">
                         <tr>
-                            <!-- <td>${status.index + 1}</td>   -->
+                            	<td>${status.index + 1}</td>
                                 <td>${user.userName}</td>
                                 <td>${user.userId}</td>
                                 <td>${user.email}</td>

@@ -17,13 +17,13 @@ import himedia.photobook.services.admin.AdminCustomerService;
 @RequestMapping({"/admin"})
 public class AdminCustomerController {
 	@Autowired
-	private AdminCustomerService admincustomerService;
+	private AdminCustomerService adminCustomerService;
 	
 	@GetMapping("/search")
 	public String searchUSers(@RequestParam Map<String, String> params, Model model) {
 		String searchCategory = params.getOrDefault("search-category", null);
 		String keyword = params.getOrDefault("keyword", null);
-		List<UsersVo> userList = AdminCustomerService.searchUsers(searchCategory, keyword);
+		List<UsersVo> userList = adminCustomerService.searchUsers(searchCategory, keyword);
 		model.addAttribute("userList", userList);
 		return "/WEB-INF/views/admin/admin_customer_management.jsp";
 	}

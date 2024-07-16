@@ -3,18 +3,19 @@ package himedia.photobook.services.admin;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import himedia.photobook.repositories.dao.UsersDao;
 import himedia.photobook.repositories.vo.UsersVo;
 
+@Service("adminCustomerService")
 public class AdminCustomerService {
 	@Autowired
-	private static UsersDao userDao;
+	private UsersDao userDao;
 	
 	// 관리자 고객검색
-		public static List<UsersVo> searchUsers(String searchCategory, String keyword) {
-			String searchKeyword = "%" + keyword + "%";
-			return userDao.searchUsers(searchKeyword);
+	public List<UsersVo> searchUsers(String searchCategory, String keyword) {
+			return userDao.searchUsers(keyword);
 			
 	}
 	
