@@ -26,13 +26,12 @@
                     <thead>
                         <tr>
                             <th>주문 ID</th>
-                            <th>주문자</th>
+                            <th>주문자명</th>
                             <th>배송 ID</th>
                             <th>배송 일자</th>
                             <th>배송 상태</th>
                         </tr>
                     </thead>
-                   
                     <tbody>
                         <c:forEach items="${deliveryInfos}" var="infoMap">				
                         <tr>
