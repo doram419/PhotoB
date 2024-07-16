@@ -6,7 +6,8 @@ import org.springframework.stereotype.Repository;
 import himedia.photobook.exceptions.UsersDaoException;
 import himedia.photobook.repositories.vo.UsersVo;
 
-@Repository("profileDao")
+//@Repository("profileDao")
+@Repository
 public class ProfileDaoImpl implements ProfileDao {
 
     @Autowired
@@ -15,7 +16,7 @@ public class ProfileDaoImpl implements ProfileDao {
     @Override
     public int updateProfile(UsersVo user) {
         try {
-            int updatedCount = sqlSession.update("himedia.photobook.repositories.dao.ProfileDao.update", user);
+            int updatedCount = sqlSession.update("profile.updateProfile", user);
             System.out.println("Updating profile for user: " + user);
             System.out.println("updatecount"+updatedCount);
             return updatedCount;

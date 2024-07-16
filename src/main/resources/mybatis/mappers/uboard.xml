@@ -4,7 +4,7 @@
 	
 
 <mapper namespace="uboard">
-	<insert id="insert" parameterType="BoardVo">
+	<insert id="insert" parameterType="uBoardVo">
 	<selectKey keyProperty="UBOARD_ID" resultType="long" order="BEFORE">
 			SELECT seq_board_pk.nextval from dual
 	</selectKey>

@@ -11,11 +11,12 @@ import himedia.photobook.repositories.vo.uBoardVo;
 @Service("uboardService")
 public class uBoardServiceImpl implements uBoardService {
 	@Autowired
-	private uBoardDao uboardDao;
+//	private uBoardDao uboardDao;
+	private uBoardDao uBoardDaoImpl;
 
 	@Override
 	public List<uBoardVo> getList() {
-		List<uBoardVo> list = uboardDao.selectAllList();
+		List<uBoardVo> list = uBoardDaoImpl.selectAllList();
 		return list;
 	}
 

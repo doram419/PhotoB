@@ -9,15 +9,15 @@
 		<typeAlias 
 			type="himedia.photobook.repositories.vo.UsersVo"
 			alias="UsersVo" />
-		<typeAlias type="himedia.photobook.repositories.vo.BoardVo"
-			alias="BoardVo" />
+		<typeAlias type="himedia.photobook.repositories.vo.uBoardVo"
+			alias="uBoardVo" />
 	</typeAliases>
 	
 	<!-- MyBatis 매퍼 -->
 	<mappers> 
 		<mapper resource="mybatis/mappers/users.xml" />
 		<mapper resource="mybatis/mappers/profile.xml" />
-		<mapper resource="mybatis/mappers/board.xml"/>
+		<mapper resource="mybatis/mappers/uboard.xml"/>
 	</mappers>
 	
 	

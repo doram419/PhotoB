@@ -18,7 +18,7 @@
                            http://mybatis.org/schema/mybatis-spring.xsd">
 
     <context:annotation-config/>
-    <context:component-scan base-package="himedia.photobook">
+    <context:component-scan base-package="himedia.photobook.services, himedia.photobook.repositories">
 		<context:include-filter type="annotation"
 			expression="org.springframework.stereotype.Repository" />
 		<context:include-filter type="annotation"
