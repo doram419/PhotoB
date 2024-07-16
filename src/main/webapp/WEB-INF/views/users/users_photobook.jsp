@@ -44,9 +44,11 @@
                     </select>
                 </div>
                 <div class="form-group">
+                <!--form method="post" enctype="multipart/form-data"-->
                     <label for="photos">사진 업로드:</label>
-                    <input type="file" id="photos" name="photos" multiple required>
+                    <input type="file" id="photos" name="photos" accept="image/*" onchange="showImage" multiple required>
                 </div>
+                
                 <div class="form-group">
                     <button type="submit">포토북 제작</button>
                 </div>

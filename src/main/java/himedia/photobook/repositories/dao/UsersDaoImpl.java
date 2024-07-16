@@ -21,34 +21,37 @@ public class UsersDaoImpl implements UsersDao {
 		try {
 			// role 값을 "U"로 설정
 			
-			vo.setRole("U");
-			vo.setAddress("test@naver.com");
-			vo.setPhoneNumber("010-7777-8888");
+			vo.setRole("U");	
+			System.out.println("확인");
 			return sqlSession.insert("users.insert", vo);
+
 		} catch (Exception e) {
 			e.printStackTrace();
 			throw new UsersDaoException("회원 가입 중 에러!"); // Exception 아직 안해서 그럼. 이름 확인하고 만들어주세요.
 		}
 	}
 
-	@Override
-	// 이메일로 유저 조회하는거, 중복체크에 쓸거
+	@Override // 이메일 조회, 중복체크에 쓸거
 	public UsersVo selectUserByEmail(String email) {
-		UsersVo userVo = sqlSession.selectOne("users.selectUserByEmail", email);
-		System.out.println("DAO UsersVo: " + userVo);
-		return userVo;
+	    List<UsersVo> userList = sqlSession.selectList("users.selectUserByEmail", email);
+	    if (userList != null && !userList.isEmpty()) {
+	        return userList.get(0);
+	    }
+	    return null;
 	}
-
 	@Override
 	// 비번, 이메일로 조회. 로그인에 쓸거
 	public UsersVo selectUserByEmailAndPassword(String email, String password) {
 		Map<String, String> userMap = new HashMap<>();
 		userMap.put("email", email);
 		userMap.put("password", password); // 여기 파라미터타입 users.xml에 명시하지 않아도 되는지 모르겠음. 일단 안했음.
-
+		System.out.println(email);
+		System.out.println(password);
 		UsersVo userVo = sqlSession.selectOne("users.selectUserByEmailAndPassword", userMap);
+		System.out.println("이건 널 나오면 안됨:"+userVo); // null반환
 		return userVo;
 	}
+
 
 	@Override
 	public List<UsersVo> getAllUser() {
@@ -66,4 +69,5 @@ public class UsersDaoImpl implements UsersDao {
 	
 	
 	
+
 }

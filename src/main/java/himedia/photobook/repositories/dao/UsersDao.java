@@ -12,8 +12,10 @@ public interface UsersDao {
     UsersVo selectUserByEmail(String email);//	중복 이메일 체크
 	public UsersVo selectUserByEmailAndPassword(String email, String password);	//	로그인용
 
+
 	
 	// 고객 상세 조회 (이름 , 회원id, 이메일, 핸드폰 으로 조회)
 	public UsersVo getOneUser(String name); 
 	
+
 }

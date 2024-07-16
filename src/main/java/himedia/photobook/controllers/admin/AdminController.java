@@ -1,4 +1,4 @@
-package himedia.photobook.controllers;
+package himedia.photobook.controllers.admin;
 
 import org.springframework.stereotype.Controller;
 

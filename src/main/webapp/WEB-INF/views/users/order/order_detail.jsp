@@ -57,10 +57,10 @@
 	                        <td>${orderVo.oQuantity}</td>
 	                        <td>${orderVo.total}원</td>
 	                        <!-- orderStatus의 값에 맞는 설명 출력 -->
-	                        <td>${orderStatus}</td>      
+	                        <td>${Status}</td>      
                     	</tr>
                 	</c:forEach>
-                	
+                	<!-- 더미 데이터 시작 *01~ -->
                     <tr>
                         <td>ORDER-001</td>
                         <td>포토북 1</td>
@@ -68,13 +68,7 @@
                         <td>30,000원</td>
                         <td>주문 완료</td>
                     </tr>
-                    <tr>
-                        <td>ORDER-002</td>
-                        <td>포토북 2</td>
-                        <td>2</td>
-                        <td>50,000원</td>
-                        <td>제작 중</td>
-                    </tr>
+                    <!-- ~01* 더미 데이터 시작  -->
                 </tbody>
             </table>
         </section>
