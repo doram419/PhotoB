@@ -42,7 +42,6 @@ public class UsersService {
         // 여기서는 간단히 "encrypted_" 접두사를 붙이는 것으로 대체
         return "encrypted_" + password;
     }
-   
 }
 
 

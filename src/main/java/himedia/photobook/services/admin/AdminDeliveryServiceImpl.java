@@ -38,10 +38,12 @@ public class AdminDeliveryServiceImpl {
 		for (OrdersVo ordersVo : orderList) {
 			deliveryInfos = new HashMap<String, Object>();	
 			usersVo = userDao.selectUserByUserId(ordersVo.getUserId());
-//			shipmentsVo = shipmentsDao.selectStatusByOrderID(null);
+			shipmentsVo = shipmentsDao.selectShipmentInfoByOrderID(
+					ordersVo.getOrderId());
 					
 			deliveryInfos.put("ordersVo", ordersVo);
 			deliveryInfos.put("usersVo", usersVo);
+			deliveryInfos.put("shipmentsVo", shipmentsVo);
 			
 			deliveryInfoList.add(deliveryInfos);
 		}
