@@ -1,4 +1,4 @@
-package himedia.photobook.services;
+package himedia.photobook.services.users;
 import himedia.photobook.repositories.dao.UsersDao;
 import himedia.photobook.repositories.vo.UsersVo;
 import org.springframework.beans.factory.annotation.Autowired;

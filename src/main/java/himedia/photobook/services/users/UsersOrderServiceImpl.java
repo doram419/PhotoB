@@ -1,4 +1,4 @@
-package himedia.photobook.services;
+package himedia.photobook.services.users;
 
 import java.util.ArrayList;
 import java.util.HashMap;
