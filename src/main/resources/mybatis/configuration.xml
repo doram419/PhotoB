@@ -14,7 +14,6 @@
 	<!-- MyBatis 매퍼 -->
 	<mappers> 
 		<mapper resource="mybatis/mappers/users.xml" />
-		<mapper resource="mybatis/mappers/profile.xml" />
 	</mappers>
 	
 </configuration>

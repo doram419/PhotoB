@@ -25,5 +25,14 @@
         WHERE EMAIL = #{email} AND PASSWORD = #{password}
     </select>
     
-   
+
+    <update id="updateUser" parameterType="UsersVo">
+       UPDATE USERS
+        SET
+            PASSWORD = CONCAT('encrypted_', #{password, jdbcType=VARCHAR}),
+            USER_NAME = #{userName, jdbcType=VARCHAR},
+            ADDRESS = #{address, jdbcType=VARCHAR},
+            PHONE_NUMBER = #{phoneNumber, jdbcType=VARCHAR}
+        WHERE USER_ID = #{userId, jdbcType=VARCHAR}
+    </update>
 </mapper>

@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+// 로그인, 회원가입, 로그아웃, 프로필업데이트기능 여기에 다 넣었습니다.
 @Controller
 @RequestMapping("/users")
 public class UsersController {
@@ -29,11 +30,6 @@ public class UsersController {
 	@RequestMapping({ "/home", "/index", "", "/" })
 	public String home() {
 		return "/WEB-INF/views/users/users_index.jsp";
-	}
-
-	@RequestMapping({ "/profile" })
-	public String profile() {
-		return "/WEB-INF/views/users/users_profile.jsp";
 	}
 
 	@RequestMapping({ "/photobook", "pb", "photo" })
@@ -58,14 +54,12 @@ public class UsersController {
 
 		UsersVo authUser = userService.login(email, password);
 		
-		System.out.println("로그인 안됨1"+authUser);
 		if (authUser != null) {
 
 			session.setAttribute("authUser", authUser);
 
 			return "redirect:/users/home";
 		} else {
-			System.out.println("로그인 안됨2"+authUser);
 			return "redirect:/users/login";
 		}
 	}
@@ -95,6 +89,34 @@ public class UsersController {
 		return "redirect:/";
 	}
 
+	@RequestMapping({ "/profile" })
+	public String profile() {
+		return "/WEB-INF/views/users/users_profile.jsp";
+	}
+	@PostMapping("/profile/update")
+	public String updateUser(UsersVo updatedUser, HttpSession session) {
+
+		UsersVo currentUser = (UsersVo) session.getAttribute("authUser");
+		System.out.println("currentusr:" + currentUser);
+		if (currentUser != null) {
+			currentUser.setUserName(updatedUser.getUserName());
+			currentUser.setPassword(updatedUser.getPassword());
+			currentUser.setPhoneNumber(updatedUser.getPhoneNumber());
+			currentUser.setAddress(updatedUser.getAddress());
+
+			boolean isUpdated = userService.updateUser(currentUser);
+			if (isUpdated) {
+				session.setAttribute("authUser", currentUser);
+				return "redirect:/users/profile";
+			} else {
+				System.out.println("else:" + currentUser);
+				return "redirect:/users/profile?error=1";
+			}
+		} else {
+			System.out.println("else:" + currentUser);
+			return "redirect:/users/login";
+		}
+	}
 
 
 }
