@@ -34,7 +34,7 @@
 						<tr>
 							<td>${postVo.no}</td>
 							<td>
-								<a href="<c:url value="/board/post"/>">${postVo.content}</a>
+								<a href="<c:url value="/users/board/post"/>">${postVo.content}</a>
 							</td>
 							<td>${postVo.user_name}</td>
 							<td>${postVo.post_date}</td>
@@ -42,14 +42,14 @@
 				    </c:forEach>
                     <tr>
                         <td>2</td>
-                        <td><a href="<c:url value="/board/post"/>">주문 관련 문의합니다.</a></td>
+                        <td><a href="<c:url value="/users/board/post"/>">주문 관련 문의합니다.</a></td>
                         <td>사용자2</td>
                         <td>2023-06-02</td>
                     </tr>
                 </tbody>
             </table>
             
-           <p> <a href="<c:url value="/board/write"/>">글쓰기</a> </p>
+           <p> <a href="<c:url value="/users/board/write"/>">글쓰기</a> </p>
 
         </section>
     </main>
