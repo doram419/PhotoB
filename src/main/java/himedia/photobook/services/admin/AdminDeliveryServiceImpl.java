@@ -8,7 +8,9 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import himedia.photobook.controllers.DataConverter;
 import himedia.photobook.repositories.dao.OrdersDaoImpl;
+import himedia.photobook.repositories.dao.RefundDaoImpl;
 import himedia.photobook.repositories.dao.ShipmentsDaoImpl;
 import himedia.photobook.repositories.dao.UsersDaoImpl;
 import himedia.photobook.repositories.vo.OrdersVo;
@@ -17,12 +19,16 @@ import himedia.photobook.repositories.vo.UsersVo;
 
 @Service("adminDeliveryService")
 public class AdminDeliveryServiceImpl {
+	private DataConverter dataConverter = new DataConverter();
+	
 	@Autowired
 	private OrdersDaoImpl orderDao;
 	@Autowired
 	private UsersDaoImpl userDao;
 	@Autowired
 	private ShipmentsDaoImpl shipmentsDao;
+	@Autowired
+	private RefundDaoImpl refundDao;
 	
 	/**
 	 * 배송 관리에 필요한 정보들을 모두 리턴해주는 함수
@@ -32,6 +38,7 @@ public class AdminDeliveryServiceImpl {
 		Map<String, Object> deliveryInfos = null;
 		UsersVo usersVo = null;
 		ShipmentsVo shipmentsVo = null;  
+		String status = null;
 		
 		List<OrdersVo> orderList = orderDao.selectAllOrders();
 		
@@ -40,10 +47,16 @@ public class AdminDeliveryServiceImpl {
 			usersVo = userDao.selectUserByUserId(ordersVo.getUserId());
 			shipmentsVo = shipmentsDao.selectShipmentInfoByOrderID(
 					ordersVo.getOrderId());
-					
+			
+			status = shipmentsVo.getShipmentStatus();
+			if(status.equals("R"))	
+				status = refundDao.selectStatusByOrderID(shipmentsVo.getOrderId());
+			status = dataConverter.statusToWord(status);
+			
 			deliveryInfos.put("ordersVo", ordersVo);
 			deliveryInfos.put("usersVo", usersVo);
 			deliveryInfos.put("shipmentsVo", shipmentsVo);
+			deliveryInfos.put("status", status);
 			
 			deliveryInfoList.add(deliveryInfos);
 		}
