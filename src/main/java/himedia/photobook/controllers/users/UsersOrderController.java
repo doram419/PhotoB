@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import himedia.photobook.repositories.vo.UsersVo;
-import himedia.photobook.services.UsersOrderServiceImpl;
+import himedia.photobook.services.users.UsersOrderServiceImpl;
 import jakarta.servlet.http.HttpSession;
 
 @Controller
@@ -50,8 +50,6 @@ public class UsersOrderController {
 			@RequestParam("status") String status,
 			Model model) {
 		
-		System.out.println("-order detail-");
-
 		model.addAttribute("ordersId", ordersId);
 		model.addAttribute("albumId", albumId);
 		model.addAttribute("orderDate", orderDate);

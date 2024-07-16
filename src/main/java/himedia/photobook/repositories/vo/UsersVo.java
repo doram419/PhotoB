@@ -1,6 +1,5 @@
 package himedia.photobook.repositories.vo;
 
-// 작성자: 유승원
 public class UsersVo {
 	private String userId;
 	private String email;

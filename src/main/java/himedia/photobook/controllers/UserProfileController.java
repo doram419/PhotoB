@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import himedia.photobook.repositories.vo.UsersVo;
-import himedia.photobook.services.UserProfileService;
+import himedia.photobook.services.users.UserProfileService;
 import jakarta.servlet.http.HttpSession;
 
 @Controller

@@ -2,8 +2,7 @@ package himedia.photobook.controllers.users;
 
 
 import himedia.photobook.repositories.vo.UsersVo;
-
-import himedia.photobook.services.UsersService;
+import himedia.photobook.services.users.UsersService;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
