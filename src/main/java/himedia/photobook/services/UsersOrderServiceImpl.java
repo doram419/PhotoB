@@ -40,21 +40,14 @@ public class UsersOrderServiceImpl {
 		List<Map<String, Object>> orderInfoList = new ArrayList<Map<String, Object>>();
 		Map<String, Object> orderInfos = null;
 		List<OrdersVo> orderList = orderDao.selectAllOrdersByUserId(userId);
-		AlbumVo albumVo = null;
 		String orderStatus = null;
 		
 		for (OrdersVo ordersVo : orderList) {
 			orderInfos = new HashMap<String, Object>();	
-			albumVo = null;
 			orderStatus = null;
 
 			orderInfos.put("ordersVo", ordersVo);
-			
-			albumVo = albumDao.selectOneById(ordersVo.getAlbumId());
-			if(albumVo != null) {
-				orderInfos.put("albumVo", albumVo);
-			}
-			
+		
 			orderStatus = shipDao.selectStatusByOrderID(ordersVo.getOrderId());
 			if(orderStatus == "R")
 				orderStatus = refundDao.selectStatusByOrderID(ordersVo.getOrderId());

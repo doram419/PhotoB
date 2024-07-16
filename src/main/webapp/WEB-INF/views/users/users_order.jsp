@@ -35,7 +35,7 @@
                 <c:forEach items="${orderInfos}" var="infoMap">				
                 	<tr>
                 		<td>${infoMap['ordersVo'].orderId}</a></td>
-                        <td>${infoMap['albumVo'].albumId}</td>
+                        <td>${infoMap['ordersVo'].albumId}</td>
                         <td>${infoMap['ordersVo'].orderDate}</td>
                         <td>${infoMap['ordersVo'].total}원</td>
                         <td>${infoMap['ordersVo'].oQuantity}</td>
