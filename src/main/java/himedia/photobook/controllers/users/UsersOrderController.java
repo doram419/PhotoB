@@ -34,7 +34,6 @@ public class UsersOrderController {
 			
 			model.addAttribute("orderInfos", orderInfos);
 		}
-			
 		
 		return "/WEB-INF/views/users/users_order.jsp";
 	}

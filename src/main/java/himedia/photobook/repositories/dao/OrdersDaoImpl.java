@@ -18,8 +18,17 @@ public class OrdersDaoImpl {
 	@Autowired
 	private SqlSession session;
 	
+	/**
+	 * 조건 상관없이, 주문 테이블(orders)의 튜플들을 다 들고 올 수 있는 메서드
+	 * */
+	public List<OrdersVo> selectAllOrders(){
+		return session.selectList("orders.selectAllOrders");
+	}
+	
+	/**
+	 * 유저 아이디와 일치하는 주문 테이블(orders)의 튜플들을 들고 올 수 있는 메서드
+	 * */
 	public List<OrdersVo> selectAllOrdersByUserId(String userId){
-		System.out.println(userId);
 		return session.selectList("orders.selectAllOrdersByUserId", userId);
 	}
 }

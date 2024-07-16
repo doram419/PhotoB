@@ -34,7 +34,7 @@
                     </thead>
                    
                     <tbody>
-                        <c:forEach items="${orderInfos}" var="infoMap">				
+                        <c:forEach items="${deliveryInfos}" var="infoMap">				
                         <tr>
 	                		<td>${infoMap['ordersVo'].orderId}</td>
 	                        <td>${infoMap['usersVo'].userName}</td>
