@@ -36,6 +36,7 @@
             OR USER_ID LIKE ('%' || #{value} || '%')
         	OR EMAIL LIKE ('%' || #{value} || '%')
         	OR PHONE_NUMBER LIKE ('%' || #{value} || '%')
+        ORDER BY USER_ID
     </select>
    
 </mapper>

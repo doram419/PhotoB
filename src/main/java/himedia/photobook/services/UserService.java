@@ -1,14 +1,15 @@
 package himedia.photobook.services;
 
-import java.util.List;
-
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import himedia.photobook.repositories.dao.UsersDao;
 import himedia.photobook.repositories.vo.UsersVo;
 
+
+/**
+ * 유저 서비스입니다
+ * */
 @Service
 public class UserService {
     @Autowired
@@ -49,11 +50,4 @@ public class UserService {
         // 여기서는 간단히 "encrypted_" 접두사를 붙이는 것으로 대체
         return "encrypted_" + password;
     }
-    
-    // 관리자 고객검색
-	public List<UsersVo> searchUsers(String searchCategory, String keyword) {
-		String searchKeyword = "%" + keyword + "%";
-		return userDao.searchUsers(searchKeyword);
-	}
-   
 }
