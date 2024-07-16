@@ -15,7 +15,6 @@
 <body>
 	<c:import url="/WEB-INF/views/admin/includes/admin_header.jsp"></c:import>
 	
-
 	<div class="main-content">
         <div class="header">
             <h2>대시보드</h2>
@@ -27,7 +26,7 @@
                     <thead>
                         <tr>
                             <th>주문 ID</th>
-                            <th>이름</th>
+                            <th>주문자</th>
                             <th>배송 ID</th>
                             <th>배송 일자</th>
                             <th>배송 상태</th>
@@ -35,23 +34,24 @@
                     </thead>
                    
                     <tbody>
+                        <c:forEach items="${orderInfos}" var="infoMap">				
                         <tr>
-                            <td>test</td>
-                            <td>test</td>
-                            <td>test</td>
-                            <td>test</td>
-                            <td>test</td>
-                        </tr>
-                        <!-- 추가 주문 데이터 -->
+	                		<td>${infoMap['ordersVo'].orderId}</td>
+	                        <td>${infoMap['usersVo'].userName}</td>
+	                        <td>${infoMap['shipmentsVo'].shipmentId}</td>
+	                        <td>${infoMap['shipmentsVo'].shipmentDate}</td>
+	                        <td>${infoMap['status']}</td>
+                		</tr>
+           				</c:forEach>   
                     </tbody>
-                   
                 </table>
             </div>
         </div>
-	
-
+	</div>
+        
+    <c:import url="/WEB-INF/views/admin/includes/admin_footer.jsp"></c:import>
 </body>
 
-<%-- <c:import url="/WEB-INF/views/admin/includes/admin_footer.jsp"></c:import> --%>
+
 
 </html>
