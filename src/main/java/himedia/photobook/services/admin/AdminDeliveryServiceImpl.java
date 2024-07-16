@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import himedia.photobook.repositories.dao.OrdersDaoImpl;
+import himedia.photobook.repositories.dao.UsersDaoImpl;
 import himedia.photobook.repositories.vo.OrdersVo;
 import himedia.photobook.repositories.vo.UsersVo;
 
@@ -16,7 +17,8 @@ import himedia.photobook.repositories.vo.UsersVo;
 public class AdminDeliveryServiceImpl {
 	@Autowired
 	private OrdersDaoImpl orderDao;
-	
+	@Autowired
+	private UsersDaoImpl userDao;
 	
 	/**
 	 * 배송 관리에 필요한 정보들을 모두 리턴해주는 함수
@@ -30,9 +32,10 @@ public class AdminDeliveryServiceImpl {
 		
 		for (OrdersVo ordersVo : orderList) {
 			deliveryInfos = new HashMap<String, Object>();	
-//			usersVo = 
+			usersVo = userDao.selectUserByUserId(ordersVo.getUserId());
 			
 			deliveryInfos.put("ordersVo", ordersVo);
+			deliveryInfos.put("usersVo", usersVo);
 			
 			deliveryInfoList.add(deliveryInfos);
 		}
