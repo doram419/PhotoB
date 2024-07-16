@@ -54,7 +54,8 @@ public class UsersDaoImpl implements UsersDao {
 
 	@Override
 	public List<UsersVo> searchUsers(String keyword) {
-		return null;
+		//파라미터
+		return sqlSession.selectList("users.searchUsers", keyword)  ;
 	}
 	
 }

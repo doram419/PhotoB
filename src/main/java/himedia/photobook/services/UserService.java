@@ -51,8 +51,9 @@ public class UserService {
     }
     
     // 관리자 고객검색
-    public List<UsersVo> searchUsers(String keyword) {
-        return userDao.searchUsers(keyword);
-    }
+	public List<UsersVo> searchUsers(String searchCategory, String keyword) {
+		String searchKeyword = "%" + keyword + "%";
+		return userDao.searchUsers(searchKeyword);
+	}
    
 }

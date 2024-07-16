@@ -70,18 +70,18 @@
                     <tbody>
                     	<c:forEach var="user" items="${userList}" varStatus="status">
                         <tr>
-                            <td>${status.index + 1}</td>
-                                <td>${user.USER_NAME}</td>
-                                <td>${user.USER_ID}</td>
-                                <td>${user.EMAIL}</td>
-                                <td>${user.PHONE_NUMBER}</td>
-                                <td>${user.ADDRESS}</td>
-                                <td>${user.ROLE}</td>
+                            <!-- <td>${status.index + 1}</td>   -->
+                                <td>${user.userName}</td>
+                                <td>${user.userId}</td>
+                                <td>${user.email}</td>
+                                <td>${user.phoneNumber}</td>
+                                <td>${user.address}</td>
+                                <td>${user.role}</td>
                             <td>
-                                <a href="<c:url value='/admin/update?userId=${user.USER_ID}'/>">
+                                <a href="<c:url value='/admin/update?userId=${user.userId}'/>">
                                         <button class="btn btn-primary">수정</button>
                                 </a>
-                                <a href="<c:url value='/admin/delete?userId=${user.USER_ID}'/>">
+                                <a href="<c:url value='/admin/delete?userId=${user.userId}'/>">
                                         <button class="btn btn-danger">삭제</button>
                                 </a>
                             </td>

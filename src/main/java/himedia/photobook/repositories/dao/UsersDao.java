@@ -9,5 +9,5 @@ public interface UsersDao {
     UsersVo selectUserByEmail(String email);//	중복 이메일 체크
 	public UsersVo selectUserByEmailAndPassword(String email, String password);	//	로그인용
 
-	List<UsersVo> searchUsers(String keyword); // 검색 기능 추가
+	public List<UsersVo> searchUsers(String keyword); // 검색 기능 추가
 }
