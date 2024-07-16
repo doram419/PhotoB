@@ -7,13 +7,21 @@
         VALUES ('USER' || LPAD((SELECT NVL(MAX(TO_NUMBER(SUBSTR(USER_ID, 5))) + 1, 1) FROM USERS), 4, '0'),
         	 #{email}, #{password}, #{userName}, #{address}, #{phoneNumber}, #{role})
     </insert>
-    <select id="selectUserByEmail" parameterType="string" resultType="UsersVo">
-        SELECT * FROM USERS
-        WHERE EMAIL = #{email}
+    <select id="selectUserByEmail" parameterType="String" resultType="UsersVo">
+        SELECT 
+        	USER_ID as userId, EMAIL, PASSWORD, 
+        	USER_NAME as userName, ADDRESS, 
+        	PHONE_NUMBER as phoneNumber, ROLE 
+        FROM USERS
+        WHERE EMAIL = #{value}
     </select>
 
     <select id="selectUserByEmailAndPassword" parameterType="map" resultType="UsersVo">
-        SELECT * FROM USERS
+        SELECT 
+        	USER_ID as userId, EMAIL, PASSWORD, 
+        	USER_NAME as userName, ADDRESS, 
+        	PHONE_NUMBER as phoneNumber, ROLE 
+        FROM USERS
         WHERE EMAIL = #{email} AND PASSWORD = #{password}
     </select>
     
@@ -23,4 +31,5 @@
            OR EMAIL LIKE '%' || #{keyword} || '%'
            OR PHONE_NUMBER LIKE '%' || #{keyword} || '%'
     </select>
+   
 </mapper>

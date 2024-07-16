@@ -1,52 +1,51 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>포토북 스타일 미리보기</title>
-    <link rel="stylesheet" href="<c:url value='/css/header_footer.css'/>">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>포토북 스타일 미리보기</title>
+<link type="text/css" rel="stylesheet" href='<c:url value="/css/create_photobook_style.css"/>'>
+<link rel="stylesheet" href="<c:url value='/css/header_footer.css'/>">
 </head>
 <body>
-	
-    <c:import url="/WEB-INF/views/users/includes/users_header.jsp"/>
-    
-    <h1>포토북 스타일 미리보기</h1>
-    
-    <div class="style-options">
-        <label class="style-option">
-            <input type="radio" name="style" value="1" checked> 1장
-        </label>
-        <label class="style-option">  
-            <input type="radio" name="style" value="2"> 2장
-        </label>
-        <label class="style-option">
-            <input type="radio" name="style" value="3"> 3장
-        </label>
-        <label class="style-option">
-            <input type="radio" name="style" value="4"> 4장
-        </label>
-    </div>
 
-    <div class="preview-wrapper">
-        <div class="preview-container">
-            <div class="preview-page"></div>
-            <div class="pagination"></div>
-        </div>
-    </div>
+	<c:import url="/WEB-INF/views/users/includes/users_header.jsp" />
 
-    <div class="nav-buttons">
-        <button id="prevPage">이전 페이지</button>
-        <button id="nextPage">다음 페이지</button>
-    </div>
+	<h1>포토북 스타일 미리보기</h1>
 
-    <form action="<c:url value='/users/order'/>" method="post">
-        <input type="hidden" id="selectedStyle" name="selectedStyle">
-        <button type="submit" class="create-button">제작</button>
-    </form>
+	<div class="style-options">
+		<label class="style-option"> <input type="radio" name="style"
+			value="1" checked> 1장
+		</label> <label class="style-option"> <input type="radio" name="style"
+			value="2"> 2장
+		</label> <label class="style-option"> <input type="radio" name="style"
+			value="3"> 3장
+		</label> <label class="style-option"> <input type="radio" name="style"
+			value="4"> 4장
+		</label>
+	</div>
 
-    <script>
+	<div class="preview-wrapper">
+		<div class="preview-container">
+			<div class="preview-page"></div>
+			<div class="pagination"></div>
+		</div>
+	</div>
+
+	<div class="nav-buttons">
+		<button id="prevPage">이전 페이지</button>
+		<button id="nextPage">다음 페이지</button>
+	</div>
+
+	<form action="<c:url value='/users/order'/>" method="post">
+		<input type="hidden" id="selectedStyle" name="selectedStyle">
+		<button type="submit" class="create-button">제작</button>
+	</form>
+
+	<script>
     	// 효원 코드: 이거 잘 몰라서 전부 gpt 돌렸습니다. 포토북 제작툴 기능 구현 가능하신 능력자분 구합니다. 
         const styleOptions = document.querySelectorAll('input[name="style"]');
         const previewPage = document.querySelector('.preview-page');

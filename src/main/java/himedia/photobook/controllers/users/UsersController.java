@@ -44,26 +44,26 @@ public class UsersController {
 		return "/WEB-INF/views/users/users_create_photobook.jsp";
 	}
 
-	@PostMapping("/login") // 로그인 실패 메세지 출력기능 구현 필요!!! (회원가입 실패 메세지 출력 참고 users_register.jsp)
+	@PostMapping("/login") // 로그인 실패 메세지 출력기능 구현 필요!!!
 	public String loginAction(@RequestParam(value = "email", required = false, defaultValue = "") String email,
 
 			@RequestParam(value = "password", required = false, defaultValue = "") String password,
 
 			HttpSession session) {
-		System.out.println("email:" + email);
-		System.out.println("password:" + password); //확인용
 		if (email.length() == 0 || password.length() == 0) {
 			return "redirect:/users/home";
 		}
 
 		UsersVo authUser = userService.login(email, password);
-
+		
+		System.out.println("로그인 안됨1"+authUser);
 		if (authUser != null) {
 
 			session.setAttribute("authUser", authUser);
 
 			return "redirect:/users/home";
 		} else {
+			System.out.println("로그인 안됨2"+authUser);
 			return "redirect:/users/login";
 		}
 	}
@@ -92,5 +92,4 @@ public class UsersController {
 		
 		return "redirect:/";
 	}
-	
-	}
+}
