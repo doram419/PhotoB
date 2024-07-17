@@ -59,8 +59,8 @@
 		    const materialValue = material.value;
 		    albumSize.innerHTML = '';
 		    ['S', 'M', 'L'].forEach(s => {
-		      if (!(materialValue === 'linen' && s === 'L') &&
-		          !(materialValue === 'soft' && s === 'L')) {
+		      if (!(materialValue === 'LINEN' && s === 'L') &&
+		          !(materialValue === 'SOFT' && s === 'L')) {
 		        const option = document.createElement('option');
 		        option.value = s;
 		        option.textContent = s;
@@ -69,18 +69,18 @@
 		    });
 
 		    color.innerHTML = '';
-		    if (materialValue === 'leather') {
-		      ['gray', 'brown'].forEach(c => {
+		    if (materialValue === 'LEATHER') {
+		      ['GRAY', 'BROWN'].forEach(c => {
 		        const option = document.createElement('option');
 		        option.value = c;
-		        option.textContent = c === 'gray' ? '회색' : '갈색';
+		        option.textContent = c === 'GRAY' ? '회색' : '갈색';
 		        color.appendChild(option);
 		      });
 		    } else {
-		      ['gray', 'blue', 'brown'].forEach(c => {
+		      ['GRAY', 'BLUE', 'BROWN'].forEach(c => {
 		        const option = document.createElement('option');
 		        option.value = c;
-		        option.textContent = c === 'gray' ? '회색' : (c === 'blue' ? '파란색' : '갈색');
+		        option.textContent = c === 'GRAY' ? '회색' : (c === 'BLUE' ? '파란색' : '갈색');
 		        color.appendChild(option);
 		      });
 		    }

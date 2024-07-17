@@ -13,6 +13,7 @@ private AlbumDao albumsDao;
 //private OrderDao orderDao;
 
 public AlbumVo findAlbumIdByOptions(String material, String albumSize, String color) {
+	System.out.println("service받는지 확인"+material+albumSize+color);
 	AlbumVo albumVo =albumsDao.findAlbumIdByOptions(material, albumSize, color);
 	
 	System.out.println("service vo: "+albumVo);
