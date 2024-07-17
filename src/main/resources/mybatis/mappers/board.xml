@@ -18,10 +18,10 @@
 		VALUES (SEQ_BOARD_PK.nextval, #{title}, #{content}, #{userId})
 	</insert>
 	
-	<select id="getContent" parameterType="String" resultType="BoardVo">
-		SELECT BOARD_ID, TITLE, CONTENT,USER_ID
+	<select id="getContent" parameterType="map" resultType="BoardVo">
+		SELECT BOARD_ID as boardId, TITLE, CONTENT,USER_ID as userId
 		FROM BOARD
-		WHERE USER_ID=#{value}	
+		WHERE USER_ID=#{userId} AND BOARD_ID = #{boardId}	
 	</select>
 	
 	

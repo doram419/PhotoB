@@ -1,6 +1,8 @@
 package himedia.photobook.repositories.dao;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,9 +34,11 @@ public class UBoardDaoImpl implements UBoardDao{
 	}
 
 	@Override
-	public BoardVo getContent(String userId) {
-		BoardVo boardVo = sqlSession.selectOne("board.getContent",userId);
-		return boardVo;
+	public BoardVo getContent(String userId,Long boardId) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("userId", userId);
+		map.put("boardId",boardId);
+		return sqlSession.selectOne("board.getContent",map);
 		
 	}
 

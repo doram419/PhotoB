@@ -32,7 +32,7 @@
 					<c:forEach items="${postList}" var="postMap" varStatus="status">
 						<tr>
 							<td>${postMap['boardVo'].boardId}</td>
-							<td><a href="<c:url value="/users/board/post/${postMap['boardVo'].userId}"/>">${postMap['boardVo'].title}</a></td>
+							<td><a href="<c:url value="/users/board/post/${postMap['boardVo'].userId}/${postMap['boardVo'].boardId }"/>">${postMap['boardVo'].title}</a></td>
 							<td>${postMap['usersVo'].userName}</td>
 							<td>${postMap['boardVo'].regDate}</td>
 						</tr>

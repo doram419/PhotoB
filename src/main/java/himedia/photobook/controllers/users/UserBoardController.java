@@ -63,14 +63,14 @@ public class UserBoardController {
 		return "redirect:/users/boardList";
 	}
 	
-	@GetMapping("/board/post/{userId}")
-	public String view(@PathVariable("userId") String userId, Model md, HttpSession session) {
+	@GetMapping("/board/post/{userId}/{boardId}")
+	public String view(@PathVariable("userId") String userId,@PathVariable("boardId") Long boardId, Model md, HttpSession session) {
 		System.out.println("userId: "+userId);
 		UsersVo authUser = (UsersVo) session.getAttribute("authUser");
 		if(authUser==null) {
 			return "redirect:/users/boardList";
 		}
-		BoardVo boardVo = uBoardService.getContent(userId);
+		BoardVo boardVo = uBoardService.getContent(userId,boardId);
 		md.addAttribute("vo",boardVo);
 		return "/WEB-INF/views/users/board/board_post.jsp";
 	}
