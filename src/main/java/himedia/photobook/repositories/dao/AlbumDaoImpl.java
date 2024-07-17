@@ -21,7 +21,7 @@ public class AlbumDaoImpl {
 	 * 앨범 ID로 album 튜플을 가져오는 메서드
 	 * exception 처리 필요함
 	 * */
-	public AlbumVo selectOneById(String albumId){
+	public AlbumVo selectAlbumIdById(String albumId){
 		try {
 			return session.selectOne("album.selectByID", albumId);
 			
