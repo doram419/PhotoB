@@ -44,7 +44,7 @@ public class UserPhotobookController {
 		String albumId = albumVo.getAlbumId();
 		albumsession.setAttribute("albumId", albumId);
 
-		return "redirect:/users/photobook/create_Photobook";
+		return "/WEB-INF/views/users/users_create_photobook.jsp";
 	}
 
 //	@PostMapping("/photobookorder")
