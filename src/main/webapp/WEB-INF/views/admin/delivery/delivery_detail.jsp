@@ -12,7 +12,9 @@
 		rel="stylesheet" 
 		href='<c:url value="/css/delivery_form_style.css"/>'/>
 	<script type="text/javascript" 
-		src='<c:url value="/javascript/admin/delivery_detail.js"/>'></script> 
+		src='<c:url value="/javascript/admin/delivery_detail.js"/>'>
+		
+	</script> 
 </head>
 
 <body>
@@ -25,19 +27,13 @@
                 <td colspan="3">배송 정보</td>
             </tr>
             <tr>
-                <td>배송 번호</td>
-                <td>
-                	<input type="text" id="delivery_data"
-                		value="${deliveryDetailInfos['shipmentsVo'].shipmentId}" 
-               			disabled/>
-                <td>
-                	<button id="confirm-shipmentId" class="edit-btn">수정</button>
-                </td>
-            </tr>
-            <tr>
                 <td>배송 일자</td>
-                <td>${deliveryDetailInfos['shipmentsVo'].shipmentDate}</td>
-                <td><button class="edit-btn">수정</button></td>
+                <td>
+                <input type="text" id="delivery_data"
+                		value="${deliveryDetailInfos['shipmentsVo'].shipmentDate}" 
+               			disabled/>
+                </td>
+                <td><button id="confirm-btn" class="edit-btn">수정</button></td>
             </tr>
             <tr>
                 <td>배송 상태</td>

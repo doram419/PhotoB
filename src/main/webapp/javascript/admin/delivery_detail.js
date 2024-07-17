@@ -4,20 +4,23 @@
  */
 
 window.addEventListener("load", event => {
-		console.log("로드됨");
-		
-		document.getElementById("confirm-shipmentId")
+	document.getElementById("confirm-btn")
 			.addEventListener("click", event => 
 			{
-				const target = event.target;
-				console.log(target);
-				const Node = target.parentElement.previousElementSibling.firstElementChild;
-
-				Node.disabled= false;
+				editAble(event);
 			});
 });
 
 function editAble(event){
-	event.target.disalbe='true';
+	let target = event.target;
+	let Node = target.parentElement.previousElementSibling.firstElementChild;
+	
+	if(target.innerText == "수정")
+	{
+		Node.disabled= false;
+		target.innerText = "확인";
+	} else {
+		Node.disabled= true;
+		target.innerText = "수정";
+	}
 }
-
