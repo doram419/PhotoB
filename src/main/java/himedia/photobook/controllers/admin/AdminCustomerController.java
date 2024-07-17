@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import himedia.photobook.repositories.vo.UsersVo;
 import himedia.photobook.services.admin.AdminCustomerService;
+import jakarta.servlet.http.HttpSession;
 
 @Controller
 @RequestMapping({"/admin"})
@@ -34,9 +35,34 @@ public class AdminCustomerController {
 	}
 	
 	@GetMapping("/update")
-	public String customerUpdate() {
+	public String updateUsersPage() {
 		return "/WEB-INF/views/admin/admin_customer_update.jsp";
 	}
+	
+	@GetMapping("/updateUsers")
+	public String updateUsers(UsersVo updatedUser, HttpSession session) {
+		UsersVo currentUser = (UsersVo) session.getAttribute("authUser");
+		System.out.println("currentusr:"+currentUser);
+		if (currentUser != null) {
+			currentUser.setUserName(updatedUser.getUserName());
+			currentUser.setPassword(updatedUser.getPassword());
+			currentUser.setEmail(updatedUser.getEmail());
+			currentUser.setPhoneNumber(updatedUser.getPhoneNumber());
+			currentUser.setAddress(updatedUser.getAddress());
+			
+			boolean isUpdated = adminCustomerService.updateUsers(currentUser);
+			if (isUpdated) {
+				session.setAttribute("authUser", currentUser);
+				return "redirect:/admin/cm";
+			}else {
+				System.out.println("else:"+currentUser);
+				return "redirect:/admin/update?error=1";
+			}
+		}else {
+		return "redirect:/admin/cm";
+		}
+	}
+
 	
 //	관리자 고객관리 고객목록 삭제확인페이지(구현X)	
 //	@GetMapping("/customerDelete")
@@ -47,9 +73,9 @@ public class AdminCustomerController {
 //	}
 	
 	@GetMapping("/delete")
-	public String deleteUser(@RequestParam("userId")String userId) {
-		System.out.println("deleteUser userId: " + userId);
-		adminCustomerService.deleteUser(userId);
+	public String deleteUsers(@RequestParam("userId")String userId) {
+		System.out.println("deleteUsers userId: " + userId);
+		adminCustomerService.deleteUsers(userId);
 		return "redirect:/admin/cm";
 	}
 

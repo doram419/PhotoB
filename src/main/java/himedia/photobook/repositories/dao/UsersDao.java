@@ -1,7 +1,6 @@
 package himedia.photobook.repositories.dao;
 
 import java.util.List;
-
 import himedia.photobook.repositories.vo.UsersVo;
 
 public interface UsersDao {
@@ -11,5 +10,6 @@ public interface UsersDao {
 
 	public List<UsersVo> searchUsers(String keyword); // 검색 기능 추가
 	public UsersVo getUserById(String userId);
-	public void deleteUser(String userId);
+	public void deleteUsers(String userId);
+	public int updateUsers(UsersVo user);
 }

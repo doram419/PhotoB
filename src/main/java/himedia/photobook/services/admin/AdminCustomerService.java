@@ -23,7 +23,14 @@ public class AdminCustomerService {
 		return userDao.getUserById(userId);
 	}
 	
-	public void deleteUser(String userId) {
-		userDao.deleteUser(userId);
+	public void deleteUsers(String userId) {
+		userDao.deleteUsers(userId);
 	}
+	
+	// 관리자 고객수정
+	public boolean updateUsers(UsersVo userVo) {
+		 
+        int updatedCount = userDao.updateUsers(userVo);
+        return updatedCount == 1;
+    }
 }

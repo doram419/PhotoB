@@ -17,10 +17,9 @@
 	<c:import url="/WEB-INF/views/admin/includes/admin_header.jsp"></c:import>
 
 	<main>
-		<section id="customer_update">
+		<section id="update">
 			<h2>고객 정보 수정</h2>
-			<form action="admin_customer_update.jsp" method="post"
-				id="customerEditForm">
+			<form action="<c:url value='/admin/update'/>" method="get">
 				<div>
 					<label for="name">이름:</label>
 					<input type="text" id="userName" name="userName" value="${user.userName}" required>

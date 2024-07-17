@@ -1,6 +1,8 @@
 package himedia.photobook.repositories.dao;
 import java.util.HashMap;
 
+
+
 import java.util.List;
 import java.util.Map;
 import org.apache.ibatis.session.SqlSession;
@@ -64,7 +66,18 @@ public class UsersDaoImpl implements UsersDao {
 	}
 	
 	@Override
-	public void deleteUser(String userId) {
+	public void deleteUsers(String userId) {
 		sqlSession.delete("users.deleteUser", userId);
+	}
+	
+	@Override
+	public int updateUsers(UsersVo user) {
+		try {
+			int updatedCount = sqlSession.update("himedia.photobook.repositories.dao.UsersDao", user);
+			return updatedCount;
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw new UsersDaoException("업데이트 도중 예외 발생!");
+		}
 	}
 }
