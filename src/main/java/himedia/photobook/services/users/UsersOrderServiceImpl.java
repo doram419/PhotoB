@@ -29,8 +29,6 @@ public class UsersOrderServiceImpl {
 	@Autowired
 	private OrdersDaoImpl orderDao;
 	@Autowired
-	private AlbumDaoImpl albumDao;
-	@Autowired
 	private ShipmentsDaoImpl shipDao;
 	@Autowired
 	private RefundDaoImpl refundDao;
