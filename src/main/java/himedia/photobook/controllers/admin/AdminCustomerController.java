@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -35,32 +36,27 @@ public class AdminCustomerController {
 	}
 	
 	@GetMapping("/update")
-	public String updateUsersPage() {
+	public String updateUsersPage(Model model, 
+			@RequestParam("userId") String userId) {
+		model.addAttribute("userId", userId);
 		return "/WEB-INF/views/admin/admin_customer_update.jsp";
 	}
 	
-	@GetMapping("/updateUsers")
-	public String updateUsers(UsersVo updatedUser, HttpSession session) {
+	@PostMapping("/updateUsers")
+	public String updateUsers(UsersVo updatedUser, HttpSession session,
+			@RequestParam("userId") String userId) {
 		UsersVo currentUser = (UsersVo) session.getAttribute("authUser");
-		System.out.println("currentusr:"+currentUser);
-		if (currentUser != null) {
-			currentUser.setUserName(updatedUser.getUserName());
-			currentUser.setPassword(updatedUser.getPassword());
-			currentUser.setEmail(updatedUser.getEmail());
-			currentUser.setPhoneNumber(updatedUser.getPhoneNumber());
-			currentUser.setAddress(updatedUser.getAddress());
-			
-			boolean isUpdated = adminCustomerService.updateUsers(currentUser);
+		updatedUser.setUserId(userId);
+		//if (currentUser.getRole().equals("A")) {
+			boolean isUpdated = adminCustomerService.updateUsers(updatedUser);
 			if (isUpdated) {
-				session.setAttribute("authUser", currentUser);
 				return "redirect:/admin/cm";
 			}else {
-				System.out.println("else:"+currentUser);
 				return "redirect:/admin/update?error=1";
 			}
-		}else {
-		return "redirect:/admin/cm";
-		}
+		//} else {
+		//	return "redirect:/admin/cm";
+		//}
 	}
 
 	

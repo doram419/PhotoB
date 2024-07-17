@@ -52,9 +52,20 @@
         	USER_ID = #{value}
     </select>
     
-    <delete id="deleteUser" parameterType="string">
+    <delete id="deleteUsers" parameterType="string">
     	DELETE FROM USERS
     	WHERE USER_ID = #{value}
     </delete>
+    
+    <update id="updateUsers" parameterType="UsersVo">
+       UPDATE USERS
+        SET
+            PASSWORD = 'encrypted_' || #{password},
+            USER_NAME = #{userName},
+            EMAIL = #{email},
+            ADDRESS = #{address},
+            PHONE_NUMBER = #{phoneNumber}
+        WHERE USER_ID = #{userId}
+    </update>
    
 </mapper>

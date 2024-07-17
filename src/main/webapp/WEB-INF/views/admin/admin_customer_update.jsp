@@ -19,7 +19,8 @@
 	<main>
 		<section id="update">
 			<h2>고객 정보 수정</h2>
-			<form action="<c:url value='/admin/update'/>" method="get">
+			<form action="<c:url value='/admin/updateUsers'/>" method="post">
+				<input type="hidden" name="userId" value="${userId}"/> 
 				<div>
 					<label for="name">이름:</label>
 					<input type="text" id="userName" name="userName" value="${user.userName}" required>

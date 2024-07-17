@@ -29,7 +29,6 @@ public class AdminCustomerService {
 	
 	// 관리자 고객수정
 	public boolean updateUsers(UsersVo userVo) {
-		 
         int updatedCount = userDao.updateUsers(userVo);
         return updatedCount == 1;
     }

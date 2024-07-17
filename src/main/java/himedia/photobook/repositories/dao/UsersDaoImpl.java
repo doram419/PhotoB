@@ -67,13 +67,14 @@ public class UsersDaoImpl implements UsersDao {
 	
 	@Override
 	public void deleteUsers(String userId) {
-		sqlSession.delete("users.deleteUser", userId);
+		sqlSession.delete("users.deleteUsers", userId);
 	}
 	
 	@Override
 	public int updateUsers(UsersVo user) {
 		try {
-			int updatedCount = sqlSession.update("himedia.photobook.repositories.dao.UsersDao", user);
+			System.out.println(user);
+			int updatedCount = sqlSession.update("users.updateUsers", user);
 			return updatedCount;
 		} catch (Exception e) {
 			e.printStackTrace();
