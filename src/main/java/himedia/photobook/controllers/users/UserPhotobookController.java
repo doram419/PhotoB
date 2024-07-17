@@ -31,10 +31,11 @@ public class UserPhotobookController {
 
 	@PostMapping("/create_photobook")
 	public String createPhotobook(@RequestParam(value = "material", required = false) String material,
+			@RequestParam(value = "color", required = false) String color,
 			@RequestParam(value = "albumSize", required = false) String albumSize,
-			@RequestParam(value = "color", required = false) String color, HttpSession albumsession, Model model) {
+			 HttpSession albumsession, Model model) {
 		System.out.println("받아온 커버"+material);
-		AlbumVo albumVo = userPhotobookService.findAlbumIdByOptions(material, albumSize, color);
+		AlbumVo albumVo = userPhotobookService.findAlbumIdByOptions(material,color,albumSize);
 		System.out.println("여기서 null을 가져오면 안됨: " + albumVo);
 		if (albumVo == null) {
 			model.addAttribute("error");
