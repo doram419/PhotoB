@@ -50,6 +50,9 @@
         <input type="hidden" name="material" value="${param.material}">
         <input type="hidden" name="albumSize" value="${param.albumSize}">
         <input type="hidden" name="color" value="${param.color}">
+          <input type="hidden" name="albumId" value="${sessionScope.albumId}">
+            <input type="hidden" name="userId" value="${sessionScope.authUser.userId}">
+            
         <button type="submit" class="create-button">제작 완료</button>
     </form>
 

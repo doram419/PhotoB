@@ -6,13 +6,16 @@ import org.springframework.stereotype.Service;
 import himedia.photobook.repositories.dao.AlbumDao;
 import himedia.photobook.repositories.vo.AlbumVo;
 
-@Service
+@Service("userPhotobookService")
 public class UserPhotobookService {
 @Autowired
-private AlbumDao albumDao;
+private AlbumDao albumsDao;
 //private OrderDao orderDao;
 
 public AlbumVo findAlbumIdByOptions(String material, String albumSize, String color) {
-	return albumDao.findAlbumIdByOptions(material, albumSize, color);
+	AlbumVo albumVo =albumsDao.findAlbumIdByOptions(material, albumSize, color);
+	
+	System.out.println("service vo: "+albumVo);
+	return albumVo;
 }
 }

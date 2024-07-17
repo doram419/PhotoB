@@ -5,7 +5,7 @@
   <select id="findAlbumIdByOptions" parameterType="map" resultType="AlbumVo">
         SELECT 
         	ALBUM_ID as albumId
-    FROM ALBUM
+    	FROM ALBUM
     WHERE MATERIAL = #{material} AND ALBUM_SIZE = #{albumSize} AND COLOR = #{color}
     </select>
     </mapper>

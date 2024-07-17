@@ -35,4 +35,6 @@
             PHONE_NUMBER = #{phoneNumber, jdbcType=VARCHAR}
         WHERE USER_ID = #{userId, jdbcType=VARCHAR}
     </update>
+    
+
 </mapper>

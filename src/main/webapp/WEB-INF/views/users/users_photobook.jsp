@@ -23,10 +23,10 @@
 				<div class="form-group">
 					<label for="material">커버 재질:</label> <select
 						id="material" name="material">
-						<option value="linen">린넨</option>
-						<option value="leather">가죽</option>
-						<option value="hard">하드</option>
-						<option value="soft">소프트</option>
+						<option value="LINEN">린넨</option>
+						<option value="LEATHER">가죽</option>
+						<option value="HARD">하드</option>
+						<option value="SOFT">소프트</option>
 					</select>
 				</div>
 				<div class="form-group">
@@ -38,9 +38,9 @@
 				</div>
 				<div class="form-group">
 					<label for="color">색상:</label> <select id="color" name="color">
-						<option value="gray">회색</option>
-						<option value="blue">파란색</option>
-						<option value="brown">갈색</option>
+						<option value="GRAY">회색</option>
+						<option value="BLUE">파란색</option>
+						<option value="BROWN">갈색</option>
 					</select>
 				</div>
 				<div class="form-group">
