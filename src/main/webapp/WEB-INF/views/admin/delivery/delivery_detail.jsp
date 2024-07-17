@@ -11,6 +11,8 @@
     <link type="text/css" 
 		rel="stylesheet" 
 		href='<c:url value="/css/delivery_form_style.css"/>'/>
+	<script type="text/javascript" 
+		src='<c:url value="/javascript/admin/delivery_detail.js"/>'></script> 
 </head>
 
 <body>
@@ -24,8 +26,13 @@
             </tr>
             <tr>
                 <td>배송 번호</td>
-                <td>${deliveryDetailInfos['shipmentsVo'].shipmentId}</td>
-                <td><button class="edit-btn">수정</button></td>
+                <td>
+                	<input type="text" id="delivery_data"
+                		value="${deliveryDetailInfos['shipmentsVo'].shipmentId}" 
+               			disabled/>
+                <td>
+                	<button id="confirm-shipmentId" class="edit-btn">수정</button>
+                </td>
             </tr>
             <tr>
                 <td>배송 일자</td>
@@ -106,6 +113,11 @@
                 <td><button class="edit-btn">수정</button></td>
             </tr>
         </table>
+        
+        <form action="<c:url value="/admin/delivery"/>" method="get">
+        	<!-- 지금은 css 유지 위해서 놔둠 나중에 id 수정--> 
+       		<button id="confirmEdit">배송 관리로 가기</button>
+        </form>
         <button id="confirmEdit" onclick="confirmEdit()">수정 확인</button>
     </div>
 
