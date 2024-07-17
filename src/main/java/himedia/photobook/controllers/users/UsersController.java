@@ -32,15 +32,6 @@ public class UsersController {
 		return "/WEB-INF/views/users/users_index.jsp";
 	}
 
-	@RequestMapping({ "/photobook", "pb", "photo" })
-	public String photobook() {
-		return "/WEB-INF/views/users/users_photobook.jsp";
-	}
-
-	@PostMapping("/create_photobook")
-	public String create_photobook() {
-		return "/WEB-INF/views/users/users_create_photobook.jsp";
-	}
 
 	@PostMapping("/login") // 로그인 실패 메세지 출력기능 구현 필요!!!
 	public String loginAction(@RequestParam(value = "email", required = false, defaultValue = "") String email,

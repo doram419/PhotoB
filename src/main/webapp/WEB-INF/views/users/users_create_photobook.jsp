@@ -45,7 +45,7 @@
         <button id="nextPage">다음 페이지</button>
     </div>
 
-    <form action="<c:url value='/users/order'/>" method="post">
+    <form action="<c:url value='/users/photobookorder'/>" method="post">
         <input type="hidden" id="selectedStyle" name="selectedStyle">
         <input type="hidden" name="material" value="${param.material}">
         <input type="hidden" name="albumSize" value="${param.albumSize}">

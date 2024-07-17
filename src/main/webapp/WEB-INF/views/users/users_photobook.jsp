@@ -19,8 +19,7 @@
 	<main>
 		<section class="photobook-container">
 			<h2>포토북 제작</h2>
-			<form action="<c:url value='/users/create_photobook'/>" method="post"
-				enctype="multipart/form-data">
+			<form action="<c:url value='/users/create_photobook'/>" method="post">
 				<div class="form-group">
 					<label for="material">커버 재질:</label> <select
 						id="material" name="material">
@@ -51,46 +50,46 @@
 		</section>
 
 		<script>
-            document.addEventListener('DOMContentLoaded', function() {
-                const material = document.getElementById('material');
-                const size = document.getElementById('size');
-                const color = document.getElementById('color');
+		document.addEventListener('DOMContentLoaded', function() {
+		  const material = document.getElementById('material');
+		  const albumSize = document.getElementById('albumSize');
+		  const color = document.getElementById('color');
 
-                function updateOptions() {
-                    const materialValue = coverMaterial.value;
-                    size.innerHTML = '';
-                    ['S', 'M', 'L'].forEach(s => {
-                        if (!(materialValue === 'linen' && s === 'L') && 
-                            !(materialValue === 'soft' && s === 'L')) {
-                            const option = document.createElement('option');
-                            option.value = s;
-                            option.textContent = s;
-                            size.appendChild(option);
-                        }
-                    });
-                    
-                    color.innerHTML = '';
-                    if (materialValue === 'leather') {
-                        ['gray', 'brown'].forEach(c => {
-                            const option = document.createElement('option');
-                            option.value = c;
-                            option.textContent = c === 'gray' ? '회색' : '갈색';
-                            color.appendChild(option);
-                        });
-                    } else {
-                        ['gray', 'blue', 'brown'].forEach(c => {
-                            const option = document.createElement('option');
-                            option.value = c;
-                            option.textContent = c === 'gray' ? '회색' : (c === 'blue' ? '파란색' : '갈색');
-                            color.appendChild(option);
-                        });
-                    }
-                }
+		  function updateOptions() {
+		    const materialValue = material.value;
+		    albumSize.innerHTML = '';
+		    ['S', 'M', 'L'].forEach(s => {
+		      if (!(materialValue === 'linen' && s === 'L') &&
+		          !(materialValue === 'soft' && s === 'L')) {
+		        const option = document.createElement('option');
+		        option.value = s;
+		        option.textContent = s;
+		        albumSize.appendChild(option);
+		      }
+		    });
 
-                coverMaterial.addEventListener('change', updateOptions);
-                updateOptions();
-            });
-        </script>
+		    color.innerHTML = '';
+		    if (materialValue === 'leather') {
+		      ['gray', 'brown'].forEach(c => {
+		        const option = document.createElement('option');
+		        option.value = c;
+		        option.textContent = c === 'gray' ? '회색' : '갈색';
+		        color.appendChild(option);
+		      });
+		    } else {
+		      ['gray', 'blue', 'brown'].forEach(c => {
+		        const option = document.createElement('option');
+		        option.value = c;
+		        option.textContent = c === 'gray' ? '회색' : (c === 'blue' ? '파란색' : '갈색');
+		        color.appendChild(option);
+		      });
+		    }
+		  }
+
+		  material.addEventListener('change', updateOptions);
+		  updateOptions();
+		});
+		</script>
 	</main>
 
 	<c:import url="/WEB-INF/views/users/includes/users_footer.jsp"></c:import>
