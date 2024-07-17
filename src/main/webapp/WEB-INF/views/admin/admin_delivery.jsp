@@ -41,6 +41,7 @@
                             <th>배송 ID</th>
                             <th>배송 일자</th>
                             <th>배송 상태</th>
+                            <th>작업</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -51,6 +52,11 @@
 	                        <td>${infoMap['shipmentsVo'].shipmentId}</td>
 	                        <td>${infoMap['shipmentsVo'].shipmentDate}</td>
 	                        <td>${infoMap['status']}</td>
+	                        <td>
+	                        	<form action="<c:url value="/admin/delivery/detail"/>" method="POST">
+	                        		<button class="btn btn-primary">조회/변경</button>
+	                        	</form>
+                            </td>
                 		</tr>
            				</c:forEach>   
                     </tbody>
