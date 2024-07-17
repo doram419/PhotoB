@@ -15,14 +15,11 @@ public class AlbumDaoImpl implements AlbumDao {
 	private SqlSession sqlSession;
 	 @Override	//옵션으로 앨범아이디 검색
 	 public AlbumVo findAlbumIdByOptions(String material, String color, String albumSize) {
-		 System.out.println("impl에서 받는지 확인:"+material+albumSize+color);
 	        Map<String, String> options = new HashMap<>();
 	        options.put("material", material);
 	        options.put("color", color);
 	        options.put("albumSize", albumSize);
-	        System.out.println("제대로 들어갔는지 확인"+options);
 	        AlbumVo albumVo = sqlSession.selectOne("album.findAlbumIdByOptions", options);
-	        System.out.println("sql쿼리문 거친 albumVo:"+albumVo);
 	        return albumVo;
 	 }
 

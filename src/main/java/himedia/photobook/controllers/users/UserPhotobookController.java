@@ -32,11 +32,9 @@ public class UserPhotobookController {
 	@PostMapping("/create_photobook")
 	public String createPhotobook(@RequestParam(value = "material", required = false) String material,
 			@RequestParam(value = "color", required = false) String color,
-			@RequestParam(value = "albumSize", required = false) String albumSize,
-			 HttpSession albumsession, Model model) {
-		System.out.println("받아온 커버"+material);
-		AlbumVo albumVo = userPhotobookService.findAlbumIdByOptions(material,color,albumSize);
-		System.out.println("여기서 null을 가져오면 안됨: " + albumVo);
+			@RequestParam(value = "albumSize", required = false) String albumSize, HttpSession albumsession,
+			Model model) {
+		AlbumVo albumVo = userPhotobookService.findAlbumIdByOptions(material, color, albumSize);
 		if (albumVo == null) {
 			model.addAttribute("error");
 			return "redirect:/users/photobook";
@@ -44,14 +42,13 @@ public class UserPhotobookController {
 
 		String albumId = albumVo.getAlbumId();
 		albumsession.setAttribute("albumId", albumId);
-
 		return "/WEB-INF/views/users/users_create_photobook.jsp";
 	}
 
-//	@PostMapping("/photobookorder")
-//	public String photobookorder() {
-
-//		
-//		return
-//	}
+	@PostMapping("/photobookorder")
+	public String photobookorder(@RequestParam(value="albumId", required = false) String albumId, HttpSession session){
+		System.out.println(albumId);
+	
+		return "redirect:/users/order";
+	}
 }

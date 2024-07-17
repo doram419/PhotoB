@@ -8,15 +8,12 @@ import himedia.photobook.repositories.vo.AlbumVo;
 
 @Service("userPhotobookService")
 public class UserPhotobookService {
-@Autowired
-private AlbumDao albumsDao;
+	@Autowired
+	private AlbumDao albumsDao;
 //private OrderDao orderDao;
 
-public AlbumVo findAlbumIdByOptions(String material, String color, String albumSize) {
-	System.out.println("service받는지 확인"+material+albumSize+color);
-	AlbumVo albumVo =albumsDao.findAlbumIdByOptions(material, color, albumSize);
-	
-	System.out.println("service vo: "+albumVo);
-	return albumVo;
-}
+	public AlbumVo findAlbumIdByOptions(String material, String color, String albumSize) {
+		AlbumVo albumVo = albumsDao.findAlbumIdByOptions(material, color, albumSize);
+		return albumVo;
+	}
 }

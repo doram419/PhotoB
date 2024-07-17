@@ -47,9 +47,6 @@
 
     <form action="<c:url value='/users/photobookorder'/>" method="post">
         <input type="hidden" id="selectedStyle" name="selectedStyle">
-        <input type="hidden" name="material" value="${param.material}">
-        <input type="hidden" name="albumSize" value="${param.albumSize}">
-        <input type="hidden" name="color" value="${param.color}">
           <input type="hidden" name="albumId" value="${sessionScope.albumId}">
             <input type="hidden" name="userId" value="${sessionScope.authUser.userId}">
             
