@@ -58,4 +58,13 @@ public class UsersDaoImpl implements UsersDao {
 		return sqlSession.selectList("users.searchUsers", keyword)  ;
 	}
 	
+	@Override
+	public UsersVo getUserById(String userId) {
+		return sqlSession.selectOne("users.getUSerById", userId);
+	}
+	
+	@Override
+	public void deleteUser(String userId) {
+		sqlSession.delete("users.deleteUser", userId);
+	}
 }

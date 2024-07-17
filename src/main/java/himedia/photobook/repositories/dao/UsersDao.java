@@ -10,4 +10,6 @@ public interface UsersDao {
 	public UsersVo selectUserByEmailAndPassword(String email, String password);	//	로그인용
 
 	public List<UsersVo> searchUsers(String keyword); // 검색 기능 추가
+	public UsersVo getUserById(String userId);
+	public void deleteUser(String userId);
 }

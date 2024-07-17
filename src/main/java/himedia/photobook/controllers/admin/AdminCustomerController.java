@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -26,6 +27,19 @@ public class AdminCustomerController {
 		List<UsersVo> userList = adminCustomerService.searchUsers(searchCategory, keyword);
 		model.addAttribute("userList", userList);
 		return "/WEB-INF/views/admin/admin_customer_management.jsp";
+	}
+	
+	@GetMapping("/confirmDelete")
+	public String confirmDelete(@RequestParam ("userId") String userId, Model model) {
+		UsersVo users = adminCustomerService.getUserById(userId);
+		model.addAttribute("users", users);
+		return "/WEB-INF/views/admin/admin_confirmDelete.jsp";
+	}
+	
+	@PostMapping("/delete")
+	public String deleteUser(@RequestParam("userId")String userId) {
+		adminCustomerService.deleteUser(userId);
+		return "redirect:/admin/userList";
 	}
 
 }

@@ -16,7 +16,14 @@ public class AdminCustomerService {
 	// 관리자 고객검색
 	public List<UsersVo> searchUsers(String searchCategory, String keyword) {
 			return userDao.searchUsers(keyword);
-			
 	}
 	
+	// 관리자 고객삭제
+	public UsersVo getUserById(String userId) {
+		return userDao.getUserById(userId);
+	}
+	
+	public void deleteUser(String userId) {
+		userDao.deleteUser(userId);
+	}
 }
