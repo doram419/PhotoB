@@ -29,22 +29,14 @@
 					</tr>
 				</thead>
 				<tbody>
-					<c:forEach items="${postList}" var="postVo" varStatus="status">
+					<c:forEach items="${postList}" var="postMap" varStatus="status">
 						<tr>
-							<td>${postVo.no}</td>
-							<td><a href="<c:url value="/users/board/post"/>">${postVo.title}</a>
-							</td>
-							<td>${postVo.user_name}</td>
-							<td>${postVo.post_date}</td>
+							<td>${postMap['boardVo'].boardId}</td>
+							<td><a href="<c:url value="/users/board/post"/>">${postMap['boardVo'].title}</a></td>
+							<td>${postMap['usersVo'].userName}</td>
+							<td>${postMap['boardVo'].regDate}</td>
 						</tr>
 					</c:forEach>
-					<tr>
-						<td>2</td>
-						<td><a href="<c:url value="/users/board/post"/>">주문 관련
-								문의합니다.</a></td>
-						<td>사용자2</td>
-						<td>2023-06-02</td>
-					</tr>
 				</tbody>
 			</table>
 

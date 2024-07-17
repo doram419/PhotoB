@@ -2,23 +2,22 @@
 <!DOCTYPE configuration
 	PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 	"http://mybatis.org/dtd/mybatis-3-config.dtd">
-	
+
 <configuration>
 	<!-- 별칭 등록 -->
 	<typeAliases>
-		<typeAlias 
-			type="himedia.photobook.repositories.vo.UsersVo"
+		<typeAlias type="himedia.photobook.repositories.vo.UsersVo"
 			alias="UsersVo" />
-		<typeAlias type="himedia.photobook.repositories.vo.uBoardVo"
-			alias="uBoardVo" />
+		<typeAlias type="himedia.photobook.repositories.vo.BoardVo"
+			alias="BoardVo" />
 	</typeAliases>
-	
+
 	<!-- MyBatis 매퍼 -->
-	<mappers> 
+	<mappers>
 		<mapper resource="mybatis/mappers/users.xml" />
 		<mapper resource="mybatis/mappers/profile.xml" />
-		<mapper resource="mybatis/mappers/uboard.xml"/>
+		<mapper resource="mybatis/mappers/board.xml" />
 	</mappers>
-	
-	
+
+
 </configuration>

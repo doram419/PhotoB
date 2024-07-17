@@ -6,40 +6,39 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import himedia.photobook.exceptions.uBoardDaoException;
-import himedia.photobook.repositories.vo.uBoardVo;
+import himedia.photobook.exceptions.UBoardDaoException;
+import himedia.photobook.repositories.vo.BoardVo;
 
-//@Repository("uBoardDao")
-@Repository
-public class uBoardDaoImpl implements uBoardDao{
+@Repository("uBoardDao")
+
+public class UBoardDaoImpl implements UBoardDao{
 	@Autowired
 	private SqlSession sqlSession;
-
+	
 	@Override
-	public List<uBoardVo> selectAllList() {
-		List<uBoardVo> list = sqlSession.selectList("uboard.selectAll");
-		return list;
+	public List<BoardVo> selectAllList() {
+		return sqlSession.selectList("board.selectAll");
 	}
-
+	
 	@Override
-	public int insert(uBoardVo boardVo) {
+	public int insert(BoardVo uboardVo) {
 		try {
-			int insertedCount = sqlSession.insert("uboard.insert",boardVo);
+			int insertedCount = sqlSession.insert("board.insert",uboardVo);
 			return insertedCount;
 		}catch(Exception e) {
 			e.printStackTrace();
-			throw new uBoardDaoException("게시글 등록중 뭔가 잘못되었습니다.");
+			throw new UBoardDaoException("게시글 등록중 뭔가 잘못되었습니다.");
 		}
 	}
 
 	@Override
-	public uBoardVo getContent(Long uboardId) {
+	public BoardVo getContent(Long uboardId) {
 
 		return null;
 	}
 
 	@Override
-	public int update(uBoardVo boardVo) {
+	public int update(BoardVo boardVo) {
 
 		return 0;
 	}
@@ -49,8 +48,5 @@ public class uBoardDaoImpl implements uBoardDao{
 
 		return 0;
 	}
-	
-	
-	
-	
+
 }

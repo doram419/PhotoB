@@ -52,22 +52,11 @@ public class UsersDaoImpl implements UsersDao {
 		return userVo;
 	}
 
-
 	@Override
-	public List<UsersVo> getAllUser() {
-		// TODO Auto-generated method stub
-		return null;
+	public UsersVo selectOneUserById(String Id) {
+		System.out.println("selectOneUserById-id : " + Id);
+		UsersVo est = sqlSession.selectOne("users.selectUserById", Id);
+		System.out.println("selectOneUserById-users : " + est);
+		return est;
 	}
-
-	@Override
-	public UsersVo getOneUser(String name) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-
-	
-	
-	
-
 }

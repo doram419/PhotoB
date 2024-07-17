@@ -2,10 +2,6 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="users">
-
-
-
-
 	<insert id="insert" parameterType="UsersVo">
      	INSERT INTO USERS (USER_ID, EMAIL, PASSWORD, USER_NAME, ADDRESS, PHONE_NUMBER, ROLE) 
         VALUES ('USER' || LPAD((SELECT NVL(MAX(TO_NUMBER(SUBSTR(USER_ID, 5))) + 1, 1) FROM USERS), 4, '0'),
@@ -34,6 +30,15 @@
         FROM USERS
         WHERE EMAIL = #{email} AND PASSWORD = #{password}
     </select>
-    
+ 	
+ 	<!-- 게시판 유저 아이디 조회용 -->
+    <select id="selectUserById" parameterType="String" resultType="UsersVo">
+        SELECT 
+        	USER_ID as userId, EMAIL, 
+        	USER_NAME as userName, ADDRESS, 
+        	PHONE_NUMBER as phoneNumber
+        FROM USERS
+        WHERE USER_ID = #{value}
+    </select>
 
 </mapper>

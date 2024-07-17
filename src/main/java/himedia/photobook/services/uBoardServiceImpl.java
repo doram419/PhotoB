@@ -1,40 +1,43 @@
 package himedia.photobook.services;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import himedia.photobook.repositories.dao.uBoardDao;
-import himedia.photobook.repositories.vo.uBoardVo;
+import himedia.photobook.repositories.dao.UBoardDao;
+import himedia.photobook.repositories.dao.UsersDao;
+import himedia.photobook.repositories.vo.BoardVo;
+import himedia.photobook.repositories.vo.UsersVo;
 
-@Service("uboardService")
-public class uBoardServiceImpl implements uBoardService {
+
+@Service("uBoardService")
+public class UBoardServiceImpl implements UBoardService {
 	@Autowired
-//	private uBoardDao uboardDao;
-	private uBoardDao uBoardDaoImpl;
+	private UBoardDao uBoardDao;
+	@Autowired
+	private UsersDao userDao;
+//	private UBoardDao UBoardDaoImpl;
+
 
 	@Override
-	public List<uBoardVo> getList() {
-		List<uBoardVo> list = uBoardDaoImpl.selectAllList();
-		return list;
-	}
-
-	@Override
-	public uBoardVo getContent(Long uboardId) {
-		// TODO Auto-generated method stub
+	public BoardVo getContent(Long uboardId) {
+		
 		return null;
 	}
 
 	@Override
-	public boolean write(uBoardVo boardVo) {
-		// TODO Auto-generated method stub
-		return false;
+	public boolean write(BoardVo boardVo) {
+		int insertedCount = uBoardDao.insert(boardVo);
+		return insertedCount==1;
 	}
 
 	@Override
-	public boolean update(uBoardVo boardVo) {
-		// TODO Auto-generated method stub
+	public boolean update(BoardVo boardVo) {
+		
 		return false;
 	}
 
@@ -43,6 +46,21 @@ public class uBoardServiceImpl implements uBoardService {
 		// TODO Auto-generated method stub
 		return false;
 	}
-	
-	
+
+	@Override
+	public List<Map<String, Object>> getBoardInfos() {
+		List<Map<String, Object>> result = new ArrayList<Map<String,Object>>();
+		List<BoardVo> list = uBoardDao.selectAllList();
+		
+		for(BoardVo boardVo : list) {
+			Map<String, Object> boardMap = new HashMap<String, Object>();
+			UsersVo usersVo = userDao.selectOneUserById(boardVo.getUserId());
+			
+			boardMap.put("boardVo", boardVo);
+			boardMap.put("usersVo", usersVo);
+
+			result.add(boardMap);
+		}
+		return result;
+	}
 }

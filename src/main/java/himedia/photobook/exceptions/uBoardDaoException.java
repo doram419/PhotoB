@@ -1,23 +1,24 @@
 package himedia.photobook.exceptions;
 
-import himedia.photobook.repositories.vo.uBoardVo;
+import himedia.photobook.repositories.vo.BoardVo;
 
-public class uBoardDaoException extends RuntimeException {
-	
-	private uBoardVo uboardVo = null;
+public class UBoardDaoException extends RuntimeException {
+
+	private static final long serialVersionUID = 1L;
+	private BoardVo UboardVo = null;
 
 //	기본 생성자
-	public uBoardDaoException() {
+	public UBoardDaoException() {
 
 	}
 	
-	public uBoardDaoException(String message) {
-		super();
+	public UBoardDaoException(String message) {
+		super(message);
 	}
 	
-	public uBoardDaoException(String message,uBoardVo uboardVo) {
+	public UBoardDaoException(String message,BoardVo UboardVo) {
 		super(message);
-		this.uboardVo = uboardVo;
+		this.UboardVo = UboardVo;
 	}
 
 }

@@ -1,14 +1,16 @@
 package himedia.photobook.services;
 
 import java.util.List;
+import java.util.Map;
 
-import himedia.photobook.repositories.vo.uBoardVo;
+import himedia.photobook.repositories.vo.BoardVo;
 
 
-public interface uBoardService {
-	public List<uBoardVo> getList();
-	public uBoardVo getContent(Long uboardId);
-	public boolean write(uBoardVo boardVo);
-	public boolean update(uBoardVo boardVo);
-	public boolean delete(Long uboardId, Long userId);
+public interface UBoardService {
+	public List<Map<String, Object>> getBoardInfos();
+	public BoardVo getContent(Long UboardId);
+	public boolean write(BoardVo boardVo);
+	public boolean update(BoardVo boardVo);
+	public boolean delete(Long UboardId, Long userId);
+	
 }
