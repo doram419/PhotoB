@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-   <mapper namespace="album">
-  <select id="findAlbumIdByOptions" parameterType="map" resultType="AlbumVo">
+<mapper namespace="album">
+	<select id="findAlbumIdByOptions" parameterType="map" resultType="AlbumVo">
         SELECT 
         	ALBUM_ID as albumId
     	FROM ALBUM
-    WHERE MATERIAL = #{material} AND ALBUM_SIZE = #{albumSize} AND COLOR = #{color}
+    		WHERE MATERIAL = #{material} AND ALBUM_SIZE = #{albumSize}
     </select>
-    </mapper>
+</mapper>
