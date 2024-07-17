@@ -77,8 +77,8 @@
 								<a href="<c:url value='/admin/update?userId=${user.userId}'/>">
 										<button class="btn btn-primary">수정</button>
 								</a> 
-								<a href="<c:url value='/admin/confirmDelete?userId=${user.userId}'/>">
-										<button type="button" class="btn btn-danger">삭제</button>
+								<a href="<c:url value='/admin/delete?userId=${user.userId}'/>">
+										<button  class="btn btn-danger">삭제</button>
 								</a></td>
 							</tr>
 						</c:forEach>

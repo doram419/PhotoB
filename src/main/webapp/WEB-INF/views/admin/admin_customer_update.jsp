@@ -22,20 +22,24 @@
 			<form action="admin_customer_update.jsp" method="post"
 				id="customerEditForm">
 				<div>
-					<label for="name">이름:</label> <input type="text" id="name"
-						name="name" value="${customer.name}" required>
+					<label for="name">이름:</label>
+					<input type="text" id="userName" name="userName" value="${user.userName}" required>
 				</div>
 				<div>
-					<label for="email">이메일:</label> <input type="email" id="email"
-						name="email" value="${customer.email}" required>
+                    <label for="password">비밀번호:</label>
+                    <input type="password" id="password" name="password" value="${user.password}" required>
+                </div>
+				<div>
+					<label for="email">이메일:</label>
+					<input type="email" id="email" name="email" value="${user.email}" required>
 				</div>
 				<div>
-					<label for="phone">전화번호:</label> <input type="tel" id="phone"
-						name="phone" value="${customer.phone}" required>
+					<label for="phone">전화번호:</label>
+					<input type="tel" id="phoneNumber" name="phoneNumber" value="${user.phoneNumber}" required>
 				</div>
 				<div>
-					<label for="address">주소:</label> <input type="text" id="address"
-						name="address" value="${customer.address}" required>
+					<label for="address">주소:</label>
+					<input type="text" id="address" name="address" value="${user.address}" required>
 				</div>
 				<button type="submit">수정</button>
 			</form>
