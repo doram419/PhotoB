@@ -24,17 +24,17 @@
             </tr>
             <tr>
                 <td>배송 번호</td>
-                <td>${infoMap['ordersVo'].orderId}</td>
+                <td>${deliveryDetailInfos['shipmentsVo'].shipmentId}</td>
                 <td><button class="edit-btn">수정</button></td>
             </tr>
             <tr>
                 <td>배송 일자</td>
-                <td>${infoMap['ordersVo'].orderDate}</td>
+                <td>${deliveryDetailInfos['shipmentsVo'].shipmentDate}</td>
                 <td><button class="edit-btn">수정</button></td>
             </tr>
             <tr>
                 <td>배송 상태</td>
-                <td>${infoMap['status']}</td>
+                <td>${deliveryDetailInfos['status']}</td>
                 <td><button class="edit-btn">수정</button></td>
             </tr>
             <tr class="section-end">
@@ -45,22 +45,22 @@
             </tr>
             <tr>
                 <td>주문 번호</td>
-                <td>${infoMap['ordersVo'].orderId}</td>
+                <td>${deliveryDetailInfos['ordersVo'].orderId}</td>
                 <td><button class="edit-btn">수정</button></td>
             </tr>
             <tr>
                 <td>주문자 아이디</td>
-                <td>${infoMap['usersVo'].userId}</td>
+                <td>${deliveryDetailInfos['usersVo'].userId}</td>
                 <td><button class="edit-btn">수정</button></td>
             </tr>
             <tr>
                 <td>주문자 이름</td>
-                <td>${infoMap['usersVo'].userName}</td>
+                <td>${deliveryDetailInfos['usersVo'].userName}</td>
                 <td><button class="edit-btn">수정</button></td>
             </tr>
             <tr>
                 <td>주문 일자</td>
-                <td>${infoMap['usersVo'].orderDate}</td>
+                <td>${deliveryDetailInfos['ordersVo'].orderDate}</td>
                 <td><button class="edit-btn">수정</button></td>
             </tr>
             <tr class="section-end">
@@ -71,22 +71,22 @@
             </tr>
             <tr>
                 <td>상품 id</td>
-                <td>${infoMap['albumVo'].albumId}</td>
+                <td>${deliveryDetailInfos['albumVo'].albumId}</td>
                 <td><button class="edit-btn">수정</button></td>
             </tr>
             <tr>
                 <td>표지 재질</td>
-                <td>${infoMap['albumVo'].material}</td>
+                <td>${deliveryDetailInfos['albumVo'].material}</td>
                 <td><button class="edit-btn">수정</button></td>
             </tr>
             <tr>
                 <td>표지 색</td>
-                <td>${infoMap['albumVo'].color}</td>
+                <td>${deliveryDetailInfos['albumVo'].color}</td>
                 <td><button class="edit-btn">수정</button></td>
             </tr>
             <tr>
                 <td>앨범 사이즈</td>
-                <td>${infoMap['albumVo'].albumSize}</td>
+                <td>${deliveryDetailInfos['albumVo'].albumSize}</td>
                 <td><button class="edit-btn">수정</button></td>
             </tr>
             <tr class="section-end">
@@ -97,12 +97,12 @@
             </tr>
             <tr>
                 <td>총 금액</td>
-                <td>${infoMap['ordersVo'].total}</td>
+                <td>${deliveryDetailInfos['ordersVo'].total}</td>
                 <td><button class="edit-btn">수정</button></td>
             </tr>
             <tr>
                 <td>총 수량</td>
-                <td>${infoMap['ordersVo'].oQuantity}</td>
+                <td>${deliveryDetailInfos['ordersVo'].oQuantity}</td>
                 <td><button class="edit-btn">수정</button></td>
             </tr>
         </table>

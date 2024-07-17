@@ -14,7 +14,6 @@
 </head>
 <body>
 	<c:import url="/WEB-INF/views/admin/includes/admin_header.jsp"></c:import>
-	
 	<div class="main-content">
 		<div class="header">
             <h2>배송 조회</h2>
@@ -53,7 +52,8 @@
 	                        <td>${infoMap['shipmentsVo'].shipmentDate}</td>
 	                        <td>${infoMap['status']}</td>
 	                        <td>
-	                        	<form action="<c:url value="/admin/delivery/detail"/>" method="POST">
+	                        	<form action="<c:url value="/admin/delivery/detail"/>" method="GET">
+	                        		<input type="hidden" name="orderId" value = "${infoMap['ordersVo'].orderId}"/>
 	                        		<button class="btn btn-primary">조회/변경</button>
 	                        	</form>
                             </td>

@@ -65,4 +65,26 @@ public class AdminDeliveryServiceImpl {
 		
 		return deliveryInfoList;
 	}
+	
+	/**
+	 * 배송 상세 정보를 넘겨주는 함수
+	 * */
+	public Map<String, Object> getDeliveryDetailInfo(String orderId){
+		Map<String, Object> deliveryDetailInfo = new HashMap<String, Object>();
+		OrdersVo ordersVo = orderDao.selectByOrderId(orderId);
+		UsersVo usersVo = userDao.selectUserByUserId(ordersVo.getUserId());
+		ShipmentsVo shipmentsVo = shipmentsDao.selectShipmentInfoByOrderID(orderId);  
+		String status = shipmentsVo.getShipmentStatus();
+		
+		if(status.equals("R"))	
+			status = refundDao.selectStatusByOrderID(shipmentsVo.getOrderId());
+		status = dataConverter.statusToWord(status);
+		
+		deliveryDetailInfo.put("ordersVo", ordersVo);
+		deliveryDetailInfo.put("usersVo", usersVo);
+		deliveryDetailInfo.put("shipmentsVo", shipmentsVo);
+		deliveryDetailInfo.put("status", status);	
+	
+		return deliveryDetailInfo;
+	}
 }
