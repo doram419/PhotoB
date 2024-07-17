@@ -7,8 +7,8 @@
 	<select id="selectAll" resultType="BoardVo">
 		SELECT BOARD_ID AS boardId, TITLE, CONTENT,REG_DATE as regDate, USER_ID as userId
 		FROM BOARD
+		ORDER BY regDate desc
 	</select>
-
 
 	<insert id="insert" parameterType="BoardVo">
 	<selectKey keyProperty="boardId" resultType="long" order="BEFORE">
@@ -17,4 +17,13 @@
 		INSERT INTO BOARD(BOARD_ID, TITLE, CONTENT, USER_ID)
 		VALUES (SEQ_BOARD_PK.nextval, #{title}, #{content}, #{userId})
 	</insert>
+	
+	<select id="getContent" parameterType="String" resultType="BoardVo">
+		SELECT BOARD_ID, TITLE, CONTENT,USER_ID
+		FROM BOARD
+		WHERE USER_ID=#{value}	
+	</select>
+	
+	
+	
 </mapper>

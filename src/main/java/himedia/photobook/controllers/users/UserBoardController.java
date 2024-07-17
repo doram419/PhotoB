@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -62,12 +63,21 @@ public class UserBoardController {
 		return "redirect:/users/boardList";
 	}
 	
-	
-	
-	
-	
-	@GetMapping({ "/board/post" })
-	public String showPost() {
+	@GetMapping("/board/post/{userId}")
+	public String view(@PathVariable("userId") String userId, Model md, HttpSession session) {
+		System.out.println("userId: "+userId);
+		UsersVo authUser = (UsersVo) session.getAttribute("authUser");
+		if(authUser==null) {
+			return "redirect:/users/boardList";
+		}
+		BoardVo boardVo = uBoardService.getContent(userId);
+		md.addAttribute("vo",boardVo);
 		return "/WEB-INF/views/users/board/board_post.jsp";
 	}
+	
+	
+//	@GetMapping({ "/board/post" })
+//	public String showPost() {
+//		return "/WEB-INF/views/users/board/board_post.jsp";
+//	}
 }

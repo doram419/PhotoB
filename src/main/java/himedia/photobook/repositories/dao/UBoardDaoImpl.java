@@ -32,9 +32,10 @@ public class UBoardDaoImpl implements UBoardDao{
 	}
 
 	@Override
-	public BoardVo getContent(Long uboardId) {
-
-		return null;
+	public BoardVo getContent(String userId) {
+		BoardVo boardVo = sqlSession.selectOne("board.getContent",userId);
+		return boardVo;
+		
 	}
 
 	@Override

@@ -24,9 +24,9 @@ public class UBoardServiceImpl implements UBoardService {
 
 
 	@Override
-	public BoardVo getContent(Long uboardId) {
-		
-		return null;
+	public BoardVo getContent(String userId) {
+		BoardVo boardVo = uBoardDao.getContent(userId);
+		return boardVo;
 	}
 
 	@Override

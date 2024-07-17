@@ -26,11 +26,12 @@
 	
 	<div class="main-content">
 	<!-- postVo 요청 혹은 각 데이터를 요청 -->
-	<h1>${title}</h1>
+	
+	<h1>${vo.title}</h1>
   
-    <p>글번호 : ${no}</p>
-    <p>작성자 : ${users_name}</p>
-    <p>내용 : ${content}</p>
+    <p>글번호 : ${vo.boardId}</p>
+    <p>작성자 : ${vo.userId}</p>
+    <p>내용 : ${vo.content}</p>
         
     <!-- 댓글 기능 지원 -->
     <hr>
