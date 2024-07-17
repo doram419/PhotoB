@@ -17,91 +17,93 @@
 	<c:import url="/WEB-INF/views/admin/includes/admin_header.jsp"></c:import>
 	
     <div class="container">
-        <h1>주문 배송 정보</h1>
+		<h1>배송 상세 정보</h1>
         <table id="orderTable">
-            <tr class="section-title">
-                <td colspan="3">주문 정보</td>
-            </tr>
-            <tr>
-                <td>주문 아이디</td>
-                <td id="orderId">ORD12345</td>
-                <td><button class="edit-btn" onclick="enableEdit('orderId')">수정</button></td>
-            </tr>
-            <tr>
-                <td>주문자 이름</td>
-                <td id="customerName">홍길동</td>
-                <td><button class="edit-btn" onclick="enableEdit('customerName')">수정</button></td>
-            </tr>
-            <tr>
-                <td>주문 일자</td>
-                <td id="orderDate">2024-07-17</td>
-                <td><button class="edit-btn" onclick="enableEdit('orderDate')">수정</button></td>
-            </tr>
-            <tr class="section-end">
-                <td colspan="3"></td>
-            </tr>
-
-            <tr class="section-title">
-                <td colspan="3">상품 정보</td>
-            </tr>
-            <tr>
-                <td>상품명</td>
-                <td id="productName">프리미엄 포토북</td>
-                <td><button class="edit-btn" onclick="enableEdit('productName')">수정</button></td>
-            </tr>
-            <tr>
-                <td>표지 재질</td>
-                <td id="coverMaterial">하드커버</td>
-                <td><button class="edit-btn" onclick="enableEdit('coverMaterial')">수정</button></td>
-            </tr>
-            <tr>
-                <td>표지 색</td>
-                <td id="coverColor">네이비 블루</td>
-                <td><button class="edit-btn" onclick="enableEdit('coverColor')">수정</button></td>
-            </tr>
-            <tr>
-                <td>앨범 사이즈</td>
-                <td id="albumSize">8x11 인치</td>
-                <td><button class="edit-btn" onclick="enableEdit('albumSize')">수정</button></td>
-            </tr>
-            <tr class="section-end">
-                <td colspan="3"></td>
-            </tr>
-
-            <tr class="section-title">
+        	<tr class="section-title">
                 <td colspan="3">배송 정보</td>
             </tr>
             <tr>
                 <td>배송 번호</td>
-                <td id="trackingNumber">TRK9876543210</td>
-                <td><button class="edit-btn" onclick="enableEdit('trackingNumber')">수정</button></td>
+                <td>${infoMap['ordersVo'].orderId}</td>
+                <td><button class="edit-btn">수정</button></td>
             </tr>
             <tr>
                 <td>배송 일자</td>
-                <td id="shippingDate">2024-07-20</td>
-                <td><button class="edit-btn" onclick="enableEdit('shippingDate')">수정</button></td>
+                <td>${infoMap['ordersVo'].orderDate}</td>
+                <td><button class="edit-btn">수정</button></td>
             </tr>
             <tr>
                 <td>배송 상태</td>
-                <td id="shippingStatus">배송 준비중</td>
-                <td><button class="edit-btn" onclick="enableEdit('shippingStatus')">수정</button></td>
+                <td>${infoMap['status']}</td>
+                <td><button class="edit-btn">수정</button></td>
             </tr>
             <tr class="section-end">
                 <td colspan="3"></td>
             </tr>
-
+            <tr class="section-title">
+                <td colspan="3">주문 정보</td>
+            </tr>
+            <tr>
+                <td>주문 번호</td>
+                <td>${infoMap['ordersVo'].orderId}</td>
+                <td><button class="edit-btn">수정</button></td>
+            </tr>
+            <tr>
+                <td>주문자 아이디</td>
+                <td>${infoMap['usersVo'].userId}</td>
+                <td><button class="edit-btn">수정</button></td>
+            </tr>
+            <tr>
+                <td>주문자 이름</td>
+                <td>${infoMap['usersVo'].userName}</td>
+                <td><button class="edit-btn">수정</button></td>
+            </tr>
+            <tr>
+                <td>주문 일자</td>
+                <td>${infoMap['usersVo'].orderDate}</td>
+                <td><button class="edit-btn">수정</button></td>
+            </tr>
+            <tr class="section-end">
+                <td colspan="3"></td>
+            </tr>
+            <tr class="section-title">
+                <td colspan="3">상품 정보</td>
+            </tr>
+            <tr>
+                <td>상품 id</td>
+                <td>${infoMap['albumVo'].albumId}</td>
+                <td><button class="edit-btn">수정</button></td>
+            </tr>
+            <tr>
+                <td>표지 재질</td>
+                <td>${infoMap['albumVo'].material}</td>
+                <td><button class="edit-btn">수정</button></td>
+            </tr>
+            <tr>
+                <td>표지 색</td>
+                <td>${infoMap['albumVo'].color}</td>
+                <td><button class="edit-btn">수정</button></td>
+            </tr>
+            <tr>
+                <td>앨범 사이즈</td>
+                <td>${infoMap['albumVo'].albumSize}</td>
+                <td><button class="edit-btn">수정</button></td>
+            </tr>
+            <tr class="section-end">
+                <td colspan="3"></td>
+            </tr>
             <tr class="section-title">
                 <td colspan="3">결제 정보</td>
             </tr>
             <tr>
                 <td>총 금액</td>
-                <td id="totalAmount">59,000원</td>
-                <td><button class="edit-btn" onclick="enableEdit('totalAmount')">수정</button></td>
+                <td>${infoMap['ordersVo'].total}</td>
+                <td><button class="edit-btn">수정</button></td>
             </tr>
             <tr>
                 <td>총 수량</td>
-                <td id="totalQuantity">1</td>
-                <td><button class="edit-btn" onclick="enableEdit('totalQuantity')">수정</button></td>
+                <td>${infoMap['ordersVo'].oQuantity}</td>
+                <td><button class="edit-btn">수정</button></td>
             </tr>
         </table>
         <button id="confirmEdit" onclick="confirmEdit()">수정 확인</button>
