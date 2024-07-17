@@ -9,10 +9,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import himedia.photobook.controllers.DataConverter;
+import himedia.photobook.repositories.dao.AlbumDaoImpl;
 import himedia.photobook.repositories.dao.OrdersDaoImpl;
 import himedia.photobook.repositories.dao.RefundDaoImpl;
 import himedia.photobook.repositories.dao.ShipmentsDaoImpl;
 import himedia.photobook.repositories.dao.UsersDaoImpl;
+import himedia.photobook.repositories.vo.AlbumVo;
 import himedia.photobook.repositories.vo.OrdersVo;
 import himedia.photobook.repositories.vo.ShipmentsVo;
 import himedia.photobook.repositories.vo.UsersVo;
@@ -29,6 +31,8 @@ public class AdminDeliveryServiceImpl {
 	private ShipmentsDaoImpl shipmentsDao;
 	@Autowired
 	private RefundDaoImpl refundDao;
+	@Autowired
+	private AlbumDaoImpl albumDao;
 	
 	/**
 	 * 배송 관리에 필요한 정보들을 모두 리턴해주는 함수
@@ -50,6 +54,7 @@ public class AdminDeliveryServiceImpl {
 			shipmentsVo = shipmentsDao.selectShipmentInfoByOrderID(
 					ordersVo.getOrderId());
 			
+			
 			status = shipmentsVo.getShipmentStatus();
 			if(status.equals("R"))	
 				status = refundDao.selectStatusByOrderID(shipmentsVo.getOrderId());
@@ -67,13 +72,14 @@ public class AdminDeliveryServiceImpl {
 	}
 	
 	/**
-	 * 배송 상세 정보를 넘겨주는 함수
+	 * 배송에 필요한 모든 상세 정보를 넘겨주는 함수
 	 * */
 	public Map<String, Object> getDeliveryDetailInfo(String orderId){
 		Map<String, Object> deliveryDetailInfo = new HashMap<String, Object>();
 		OrdersVo ordersVo = orderDao.selectByOrderId(orderId);
 		UsersVo usersVo = userDao.selectUserByUserId(ordersVo.getUserId());
-		ShipmentsVo shipmentsVo = shipmentsDao.selectShipmentInfoByOrderID(orderId);  
+		ShipmentsVo shipmentsVo = shipmentsDao.selectShipmentInfoByOrderID(orderId);
+		AlbumVo albumVo = albumDao.selectAlbumIdById(ordersVo.getAlbumId());
 		String status = shipmentsVo.getShipmentStatus();
 		
 		if(status.equals("R"))	
@@ -83,6 +89,7 @@ public class AdminDeliveryServiceImpl {
 		deliveryDetailInfo.put("ordersVo", ordersVo);
 		deliveryDetailInfo.put("usersVo", usersVo);
 		deliveryDetailInfo.put("shipmentsVo", shipmentsVo);
+		deliveryDetailInfo.put("albumVo", albumVo);
 		deliveryDetailInfo.put("status", status);	
 	
 		return deliveryDetailInfo;
