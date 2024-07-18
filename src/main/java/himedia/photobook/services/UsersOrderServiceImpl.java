@@ -28,9 +28,7 @@ public class UsersOrderServiceImpl {
 	public List<Map<String, Object>> getOrderInfos(String userId){
 		List<Map<String, Object>> orderInfoList = new ArrayList<Map<String, Object>>();
 		Map<String, Object> orderInfos = null;
-		System.out.println("orderDao 전");
 		List<OrdersVo> orderList = ordersDao.selectAllOrdersByUserId(userId);
-		System.out.println("orderDao 후");
 		String orderStatus = null;
 		
 		for (OrdersVo ordersVo : orderList) {
@@ -38,12 +36,19 @@ public class UsersOrderServiceImpl {
 			orderStatus = null;
 
 			orderInfos.put("ordersVo", ordersVo);
-		
-			orderStatus = shipDao.selectStatusByOrderID(ordersVo.getOrderId());
-			if(orderStatus == "R")
-				orderStatus = refundDao.selectStatusByOrderID(ordersVo.getOrderId());
 			
-			orderStatus = statusToWord(orderStatus);
+			orderStatus = shipDao.selectStatusByOrderID(ordersVo.getOrderId());
+			if(orderStatus != null)
+			{
+				if(orderStatus.equals("R"))
+					orderStatus = refundDao.selectStatusByOrderID(ordersVo.getOrderId());
+				
+				orderStatus = statusToWord(orderStatus);
+			}
+			else {
+				orderStatus = "접수 완료";
+			}
+
 			orderInfos.put("status", orderStatus);
 			
 			orderInfoList.add(orderInfos);
