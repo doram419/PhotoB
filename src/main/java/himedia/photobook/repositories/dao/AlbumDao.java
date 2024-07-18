@@ -18,12 +18,14 @@ public interface AlbumDao {
 	
 	// 앨범 목록
 	public List<AlbumVo> searchAlbum(String keyword);
+	public List<AlbumVo> findAll();
 	// 앨범 수정
 	public void updateAlbum(AlbumVo vo);
 	// 앨범 삭제
 	public void deleteAlbum(String albumId);
 	// 앨범 추가
 	public void insertAlbum(AlbumVo vo);
+	
 	
 	
 	

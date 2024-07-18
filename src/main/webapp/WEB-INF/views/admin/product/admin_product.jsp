@@ -50,13 +50,13 @@
 					</thead>
 
 					<tbody>
-						<c:forEach var="Album" items="${AlbumList}" varStatus="status">
+						<c:forEach var="entry" items="${albumInventoryMap}" varStatus="status">
 							<tr>
 								<td>${status.index + 1}</td>
 								<td>이미지넣기</td>
-								<td>${album.albumId}</td>
-								<td align="center">${inventory.albumPrice}</td>
-								<td>${album.albumSize}</td>
+								<td>${entry.key.albumId}</td>
+								<td align="center">${entry.value.albumPrice}</td>
+								<td>${entry.value.albumSize}</td>
 								<td><a
 									href="<c:url value='/admin/product/productEdit?albumId=${album.albumId}'/>">
 										<button class="btn btn-primary">수정</button>
