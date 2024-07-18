@@ -10,6 +10,10 @@ public class OrdersVo {
 	private Long total;
 	private Long oQuantity;
 	
+	// 유저 이름, 주문상태.
+	private String userName;
+	private String status;
+	
 	public OrdersVo() {
 		
 	}
@@ -70,6 +74,22 @@ public class OrdersVo {
 
 	public void setoQuantity(Long oQuantity) {
 		this.oQuantity = oQuantity;
+	}
+
+	public String getUserName() {
+		return userName;
+	}
+
+	public void setUserName(String userName) {
+		this.userName = userName;
+	}
+
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
 	}
 
 	@Override
