@@ -80,19 +80,14 @@ public class AdminDeliveryServiceImpl {
 		UsersVo usersVo = userDao.selectUserByUserId(ordersVo.getUserId());
 		ShipmentsVo shipmentsVo = shipmentsDao.selectShipmentInfoByOrderID(orderId);
 		AlbumVo albumVo = albumDao.selectAlbumIdById(ordersVo.getAlbumId());
-		String status = shipmentsVo.getShipmentStatus();
-		
-		if(status.equals("R"))	
-			status = refundDao.selectStatusByOrderID(shipmentsVo.getOrderId());
-		status = dataConverter.statusToWord(status);
 		
 		deliveryDetailInfo.put("ordersVo", ordersVo);
 		deliveryDetailInfo.put("usersVo", usersVo);
 		deliveryDetailInfo.put("shipmentDate", 
 				dataConverter.kstToYYYY(shipmentsVo.getShipmentDate()));
 		deliveryDetailInfo.put("albumVo", albumVo);
-		deliveryDetailInfo.put("status", status);	
-	
+		deliveryDetailInfo.put("shipmentsVo", shipmentsVo);
+
 		return deliveryDetailInfo;
 	}
 }

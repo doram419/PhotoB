@@ -4,11 +4,19 @@
  */
 
 window.addEventListener("load", event => {
-	document.getElementById("confirm-btn")
-			.addEventListener("click", event => 
-			{
-				editAble(event);
-			});
+	let edit = document.querySelectorAll(".edit-btn");
+	
+	edit.forEach((element) => {
+		element.addEventListener("click", event => {
+			editAble(event);
+		})
+	});
+	
+	let selector = document.getElementById("delivery_status");
+	let defaultCheck = selector.getAttribute("data-default");
+	console.log(defaultCheck);
+
+	
 });
 
 function editAble(event){

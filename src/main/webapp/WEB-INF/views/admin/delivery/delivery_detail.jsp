@@ -34,12 +34,18 @@
 	               		value="${deliveryDetailInfos['shipmentDate']}" 
 	              			disabled/>
 	               </td>
-	               <td><button type = button id="confirm-btn" class="edit-btn">수정</button></td>
+	               <td><button type=button class="edit-btn">수정</button></td>
 	           </tr>
 	           <tr>
 	               <td>배송 상태</td>
-	               <td>${deliveryDetailInfos['status']}</td>
-	               <td><button class="edit-btn">수정</button></td>
+	               <td>
+	               <select id="delivery_status" data-default="${deliveryDetailInfos['status']}" disabled>
+		               <option value="A" selected>배송 준비</option>
+		               <option value="B">배송 중</option>
+		               <option value="C">배송 완료</option>
+	               </select>
+	               </td>
+	               <td><button type=button id="confirm-btn" class="edit-btn">수정</button></td>
 	           </tr>
 	           <tr class="section-end">
 	               <td colspan="3"></td>
