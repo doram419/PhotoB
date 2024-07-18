@@ -29,12 +29,12 @@ public class UsersOrderController {
 		if(user != null)
 		{
 			userId = user.getUserId();
-			
 			List<Map<String, Object>> orderInfos = orderService.getOrderInfos(userId);
+			System.out.println(orderInfos);
 			
 			model.addAttribute("orderInfos", orderInfos);
 		}
-		
+			
 		return "/WEB-INF/views/users/users_order.jsp";
 	}
 	
