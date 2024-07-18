@@ -16,4 +16,55 @@
 		WHERE
 			ALBUM_ID = #{value}
 	</select>
+	<!-- 새로운 메서드에 대한 매핑 추가 -->
+    <select id="getProductById" parameterType="String" resultType="AlbumVo">
+        SELECT 
+            ALBUM_ID as albumId, MATERIAL,
+            COLOR, ALBUM_SIZE as albumSize
+        FROM
+            ALBUM
+        WHERE
+            ALBUM_ID = #{albumId}
+    </select>
+
+    <!-- updateProduct 메서드를 위한 매핑 추가 -->
+    <update id="updateProduct" parameterType="AlbumVo">
+        UPDATE ALBUM
+        SET 
+            MATERIAL = #{material},
+            COLOR = #{color},
+            ALBUM_SIZE = #{albumSize}
+        WHERE
+            ALBUM_ID = #{albumId}
+    </update>
+
+    <!-- deleteProduct 메서드를 위한 매핑 추가 -->
+    <delete id="deleteProduct" parameterType="String">
+        DELETE FROM ALBUM
+        WHERE ALBUM_ID = #{albumId}
+    </delete>
+
+    <!-- searchAlbum 메서드를 위한 매핑 추가 -->
+    <select id="albumList" resultType="AlbumVo">
+        SELECT 
+            ALBUM_ID as albumId, MATERIAL,
+            COLOR, ALBUM_SIZE as albumSize
+        FROM
+            ALBUM
+        WHERE
+            MATERIAL LIKE '%' || #{keyword} || '%'
+        OR
+            COLOR LIKE '%' || #{keyword} || '%'
+        OR
+            ALBUM_SIZE LIKE '%' || #{keyword} || '%'
+    </select>
+
+    <!-- findAll 메서드를 위한 매핑 추가 -->
+    <select id="findAll" resultType="AlbumVo">
+        SELECT 
+            ALBUM_ID as albumId, MATERIAL,
+            COLOR, ALBUM_SIZE as albumSize
+        FROM
+            ALBUM
+    </select>
 </mapper>
