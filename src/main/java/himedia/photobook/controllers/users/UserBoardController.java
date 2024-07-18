@@ -121,6 +121,7 @@ public class UserBoardController {
 			return "redirect:/";
 		}
 		BoardVo boardVo = uBoardService.getContent(userId, boardId);
+		
 		uBoardService.delete(userId, boardVo.getBoardId());
 		return "redirect:/users/boardList";
 		

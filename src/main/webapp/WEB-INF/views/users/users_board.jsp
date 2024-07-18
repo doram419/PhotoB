@@ -40,7 +40,7 @@
 							<td>${postMap['boardVo'].status}</td>
 							<td>
 								<c:if test="${not empty authUser }">
-									<c:if test="${authUser.userId == postMap['boardVo'].userId }">
+									<c:if test="${authUser.userId == postMap['boardVo'].userId || authUser.role.equals('A') }">
 										<a href="<c:url value="/users/board/${postMap['boardVo'].userId}/${postMap['boardVo'].boardId }/modify"/>">수정</a>
 										<a href="<c:url value="/users/board/${postMap['boardVo'].userId}/${postMap['boardVo'].boardId }/delete"/>">삭제</a>
 									</c:if>
