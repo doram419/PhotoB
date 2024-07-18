@@ -16,7 +16,7 @@ import jakarta.servlet.http.HttpSession;
 
 @Controller
 @RequestMapping("/users")
-public class UserPhotobookController {
+public class UsersPhotobookController {
 	@Autowired
 	private UserPhotobookService userPhotobookService;
 
@@ -50,19 +50,17 @@ public class UserPhotobookController {
 		return "/WEB-INF/views/users/users_create_photobook.jsp";
 	}
 
-	@PostMapping("/photobookorder")
+	@PostMapping("/photobookOrder")
 	public String photobookorder(@RequestParam(value = "albumId", required = false) String albumId,
 			HttpSession session) {
 		UsersVo authUser = (UsersVo) session.getAttribute("authUser");
 		String userId = authUser.getUserId();
 		InventoryVo inventoryVo = userPhotobookService.findAlbumPriceByAlbumId(albumId);
 		Long albumPrice = inventoryVo.getAlbumPrice();
-		System.out.println(albumPrice);
-		System.out.println(albumId);
-		System.out.println(userId);
 		Long oQuantity = (Long) session.getAttribute("oQuantity");
 		System.out.println("photobookorder에서 받아오는 수량"+oQuantity);
 		userPhotobookService.orderInsert(userId, albumId, oQuantity);
+		
 		return "redirect:/users/order";
 	}
 

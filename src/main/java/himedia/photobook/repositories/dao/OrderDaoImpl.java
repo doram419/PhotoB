@@ -1,6 +1,7 @@
 package himedia.photobook.repositories.dao;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
@@ -16,13 +17,16 @@ public class OrderDaoImpl implements OrderDao {
 	
 	@Override
 	public int orderInsert(String userId, String albumId, Long oQuantity)	{
-		System.out.println("sql전 userid"+userId);
-		System.out.println("sql전 albumId"+albumId);
-		System.out.println("sql전 oQuantity"+oQuantity);
 		Map<String,Object> orderMap = new HashMap<>();
 		orderMap.put("userId",userId);
 		orderMap.put("albumId", albumId);
 		orderMap.put("oQuantity", oQuantity);
+		
 		return sqlSession.insert("order.orderInsert",orderMap);
+	}
+	
+	@Override
+	public List<OrdersVo> selectAllOrdersByUserId(String userId){
+		return sqlSession.selectList("order.selectAllOrdersByUserId", userId);
 	}
 }

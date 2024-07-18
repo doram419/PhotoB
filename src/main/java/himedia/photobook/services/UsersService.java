@@ -43,9 +43,6 @@ public class UsersService {
         return "encrypted_" + password;
     }
     
-    
-	
-    
     // 프로필 업데이트
 	 public boolean updateUser(UsersVo userVo) {
 		 

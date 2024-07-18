@@ -45,10 +45,10 @@
         <button id="nextPage">다음 페이지</button>
     </div>
 
-    <form action="<c:url value='/users/photobookorder'/>" method="post">
+    <form action="<c:url value='/users/photobookOrder'/>" method="post">
         <input type="hidden" id="selectedStyle" name="selectedStyle">
-          <input type="hidden" name="albumId" value="${sessionScope.albumId}">
-            <input type="hidden" name="userId" value="${sessionScope.authUser.userId}">
+        <input type="hidden" name="albumId" value="${sessionScope.albumId}">
+        <input type="hidden" name="userId" value="${sessionScope.authUser.userId}">
             
         <button type="submit" class="create-button">제작 완료</button>
     </form>
