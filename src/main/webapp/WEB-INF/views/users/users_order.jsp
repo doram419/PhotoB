@@ -16,7 +16,6 @@
 
 <body>
     <c:import url="/WEB-INF/views/users/includes/users_header.jsp"></c:import>
-
     <main>
         <section id="order">
             <h2>주문</h2>
@@ -24,38 +23,41 @@
                 <thead>
                     <tr>
                         <th>주문 번호</th>
-                        <th>제품</th>
-                        <th>수량</th>
+                        <th>제품 이름</th>
+                        <th>주문 일자</th> 
                         <th>가격</th>
+                        <th>수량</th>
                         <th>주문 상태</th>
+                        <th>비고</th>
                     </tr>
                 </thead>
                 <tbody>
-                	<c:forEach items="${orderList}" var="{orderVo}">
+                <c:forEach items="${orderInfos}" var="infoMap">				
                 	<tr>
-                		<td> 
-                        	<!-- orderVo로 출력하고 no가져올 필요 있음 -->
-                        	<a href="<c:url value="/order/detail?orderId=${no}"/>">
-                        		ORDER-001 
-                        	</a>
-                        </td>
-                        <td>포토북 1</td>
-                        <td>1</td>
-                        <td>30,000원</td>
-                        <td>주문 완료</td>
-                	<tr>
-                	</c:forEach>
-                	<!-- 더미 데이터 시작 *01~ -->
-                    <tr>
+                		<td>${infoMap['ordersVo'].orderId}</a></td>
+                        <td>${infoMap['ordersVo'].albumId}</td>
+                        <td>${infoMap['ordersVo'].orderDate}</td>
+                        <td>${infoMap['ordersVo'].total}원</td>
+                        <td>${infoMap['ordersVo'].oQuantity}</td>
+                        <td>${infoMap['status']}</td>
                         <td> 
-                        	<a href="<c:url value="/order/detail{}"/>">ORDER-001</a>
-                        </td>
-                        <td>포토북 1</td>
-                        <td>1</td>
-                        <td>30,000원</td>
-                        <td>주문 완료</td>
-                    </tr>
-                    <!-- ~01* 여기까지 -->
+	                        <form method="post" 
+	                        	action="<c:url value="/users/order/detail"/>">
+	                        	<input type="hidden" name="ordersId" 
+	                        		value="${infoMap['ordersVo'].orderId}"/>
+	                        	<input type="hidden" name="albumId" 
+	                        		value="${infoMap['ordersVo'].albumId}"/>
+	                        	<input type="hidden" name="orderDate"
+	                        		value="${infoMap['ordersVo'].orderDate}"/>
+	                        	<input type="hidden" name="oQuantity"
+	                        		value="${infoMap['ordersVo'].oQuantity}"/>
+	                        	<input type="hidden" name="status"
+	                        		value="${infoMap['status']}"/>
+	                      		<button>조회</button> 
+	                      	</form>
+                      	</td> 
+                	</tr>
+                </c:forEach>             
                 </tbody>
             </table>
         </section>

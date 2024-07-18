@@ -2,7 +2,6 @@ package himedia.photobook.repositories.vo;
 
 import java.util.Date;
 
-// 작성자 : 유승원
 public class OrdersVo {
 	private String orderId;
 	private String userId;

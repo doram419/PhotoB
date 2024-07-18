@@ -21,10 +21,7 @@ public class UsersDaoImpl implements UsersDao {
 	// 유저 정보 저장하는거
 	public int insert(UsersVo vo) {		
 		try {
-			// role 값을 "U"로 설정
-			
 			vo.setRole("U");	
-			System.out.println("확인");
 			return sqlSession.insert("users.insert", vo);
 
 		} catch (Exception e) {
@@ -46,11 +43,8 @@ public class UsersDaoImpl implements UsersDao {
 	public UsersVo selectUserByEmailAndPassword(String email, String password) {
 		Map<String, String> userMap = new HashMap<>();
 		userMap.put("email", email);
-		userMap.put("password", password); // 여기 파라미터타입 users.xml에 명시하지 않아도 되는지 모르겠음. 일단 안했음.
-		System.out.println(email);
-		System.out.println(password);
+		userMap.put("password", password);
 		UsersVo userVo = sqlSession.selectOne("users.selectUserByEmailAndPassword", userMap);
-		System.out.println("이건 널 나오면 안됨:"+userVo); // null반환
 		return userVo;
 	}
 
@@ -81,4 +75,16 @@ public class UsersDaoImpl implements UsersDao {
 			throw new UsersDaoException("업데이트 도중 예외 발생!");
 		}
 	}
+
+	// 프로필 업데이트에 쓸거
+    public int updateUser(UsersVo user) {
+    	
+        try {
+            int updatedCount = sqlSession.update("users.updateUser", user);
+            return updatedCount;
+        } catch (Exception e) {
+        	e.printStackTrace();
+            throw new UsersDaoException("예외 발생!");
+        }
+    }
 }
