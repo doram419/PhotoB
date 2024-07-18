@@ -47,6 +47,8 @@ public class UsersPhotobookController {
 
 		String albumId = albumVo.getAlbumId();
 
+		albumsession.setAttribute("albumId", albumId);
+		albumsession.setAttribute("oQuantity", oQuantity);
 		return "/WEB-INF/views/users/users_create_photobook.jsp";
 	}
 

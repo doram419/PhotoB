@@ -20,7 +20,7 @@
 	            <li><a href="<c:url value="/users/order"/>">주문</a></li>
 	            <li><a href="<c:url value="/users/board"/>">게시판</a></li>
         		<li><a href="<c:url value="/users/logout"/>">로그아웃</a></li>
-		        <c:if test="${sessionScope.user.role == 'A'}">
+		        <c:if test="${sessionScope.authUser.role == 'A'}">
 		            <li><a href="<c:url value='/admin/home' />" class="admin-menu">관리자 페이지</a></li>
 		        </c:if>
     		</c:when>

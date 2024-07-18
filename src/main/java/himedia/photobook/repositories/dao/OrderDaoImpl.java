@@ -21,7 +21,6 @@ public class OrderDaoImpl implements OrderDao {
 		orderMap.put("userId",userId);
 		orderMap.put("albumId", albumId);
 		orderMap.put("oQuantity", oQuantity);
-		
 		return sqlSession.insert("order.orderInsert",orderMap);
 	}
 	
