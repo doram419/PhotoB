@@ -38,7 +38,7 @@
 					</div>
 					<div class="form-group">
 						<label>기간 검색:</label> <select id="date-type" name="date-type">
-							<option value="registration">가입날짜</option>
+							<option value="registration">가입일</option>
 						</select> <input type="date" id="start-date" name="start-date"> <input
 							type="date" id="end-date" name="end-date">
 					</div>
@@ -75,8 +75,8 @@
 								<td>${user.role}</td>
 								<td> 
 								<a href="<c:url value='/admin/update?userId=${user.userId}'/>">
-										<button class="btn btn-primary">수정</button>
-								</a> 
+										<button class="btn btn-primary">수정</button></a>
+								 
 								<a href="<c:url value='/admin/delete?userId=${user.userId}'/>">
 										<button  class="btn btn-danger">삭제</button>
 								</a></td>

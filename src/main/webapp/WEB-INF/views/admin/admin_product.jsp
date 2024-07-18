@@ -26,13 +26,10 @@
                     <div class="form-group">
                     <label for="search-category">검색 분류:</label>
                     <select id="search-category" name="search-category">
+							<option value="ALBUM_ID">상품코드</option>
                         </select>
                         <label for="search-input">검색어:</label>
                         <input type="text" placeholder="검색어를 입력하세요">
-                    </div>
-                    <div class="form-group">
-                        <label>기간 검색:</label>
-                        <select id="date-type" name="date-type"></select>
                     </div>
                     <button type="submit" class="btn btn-primary">검색</button>
                     <button type="submit" class="btn btn-primary">초기화</button>
@@ -47,21 +44,27 @@
 						<tr>
 							<th>번호</th>
 							<th>이미지</th>
-							<th>상품명</th>
-							<th>가격</th>
 							<th>상품코드</th>
+							<th>가격</th>
 							<th>사이즈</th>
+							<th>작업</th>
 						</tr>
 					</thead>
 					
 					<tbody>
 						<tr>
-							<th>test</th>
-							<th>test</th>
-							<th>test</th>
-							<th>test</th>
-							<th>test</th>
-							<th>test</th>
+							<td>${status.index + 1}</td>
+							<td>이미지넣기</td>
+							<td>${album.albumId}</td>
+							<td>${inventory.albumPrice}</td>
+							<td>${album.albumSize}</td>
+							<td> 
+								<a href="<c:url value='/admin/update?albumId=${album.albumId}'/>">
+										<button class="btn btn-primary">수정</button></a>
+								 
+								<a href="<c:url value='/admin/delete?albumId=${album.albumId}'/>">
+										<button  class="btn btn-danger">삭제</button>
+								</a></td>
 						</tr>
 					</tbody>
 				</table>
