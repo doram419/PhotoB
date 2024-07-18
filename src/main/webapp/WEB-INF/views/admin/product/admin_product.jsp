@@ -59,12 +59,9 @@
 							<td>${inventory.albumPrice}</td>
 							<td>${album.albumSize}</td>
 							<td> 
-								<a href="<c:url value='/admin/update?albumId=${album.albumId}'/>">
+								<a href="<c:url value='/admin/product/productEdit?albumId=${album.albumId}'/>">
 										<button class="btn btn-primary">수정</button></a>
-								 
-								<a href="<c:url value='/admin/delete?albumId=${album.albumId}'/>">
-										<button  class="btn btn-danger">삭제</button>
-								</a></td>
+							</td>
 						</tr>
 					</tbody>
 				</table>

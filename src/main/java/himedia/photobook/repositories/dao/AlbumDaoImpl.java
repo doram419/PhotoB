@@ -1,14 +1,16 @@
 package himedia.photobook.repositories.dao;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-import himedia.photobook.repositories.vo.AlbumVo;
-import himedia.photobook.exceptions.UsersAlbumException;
 
-@Repository("albumsDao") 
+import himedia.photobook.exceptions.UsersAlbumException;
+import himedia.photobook.repositories.vo.AlbumVo;
+
+@Repository
 public class AlbumDaoImpl implements AlbumDao {
 	@Autowired
 	private SqlSession sqlSession;
@@ -34,4 +36,27 @@ public class AlbumDaoImpl implements AlbumDao {
 					"UserAlbumException::SelectOneById01 [에러 발생]");
 		}
 	}
+	
+	// 앨범 목록
+	@Override
+	public List<AlbumVo> listAlbum() {
+		return sqlSession.selectList("Album.listAlbum");
+	}
+	
+	// 앨범 수정
+	@Override
+	public void updateAlbum(AlbumVo vo) {
+		sqlSession.update("Album.updateAlbum", vo);
+	}
+	// 앨범 삭제
+	@Override
+	public void deleteAlbum(String albumId) {
+		sqlSession.delete("Album.deleteAlbum", albumId);
+	}
+	// 앨범 추가
+	@Override
+	public void insertAlbum(AlbumVo vo) {
+		sqlSession.insert("Album.insertAlbum", vo);
+	}
+	
 }

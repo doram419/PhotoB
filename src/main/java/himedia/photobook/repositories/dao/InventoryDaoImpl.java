@@ -1,6 +1,7 @@
 package himedia.photobook.repositories.dao;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
@@ -8,9 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import himedia.photobook.repositories.vo.InventoryVo;
-import himedia.photobook.repositories.vo.OrdersVo;
 
-@Repository("inventorysDao")
+@Repository
 public class InventoryDaoImpl implements InventoryDao {
 	@Autowired
 	private SqlSession sqlSession;
@@ -25,4 +25,26 @@ public class InventoryDaoImpl implements InventoryDao {
 		
 		return inventoryVo;
 	}
+	
+	// 앨범 목록
+		@Override
+		public List<InventoryVo> listInventory() {
+			return sqlSession.selectList("product.listInventory");
+		}
+		
+		// 앨범 수정
+		@Override
+		public void updateInventory(InventoryVo vo) {
+			sqlSession.update("product.updateInventory", vo);
+		}
+		// 앨범 삭제
+		@Override
+		public void deleteInventory(Long albumPrice) {
+			sqlSession.delete("product.deleteInventory", albumPrice);
+		}
+		// 앨범 추가
+		@Override
+		public void insertInventory(InventoryVo vo) {
+			sqlSession.insert("product.insertInventory", vo);
+		}
 }

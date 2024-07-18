@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 import himedia.photobook.repositories.dao.UsersDao;
 import himedia.photobook.repositories.vo.UsersVo;
 
-@Service("adminCustomerService")
+@Service
 public class AdminCustomerService {
 	@Autowired
 	private UsersDao userDao;
