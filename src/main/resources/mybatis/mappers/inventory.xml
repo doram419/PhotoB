@@ -7,4 +7,14 @@
     	from inventory
     	where album_id = #{albumId}
         </select>
+
+   <!-- listInventory 메서드를 위한 매핑 추가 -->
+    <select id="listInventory" resultType="InventoryVo">
+        SELECT 
+            album_id as albumId,
+            album_price as albumPrice,
+            stock_quantity as stockQuantity
+        FROM 
+            inventory
+    </select>
 </mapper>
