@@ -51,17 +51,19 @@
                     </thead>
                     <tbody>
                         <%-- 여기에 문의 데이터를 동적으로 생성하는 Java 코드를 추가할 수 있습니다 --%>
-                        <tr>
-                            <td>1</td>
-                            <td>박영희</td>
-                            <td>배송 관련 문의</td>
-                            <td><%= new SimpleDateFormat("yyyy-MM-dd").format(new Date()) %></td>
-                            <td>답변대기</td>
-                            <td>
+                          <c:forEach var="inquiry" items="${inquiries}">
+                            <tr>
+                                <td>${inquiry.id}</td>
+                                <td>${inquiry.customerName}</td>
+                                <td>${inquiry.subject}</td>
+                                <td><%= new SimpleDateFormat("yyyy-MM-dd").format(new Date()) %></td>
+                                <td>${inquiry.status}</td>
+                                <td>
                                 <button class="btn btn-primary" onclick="location.href='inquiryDetail.jsp?id=1'">상세보기</button>
                                 <button class="btn btn-primary" onclick="location.href='respondInquiry.jsp?id=1'">답변하기</button>
                             </td>
                         </tr>
+                         </c:forEach>
                     </tbody>
                 </table>
             </div>
