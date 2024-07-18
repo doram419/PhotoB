@@ -1,5 +1,8 @@
 package himedia.photobook.controllers;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 /**
  * 코드, 날짜등을 사용자가 인지하기 편한 값으로 변환해주고 리턴해주는 클래스
  * */
@@ -30,5 +33,17 @@ public class DataConverter {
 			word = "비정상적인 값입니다";	
 
 		return word;
+	}
+	
+	/**
+	 * java.util.date 타입을 쓰면 Mon Jul 15 13:11:37 KST 2024 식으로 나옴
+	 * 그래서 그걸 "yyyy-MM-dd"식으로 나오게 해주는 메서드
+	 * parameter : Date 타입
+	 * return : "yyyy-MM-dd"의 String
+	 * */
+	public String kstToYYYY(Date date) {
+		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+		
+		return dateFormat.format(date);
 	}
 }

@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -26,6 +27,14 @@ public class AdminDeliveryController {
 	@GetMapping("/delivery/detail")
 	public String detail(Model model,
 			@RequestParam("orderId") String orderId) {
+		model.addAttribute("deliveryDetailInfos", deliveryService.getDeliveryDetailInfo(orderId));
+		
+		return "/WEB-INF/views/admin/delivery/delivery_detail.jsp";
+	}
+	
+	@PostMapping
+	public String modify(Model model,
+			@ModelAttribute("orderId") String orderId) {
 		model.addAttribute("deliveryDetailInfos", deliveryService.getDeliveryDetailInfo(orderId));
 		
 		return "/WEB-INF/views/admin/delivery/delivery_detail.jsp";
