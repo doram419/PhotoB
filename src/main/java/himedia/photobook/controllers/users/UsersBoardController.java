@@ -29,7 +29,7 @@ public class UsersBoardController {
 	@Autowired
 	private UBoardService uBoardService;
 	@Autowired
-	private UsersDao userDao;
+	private UsersDao usersDao;
 
 	@GetMapping({"/board"})
 	public String usersBoard() {
@@ -70,7 +70,7 @@ public class UsersBoardController {
 		}
 		
 		BoardVo boardVo = uBoardService.getContent(userId,boardId);
-		UsersVo usersVo = userDao.selectOneUserById(userId);
+		UsersVo usersVo = usersDao.selectOneUserById(userId);
 		md.addAttribute("vo",boardVo);
 		md.addAttribute("userVo",usersVo);
 		return "/WEB-INF/views/users/board/board_post.jsp";
