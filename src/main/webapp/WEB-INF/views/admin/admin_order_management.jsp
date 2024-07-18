@@ -53,13 +53,22 @@
                             <td>김철수</td>
                             <td>2024-07-09 15:30</td>
                             <td>배송중</td>
-                            <td>50,000원</td>
-                            <td>
+                            <td>50,000원</td>                           
+                        </tr>
+                        <!-- 추가 주문 데이터 -->
+                         <c:forEach var="order" items="${orderList}">
+                            <tr>
+                                <td>${order.orderNumber}</td>
+                                <td>${order.customerName}</td>
+                                <td>${order.orderDateTime}</td>
+                                <td>${order.orderStatus}</td>
+                                <td>${order.totalAmount}</td>
+                                 <td>
                                 <button class="btn btn-primary">상세보기</button>
                                 <button class="btn btn-primary">상태변경</button>
                             </td>
-                        </tr>
-                        <!-- 추가 주문 데이터 -->
+                                 </tr>
+                        </c:forEach>
                     </tbody>
                 </table>
             </div>

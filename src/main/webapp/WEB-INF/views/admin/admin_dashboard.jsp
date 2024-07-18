@@ -42,6 +42,14 @@
                             <td>배송 완료</td>
                         </tr>
                         <!-- 추가 주문 데이터 -->
+                         <c:forEach items="${orderList}" var="order">
+                    <tr>
+                        <td>${order.orderNumber}</td>
+                        <td>${order.customerName}</td>
+                        <td>${order.orderDateTime}</td>
+                        <td>${order.orderStatus}</td>
+                    </tr>
+                </c:forEach>
                     </tbody>
                 </table>
             </div>
@@ -64,6 +72,13 @@
                             <td>2024-07-08</td>
                         </tr>
                         <!-- 추가 회원 데이터 -->
+                        <c:forEach items="${memberList}" var="member">
+                    <tr>
+                        <td>${member.memberId}</td>
+                        <td>${member.name}</td>
+                        <td>${member.joinDate}</td>
+                    </tr>
+                </c:forEach>
                     </tbody>	
                 </table>
             </div>

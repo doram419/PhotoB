@@ -43,6 +43,15 @@
                             <td>test</td>
                         </tr>
                         <!-- 추가 주문 데이터 -->
+                         <c:forEach var="order" items="${orderList}">
+                            <tr>
+                                <td>${order.orderId}</td>
+                                <td>${order.customerName}</td>
+                                <td>${order.deliveryId}</td>
+                                <td>${order.deliveryDate}</td>
+                                <td>${order.deliveryStatus}</td>
+                            </tr>
+                        </c:forEach>
                     </tbody>
                    
                 </table>

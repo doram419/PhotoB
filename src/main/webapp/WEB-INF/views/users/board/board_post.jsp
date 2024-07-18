@@ -15,6 +15,9 @@
     	-->
     <title>글 내용 페이지</title>
     <!-- 여기 변경 -->
+     <c:if test="${not empty title}">
+        <title>${title}</title>
+    </c:if>
     
   	<link type="text/css" 
 		rel="stylesheet" 

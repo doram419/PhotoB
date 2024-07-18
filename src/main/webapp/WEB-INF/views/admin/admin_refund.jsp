@@ -41,7 +41,14 @@
                             <td>배송 준비중</td>
                         </tr>
                         <!-- 추가 주문 데이터 -->
-                        
+                          <c:forEach items="${refundList}" var="refund">
+                        <tr>
+                            <td>${refund.orderId}</td>
+                            <td>${refund.name}</td>
+                            <td>${refund.refundId}</td>
+                            <td>${refund.status}</td>
+                        </tr>
+                    </c:forEach>
                     </tbody>
                    
                 </table>

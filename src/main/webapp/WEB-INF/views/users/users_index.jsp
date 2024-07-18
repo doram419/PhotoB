@@ -32,11 +32,27 @@
             </c:choose>
             <h2>인기 템플릿</h2>
             <!-- 템플릿 미리보기 이미지들 -->
+              <div class="template-images">
+                <c:forEach var="template" items="${popularTemplates}">
+                    <div class="template">
+                        <img src="${template.imageUrl}" alt="${template.name}">
+                        <p>${template.name}</p>
+                    </div>
+                </c:forEach>
+            </div>
         </section>
 
         <section class="customer-reviews">
             <h2>고객 리뷰</h2>
             <!-- 리뷰 내용 -->
+            <div class="reviews">
+                <c:forEach var="review" items="${customerReviews}">
+                    <div class="review">
+                        <p class="review-content">${review.content}</p>
+                        <p class="review-author">${review.author}</p>
+                    </div>
+                </c:forEach>
+            </div>
         </section>
     </main>
 
