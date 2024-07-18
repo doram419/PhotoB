@@ -11,6 +11,6 @@ public interface UBoardService {
 	public BoardVo getContent(String userId,Long boardId);
 	public boolean write(BoardVo boardVo);
 	public boolean update(BoardVo boardVo);
-	public boolean delete(Long UboardId, Long userId);
+	public boolean delete(String userId, Long boardId);
 	
 }

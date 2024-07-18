@@ -8,9 +8,20 @@ public class BoardVo {
 	private String content;
 	private Date regDate;
 	private String userId;
+	private String status;
 	
 	
 	
+
+
+	public String getStatus() {
+		return status;
+	}
+
+
+	public void setStatus(String status) {
+		this.status = status;
+	}
 
 
 	public BoardVo() {

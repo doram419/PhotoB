@@ -9,5 +9,5 @@ public interface UBoardDao {
 	public int insert(BoardVo boardVo);
 	public BoardVo getContent(String userId,Long boardId);
 	public int update(BoardVo boardVo);
-	public int delete(Long uboardId, Long userId);
+	public int delete(String userId, Long boardId);
 }

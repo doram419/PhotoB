@@ -26,15 +26,26 @@
 						<th>제목</th>
 						<th>작성자</th>
 						<th>작성일</th>
+						<th>상태</th>
 					</tr>
 				</thead>
 				<tbody>
 					<c:forEach items="${postList}" var="postMap" varStatus="status">
 						<tr>
 							<td>${postMap['boardVo'].boardId}</td>
-							<td><a href="<c:url value="/users/board/post/${postMap['boardVo'].userId}/${postMap['boardVo'].boardId }"/>">${postMap['boardVo'].title}</a></td>
+							<td><a
+								href="<c:url value="/users/board/post/${postMap['boardVo'].userId}/${postMap['boardVo'].boardId }"/>">${postMap['boardVo'].title}</a></td>
 							<td>${postMap['usersVo'].userName}</td>
 							<td>${postMap['boardVo'].regDate}</td>
+							<td>${postMap['boardVo'].status}</td>
+							<td>
+								<c:if test="${not empty authUser }">
+									<c:if test="${authUser.userId == postMap['boardVo'].userId }">
+										<a href="<c:url value="/users/board/${postMap['boardVo'].userId}/${postMap['boardVo'].boardId }/modify"/>">수정</a>
+										<a href="<c:url value="/users/board/${postMap['boardVo'].userId}/${postMap['boardVo'].boardId }/delete"/>">삭제</a>
+									</c:if>
+								</c:if>
+							</td>
 						</tr>
 					</c:forEach>
 				</tbody>

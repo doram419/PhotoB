@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import himedia.photobook.repositories.dao.UBoardDao;
+import himedia.photobook.repositories.dao.UsersDao;
 import himedia.photobook.repositories.dao.UsersDaoImpl;
 import himedia.photobook.repositories.vo.BoardVo;
 import himedia.photobook.repositories.vo.UsersVo;
@@ -30,7 +31,8 @@ import jakarta.servlet.http.HttpSession;
 public class UserBoardController {
 	@Autowired
 	private UBoardService uBoardService;
-	
+	@Autowired
+	private UsersDao userDao;
 
 	
 	@GetMapping({"/board"})
@@ -70,14 +72,61 @@ public class UserBoardController {
 		if(authUser==null) {
 			return "redirect:/users/boardList";
 		}
+		
 		BoardVo boardVo = uBoardService.getContent(userId,boardId);
+		UsersVo usersVo = userDao.selectOneUserById(userId);
 		md.addAttribute("vo",boardVo);
+		md.addAttribute("userVo",usersVo);
 		return "/WEB-INF/views/users/board/board_post.jsp";
 	}
 	
+	// 편집 페이지
+	@GetMapping("/board/{userId}/{boardId}/modify")
+	public String modifyForm(@PathVariable("userId") String userId,@PathVariable("boardId") Long boardId,Model md, HttpSession session, RedirectAttributes redirectAtt) {
+		UsersVo authUser = (UsersVo) session.getAttribute("authUser");
+		if(authUser == null) {
+			redirectAtt.addFlashAttribute("errorMsg","로그인 하세요~");
+			return "redirect:/users/boardList";
+		}
+		BoardVo boardVo = uBoardService.getContent(userId, boardId);
+		md.addAttribute("vo",boardVo);
+		return "/WEB-INF/views/users/board/board_modify.jsp";
+	}
 	
-//	@GetMapping({ "/board/post" })
-//	public String showPost() {
-//		return "/WEB-INF/views/users/board/board_post.jsp";
-//	}
+	// 편집 수행 액션
+	@PostMapping("/modify")
+	public String modifyAction(@ModelAttribute BoardVo updateVo,HttpSession session, RedirectAttributes redirectAtt) {
+		UsersVo authUser = (UsersVo) session.getAttribute("authUser");
+		if(authUser == null) {
+			redirectAtt.addFlashAttribute("errorMsg","로그인 하세요~");
+			return "redirect:/users/boardList";
+		}
+		BoardVo boardVo = uBoardService.getContent(updateVo.getUserId(),updateVo.getBoardId());
+		
+		boardVo.setTitle(updateVo.getTitle());
+		boardVo.setContent(updateVo.getContent());
+		
+		boolean success = uBoardService.update(boardVo);
+		return "redirect:/users/boardList";
+	}
+	
+	
+	
+	// 게시물 삭제
+	@RequestMapping("/board/{userId}/{boardId}/delete")
+	public String deleteAction(@PathVariable("userId") String userId,@PathVariable("boardId") Long boardId,Model md, HttpSession session, RedirectAttributes redirectAtt) {
+		UsersVo authUser = (UsersVo) session.getAttribute("authUser");
+		if (authUser == null) {
+			redirectAtt.addFlashAttribute("errorMsg", "로그인 실패~");
+			return "redirect:/";
+		}
+		BoardVo boardVo = uBoardService.getContent(userId, boardId);
+		uBoardService.delete(userId, boardVo.getBoardId());
+		return "redirect:/users/boardList";
+		
+		
+		
+	}
+	
+	
 }

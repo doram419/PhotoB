@@ -17,6 +17,7 @@ public class UBoardDaoImpl implements UBoardDao{
 	@Autowired
 	private SqlSession sqlSession;
 	
+	
 	@Override
 	public List<BoardVo> selectAllList() {
 		return sqlSession.selectList("board.selectAll");
@@ -44,14 +45,30 @@ public class UBoardDaoImpl implements UBoardDao{
 
 	@Override
 	public int update(BoardVo boardVo) {
-
-		return 0;
+		try {
+			int updatedCount = sqlSession.update("board.update",boardVo);
+			return updatedCount;
+		}catch(Exception e) {
+			e.printStackTrace();
+			throw new UBoardDaoException("게시글 업데이트 실패~~");
+		}
 	}
 
 	@Override
-	public int delete(Long uboardId, Long userId) {
-
-		return 0;
+	public int delete(String userId, Long boardId) {
+		try {
+			Map<String, Object> map = new HashMap<String, Object>();
+			map.put("userId", userId);
+			map.put("boardId", boardId);
+			return sqlSession.delete("board.delete",map);
+		}catch(Exception e) {
+			e.printStackTrace();
+			throw new UBoardDaoException("게시글 삭제 실패~~~");
+		}
 	}
+
+	
+
+	
 
 }

@@ -14,7 +14,7 @@ import himedia.photobook.repositories.vo.BoardVo;
 import himedia.photobook.repositories.vo.UsersVo;
 
 
-@Service("uBoardService")
+@Service 
 public class UBoardServiceImpl implements UBoardService {
 	@Autowired
 	private UBoardDao uBoardDao;
@@ -22,7 +22,7 @@ public class UBoardServiceImpl implements UBoardService {
 	private UsersDao userDao;
 //	private UBoardDao UBoardDaoImpl;
 
-
+	
 	@Override
 	public BoardVo getContent(String userId,Long boardId) {
 		return uBoardDao.getContent(userId, boardId);
@@ -36,15 +36,10 @@ public class UBoardServiceImpl implements UBoardService {
 
 	@Override
 	public boolean update(BoardVo boardVo) {
-		
-		return false;
+		int updatedCount = uBoardDao.update(boardVo);
+		return updatedCount == 1;
 	}
 
-	@Override
-	public boolean delete(Long uboardId, Long userId) {
-		// TODO Auto-generated method stub
-		return false;
-	}
 
 	@Override
 	public List<Map<String, Object>> getBoardInfos() {
@@ -62,4 +57,19 @@ public class UBoardServiceImpl implements UBoardService {
 		}
 		return result;
 	}
+
+//	@Override
+//	public boolean delete(String userId, String string) {
+//		int deleteCount = uBoardDao.delete(userId);
+//		return false;
+//	}
+
+	@Override
+	public boolean delete(String userId, Long boardId) {
+		int deletedCount = uBoardDao.delete(userId, boardId);
+		return deletedCount==1;
+	}
+
+	
+
 }
