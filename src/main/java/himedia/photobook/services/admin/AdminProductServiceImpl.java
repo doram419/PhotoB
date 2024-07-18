@@ -36,19 +36,24 @@ public class AdminProductServiceImpl implements AdminProductService {
         List<AlbumVo> albums = AlbumDao.findAll();
         List<InventoryVo> inventoryList = InventoryDao.listInventory();
 
-        Map<AlbumVo, InventoryVo> albumInventoryMap = new HashMap<>();
+       // **InventoryVo를 앨범 ID로 매핑하는 맵 생성**
+        Map<String, InventoryVo> inventoryMap = new HashMap<>();
+        for (InventoryVo inventory : inventoryList) {
+            inventoryMap.put(inventory.getAlbumId(), inventory);
+        }
 
+        // **앨범과 인벤토리를 매핑**
+        Map<AlbumVo, InventoryVo> albumInventoryMap = new HashMap<>();
         for (AlbumVo album : albums) {
-            for (InventoryVo inventory : inventoryList) {
-                if (album.getAlbumId().equals(inventory.getAlbumId())) {
-                    albumInventoryMap.put(album, inventory);
-                    break;
-                }
+            InventoryVo inventory = inventoryMap.get(album.getAlbumId());
+            if (inventory != null) {
+                albumInventoryMap.put(album, inventory);
             }
         }
         
         return albumInventoryMap;
     }
+}
 	// 앨범수정
 //	@Override
 //	public void updateAlbum(AlbumVo vo) {
