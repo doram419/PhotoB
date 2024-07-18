@@ -7,4 +7,13 @@
         FROM ALBUM
         WHERE MATERIAL = #{material}  AND COLOR = #{color} AND ALBUM_SIZE = #{albumSize}
     </select>
-    </mapper>
+	<select id="selectByID" parameterType="String" resultType="AlbumVo">
+		SELECT 
+			ALBUM_ID as albumId, MATERIAL,
+			COLOR, ALBUM_SIZE as albumSize
+		FROM
+		 	ALBUM
+		WHERE
+			ALBUM_ID = #{value}
+	</select>
+</mapper>

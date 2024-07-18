@@ -3,7 +3,7 @@ package himedia.photobook.controllers.users;
 
 import himedia.photobook.repositories.vo.UsersVo;
 
-import himedia.photobook.services.UserService;
+import himedia.photobook.services.UsersService;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -19,7 +19,7 @@ import org.springframework.web.servlet.ModelAndView;
 @RequestMapping("/users")
 public class UsersController {
 	@Autowired
-	private UserService userService;
+	private UsersService userService;
 
 	@GetMapping("/login")
 	public String login() {
