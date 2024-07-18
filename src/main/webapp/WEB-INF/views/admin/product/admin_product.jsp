@@ -32,7 +32,7 @@
                         <input type="text" placeholder="검색어를 입력하세요">
                     </div>
                     <button type="submit" class="btn btn-primary">검색</button>
-                    <button type="submit" class="btn btn-primary">초기화</button>
+                    <button type="reset" class="btn btn-secondary">초기화</button>
                 </form>
             </div>
 		</div>
