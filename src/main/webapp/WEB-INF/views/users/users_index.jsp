@@ -26,13 +26,16 @@
                 <c:when test="${not empty sessionScope.authUser}">
                     <a href="photobook" class="cta-button">나만의 포토북 만들기</a>
                 </c:when>
-                <c:otherwise>
+               <c:otherwise>
                     <a href="javascript:void(0)" class="cta-button" onclick="showLoginMessage()">나만의 포토북 만들기</a>
                 </c:otherwise>
             </c:choose>
+            </section>
+            <section class="popular-templates">
             <h2>인기 템플릿</h2>
             <!-- 템플릿 미리보기 이미지들 -->
               <div class="template-images">
+              
                 <c:forEach var="template" items="${popularTemplates}">
                     <div class="template">
                         <img src="${template.imageUrl}" alt="${template.name}">
