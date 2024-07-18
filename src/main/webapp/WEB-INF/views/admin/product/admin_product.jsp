@@ -26,8 +26,8 @@
 						<label for="search-category">검색 분류:</label> <select
 							id="search-category" name="search-category">
 							<option value="ALBUM_ID">상품코드</option>
-						</select> <label for="search-input">검색어:</label> <input type="text"
-							placeholder="검색어를 입력하세요">
+						</select> <label for="search-input">검색어:</label>
+						<input type="text" id="search-input" name="keyword" placeholder="검색어를 입력하세요">
 					</div>
 					<button type="submit" class="btn btn-primary">검색</button>
 					<button type="reset" class="btn btn-secondary">초기화</button>
@@ -57,8 +57,8 @@
 								<td>${entry.key.albumId}</td>
 								<td align="center">${entry.value.albumPrice}</td>
 								<td>${entry.value.albumSize}</td>
-								<td><a
-									href="<c:url value='/admin/product/productEdit?albumId=${album.albumId}'/>">
+								<td>
+								<a href="<c:url value='/admin/product/productEdit?albumId=${entry.key.albumId}'/>">
 										<button class="btn btn-primary">수정</button>
 								</a></td>
 							</tr>
