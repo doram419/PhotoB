@@ -7,6 +7,7 @@
         VALUES ('USER' || LPAD((SELECT NVL(MAX(TO_NUMBER(SUBSTR(USER_ID, 5))) + 1, 1) FROM USERS), 4, '0'),
         	 #{email}, #{password}, #{userName}, #{address}, #{phoneNumber}, #{role})
     </insert>
+    
     <select id="selectUserByEmail" parameterType="String" resultType="UsersVo">
         SELECT 
         	USER_ID as userId, EMAIL, PASSWORD, 

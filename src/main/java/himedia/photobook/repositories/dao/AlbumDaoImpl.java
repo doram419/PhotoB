@@ -8,18 +8,11 @@ import org.springframework.stereotype.Repository;
 import himedia.photobook.repositories.vo.AlbumVo;
 import himedia.photobook.exceptions.UsersAlbumException;
 
-@Repository("albumsDao") 
+@Repository
 public class AlbumDaoImpl implements AlbumDao {
 	@Autowired
 	private SqlSession sqlSession;
 	
-	/**
-	 * 앨범 ID로 album 튜플을 가져오는 메서드
-	 * exception 처리 필요함
-	 * */
-	public AlbumVo selectAlbumIdById(String albumId){
-		//해결 해야함
-	}
 	@Override	
 	 public AlbumVo findAlbumIdByOptions(String material, String color, String albumSize) {
 	        Map<String, String> options = new HashMap<>();

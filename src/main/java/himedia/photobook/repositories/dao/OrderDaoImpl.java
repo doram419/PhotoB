@@ -10,7 +10,7 @@ import org.springframework.stereotype.Repository;
 
 import himedia.photobook.repositories.vo.OrdersVo;
 
-@Repository("ordersDao")
+@Repository
 public class OrderDaoImpl implements OrderDao {
 	@Autowired
 	private SqlSession sqlSession;
@@ -24,9 +24,17 @@ public class OrderDaoImpl implements OrderDao {
 		
 		return sqlSession.insert("order.orderInsert",orderMap);
 	}
-	
+
 	@Override
 	public List<OrdersVo> selectAllOrdersByUserId(String userId){
 		return sqlSession.selectList("order.selectAllOrdersByUserId", userId);
+	}
+
+	public List<OrdersVo> selectAllOrders(){
+		return sqlSession.selectList("order.selectAllOrders");
+	}
+	
+	public OrdersVo selectByOrderId(String orderId) {
+		return sqlSession.selectOne("order.selectByOrderId", orderId);
 	}
 }

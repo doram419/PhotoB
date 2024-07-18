@@ -12,14 +12,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import himedia.photobook.repositories.vo.UsersVo;
-import himedia.photobook.services.users.UsersOrderServiceImpl;
+import himedia.photobook.services.users.UserOrderServiceImpl;
 import jakarta.servlet.http.HttpSession;
 
 @Controller
 @RequestMapping({"/users"})
 public class UsersOrderController {
 	@Autowired
-	private UsersOrderServiceImpl orderService;
+	private UserOrderServiceImpl userOrderServiceImpl;
 	
 	@GetMapping({"/order"})
 	public String order(Model model, HttpSession session) {
@@ -29,7 +29,7 @@ public class UsersOrderController {
 		if(user != null)
 		{
 			userId = user.getUserId();
-			List<Map<String, Object>> orderInfos = orderService.getOrderInfos(userId);
+			List<Map<String, Object>> orderInfos = userOrderServiceImpl.getOrderInfos(userId);
 			System.out.println(orderInfos);
 			
 			model.addAttribute("orderInfos", orderInfos);

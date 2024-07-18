@@ -15,11 +15,11 @@ import himedia.photobook.services.admin.AdminDeliveryServiceImpl;
 @RequestMapping("admin")
 public class AdminDeliveryController {
 	@Autowired
-	private AdminDeliveryServiceImpl deliveryService;
+	private AdminDeliveryServiceImpl adminDeliveryServiceImpl;
 	
 	@GetMapping("/delivery")
 	public String shipment(Model model) {
-		model.addAttribute("deliveryInfos", deliveryService.getDeliveryInfos());
+		model.addAttribute("deliveryInfos", adminDeliveryServiceImpl.getDeliveryInfos());
 		
 		return "/WEB-INF/views/admin/admin_delivery.jsp";
 	}
@@ -27,7 +27,7 @@ public class AdminDeliveryController {
 	@GetMapping("/delivery/detail")
 	public String detail(Model model,
 			@RequestParam("orderId") String orderId) {
-		model.addAttribute("deliveryDetailInfos", deliveryService.getDeliveryDetailInfo(orderId));
+		model.addAttribute("deliveryDetailInfos", adminDeliveryServiceImpl.getDeliveryDetailInfo(orderId));
 		
 		return "/WEB-INF/views/admin/delivery/delivery_detail.jsp";
 	}
@@ -35,7 +35,7 @@ public class AdminDeliveryController {
 	@PostMapping
 	public String modify(Model model,
 			@ModelAttribute("orderId") String orderId) {
-		model.addAttribute("deliveryDetailInfos", deliveryService.getDeliveryDetailInfo(orderId));
+		model.addAttribute("deliveryDetailInfos", adminDeliveryServiceImpl.getDeliveryDetailInfo(orderId));
 		
 		return "/WEB-INF/views/admin/delivery/delivery_detail.jsp";
 	}

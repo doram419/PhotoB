@@ -7,10 +7,10 @@ import org.springframework.stereotype.Service;
 @Service
 public class UsersService {
     @Autowired
-    private UsersDao userDao;
+    private UsersDao usersDaoImpl;
 
    public boolean register(UsersVo user) {
-        UsersVo existingUser = userDao.selectUserByEmail(user.getEmail());
+        UsersVo existingUser = usersDaoImpl.selectUserByEmail(user.getEmail());
         if (existingUser != null) {
             return false;	
         }
@@ -20,14 +20,14 @@ public class UsersService {
         user.setPassword(encryptedPassword);
         
         // 회원가입 처리
-       	  int result = userDao.insert(user);
+       	  int result = usersDaoImpl.insert(user);
        	  return result > 0;
     }
 
    	// 로그인
    public UsersVo login(String email, String password) {
 	   String encryptedPassword = encryptPassword(password);
-	    UsersVo user = userDao.selectUserByEmailAndPassword(email, encryptedPassword);
+	    UsersVo user = usersDaoImpl.selectUserByEmailAndPassword(email, encryptedPassword);
 	    if (user != null) {
 	      
 	        
@@ -45,7 +45,7 @@ public class UsersService {
     
     // 프로필 업데이트
 	 public boolean updateUser(UsersVo userVo) {
-	        int updatedCount = userDao.updateUser(userVo);
+	        int updatedCount = usersDaoImpl.updateUser(userVo);
 	        return updatedCount == 1;
 	 }
 }

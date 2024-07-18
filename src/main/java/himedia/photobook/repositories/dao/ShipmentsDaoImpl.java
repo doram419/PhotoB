@@ -8,7 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import himedia.photobook.repositories.vo.ShipmentsVo;
 
-@Repository("shipmentsDaoImpl")
+@Repository
 public class ShipmentsDaoImpl implements ShipmentsDao{
 	@Autowired
 	private SqlSession session;

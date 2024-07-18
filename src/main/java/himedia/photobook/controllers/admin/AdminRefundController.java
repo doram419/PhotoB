@@ -12,11 +12,11 @@ import himedia.photobook.services.admin.AdminRefundServiceImpl;
 @RequestMapping("/admin")
 public class AdminRefundController {
 	@Autowired
-	private AdminRefundServiceImpl adminRefundService;
+	private AdminRefundServiceImpl adminRefundServiceImpl;
 	
 	@GetMapping("/refund")
 	public String refund(Model model) {
-		model.addAttribute("refundInfos", adminRefundService.getRefundInfos());
+		model.addAttribute("refundInfos", adminRefundServiceImpl.getRefundInfos());
 		
 		return "/WEB-INF/views/admin/admin_refund.jsp";
 	}

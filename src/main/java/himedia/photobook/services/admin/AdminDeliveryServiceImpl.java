@@ -9,30 +9,30 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import himedia.photobook.controllers.DataConverter;
-import himedia.photobook.repositories.dao.AlbumDaoImpl;
-import himedia.photobook.repositories.dao.OrdersDaoImpl;
-import himedia.photobook.repositories.dao.RefundDaoImpl;
+import himedia.photobook.repositories.dao.AlbumDao;
+import himedia.photobook.repositories.dao.OrderDao;
+import himedia.photobook.repositories.dao.RefundDao;
 import himedia.photobook.repositories.dao.ShipmentsDao;
-import himedia.photobook.repositories.dao.UsersDaoImpl;
+import himedia.photobook.repositories.dao.UsersDao;
 import himedia.photobook.repositories.vo.AlbumVo;
 import himedia.photobook.repositories.vo.OrdersVo;
 import himedia.photobook.repositories.vo.ShipmentsVo;
 import himedia.photobook.repositories.vo.UsersVo;
 
-@Service("adminDeliveryService")
+@Service
 public class AdminDeliveryServiceImpl {
 	private DataConverter dataConverter = new DataConverter();
 	
 	@Autowired
-	private OrdersDaoImpl orderDao;
+	private OrderDao orderDaoImpl;
 	@Autowired
-	private UsersDaoImpl userDao;
+	private UsersDao usersDaoImpl;
 	@Autowired
 	private ShipmentsDao shipmentsDaoImpl;
 	@Autowired
-	private RefundDaoImpl refundDao;
+	private RefundDao refundDaoImpl;
 	@Autowired
-	private AlbumDaoImpl albumDao;
+	private AlbumDao albumDaoImpl;
 	
 	/**
 	 * 배송 관리에 필요한 정보들을 모두 리턴해주는 함수
@@ -50,11 +50,11 @@ public class AdminDeliveryServiceImpl {
 			deliveryInfos = new HashMap<String, Object>();	
 			status = shipmentsVo.getShipmentStatus();
 			if(status.equals("R"))	
-				status = refundDao.selectStatusByOrderID(shipmentsVo.getOrderId());
+				status = refundDaoImpl.selectStatusByOrderID(shipmentsVo.getOrderId());
 			status = dataConverter.statusToWord(status);
 			
-			ordersVo = orderDao.selectByOrderId(shipmentsVo.getOrderId());
-			usersVo = userDao.selectUserByUserId(ordersVo.getUserId());
+			ordersVo = orderDaoImpl.selectByOrderId(shipmentsVo.getOrderId());
+			usersVo = usersDaoImpl.selectUserByUserId(ordersVo.getUserId());
 		
 			deliveryInfos.put("shipmentsVo", shipmentsVo);
 			deliveryInfos.put("shipmentDate", 
@@ -73,10 +73,10 @@ public class AdminDeliveryServiceImpl {
 	 * */
 	public Map<String, Object> getDeliveryDetailInfo(String orderId){
 		Map<String, Object> deliveryDetailInfo = new HashMap<String, Object>();
-		OrdersVo ordersVo = orderDao.selectByOrderId(orderId);
-		UsersVo usersVo = userDao.selectUserByUserId(ordersVo.getUserId());
+		OrdersVo ordersVo = orderDaoImpl.selectByOrderId(orderId);
+		UsersVo usersVo = usersDaoImpl.selectUserByUserId(ordersVo.getUserId());
 		ShipmentsVo shipmentsVo = shipmentsDaoImpl.selectShipmentInfoByOrderID(orderId);
-		AlbumVo albumVo = albumDao.selectAlbumIdById(ordersVo.getAlbumId());
+		AlbumVo albumVo = albumDaoImpl.selectOneById(ordersVo.getAlbumId());
 		
 		deliveryDetailInfo.put("ordersVo", ordersVo);
 		deliveryDetailInfo.put("usersVo", usersVo);

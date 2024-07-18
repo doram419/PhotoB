@@ -18,7 +18,7 @@ import org.springframework.web.servlet.ModelAndView;
 @RequestMapping("/users")
 public class UsersController {
 	@Autowired
-	private UsersService userService;
+	private UsersService usersService;
 
 	@GetMapping("/login")
 	public String login() {
@@ -34,7 +34,6 @@ public class UsersController {
 
 	@PostMapping("/login") // 로그인 실패 메세지 출력기능 구현 필요!!!
 	public String loginAction(@RequestParam(value = "email", required = false, defaultValue = "") String email,
-
 			@RequestParam(value = "password", required = false, defaultValue = "") String password,
 
 			HttpSession session) {
@@ -42,7 +41,7 @@ public class UsersController {
 			return "redirect:/users/home";
 		}
 
-		UsersVo authUser = userService.login(email, password);
+		UsersVo authUser = usersService.login(email, password);
 		
 		if (authUser != null) {
 
@@ -61,7 +60,7 @@ public class UsersController {
 
 	@PostMapping("/register")
 	public ModelAndView registerProcess(UsersVo user) {
-		boolean isRegistered = userService.register(user);
+		boolean isRegistered = usersService.register(user);
 		if (isRegistered) {
 			return new ModelAndView("redirect:/users/login");
 		} else {
@@ -94,7 +93,7 @@ public class UsersController {
 			currentUser.setPhoneNumber(updatedUser.getPhoneNumber());
 			currentUser.setAddress(updatedUser.getAddress());
 
-			boolean isUpdated = userService.updateUser(currentUser);
+			boolean isUpdated = usersService.updateUser(currentUser);
 			if (isUpdated) {
 				session.setAttribute("authUser", currentUser);
 				return "redirect:/users/profile";
