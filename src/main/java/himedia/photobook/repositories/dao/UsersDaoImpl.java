@@ -1,4 +1,5 @@
 package himedia.photobook.repositories.dao;
+
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -63,6 +64,11 @@ public class UsersDaoImpl implements UsersDao {
             throw new UsersDaoException("예외 발생!");
         }
     }
-}
-
 	 
+	public UsersVo selectOneUserById(String Id) {
+		System.out.println("selectOneUserById-id : " + Id);
+		UsersVo est = sqlSession.selectOne("users.selectUserById", Id);
+		System.out.println("selectOneUserById-users : " + est);
+		return est;
+	}
+}

@@ -8,7 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import himedia.photobook.repositories.vo.InventoryVo;
-import himedia.photobook.repositories.vo.OrdersVo;
 
 @Repository
 public class InventoryDaoImpl implements InventoryDao {
