@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import himedia.photobook.repositories.vo.AlbumVo;
+import himedia.photobook.repositories.vo.InventoryVo;
 import himedia.photobook.repositories.vo.UsersVo;
 import himedia.photobook.services.UserPhotobookService;
 import jakarta.servlet.http.HttpSession;
@@ -32,7 +33,8 @@ public class UserPhotobookController {
 	@PostMapping("/create_photobook")
 	public String createPhotobook(@RequestParam(value = "material", required = false) String material,
 			@RequestParam(value = "color", required = false) String color,
-			@RequestParam(value = "albumSize", required = false) String albumSize, HttpSession albumsession,
+			@RequestParam(value = "albumSize", required = false) String albumSize,
+			@RequestParam(value = "oQuantity", required = false) Long oQuantity, HttpSession albumsession,
 			Model model) {
 		AlbumVo albumVo = userPhotobookService.findAlbumIdByOptions(material, color, albumSize);
 		if (albumVo == null) {
@@ -41,14 +43,27 @@ public class UserPhotobookController {
 		}
 
 		String albumId = albumVo.getAlbumId();
+
 		albumsession.setAttribute("albumId", albumId);
+		albumsession.setAttribute("oQuantity", oQuantity);
+		System.out.println("create_photobook으로 들어오는 수량" + oQuantity);
 		return "/WEB-INF/views/users/users_create_photobook.jsp";
 	}
 
 	@PostMapping("/photobookorder")
-	public String photobookorder(@RequestParam(value="albumId", required = false) String albumId, HttpSession session){
+	public String photobookorder(@RequestParam(value = "albumId", required = false) String albumId,
+			HttpSession session) {
+		UsersVo authUser = (UsersVo) session.getAttribute("authUser");
+		String userId = authUser.getUserId();
+		InventoryVo inventoryVo = userPhotobookService.findAlbumPriceByAlbumId(albumId);
+		Long albumPrice = inventoryVo.getAlbumPrice();
+		System.out.println(albumPrice);
 		System.out.println(albumId);
-	
+		System.out.println(userId);
+		Long oQuantity = (Long) session.getAttribute("oQuantity");
+		System.out.println("photobookorder에서 받아오는 수량"+oQuantity);
+		userPhotobookService.orderInsert(userId, albumId, oQuantity);
 		return "redirect:/users/order";
 	}
+
 }

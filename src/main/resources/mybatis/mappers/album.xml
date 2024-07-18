@@ -7,4 +7,4 @@
         FROM ALBUM
         WHERE MATERIAL = #{material}  AND COLOR = #{color} AND ALBUM_SIZE = #{albumSize}
     </select>
-</mapper>
+    </mapper>

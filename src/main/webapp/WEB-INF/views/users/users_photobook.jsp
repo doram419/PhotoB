@@ -21,8 +21,8 @@
 			<h2>포토북 제작</h2>
 			<form action="<c:url value='/users/create_photobook'/>" method="post">
 				<div class="form-group">
-					<label for="material">커버 재질:</label> <select
-						id="material" name="material">
+					<label for="material">커버 재질:</label> <select id="material"
+						name="material">
 						<option value="LINEN">린넨</option>
 						<option value="LEATHER">가죽</option>
 						<option value="HARD">하드</option>
@@ -30,7 +30,8 @@
 					</select>
 				</div>
 				<div class="form-group">
-					<label for="albumSize">사이즈:</label> <select id="albumSize" name="albumSize">
+					<label for="albumSize">사이즈:</label> <select id="albumSize"
+						name="albumSize">
 						<option value="S">S</option>
 						<option value="M">M</option>
 						<option value="L">L</option>
@@ -42,6 +43,10 @@
 						<option value="BLUE">파란색</option>
 						<option value="BROWN">갈색</option>
 					</select>
+				</div>
+				<div class="form-group">
+					<label for="quantity">수량:</label> <input type="number"
+						id="oQuantity" name="oQuantity" min="1" max="100" value="1" required>
 				</div>
 				<div class="form-group">
 					<button type="submit">포토북 제작</button>
