@@ -13,12 +13,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import himedia.photobook.repositories.dao.UBoardDao;
 import himedia.photobook.repositories.dao.UsersDao;
-import himedia.photobook.repositories.dao.UsersDaoImpl;
 import himedia.photobook.repositories.vo.BoardVo;
 import himedia.photobook.repositories.vo.UsersVo;
-import himedia.photobook.services.UserService;
 import himedia.photobook.services.users.UBoardService;
 import jakarta.servlet.http.HttpSession;
 
