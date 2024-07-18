@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import himedia.photobook.repositories.vo.AlbumVo;
 import himedia.photobook.repositories.vo.InventoryVo;
 import himedia.photobook.repositories.vo.UsersVo;
-import himedia.photobook.services.UserPhotobookService;
+import himedia.photobook.services.users.UserPhotobookService;
 import jakarta.servlet.http.HttpSession;
 
 @Controller

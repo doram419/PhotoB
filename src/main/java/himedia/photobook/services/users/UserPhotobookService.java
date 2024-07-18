@@ -1,4 +1,4 @@
-package himedia.photobook.services;
+package himedia.photobook.services.users;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -10,25 +10,25 @@ import himedia.photobook.repositories.vo.AlbumVo;
 import himedia.photobook.repositories.vo.InventoryVo;
 import himedia.photobook.repositories.vo.OrdersVo;
 
-@Service("userPhotobookService")
+@Service
 public class UserPhotobookService {
 	@Autowired
-	private AlbumDao albumsDao;
+	private AlbumDao albumDaoImpl;
 	@Autowired
-	private InventoryDao inventorysDao;
+	private InventoryDao inventoryDaoImpl;
 	@Autowired
-	private OrderDao ordersDao;
+	private OrderDao orderDaoImpl;
 
 	public AlbumVo findAlbumIdByOptions(String material, String color, String albumSize) {
-		AlbumVo albumVo = albumsDao.findAlbumIdByOptions(material, color, albumSize);
+		AlbumVo albumVo = albumDaoImpl.findAlbumIdByOptions(material, color, albumSize);
 		return albumVo;
 	}
 
 	public InventoryVo findAlbumPriceByAlbumId(String albumId) {
-		InventoryVo inventoryVo = inventorysDao.findAlbumPriceByAlbumId(albumId);
+		InventoryVo inventoryVo = inventoryDaoImpl.findAlbumPriceByAlbumId(albumId);
 		return inventoryVo;
 	}
 	public int orderInsert(String userId, String albumId, Long oQuantity) {
-	    return ordersDao.orderInsert(userId,albumId,oQuantity);
+	    return orderDaoImpl.orderInsert(userId,albumId,oQuantity);
 	}
 }

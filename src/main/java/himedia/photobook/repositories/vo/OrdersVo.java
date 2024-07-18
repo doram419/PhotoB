@@ -7,14 +7,14 @@ public class OrdersVo {
 	private String userId;
 	private String albumId;
 	private Date orderDate;
-	private String total;
+	private Long total;
 	private Long oQuantity;
 	
 	public OrdersVo() {
 		
 	}
 
-	public OrdersVo(String orderId, String userId, String albumId, Date orderDate, String total, Long oQuantity) {
+	public OrdersVo(String orderId, String userId, String albumId, Date orderDate, Long total, Long oQuantity) {
 		super();
 		this.orderId = orderId;
 		this.userId = userId;
@@ -56,11 +56,11 @@ public class OrdersVo {
 		this.orderDate = orderDate;
 	}
 
-	public String getTotal() {
+	public Long getTotal() {
 		return total;
 	}
 
-	public void setTotal(String total) {
+	public void setTotal(Long total) {
 		this.total = total;
 	}
 

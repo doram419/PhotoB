@@ -7,6 +7,7 @@
         VALUES ('USER' || LPAD((SELECT NVL(MAX(TO_NUMBER(SUBSTR(USER_ID, 5))) + 1, 1) FROM USERS), 4, '0'),
         	 #{email}, #{password}, #{userName}, #{address}, #{phoneNumber}, #{role})
     </insert>
+    
     <select id="selectUserByEmail" parameterType="String" resultType="UsersVo">
         SELECT 
         	USER_ID as userId, EMAIL, PASSWORD, 
@@ -25,6 +26,14 @@
         WHERE EMAIL = #{email} AND PASSWORD = #{password}
     </select>
     
+   	<select id="selectUserByUserId" parameterType="String" resultType="UsersVo">
+        SELECT 
+        	USER_ID as userId, EMAIL, PASSWORD, 
+        	USER_NAME as userName, ADDRESS, 
+        	PHONE_NUMBER as phoneNumber, ROLE 
+        FROM USERS
+        WHERE USER_ID = #{value}
+    </select>
 
     <update id="updateUser" parameterType="UsersVo">
        UPDATE USERS
@@ -35,6 +44,4 @@
             PHONE_NUMBER = #{phoneNumber, jdbcType=VARCHAR}
         WHERE USER_ID = #{userId, jdbcType=VARCHAR}
     </update>
-    
-
 </mapper>

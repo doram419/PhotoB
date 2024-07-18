@@ -10,7 +10,7 @@ import org.springframework.stereotype.Repository;
 import himedia.photobook.repositories.vo.InventoryVo;
 import himedia.photobook.repositories.vo.OrdersVo;
 
-@Repository("inventorysDao")
+@Repository
 public class InventoryDaoImpl implements InventoryDao {
 	@Autowired
 	private SqlSession sqlSession;
