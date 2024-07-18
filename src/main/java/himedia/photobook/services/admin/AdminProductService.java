@@ -7,7 +7,7 @@ import himedia.photobook.repositories.vo.InventoryVo;
 
 public interface AdminProductService {
 	// 앨범 및 가격 목록
-	public List<AlbumVo> listAlbum();
+	public List<AlbumVo> searchAlbum(String searchCategory, String keyword);
 	public List<InventoryVo> listInventory();
 	// 앨범 및 가격 수정
 	public void updateAlbum(AlbumVo vo);
@@ -18,5 +18,6 @@ public interface AdminProductService {
 	// 앨범 추가
 	public void insertAlbum(AlbumVo vo);
 	public void insertInventory(InventoryVo vo);
+	
 
 }

@@ -20,8 +20,8 @@ public class AdminProductServiceImpl implements AdminProductService {
 	
 	// 앨범목록
 	@Override
-	public List<AlbumVo> listAlbum() {
-		return AlbumDao.listAlbum();
+	public List<AlbumVo> searchAlbum(String searchCategory, String keyword) {
+		return AlbumDao.searchAlbum(keyword);
 	}
 	// 앨범가격 목록
 	@Override
