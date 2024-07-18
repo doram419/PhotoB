@@ -1,29 +1,32 @@
 package himedia.photobook.repositories.dao;
+import java.util.HashMap;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-
-import himedia.photobook.exceptions.UsersAlbumException;
 import himedia.photobook.repositories.vo.AlbumVo;
+import himedia.photobook.exceptions.UsersAlbumException;
 
-/**
- * 배운 것과 다르게 interface 구현은 하지 않음
- * 이후 기능상 겹치는 부분이 있으면 따로 인터페이스 구현 할 예정
- * 그러나 이름은 수정이 있을 가능성을 고려하여 ~impl로 함 
- * */
-@Repository("albumDao")
-public class AlbumDaoImpl {
+@Repository("albumsDao") 
+public class AlbumDaoImpl implements AlbumDao {
 	@Autowired
-	private SqlSession session;
+	private SqlSession sqlSession;
 	
-	/**
-	 * 앨범 ID로 album 튜플을 가져오는 메서드
-	 * exception 처리 필요함
-	 * */
+	@Override	
+	 public AlbumVo findAlbumIdByOptions(String material, String color, String albumSize) {
+	        Map<String, String> options = new HashMap<>();
+	        options.put("material", material);
+	        options.put("color", color);
+	        options.put("albumSize", albumSize);
+	        AlbumVo albumVo = sqlSession.selectOne("album.findAlbumIdByOptions", options);
+	        return albumVo;
+	 }
+
+	@Override
 	public AlbumVo selectOneById(String albumId){
 		try {
-			return session.selectOne("album.selectByID", albumId);
+			return sqlSession.selectOne("album.selectByID", albumId);
 			
 		}catch (Exception e) {
 			e.printStackTrace();

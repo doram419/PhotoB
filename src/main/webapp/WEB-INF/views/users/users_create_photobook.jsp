@@ -1,143 +1,99 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>포토북 스타일 미리보기</title>
-<link type="text/css" rel="stylesheet" href='<c:url value="/css/create_photobook_style.css"/>'>
-<link rel="stylesheet" href="<c:url value='/css/header_footer.css'/>">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>포토북 제작 - 사진 업로드 및 미리보기</title>
+    <link type="text/css" rel="stylesheet" href='<c:url value="/css/create_photobook_style.css"/>'>
+    <link rel="stylesheet" href="<c:url value='/css/header_footer.css'/>">
 </head>
 <body>
+    <c:import url="/WEB-INF/views/users/includes/users_header.jsp" />
 
-	<c:import url="/WEB-INF/views/users/includes/users_header.jsp" />
+    <h1>포토북 제작 - 사진 업로드 및 미리보기</h1>
 
-	<h1>포토북 스타일 미리보기</h1>
+    <div class="selected-options">
+        <h2>선택된 옵션</h2>
+        <p>커버 재질: ${param.material}</p>
+        <p>사이즈: ${param.albumSize}</p>
+        <p>색상: ${param.color}</p>
+    </div>
 
-	<div class="style-options">
-		<label class="style-option"> <input type="radio" name="style"
-			value="1" checked> 1장
-		</label> <label class="style-option"> <input type="radio" name="style"
-			value="2"> 2장
-		</label> <label class="style-option"> <input type="radio" name="style"
-			value="3"> 3장
-		</label> <label class="style-option"> <input type="radio" name="style"
-			value="4"> 4장
-		</label>
-	</div>
+    <div class="upload-section">
+        <h2>사진 업로드</h2>
+        <input type="file" id="photoUpload" accept="image/*" multiple>
+    </div>
 
-	<div class="preview-wrapper">
-		<div class="preview-container">
-			<div class="preview-page"></div>
-			<div class="pagination"></div>
-		</div>
-	</div>
+    <div class="preview-section">
+        <h2>미리보기</h2>
+        <div class="preview-container">
+            <!-- 여기에 미리보기 이미지들이 동적으로 추가됩니다 -->
+        </div>
+    </div>
 
-	<div class="nav-buttons">
-		<button id="prevPage">이전 페이지</button>
-		<button id="nextPage">다음 페이지</button>
-	</div>
+    <div class="style-options">
+        <label><input type="radio" name="style" value="1" checked> 1장</label>
+        <label><input type="radio" name="style" value="2"> 2장</label>
+        <label><input type="radio" name="style" value="3"> 3장</label>
+        <label><input type="radio" name="style" value="4"> 4장</label>
+    </div>
 
-	<form action="<c:url value='/users/order'/>" method="post">
-		<input type="hidden" id="selectedStyle" name="selectedStyle">
-		<button type="submit" class="create-button">제작</button>
-	</form>
+    <div class="nav-buttons">
+        <button id="prevPage">이전 페이지</button>
+        <button id="nextPage">다음 페이지</button>
+    </div>
 
-	<script>
-    	// 효원 코드: 이거 잘 몰라서 전부 gpt 돌렸습니다. 포토북 제작툴 기능 구현 가능하신 능력자분 구합니다. 
+    <form action="<c:url value='/users/photobookOrder'/>" method="post">
+        <input type="hidden" id="selectedStyle" name="selectedStyle">
+        <input type="hidden" name="albumId" value="${sessionScope.albumId}">
+        <input type="hidden" name="userId" value="${sessionScope.authUser.userId}">
+            
+        <button type="submit" class="create-button">제작 완료</button>
+    </form>
+
+    <script>
+        const material = "${param.material}";
+        const albumSize = "${param.albumSize}";
+        const color = "${param.color}";
+
+        // 여기에 사진 업로드, 미리보기, 스타일 선택 등의 JavaScript 코드를 추가합니다
+        const photoUpload = document.getElementById('photoUpload');
+        const previewContainer = document.querySelector('.preview-container');
         const styleOptions = document.querySelectorAll('input[name="style"]');
-        const previewPage = document.querySelector('.preview-page');
-        const paginationDisplay = document.querySelector('.pagination');
-        const prevPageBtn = document.getElementById('prevPage');
-        const nextPageBtn = document.getElementById('nextPage');
         const selectedStyleInput = document.getElementById('selectedStyle');
 
-        let currentPage = 1;
-        const totalPages = 24;
-
-        function updatePreview() {
-            const selectedStyle = document.querySelector('input[name="style"]:checked').value;
-            selectedStyleInput.value = selectedStyle;
-            
-            const numImages = parseInt(selectedStyle);
-            const imageSizes = calculateImageSize(numImages);
-            
-            previewPage.innerHTML = '';
-
-            for (let i = 0; i < numImages; i++) {
-                const img = document.createElement('div');
-                img.className = 'preview-image';
-                img.style.width = `${imageSizes[i].width}%`;
-                img.style.height = `${imageSizes[i].height}%`;
-                img.style.backgroundImage = `url("<c:url value='/api/placeholder/400/400'/>");`;
-
-                if (numImages === 3 && i === 2) {
-                    img.classList.add('bottom');
+        // 사진 업로드 처리
+        photoUpload.addEventListener('change', function(event) {
+            previewContainer.innerHTML = ''; // 기존 미리보기 삭제
+            const files = event.target.files;
+            for (let i = 0; i < files.length; i++) {
+                const file = files[i];
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    const img = document.createElement('img');
+                    img.src = e.target.result;
+                    img.style.width = '100px'; // 미리보기 이미지 크기 조정
+                    img.style.height = 'auto';
+                    previewContainer.appendChild(img);
                 }
-
-                previewPage.appendChild(img);
+                reader.readAsDataURL(file);
             }
-
-            updatePagination();
-        }
-
-        function calculateImageSize(numImages) {
-            const gap = 1;
-
-            switch (numImages) {
-                case 1:
-                    return [{ width: 100, height: 100 }];
-                case 2:
-                    return [
-                        { width: (100 - gap) / 2, height: 100 },
-                        { width: (100 - gap) / 2, height: 100 }
-                    ];
-                case 3:
-                    return [
-                        { width: (100 - gap) / 2, height: (100 - gap) / 2 },
-                        { width: (100 - gap) / 2, height: (100 - gap) / 2 },
-                        { width: 100, height: (100 - gap) / 2 }  
-                    ];
-                case 4:
-                    return [
-                        { width: (100 - gap) / 2, height: (100 - gap) / 2 },
-                        { width: (100 - gap) / 2, height: (100 - gap) / 2 },
-                        { width: (100 - gap) / 2, height: (100 - gap) / 2 },
-                        { width: (100 - gap) / 2, height: (100 - gap) / 2 }
-                    ];
-                default:
-                    return [];
-            }
-        }
-
-        function updatePagination() {
-            paginationDisplay.textContent = `${currentPage} / ${totalPages}`;
-        }
-
-        function prevPage() {
-            if (currentPage > 1) {
-                currentPage--;
-                updatePagination();
-            }
-        }
-
-        function nextPage() {
-            if (currentPage < totalPages) {
-                currentPage++;
-                updatePagination();
-            }
-        }
-
-        styleOptions.forEach(option => {
-            option.addEventListener('change', updatePreview);
         });
 
-        prevPageBtn.addEventListener('click', prevPage);
-        nextPageBtn.addEventListener('click', nextPage);
+        // 스타일 선택 처리
+        styleOptions.forEach(option => {
+            option.addEventListener('change', function() {
+                selectedStyleInput.value = this.value;
+                // 여기에 선택된 스타일에 따른 미리보기 업데이트 로직 추가
+            });
+        });
 
-        updatePreview();
+        // 초기 스타일 설정
+        selectedStyleInput.value = document.querySelector('input[name="style"]:checked').value;
     </script>
+
+    <c:import url="/WEB-INF/views/users/includes/users_footer.jsp" />
 </body>
 </html>

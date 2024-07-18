@@ -9,12 +9,15 @@
 		<typeAlias 
 			type="himedia.photobook.repositories.vo.UsersVo"
 			alias="UsersVo" />
-		<typeAlias 
-			type="himedia.photobook.repositories.vo.OrdersVo"
-			alias="OrdersVo" />
-		<typeAlias 
+			<typeAlias
 			type="himedia.photobook.repositories.vo.AlbumVo"
 			alias="AlbumVo" />
+			<typeAlias
+			type="himedia.photobook.repositories.vo.InventoryVo"
+			alias="InventoryVo" />
+			<typeAlias
+			type="himedia.photobook.repositories.vo.OrdersVo"
+			alias="OrdersVo" />
 		<typeAlias 
 			type="himedia.photobook.repositories.vo.ShipmentsVo"
 			alias="ShipmentsVo" />
@@ -26,10 +29,10 @@
 	<!-- MyBatis 매퍼 -->
 	<mappers> 
 		<mapper resource="mybatis/mappers/users.xml" />
-		<mapper resource="mybatis/mappers/orders.xml" />
 		<mapper resource="mybatis/mappers/album.xml" />
+		<mapper resource="mybatis/mappers/inventory.xml" />
+		<mapper resource="mybatis/mappers/order.xml" />
 		<mapper resource="mybatis/mappers/shipments.xml" />
 		<mapper resource="mybatis/mappers/refund.xml" />
-		<mapper resource="mybatis/mappers/profile.xml" />
 	</mappers>
 </configuration>
