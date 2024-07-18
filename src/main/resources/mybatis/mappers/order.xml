@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="order">
+	<insert id="orderInsert" parameterType="map">
+      INSERT INTO ORDERS (ORDER_ID, USER_ID, ALBUM_ID,
+      ORDER_DATE,TOTAL,O_QUANTITY)
+      VALUES ((SELECT CASE WHEN SUBSTR((SELECT MAX(ORDER_ID) FROM ORDERS),0,6) =
+      TO_CHAR(SYSDATE,'YYMMDD')
+      THEN TO_CHAR(SYSDATE,'YYMMDD') || 'N' || LPAD(SUBSTR((SELECT MAX(ORDER_ID)
+      FROM ORDERS),-4)+1,4,'0')
+      ELSE TO_CHAR(SYSDATE,'YYMMDD') || 'N' ||'0001'
+      END FROM DUAL)
+      , #{userId},#{albumId} ,SYSDATE, (SELECT I.ALBUM_PRICE * #{oQuantity}
+      FROM INVENTORY I, ALBUM A
+      WHERE I.ALBUM_ID = A.ALBUM_ID AND A.ALBUM_ID = #{albumId}) ,#{oQuantity})
+   </insert>
+   <select id="selectAllOrdersByUserId" parameterType="String" resultType="OrdersVo">
+		SELECT 
+			ORDER_ID as orderId, USER_ID as userId,
+			ALBUM_ID as albumId, ORDER_DATE as orderDate,
+			TOTAL, O_QUANTITY as oQuantity
+		FROM
+		 	ORDERS
+		WHERE 
+			USER_ID = #{value}
+	</select>
+</mapper>
