@@ -8,6 +8,7 @@
     <title>포토북 제작 - 사진 업로드 및 미리보기</title>
     <link type="text/css" rel="stylesheet" href='<c:url value="/css/create_photobook_style.css"/>'>
     <link rel="stylesheet" href="<c:url value='/css/header_footer.css'/>">
+    
 </head>
 <body>
     <c:import url="/WEB-INF/views/users/includes/users_header.jsp" />
@@ -63,10 +64,17 @@
         const previewContainer = document.querySelector('.preview-container');
         const styleOptions = document.querySelectorAll('input[name="style"]');
         const selectedStyleInput = document.getElementById('selectedStyle');
+        const nextPageButton = document.getElementById('nextPage');
+        const prevPageButton = document.getElementById('prevPage');
+        const photobookForm = document.getElementById('photobookForm');
+        
+        let currentPage = 1;
+        let imagePages = {}; // 이미지 페이지 저장 객체
 
         // 사진 업로드 처리
         photoUpload.addEventListener('change', function(event) {
             previewContainer.innerHTML = ''; // 기존 미리보기 삭제
+            imagePages[currentPage] = []; // 현재 페이지의 이미지 배열 초기화
             const files = event.target.files;
             for (let i = 0; i < files.length; i++) {
                 const file = files[i];
@@ -74,12 +82,40 @@
                 reader.onload = function(e) {
                     const img = document.createElement('img');
                     img.src = e.target.result;
-                    img.style.width = '100px'; // 미리보기 이미지 크기 조정
+                    img.style.width = '300px'; // 미리보기 이미지 크기 조정
                     img.style.height = 'auto';
+                    img.style.margin = '5px'; // 이미지 간격 설정
                     previewContainer.appendChild(img);
+                    imagePages[currentPage].push(e.target.result); // 이미지 배열에 추가
                 }
                 reader.readAsDataURL(file);
             }
+        });
+        
+     // 다음 페이지 버튼 클릭 처리
+        nextPageButton.addEventListener('click', function() {
+            currentPage++;
+            alert(`다음 페이지로 이동합니다 (${currentPage}페이지)`);
+            // 여기에 다음 페이지로 넘어갈 때 필요한 로직 추가
+            // 예를 들어, 다음 페이지로 넘어가면 현재 페이지에서 선택한 이미지를 다음 페이지로 전달하거나 저장하는 로직을 추가할 수 있습니다.
+        });
+     
+     // 이전 페이지 버튼 클릭 처리 (옵션)
+        prevPageButton.addEventListener('click', function() {
+            if (currentPage > 1) {
+                currentPage--;
+                alert(`이전 페이지로 이동합니다 (${currentPage}페이지)`);
+                // 여기에 이전 페이지로 넘어갈 때 필요한 로직 추가
+                // 예를 들어, 이미지를 이전 페이지로 전달하거나 저장하는 등의 작업을 수행합니다.
+            }
+        });
+     
+        // 제작 완료 버튼 클릭 시 폼 제출
+        photobookForm.addEventListener('submit', function(event) {
+            // 선택된 스타일 입력
+            selectedStyleInput.value = document.querySelector('input[name="style"]:checked').value;
+            // 여기에 제작 완료 시 필요한 로직 추가
+            // 예를 들어, 모든 페이지의 이미지 데이터를 서버로 전송하는 등의 작업을 수행합니다.
         });
 
         // 스타일 선택 처리
@@ -94,6 +130,6 @@
         selectedStyleInput.value = document.querySelector('input[name="style"]:checked').value;
     </script>
 
-    <c:import url="/WEB-INF/views/users/includes/users_footer.jsp" />
+   
 </body>
 </html>

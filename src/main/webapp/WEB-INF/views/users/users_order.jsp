@@ -12,6 +12,7 @@
     <link type="text/css" 
 		rel="stylesheet" 
 		href='<c:url value="/css/header_footer.css"/>'>
+	
 </head>
 
 <body>
@@ -40,6 +41,7 @@
                         <td>${infoMap['ordersVo'].total}원</td>
                         <td>${infoMap['ordersVo'].oQuantity}</td>
                         <td>${infoMap['status']}</td>
+                       
                         <td> 
 	                        <form method="post" 
 	                        	action="<c:url value="/users/order/detail"/>">
@@ -54,7 +56,7 @@
 	                        	<input type="hidden" name="status"
 	                        		value="${infoMap['status']}"/>
 	                      		<button>조회</button> 
-	                      	</form>
+	                      	</form>	                      	
                       	</td> 
                 	</tr>
                 </c:forEach>             
