@@ -8,7 +8,7 @@ import org.springframework.stereotype.Repository;
 import himedia.photobook.repositories.vo.AlbumVo;
 import himedia.photobook.exceptions.UsersAlbumException;
 
-@Repository("albumsDao") 
+@Repository
 public class AlbumDaoImpl implements AlbumDao {
 	@Autowired
 	private SqlSession sqlSession;

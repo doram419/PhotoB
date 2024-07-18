@@ -1,4 +1,4 @@
-package himedia.photobook.services;
+package himedia.photobook.services.users;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -9,18 +9,18 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import himedia.photobook.repositories.dao.OrderDao;
-import himedia.photobook.repositories.dao.RefundDaoImpl;
-import himedia.photobook.repositories.dao.ShipmentsDaoImpl;
+import himedia.photobook.repositories.dao.RefundDao;
+import himedia.photobook.repositories.dao.ShipmentsDao;
 import himedia.photobook.repositories.vo.OrdersVo;
 
-@Service("userOrderService")
-public class UsersOrderServiceImpl {
+@Service
+public class UserOrderServiceImpl {
 	@Autowired
-	private OrderDao ordersDao;
+	private OrderDao orderDaoImpl;
 	@Autowired
-	private ShipmentsDaoImpl shipDao;
+	private ShipmentsDao shipmentsDaoImpl;
 	@Autowired
-	private RefundDaoImpl refundDao;
+	private RefundDao refundDaoImpl;
 	
 	/**
 	 * 주문 조회에 필요한 정보들을 담아서 보내주는 메서드
@@ -28,7 +28,7 @@ public class UsersOrderServiceImpl {
 	public List<Map<String, Object>> getOrderInfos(String userId){
 		List<Map<String, Object>> orderInfoList = new ArrayList<Map<String, Object>>();
 		Map<String, Object> orderInfos = null;
-		List<OrdersVo> orderList = ordersDao.selectAllOrdersByUserId(userId);
+		List<OrdersVo> orderList = orderDaoImpl.selectAllOrdersByUserId(userId);
 		String orderStatus = null;
 		
 		for (OrdersVo ordersVo : orderList) {
@@ -37,11 +37,11 @@ public class UsersOrderServiceImpl {
 
 			orderInfos.put("ordersVo", ordersVo);
 			
-			orderStatus = shipDao.selectStatusByOrderID(ordersVo.getOrderId());
+			orderStatus = shipmentsDaoImpl.selectStatusByOrderID(ordersVo.getOrderId());
 			if(orderStatus != null)
 			{
 				if(orderStatus.equals("R"))
-					orderStatus = refundDao.selectStatusByOrderID(ordersVo.getOrderId());
+					orderStatus = refundDaoImpl.selectStatusByOrderID(ordersVo.getOrderId());
 				
 				orderStatus = statusToWord(orderStatus);
 			}

@@ -9,7 +9,7 @@ import org.springframework.stereotype.Repository;
 import himedia.photobook.exceptions.UsersDaoException;
 import himedia.photobook.repositories.vo.UsersVo;
 
-@Repository("userDao")
+@Repository
 public class UsersDaoImpl implements UsersDao {
 	@Autowired
 	private SqlSession sqlSession;
@@ -35,6 +35,7 @@ public class UsersDaoImpl implements UsersDao {
 	    }
 	    return null;
 	}
+	
 	@Override
 	// 비번, 이메일로 조회. 로그인에 쓸거
 	public UsersVo selectUserByEmailAndPassword(String email, String password) {
@@ -43,6 +44,11 @@ public class UsersDaoImpl implements UsersDao {
 		userMap.put("password", password);
 		UsersVo userVo = sqlSession.selectOne("users.selectUserByEmailAndPassword", userMap);
 		return userVo;
+	}
+
+	@Override
+	public UsersVo selectUserByUserId(String userId) {
+		return sqlSession.selectOne("users.selectUserByUserId", userId);
 	}
 	
 	@Override
