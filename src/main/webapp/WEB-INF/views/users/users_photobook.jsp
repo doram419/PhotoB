@@ -34,7 +34,7 @@
 						name="albumSize">
 						<option value="S">S</option>
 						<option value="M">M</option>
-						<option value="L">L</option>
+						<option value="B">B</option>
 					</select>
 				</div>
 				<div class="form-group">
@@ -63,9 +63,9 @@
 		  function updateOptions() {
 		    const materialValue = material.value;
 		    albumSize.innerHTML = '';
-		    ['S', 'M', 'L'].forEach(s => {
-		      if (!(materialValue === 'LINEN' && s === 'L') &&
-		          !(materialValue === 'SOFT' && s === 'L')) {
+		    ['S', 'M', 'B'].forEach(s => {
+		      if (!(materialValue === 'LINEN' && s === 'B') &&
+		          !(materialValue === 'SOFT' && s === 'B')) {
 		        const option = document.createElement('option');
 		        option.value = s;
 		        option.textContent = s;
