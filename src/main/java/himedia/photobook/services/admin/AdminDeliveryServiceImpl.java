@@ -12,7 +12,7 @@ import himedia.photobook.controllers.DataConverter;
 import himedia.photobook.repositories.dao.AlbumDaoImpl;
 import himedia.photobook.repositories.dao.OrdersDaoImpl;
 import himedia.photobook.repositories.dao.RefundDaoImpl;
-import himedia.photobook.repositories.dao.ShipmentsDaoImpl;
+import himedia.photobook.repositories.dao.ShipmentsDao;
 import himedia.photobook.repositories.dao.UsersDaoImpl;
 import himedia.photobook.repositories.vo.AlbumVo;
 import himedia.photobook.repositories.vo.OrdersVo;
@@ -28,7 +28,7 @@ public class AdminDeliveryServiceImpl {
 	@Autowired
 	private UsersDaoImpl userDao;
 	@Autowired
-	private ShipmentsDaoImpl shipmentsDao;
+	private ShipmentsDao shipmentsDaoImpl;
 	@Autowired
 	private RefundDaoImpl refundDao;
 	@Autowired
@@ -40,32 +40,29 @@ public class AdminDeliveryServiceImpl {
 	public List<Map<String, Object>> getDeliveryInfos(){
 		List<Map<String, Object>> deliveryInfoList = new ArrayList<Map<String, Object>>();
 		Map<String, Object> deliveryInfos = null;
+		OrdersVo ordersVo = null;
 		UsersVo usersVo = null;
-		ShipmentsVo shipmentsVo = null;  
 		String status = null;
+
+		List<ShipmentsVo> shipmentsList = shipmentsDaoImpl.selectAll();
 		
-		// 주문이 들어오면 무조건 배송 테이블이 생긴다
-		// 그래서 order가 기준
-		List<OrdersVo> orderList = orderDao.selectAllOrders();
-		
-		for (OrdersVo ordersVo : orderList) {
+		for (ShipmentsVo shipmentsVo: shipmentsList) {
 			deliveryInfos = new HashMap<String, Object>();	
-			usersVo = userDao.selectUserByUserId(ordersVo.getUserId());
-			shipmentsVo = shipmentsDao.selectShipmentInfoByOrderID(
-					ordersVo.getOrderId());
-			
 			status = shipmentsVo.getShipmentStatus();
 			if(status.equals("R"))	
 				status = refundDao.selectStatusByOrderID(shipmentsVo.getOrderId());
 			status = dataConverter.statusToWord(status);
 			
-			deliveryInfos.put("ordersVo", ordersVo);
-			deliveryInfos.put("usersVo", usersVo);
+			ordersVo = orderDao.selectByOrderId(shipmentsVo.getOrderId());
+			usersVo = userDao.selectUserByUserId(ordersVo.getUserId());
+		
+			deliveryInfos.put("shipmentsVo", shipmentsVo);
 			deliveryInfos.put("shipmentDate", 
 					dataConverter.kstToYYYY(shipmentsVo.getShipmentDate()));
-			deliveryInfos.put("shipmentsVo", shipmentsVo);
 			deliveryInfos.put("status", status);
-			
+			deliveryInfos.put("ordersVo", ordersVo);
+			deliveryInfos.put("usersVo", usersVo);
+	
 			deliveryInfoList.add(deliveryInfos);
 		}
 		return deliveryInfoList;
@@ -78,7 +75,7 @@ public class AdminDeliveryServiceImpl {
 		Map<String, Object> deliveryDetailInfo = new HashMap<String, Object>();
 		OrdersVo ordersVo = orderDao.selectByOrderId(orderId);
 		UsersVo usersVo = userDao.selectUserByUserId(ordersVo.getUserId());
-		ShipmentsVo shipmentsVo = shipmentsDao.selectShipmentInfoByOrderID(orderId);
+		ShipmentsVo shipmentsVo = shipmentsDaoImpl.selectShipmentInfoByOrderID(orderId);
 		AlbumVo albumVo = albumDao.selectAlbumIdById(ordersVo.getAlbumId());
 		
 		deliveryDetailInfo.put("ordersVo", ordersVo);
