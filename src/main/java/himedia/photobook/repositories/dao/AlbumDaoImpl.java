@@ -47,7 +47,7 @@ public class AlbumDaoImpl implements AlbumDao {
 	
 	@Override
     public List<AlbumVo> findAll() {
-		return sqlSession.selectList("adlum.findAll");
+		return sqlSession.selectList("album.findAll");
 	}
 	
 	// 앨범 수정
