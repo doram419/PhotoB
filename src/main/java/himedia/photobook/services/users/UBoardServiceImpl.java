@@ -22,10 +22,24 @@ public class UBoardServiceImpl implements UBoardService {
 	private UsersDao usersDaoImpl;
 	
 	@Override
-	public BoardVo getContent(String userId,Long boardId) {
-		return uBoardDao.getContent(userId, boardId);
+	public Map<String, Object> getContent(String userId,Long boardId) {
+		BoardVo boardVo = uBoardDao.getContent(userId, boardId);
+		Map<String, Object> contentMap = new HashMap<String, Object>();
+		UsersVo usersVo = userDao.selectOneUserById(boardVo.getUserId());
+		contentMap.put("boardVo", boardVo);
+		contentMap.put("usersVo", usersVo);
+		
+		return contentMap;
+		
+		
+		
+		
 	}
 
+	@Override
+	public BoardVo getBoardVo(String userId,Long boardId) {
+		return uBoardDao.getContent(userId, boardId);
+	}
 	@Override
 	public boolean write(BoardVo boardVo) {
 		int insertedCount = uBoardDao.insert(boardVo);

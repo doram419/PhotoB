@@ -42,8 +42,11 @@ public class UsersDaoImpl implements UsersDao {
 	public UsersVo selectUserByEmailAndPassword(String email, String password) {
 		Map<String, String> userMap = new HashMap<>();
 		userMap.put("email", email);
+
 		userMap.put("password", password);
 		UsersVo userVo = sqlSession.selectOne("users.selectUserByEmailAndPassword", userMap);
+
+	
 		return userVo;
 	}
 
@@ -61,9 +64,7 @@ public class UsersDaoImpl implements UsersDao {
     }
 	 
 	public UsersVo selectOneUserById(String Id) {
-		System.out.println("selectOneUserById-id : " + Id);
 		UsersVo est = sqlSession.selectOne("users.selectUserById", Id);
-		System.out.println("selectOneUserById-users : " + est);
 		return est;
 	}
 }
