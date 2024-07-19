@@ -55,8 +55,8 @@
                             <td>${postMap['boardVo'].title}</td>
                             <td>${postMap['boardVo'].status}</td>
                             <td>
-                            	<a href="<c:url value="/board/post"/>"><button class="btn btn-primary">상세보기</button></a>
-                                <a href="<c:url value="/board/write"/>"><button class="btn btn-primary">답변하기</button></a>
+                            	<a href="<c:url value="/admin/board/post/${postMap['boardVo'].userId}/${postMap['boardVo'].boardId }"/>"><button class="btn btn-primary">상세보기</button></a>
+                                <a href="<c:url value="/admin/board/${postMap['boardVo'].userId}/${postMap['boardVo'].boardId }"/>"><button class="btn btn-primary">답변하기</button></a>
                             </td>
                         </tr>
                         </c:forEach>

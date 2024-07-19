@@ -1,4 +1,4 @@
-package himedia.photobook.controllers.users;
+package himedia.photobook.controllers.admin;
 
 import java.util.List;
 import java.util.Map;
@@ -28,32 +28,28 @@ import jakarta.servlet.http.HttpSession;
  * 고객 게시판 세부 상황은 이쪽으로 빼기
  * */
 @Controller
-@RequestMapping("/users")
-public class UserBoardController {
+@RequestMapping("/admin")
+public class AdminBoardController {
 	@Autowired
 	private UBoardService uBoardService;
 	@Autowired
 	private UsersDao userDao;
 
-	
-	@GetMapping({"/board"})
-	public String usersBoard() {
-		return "/WEB-INF/views/users/users_board.jsp";
-	}
+
 	
 	@RequestMapping("/boardList")
 	public String list(Model md) {
 		List<Map<String, Object>> list = uBoardService.getBoardInfos();
 		md.addAttribute("postList",list);
 		System.out.println(list);
-		return "/WEB-INF/views/users/users_board.jsp";
+		return "/WEB-INF/views/admin/admin_board.jsp";
 	}
 	
 //	작성 페이지로 이동
 	@GetMapping("/board/write")
 	public String writeForm(HttpSession session, RedirectAttributes redirectAtt) {
 		UsersVo authUser= (UsersVo) session.getAttribute("authUser");
-		return "/WEB-INF/views/users/board/board_write.jsp";
+		return "/WEB-INF/views/admin/board/board_write.jsp";
 	}
 	
 	@PostMapping("/board/write")
@@ -63,7 +59,7 @@ public class UserBoardController {
 		boardVo.setUserId(authUser.getUserId());
 		uBoardService.write(boardVo);
 		
-		return "redirect:/users/boardList";
+		return "redirect:/admin/boardList";
 	}
 	
 	@GetMapping("/board/post/{userId}/{boardId}")
@@ -71,14 +67,14 @@ public class UserBoardController {
 		System.out.println("userId: "+userId);
 		UsersVo authUser = (UsersVo) session.getAttribute("authUser");
 		if(authUser==null) {
-			return "redirect:/users/boardList";
+			return "redirect:/admin/boardList";
 		}
 		
 		Map<String, Object> boardVo = uBoardService.getContent(userId,boardId);
 //		UsersVo usersVo = userDao.selectOneUserById(userId);
 		md.addAttribute("vo",boardVo);
 //		md.addAttribute("userVo",usersVo);
-		return "/WEB-INF/views/users/board/board_post.jsp";
+		return "/WEB-INF/views/admin/board/board_post.jsp";
 	}
 	
 	// 편집 페이지
@@ -87,11 +83,11 @@ public class UserBoardController {
 		UsersVo authUser = (UsersVo) session.getAttribute("authUser");
 		if(authUser == null) {
 			redirectAtt.addFlashAttribute("errorMsg","자격이 없습니다.");
-			return "redirect:/users/boardList";
+			return "redirect:/admin/boardList";
 		}
 		Map<String, Object> boardVo = uBoardService.getContent(userId, boardId);
 		md.addAttribute("vo",boardVo);
-		return "/WEB-INF/views/users/board/board_modify.jsp";
+		return "/WEB-INF/views/admin/board/board_modify.jsp";
 	}
 	
 	// 편집 수행 액션
@@ -100,7 +96,7 @@ public class UserBoardController {
 		UsersVo authUser = (UsersVo) session.getAttribute("authUser");
 		if(authUser == null) {
 			redirectAtt.addFlashAttribute("errorMsg","자격이 없습니다.");
-			return "redirect:/users/boardList";
+			return "redirect:/admin/boardList";
 		}
 		BoardVo boardVo = uBoardService.getBoardVo(updateVo.getUserId(),updateVo.getBoardId());
 		
@@ -108,7 +104,7 @@ public class UserBoardController {
 		boardVo.setContent(updateVo.getContent());
 		
 		boolean success = uBoardService.update(boardVo);
-		return "redirect:/users/boardList";
+		return "redirect:/admin/boardList";
 	}
 	
 	
@@ -119,13 +115,23 @@ public class UserBoardController {
 		UsersVo authUser = (UsersVo) session.getAttribute("authUser");
 		if (authUser == null) {
 			redirectAtt.addFlashAttribute("errorMsg", "자격이 없습니다.");
-			return "redirect:/users/boardList";
+			return "redirect:/admin/boardList";
 		}
 		BoardVo boardVo = uBoardService.getBoardVo(userId, boardId);
 		
 		uBoardService.delete(userId, boardVo.getBoardId());
-		return "redirect:/users/boardList";
+		return "redirect:/admin/boardList";
 	}
 	
 	
+//	// 관리자 댓글 작성
+//			@PostMapping("/comment/write")
+//			public String commentAction(@ModelAttribute CommentsVo commentsVo,HttpSession session, RedirectAttributes redirectAtt) {
+//				UsersVo authUser= (UsersVo) session.getAttribute("authUser");
+//				if(authUser == null) {
+//					redirectAtt.addFlashAttribute("errorMsg", "자격이 없습니다.");
+//					return "redirect:/users/boardList";
+//				}
+//				commentsVo.set
+//			}
 }
