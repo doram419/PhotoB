@@ -10,7 +10,6 @@ public class UsersVo {
 	private String role;  /*  -- 사용자 : U / 관리자 : A   */
 	
 	public UsersVo() {
-		
 	}
 
 	public UsersVo(String userId, String email, String password, String userName, String address, String phoneNumber,

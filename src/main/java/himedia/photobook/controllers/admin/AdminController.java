@@ -1,9 +1,7 @@
 package himedia.photobook.controllers.admin;
 
 import org.springframework.stereotype.Controller;
-
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
 @RequestMapping({"/admin"})
@@ -11,11 +9,6 @@ public class AdminController {
 	@RequestMapping({"","/home"})
 	public String home() {
 		return "/WEB-INF/views/admin/admin_pages.jsp";
-	}
-	
-	@RequestMapping({"/customerManagement", "/customerManage", "/cm"})
-	public String customerManagement() {
-		return "/WEB-INF/views/admin/admin_customer_management.jsp";
 	}
 	
 	@RequestMapping({"/orderManagement", "/orderManage", "/om"})
@@ -35,15 +28,17 @@ public class AdminController {
 	public String dashboard() {
 		return "/WEB-INF/views/admin/admin_dashboard.jsp";
 	}
-
+	
 	@RequestMapping("/refund")
 	public String refund() {
 		return "/WEB-INF/views/admin/admin_refund.jsp";
 	}
+  
 	@RequestMapping("/delivery")
 	public String shipment() {
 		return "/WEB-INF/views/admin/admin_delivery.jsp";
 	}
+	
 	@RequestMapping("/product")
 	public String product() {
 		return "/WEB-INF/views/admin/admin_product.jsp";
@@ -59,3 +54,4 @@ public class AdminController {
 		return "/WEB-INF/views/admin/admin_customer_delete.jsp";
 	}
 }
+

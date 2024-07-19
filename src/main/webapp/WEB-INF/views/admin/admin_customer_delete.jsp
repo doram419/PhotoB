@@ -14,12 +14,12 @@
 <body>
     <h1>회원정보 삭제</h1>
     <p>정말로 위 회원정보를 삭제하시겠습니까? </p>
-    <p><strong>이름: </strong><span id="customerName">${customer.name}</span></p>
-    <p><strong>이메일: </strong><span id="customerEmail">${customer.email}</span></p>
+    <p><strong>이름: </strong><span id="userName">${user.name}</span></p>
+    <p><strong>이메일: </strong><span id="userEmail">${user.email}</span></p>
     <p>이 작업은 되돌릴 수 없습니다.</p>
     
     <form action="admin_customer_delete.jsp" method="post">
-        <input type="hidden" name="customerId" value="${param.customerId}">
+        <input type="hidden" name="userId" value="${param.userId}">
         <button type="submit">예, 삭제합니다</button>
         <!-- 삭제된 고객관리 페이지로 리다이렉트되어야함 -->
     </form>

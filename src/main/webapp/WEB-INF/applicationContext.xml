@@ -50,5 +50,9 @@
 
     <!-- MyBatis Mapper 스캔 설정 추가 -->
     <mybatis-spring:scan base-package="himedia.photobook.repositories"/>
+    
+    <bean id="albumDaoImpl" class="himedia.photobook.repositories.dao.AlbumDaoImpl"/>
+    <bean id="inventoryDaoImpl" class="himedia.photobook.repositories.dao.InventoryDaoImpl"/>
+	<bean id="orderDaoImpl" class="himedia.photobook.repositories.dao.OrderDaoImpl"/>
 
 </beans>

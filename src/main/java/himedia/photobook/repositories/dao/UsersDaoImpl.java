@@ -1,6 +1,9 @@
 package himedia.photobook.repositories.dao;
 
 import java.util.HashMap;
+
+
+
 import java.util.List;
 import java.util.Map;
 import org.apache.ibatis.session.SqlSession;
@@ -48,14 +51,39 @@ public class UsersDaoImpl implements UsersDao {
 	}
 
 	@Override
+	public List<UsersVo> searchUsers(String keyword) {
+		return sqlSession.selectList("users.searchUsers", keyword)  ;
+  }
+  
+  @Override
 	public UsersVo selectUserByUserId(String userId) {
 		return sqlSession.selectOne("users.selectUserByUserId", userId);
 	}
 	
 	@Override
+	public UsersVo getUserById(String userId) {
+		return sqlSession.selectOne("users.getUSerById", userId);
+	}
+	
+	@Override
+	public void deleteUsers(String userId) {
+		sqlSession.delete("users.deleteUsers", userId);
+	}
+	
+	@Override
+	public int updateUsers(UsersVo user) {
+		try {
+			System.out.println(user);
+			int updatedCount = sqlSession.update("users.updateUsers", user);
+			return updatedCount;
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw new UsersDaoException("업데이트 도중 예외 발생!");
+		}
+	}
+
 	// 프로필 업데이트에 쓸거
     public int updateUser(UsersVo user) {
-    	
         try {
             int updatedCount = sqlSession.update("users.updateUser", user);
             return updatedCount;
