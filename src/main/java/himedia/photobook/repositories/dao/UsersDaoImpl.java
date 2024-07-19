@@ -48,11 +48,6 @@ public class UsersDaoImpl implements UsersDao {
 	}
 
 	@Override
-	public UsersVo selectUserByUserId(String userId) {
-		return sqlSession.selectOne("users.selectUserByUserId", userId);
-	}
-	
-	@Override
 	// 프로필 업데이트에 쓸거
     public int updateUser(UsersVo user) {
     	

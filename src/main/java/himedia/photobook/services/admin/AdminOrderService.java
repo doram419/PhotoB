@@ -36,7 +36,7 @@ public List<Map<String, Object>> getOrderAdmin() {
         Map<String, Object> orderMap = new HashMap<>();
         orderMap.put("ordersVo", order);
         
-        UsersVo user = usersDaoImpl.selectUserByUserId(order.getUserId());
+        UsersVo user = usersDaoImpl.selectOneUserById(order.getUserId());
         orderMap.put("usersVo", user);
         
         String status = shipmentsDaoImpl.selectStatusByOrderID(order.getOrderId());
@@ -54,7 +54,7 @@ public Map<String, Object> getOrderDetail(String orderId) {
     OrdersVo order = orderDaoImpl.selectByOrderId(orderId);
     orderDetail.put("order", order);
     
-    UsersVo user = usersDaoImpl.selectUserByUserId(order.getUserId());
+    UsersVo user = usersDaoImpl.selectOneUserById(order.getUserId());
     orderDetail.put("user", user);
     
     AlbumVo album = albumDaoImpl.selectByAlbumId(order.getAlbumId());

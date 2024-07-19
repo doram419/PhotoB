@@ -11,7 +11,6 @@ public interface UsersDao {
 	/**
 	 * userId로 유저 정보를 조회 할 수 있는 메서드
 	 * */
-	public UsersVo selectUserByUserId(String userId);
 	public int updateUser(UsersVo vo);	//	프로필 업데이트
 	/**
 	 * 유저 id로 유저 한 명의 정보를 들고오는 메서드

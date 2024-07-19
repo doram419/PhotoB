@@ -43,7 +43,7 @@ public class AdminRefundServiceImpl {
 		for (RefundVo refundVo : refundList) {
 			refundInfos = new HashMap<String, Object>();
 			ordersVo = orderDaoImpl.selectByOrderId(refundVo.getOrderId());
-			usersVo = usersDaoImpl.selectUserByUserId(ordersVo.getUserId());
+			usersVo = usersDaoImpl.selectOneUserById(ordersVo.getUserId());
 			status = dataConverter.statusToWord(refundVo.getRefundStatus());
 			
 			refundInfos.put("ordersVo", ordersVo);
