@@ -8,7 +8,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import himedia.photobook.services.UBoardService;
+
+import himedia.photobook.services.users.UBoardServiceImpl;
 
 import org.springframework.web.bind.annotation.GetMapping;
 
@@ -17,7 +18,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class AdminController {
 	
 	@Autowired
-	private UBoardService uBoardService;
+	private UBoardServiceImpl uBoardService;
 	
 	@RequestMapping({"","/home"})
 	public String home() {

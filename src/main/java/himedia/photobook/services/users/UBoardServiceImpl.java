@@ -25,7 +25,7 @@ public class UBoardServiceImpl implements UBoardService {
 	public Map<String, Object> getContent(String userId,Long boardId) {
 		BoardVo boardVo = uBoardDao.getContent(userId, boardId);
 		Map<String, Object> contentMap = new HashMap<String, Object>();
-		UsersVo usersVo = userDao.selectOneUserById(boardVo.getUserId());
+		UsersVo usersVo = usersDaoImpl.selectOneUserById(boardVo.getUserId());
 		contentMap.put("boardVo", boardVo);
 		contentMap.put("usersVo", usersVo);
 		

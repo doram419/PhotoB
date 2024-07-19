@@ -19,8 +19,7 @@ import himedia.photobook.repositories.dao.UsersDaoImpl;
 import himedia.photobook.repositories.vo.BoardVo;
 import himedia.photobook.repositories.vo.CommentsVo;
 import himedia.photobook.repositories.vo.UsersVo;
-import himedia.photobook.services.UBoardService;
-import himedia.photobook.services.UserService;
+import himedia.photobook.services.users.UBoardServiceImpl;
 import jakarta.servlet.http.HttpSession;
 
 /**
@@ -31,9 +30,9 @@ import jakarta.servlet.http.HttpSession;
 @RequestMapping("/admin")
 public class AdminBoardController {
 	@Autowired
-	private UBoardService uBoardService;
+	private UBoardServiceImpl uBoardService;
 	@Autowired
-	private UsersDao userDao;
+	private UsersDao usersDaoImpl;
 
 
 	
