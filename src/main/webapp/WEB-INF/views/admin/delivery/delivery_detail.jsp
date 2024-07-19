@@ -30,7 +30,8 @@
 	        	<tr>
 	               <td>배송 일자</td>
 	               <td>
-	               <input type="date" id="delivery_data"
+	               <!-- Date는 서비스에서 "yyyy-MM-dd" 형식으로 변환 필요 -->
+	               <input type="date" name="shipmentDate"
 	               		value="${deliveryDetailInfos['shipmentDate']}" 
 	              			disabled/>
 	               </td>
@@ -39,10 +40,12 @@
 	           <tr>
 	               <td>배송 상태</td>
 	               <td>
-	               <select id="delivery_status" data-default="${deliveryDetailInfos['status']}" disabled>
+	               <select id="delivery_status" name="shipmentStatus"
+	               	data-default="${deliveryDetailInfos['shipmentsVo'].shipmentStatus}" disabled>
 		               <option value="A" selected>배송 준비</option>
 		               <option value="B">배송 중</option>
 		               <option value="C">배송 완료</option>
+		               <option value="R">환불</option> 
 	               </select>
 	               </td>
 	               <td><button type=button id="confirm-btn" class="edit-btn">수정</button></td>
@@ -55,23 +58,40 @@
 	           </tr>
 	           <tr>
 	               <td>주문 번호</td>
-	               <td>${deliveryDetailInfos['ordersVo'].orderId}</td>
-	               <td><button class="edit-btn">수정</button></td>
+	               <td>
+	               <input type="text" name="orderId"
+	               		value="${deliveryDetailInfos['ordersVo'].orderId}" 
+	              			disabled/>
+	               </td>
+	               <td><button type=button id="confirm-btn" class="edit-btn">수정</button></td>
 	           </tr>
 	           <tr>
 	               <td>주문자 아이디</td>
-	               <td>${deliveryDetailInfos['usersVo'].userId}</td>
-	               <td><button class="edit-btn">수정</button></td>
+	               <td>
+	               <input type="text" name="userId"
+	               		value="${deliveryDetailInfos['usersVo'].userId}" 
+	               		disabled/>
+	               </td>
+	               <td><button type=button id="confirm-btn" class="edit-btn">수정</button></td>
 	           </tr>
 	           <tr>
 	               <td>주문자 이름</td>
-	               <td>${deliveryDetailInfos['usersVo'].userName}</td>
-	               <td><button class="edit-btn">수정</button></td>
+	               <td>
+	               <input type="text" name="userName"
+	               		value="${deliveryDetailInfos['usersVo'].userName}" 
+	               		disabled/>
+	               </td>
+	               <td><button type=button id="confirm-btn" class="edit-btn">수정</button></td>
 	           </tr>
 	           <tr>
 	               <td>주문 일자</td>
-	               <td>${deliveryDetailInfos['ordersVo'].orderDate}</td>
-	               <td><button class="edit-btn">수정</button></td>
+	               <td>
+	               <!-- Date는 서비스에서 "yyyy-MM-dd" 형식으로 변환 필요 -->
+	               <input type="date" name="orderDate"
+	               		value="${deliveryDetailInfos['orderDate']}" 
+	              			disabled/>
+	               </td>
+	               <td><button type=button class="edit-btn">수정</button></td>
 	           </tr>
 	           <tr class="section-end">
 	               <td colspan="3"></td>
@@ -81,13 +101,25 @@
 	           </tr>
 	           <tr>
 	               <td>상품 id</td>
-	               <td>${deliveryDetailInfos['albumVo'].albumId}</td>
-	               <td><button class="edit-btn">수정</button></td>
+	               <td>
+	               <input type="text" name="albumId"
+	               		value="${deliveryDetailInfos['albumVo'].albumId}" 
+	               		disabled/>
+	               </td>
+	               <td><button type=button id="confirm-btn" class="edit-btn">수정</button></td>
 	           </tr>
 	           <tr>
 	               <td>표지 재질</td>
-	               <td>${deliveryDetailInfos['albumVo'].material}</td>
-	               <td><button class="edit-btn">수정</button></td>
+	               <td>
+	               <select id="material_status" name="material"
+	               	data-default="${deliveryDetailInfos['albumVo'].material}" disabled>
+		               <option value="LINEN" selected>린넨</option>
+		               <option value="LEATHER">가죽</option>
+		               <option value="HARD">하드</option>
+		               <option value="SOFT">소프트</option> 
+	               </select>
+	               </td>
+	               <td><button type=button id="confirm-btn" class="edit-btn">수정</button></td>
 	           </tr>
 	           <tr>
 	               <td>표지 색</td>

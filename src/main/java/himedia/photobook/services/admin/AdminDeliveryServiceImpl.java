@@ -82,6 +82,8 @@ public class AdminDeliveryServiceImpl {
 		deliveryDetailInfo.put("usersVo", usersVo);
 		deliveryDetailInfo.put("shipmentDate", 
 				dataConverter.kstToYYYY(shipmentsVo.getShipmentDate()));
+		deliveryDetailInfo.put("orderDate", 
+				dataConverter.kstToYYYY(ordersVo.getOrderDate()));
 		deliveryDetailInfo.put("albumVo", albumVo);
 		deliveryDetailInfo.put("shipmentsVo", shipmentsVo);
 

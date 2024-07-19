@@ -12,7 +12,7 @@ public class DataConverter {
 	 *  A(Application): 배송 준비 
 	 *  B(Before Shipping): 배송 중 
 	 *  C(Complete): 배송 완료
-	 *  R(Refund): 환불
+	 *  R(Refund): 환불 
 	 *  P(Preparing Refund): 환불 준비
 	 *  F(Finished Refund): 환불 완료
 	 * */
