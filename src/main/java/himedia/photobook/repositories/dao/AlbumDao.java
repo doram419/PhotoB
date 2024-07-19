@@ -12,6 +12,10 @@ public interface AlbumDao {
 	 * exception 처리 필요함
 	 * */
 	public AlbumVo selectOneById(String albumId);
+
 	
 	 public AlbumVo selectByAlbumId(String albumId);
 }
+
+
+
