@@ -7,14 +7,18 @@ public class OrdersVo {
 	private String userId;
 	private String albumId;
 	private Date orderDate;
-	private String total;
+	private Long total;
 	private Long oQuantity;
+	
+	// 유저 이름, 주문상태.
+	private String userName;
+	private String status;
 	
 	public OrdersVo() {
 		
 	}
 
-	public OrdersVo(String orderId, String userId, String albumId, Date orderDate, String total, Long oQuantity) {
+	public OrdersVo(String orderId, String userId, String albumId, Date orderDate, Long total, Long oQuantity) {
 		super();
 		this.orderId = orderId;
 		this.userId = userId;
@@ -56,11 +60,11 @@ public class OrdersVo {
 		this.orderDate = orderDate;
 	}
 
-	public String getTotal() {
+	public Long getTotal() {
 		return total;
 	}
 
-	public void setTotal(String total) {
+	public void setTotal(Long total) {
 		this.total = total;
 	}
 
@@ -70,6 +74,22 @@ public class OrdersVo {
 
 	public void setoQuantity(Long oQuantity) {
 		this.oQuantity = oQuantity;
+	}
+
+	public String getUserName() {
+		return userName;
+	}
+
+	public void setUserName(String userName) {
+		this.userName = userName;
+	}
+
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
 	}
 
 	@Override
