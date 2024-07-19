@@ -23,7 +23,6 @@ public class AlbumDaoImpl implements AlbumDao {
 	        options.put("color", color);
 	        options.put("albumSize", albumSize);
 	        AlbumVo albumVo = sqlSession.selectOne("album.findAlbumIdByOptions", options);
-	        System.out.println(albumVo);
 	        return albumVo;
 	 }
 

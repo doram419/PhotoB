@@ -14,14 +14,13 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import himedia.photobook.repositories.vo.UsersVo;
 import himedia.photobook.services.users.UsersOrderServiceImpl;
-import himedia.photobook.services.users.UserOrderServiceImpl;
 import jakarta.servlet.http.HttpSession;
 
 @Controller
 @RequestMapping({"/users"})
 public class UsersOrderController {
 	@Autowired
-	private UserOrderServiceImpl userOrderServiceImpl;
+	private UsersOrderServiceImpl orderService;
 	
 	@GetMapping({"/order"})
 	public String order(Model model, HttpSession session) {
@@ -31,7 +30,7 @@ public class UsersOrderController {
 		if(user != null)
 		{
 			userId = user.getUserId();
-			List<Map<String, Object>> orderInfos = userOrderServiceImpl.getOrderInfos(userId);
+			List<Map<String, Object>> orderInfos = orderService.getOrderInfos(userId);
 			System.out.println(orderInfos);
 			
 			model.addAttribute("orderInfos", orderInfos);
@@ -51,6 +50,8 @@ public class UsersOrderController {
 			@RequestParam("status") String status,
 			Model model) {
 		
+		System.out.println("-order detail-");
+
 		model.addAttribute("ordersId", ordersId);
 		model.addAttribute("albumId", albumId);
 		model.addAttribute("orderDate", orderDate);

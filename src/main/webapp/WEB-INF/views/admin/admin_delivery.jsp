@@ -14,20 +14,11 @@
 </head>
 <body>
 	<c:import url="/WEB-INF/views/admin/includes/admin_header.jsp"></c:import>
+	
+
 	<div class="main-content">
-		<div class="header">
-            <h2>배송 조회</h2>
-        </div>
-        <div class="card">
-            <div class="card-header">배송 검색</div>
-            <div class="card-body">
-                <form>
-                    <div class="form-group">
-                        <input type="text" placeholder="주문번호 또는 고객ID 검색">
-                    </div>
-                    <button type="submit" class="btn btn-primary">검색</button>
-                </form>
-            </div>
+        <div class="header">
+            <h2>대시보드</h2>
         </div>
         <div class="card">
             <div class="card-header">배송 목록</div>
@@ -36,36 +27,31 @@
                     <thead>
                         <tr>
                             <th>주문 ID</th>
-                            <th>주문자명</th>
+                            <th>이름</th>
                             <th>배송 ID</th>
                             <th>배송 일자</th>
                             <th>배송 상태</th>
-                            <th>작업</th>
                         </tr>
                     </thead>
+                   
                     <tbody>
-                        <c:forEach items="${deliveryInfos}" var="infoMap">				
                         <tr>
-	                		<td>${infoMap['ordersVo'].orderId}</td>
-	                        <td>${infoMap['usersVo'].userName}</td>
-	                        <td>${infoMap['shipmentsVo'].shipmentId}</td>
-	                        <td>${infoMap['shipmentDate']}</td>
-	                        <td>${infoMap['status']}</td>
-	                        <td>
-	                        	<form action="<c:url value="/admin/delivery/detail"/>" method="GET">
-	                        		<input type="hidden" name="orderId" value = "${infoMap['ordersVo'].orderId}"/>
-	                        		<button class="btn btn-primary">조회/변경</button>
-	                        	</form>
-                            </td>
-                		</tr>
-           				</c:forEach>   
+                            <td>test</td>
+                            <td>test</td>
+                            <td>test</td>
+                            <td>test</td>
+                            <td>test</td>
+                        </tr>
+                        <!-- 추가 주문 데이터 -->
                     </tbody>
+                   
                 </table>
             </div>
         </div>
-	</div>
-        
-    <c:import url="/WEB-INF/views/admin/includes/admin_footer.jsp"></c:import>
+	
+
 </body>
+
+<%-- <c:import url="/WEB-INF/views/admin/includes/admin_footer.jsp"></c:import> --%>
 
 </html>

@@ -25,6 +25,5 @@
 		</li>
 		<li><a href="<c:url value="/admin/cs"/>">고객 센터</a></li>
 		<li><a href="<c:url value="/admin/dash"/>">설정</a></li>
-		<li><a href="<c:url value="/users/home"/>">홈</a></li>
 	</ul>
 </div>

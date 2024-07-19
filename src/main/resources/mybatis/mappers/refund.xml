@@ -10,13 +10,4 @@
 		WHERE
 			ORDER_ID = #{value}
 	</select>
-	
-	<select id="selectAllRefunds" resultType="RefundVo">
-		SELECT 
-			REFUND_ID as refundId,
-			ORDER_ID as orderId,
-			REFUND_STATUS as refundStatus
-		FROM
-		 	REFUND
-	</select>
 </mapper>

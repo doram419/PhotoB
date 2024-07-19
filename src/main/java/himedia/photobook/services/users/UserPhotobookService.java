@@ -30,5 +30,5 @@ public class UserPhotobookService {
 	}
 	public int orderInsert(String userId, String albumId, Long oQuantity) {
 	    return orderDaoImpl.orderInsert(userId,albumId,oQuantity);
-  }
+	}
 }

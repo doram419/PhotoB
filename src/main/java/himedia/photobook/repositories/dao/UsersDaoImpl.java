@@ -1,5 +1,4 @@
 package himedia.photobook.repositories.dao;
-
 import java.util.HashMap;
 
 
@@ -13,7 +12,7 @@ import org.springframework.stereotype.Repository;
 import himedia.photobook.exceptions.UsersDaoException;
 import himedia.photobook.repositories.vo.UsersVo;
 
-@Repository
+@Repository("userDao")
 public class UsersDaoImpl implements UsersDao {
 	@Autowired
 	private SqlSession sqlSession;
@@ -39,7 +38,6 @@ public class UsersDaoImpl implements UsersDao {
 	    }
 	    return null;
 	}
-	
 	@Override
 	// 비번, 이메일로 조회. 로그인에 쓸거
 	public UsersVo selectUserByEmailAndPassword(String email, String password) {
@@ -52,12 +50,8 @@ public class UsersDaoImpl implements UsersDao {
 
 	@Override
 	public List<UsersVo> searchUsers(String keyword) {
+		//파라미터
 		return sqlSession.selectList("users.searchUsers", keyword)  ;
-  }
-  
-  @Override
-	public UsersVo selectUserByUserId(String userId) {
-		return sqlSession.selectOne("users.selectUserByUserId", userId);
 	}
 	
 	@Override
@@ -84,6 +78,7 @@ public class UsersDaoImpl implements UsersDao {
 
 	// 프로필 업데이트에 쓸거
     public int updateUser(UsersVo user) {
+    	
         try {
             int updatedCount = sqlSession.update("users.updateUser", user);
             return updatedCount;
@@ -92,11 +87,4 @@ public class UsersDaoImpl implements UsersDao {
             throw new UsersDaoException("예외 발생!");
         }
     }
-	 
-	public UsersVo selectOneUserById(String Id) {
-		System.out.println("selectOneUserById-id : " + Id);
-		UsersVo est = sqlSession.selectOne("users.selectUserById", Id);
-		System.out.println("selectOneUserById-users : " + est);
-		return est;
-	}
 }
