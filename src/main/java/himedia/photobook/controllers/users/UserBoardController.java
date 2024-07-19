@@ -73,10 +73,10 @@ public class UserBoardController {
 			return "redirect:/users/boardList";
 		}
 		
-		BoardVo boardVo = uBoardService.getContent(userId,boardId);
-		UsersVo usersVo = userDao.selectOneUserById(userId);
+		Map<String, Object> boardVo = uBoardService.getContent(userId,boardId);
+//		UsersVo usersVo = userDao.selectOneUserById(userId);
 		md.addAttribute("vo",boardVo);
-		md.addAttribute("userVo",usersVo);
+//		md.addAttribute("userVo",usersVo);
 		return "/WEB-INF/views/users/board/board_post.jsp";
 	}
 	
@@ -88,7 +88,7 @@ public class UserBoardController {
 			redirectAtt.addFlashAttribute("errorMsg","로그인 하세요~");
 			return "redirect:/users/boardList";
 		}
-		BoardVo boardVo = uBoardService.getContent(userId, boardId);
+		Map<String, Object> boardVo = uBoardService.getContent(userId, boardId);
 		md.addAttribute("vo",boardVo);
 		return "/WEB-INF/views/users/board/board_modify.jsp";
 	}
@@ -101,7 +101,7 @@ public class UserBoardController {
 			redirectAtt.addFlashAttribute("errorMsg","로그인 하세요~");
 			return "redirect:/users/boardList";
 		}
-		BoardVo boardVo = uBoardService.getContent(updateVo.getUserId(),updateVo.getBoardId());
+		BoardVo boardVo = uBoardService.getBoardVo(updateVo.getUserId(),updateVo.getBoardId());
 		
 		boardVo.setTitle(updateVo.getTitle());
 		boardVo.setContent(updateVo.getContent());
@@ -120,7 +120,7 @@ public class UserBoardController {
 			redirectAtt.addFlashAttribute("errorMsg", "로그인 실패~");
 			return "redirect:/";
 		}
-		BoardVo boardVo = uBoardService.getContent(userId, boardId);
+		BoardVo boardVo = uBoardService.getBoardVo(userId, boardId);
 		
 		uBoardService.delete(userId, boardVo.getBoardId());
 		return "redirect:/users/boardList";

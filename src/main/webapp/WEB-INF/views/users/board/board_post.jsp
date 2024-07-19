@@ -27,21 +27,15 @@
 	<div class="main-content">
 	<!-- postVo 요청 혹은 각 데이터를 요청 -->
 	
-	<h2>제목 : ${vo.title}</h2>
-    <p>글번호 : ${vo.boardId}</p>
-    <p>작성자 : ${userVo.userName}</p>
-    <p>내용 : ${vo.content}</p>
+	<h2>제목 : ${vo['boardVo'].title}</h2>
+    <p>글번호 : ${vo['boardVo'].boardId}</p>
+    <p>작성자 : ${vo['usersVo'].userName}</p>
+    <p>내용 : ${vo['boardVo'].content}</p>
     
     <!-- 댓글 기능 지원 -->
     <hr>
    	<p>댓글</p>
     <table>
-	    <tr>
-	    	<td>2</td>
-       		<td>관리자</td>
-       		<td>답변드립니다.</td>
-       		<td>2023-06-02</td>
-	    </tr>
     <c:forEach items="${commentList}" var="commentVo" varStatus="status">
 		<tr>
 			<td>${commentVo.userId}</td>
