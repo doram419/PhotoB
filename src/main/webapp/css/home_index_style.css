@@ -3,3 +3,23 @@ body {
     margin: 0;
     padding: 0;
 }
+
+.template-images {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 20px; /* 각 이미지 사이의 간격 */
+    }
+
+    .template {
+        width: calc(25% - 20px); /* 4개의 이미지를 한 줄에 배치하기 위한 너비 설정 */
+        text-align: center; /* 이미지와 텍스트를 가운데 정렬 */
+    }
+
+    .template img {
+        max-width: 100%; /* 이미지가 부모 요소를 넘지 않도록 최대 너비 지정 */
+        height: auto; /* 이미지의 비율 유지 */
+    }
+
+    .template p {
+        margin-top: 10px; /* 이미지 아래에 텍스트와의 간격 설정 */
+    }

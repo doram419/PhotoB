@@ -73,8 +73,7 @@
 
         // 사진 업로드 처리
         photoUpload.addEventListener('change', function(event) {
-            previewContainer.innerHTML = ''; // 기존 미리보기 삭제
-            imagePages[currentPage] = []; // 현재 페이지의 이미지 배열 초기화
+        	previewContainer.innerHTML = ''; // 기존 미리보기 삭제            
             const files = event.target.files;
             for (let i = 0; i < files.length; i++) {
                 const file = files[i];
@@ -86,7 +85,11 @@
                     img.style.height = 'auto';
                     img.style.margin = '5px'; // 이미지 간격 설정
                     previewContainer.appendChild(img);
-                    imagePages[currentPage].push(e.target.result); // 이미지 배열에 추가
+                    if (!imagePages[currentPage]) {
+                        imagePages[currentPage] = [];
+                    }
+                    imagePages[currentPage].push(e.target.result); // 이미지 배열에 추가                   
+                    
                 }
                 reader.readAsDataURL(file);
             }
@@ -96,6 +99,7 @@
         nextPageButton.addEventListener('click', function() {
             currentPage++;
             alert(`다음 페이지로 이동합니다 (${currentPage}페이지)`);
+           
             // 여기에 다음 페이지로 넘어갈 때 필요한 로직 추가
             // 예를 들어, 다음 페이지로 넘어가면 현재 페이지에서 선택한 이미지를 다음 페이지로 전달하거나 저장하는 로직을 추가할 수 있습니다.
         });
@@ -105,7 +109,9 @@
             if (currentPage > 1) {
                 currentPage--;
                 alert(`이전 페이지로 이동합니다 (${currentPage}페이지)`);
+               
                 // 여기에 이전 페이지로 넘어갈 때 필요한 로직 추가
+                 renderImages();
                 // 예를 들어, 이미지를 이전 페이지로 전달하거나 저장하는 등의 작업을 수행합니다.
             }
         });
@@ -121,13 +127,29 @@
         // 스타일 선택 처리
         styleOptions.forEach(option => {
             option.addEventListener('change', function() {
-                selectedStyleInput.value = this.value;
-                // 여기에 선택된 스타일에 따른 미리보기 업데이트 로직 추가
+            	 selectedStyleInput.value = this.value;
             });
         });
 
         // 초기 스타일 설정
         selectedStyleInput.value = document.querySelector('input[name="style"]:checked').value;
+        
+     // 이전 페이지의 이미지를 미리보기에 추가하는 함수
+        function renderImages() {
+            // 이전 페이지의 이미지 배열이 있으면 미리보기에 추가
+            if (imagePages[currentPage]) {
+                previewContainer.innerHTML = ''; // 기존 미리보기 삭제
+                imagePages[currentPage].forEach(imageUrl => {
+                    const img = document.createElement('img');
+                    img.src = imageUrl;
+                    img.style.width = '300px'; // 미리보기 이미지 크기 조정
+                    img.style.height = 'auto';
+                    img.style.margin = '5px'; // 이미지 간격 설정
+                    previewContainer.appendChild(img);
+                });
+            }
+        }
+        
     </script>
 
    
