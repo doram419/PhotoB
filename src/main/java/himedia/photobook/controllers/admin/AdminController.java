@@ -18,10 +18,6 @@ public class AdminController {
 		return "/WEB-INF/views/admin/admin_customer_management.jsp";
 	}
 	
-	@RequestMapping({"/orderManagement", "/orderManage", "/om"})
-	public String orderManagement() {
-		return "/WEB-INF/views/admin/admin_order_management.jsp";
-	}
 	
 	@RequestMapping({"/customerService", "/cs"})
 	public String customerService() {
@@ -45,4 +41,5 @@ public class AdminController {
 	public String customerDelete() {
 		return "/WEB-INF/views/admin/admin_customer_delete.jsp";
 	}
+
 }
