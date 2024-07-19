@@ -12,9 +12,7 @@
     <select id="listInventory" resultType="InventoryVo">
         SELECT 
             album_id as albumId,
-            album_price as albumPrice,
-            stock_quantity as stockQuantity
-        FROM 
-            inventory
+            album_price as albumPrice
+        FROM inventory
     </select>
 </mapper>

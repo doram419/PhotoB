@@ -1,6 +1,7 @@
 package himedia.photobook.controllers.users;
 
 import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -11,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import himedia.photobook.repositories.vo.AlbumVo;
 import himedia.photobook.repositories.vo.InventoryVo;
 import himedia.photobook.repositories.vo.UsersVo;
-import himedia.photobook.services.UserPhotobookService;
+import himedia.photobook.services.users.UserPhotobookService;
 import jakarta.servlet.http.HttpSession;
 
 @Controller

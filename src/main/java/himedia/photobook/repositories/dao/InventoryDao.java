@@ -10,12 +10,10 @@ public interface InventoryDao {
 public InventoryVo findAlbumPriceByAlbumId(String albumId);
 
 	// 앨범 가격 목록
+/**
+ * 	앨범 목록 가져오기
+ * */
 	public List<InventoryVo> listInventory();
-	// 앨범 가격 수정
-	public void updateInventory(InventoryVo vo);
-	// 앨범 가격 삭제
-	public void deleteInventory(Long albumPrice);
-	// 앨범 가격 추가
-	public void insertInventory(InventoryVo vo);
+	
 }
 

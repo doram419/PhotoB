@@ -1,7 +1,6 @@
 package himedia.photobook.repositories.dao;
 import java.util.HashMap;
 
-
 import java.util.List;
 import java.util.Map;
 
@@ -46,24 +45,7 @@ public class AlbumDaoImpl implements AlbumDao {
 	}
 	
 	@Override
-    public List<AlbumVo> findAll() {
-		return sqlSession.selectList("album.findAll");
+    public List<AlbumVo> selectAll() {
+		return sqlSession.selectList("album.selectAll");
 	}
-	
-	// 앨범 수정
-	@Override
-	public void updateAlbum(AlbumVo vo) {
-		sqlSession.update("album.updateAlbum", vo);
-	}
-	// 앨범 삭제
-	@Override
-	public void deleteAlbum(String albumId) {
-		sqlSession.delete("album.deleteAlbum", albumId);
-	}
-	// 앨범 추가
-	@Override
-	public void insertAlbum(AlbumVo vo) {
-		sqlSession.insert("album.insertAlbum", vo);
-	}
-	
 }

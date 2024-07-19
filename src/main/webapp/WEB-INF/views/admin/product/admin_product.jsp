@@ -21,7 +21,7 @@
 
 			<div class="card-header">제품 검색</div>
 			<div class="card-body">
-				<form method="get" action="<c:url value='/admin/product/search'/>">
+				<form method="get" action="<c:url value='/admin/products/search'/>">
 					<div class="form-group">
 						<label for="search-category">검색 분류:</label> <select
 							id="search-category" name="search-category">

@@ -4,7 +4,8 @@ package himedia.photobook.controllers.users;
 import himedia.photobook.repositories.vo.UsersVo;
 
 
-import himedia.photobook.services.UsersService;
+
+import himedia.photobook.services.users.UsersService;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -14,9 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import himedia.photobook.repositories.vo.UsersVo;
-import himedia.photobook.services.UsersService;
-import jakarta.servlet.http.HttpSession;
+
 
 // 로그인, 회원가입, 로그아웃, 프로필업데이트기능 여기에 다 넣었습니다.
 
@@ -24,7 +23,7 @@ import jakarta.servlet.http.HttpSession;
 @RequestMapping("/users")
 public class UsersController {
 	@Autowired
-	private UsersService userService;
+	private UsersService usersService;
 
 	@GetMapping("/login")
 	public String login() {
@@ -48,7 +47,7 @@ public class UsersController {
 			return "redirect:/users/home";
 		}
 
-		UsersVo authUser = userService.login(email, password);
+		UsersVo authUser = usersService.login(email, password);
 		
 		if (authUser != null) {
 
@@ -67,7 +66,7 @@ public class UsersController {
 
 	@PostMapping("/register")
 	public ModelAndView registerProcess(UsersVo user) {
-		boolean isRegistered = userService.register(user);
+		boolean isRegistered = usersService.register(user);
 		if (isRegistered) {
 			return new ModelAndView("redirect:/users/login");
 		} else {
@@ -100,7 +99,7 @@ public class UsersController {
 			currentUser.setPhoneNumber(updatedUser.getPhoneNumber());
 			currentUser.setAddress(updatedUser.getAddress());
 
-			boolean isUpdated = userService.updateUser(currentUser);
+			boolean isUpdated = usersService.updateUser(currentUser);
 			if (isUpdated) {
 				session.setAttribute("authUser", currentUser);
 				return "redirect:/users/profile";
