@@ -34,5 +34,15 @@ public class AlbumDaoImpl implements AlbumDao {
 			throw new UsersAlbumException(
 					"UserAlbumException::SelectOneById01 [에러 발생]");
 		}
+		
 	}
+	 @Override
+	    public AlbumVo selectByAlbumId(String albumId) {
+	        try {
+	            return sqlSession.selectOne("album.selectByAlbumId", albumId);
+	        } catch (Exception e) {
+	            e.printStackTrace();
+	            throw new UsersAlbumException("[에러 발생]");
+	        }
+	    }
 }

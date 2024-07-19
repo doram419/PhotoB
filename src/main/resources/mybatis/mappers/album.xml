@@ -16,4 +16,15 @@
 		WHERE
 			ALBUM_ID = #{value}
 	</select>
+	<select id="selectByAlbumId" parameterType="String" resultType="AlbumVo">
+        SELECT 
+            ALBUM_ID as albumId, 
+            MATERIAL as material,
+            COLOR as color, 
+            ALBUM_SIZE as albumSize
+        FROM
+            ALBUM
+        WHERE
+            ALBUM_ID = #{albumId}
+    </select>
 </mapper>

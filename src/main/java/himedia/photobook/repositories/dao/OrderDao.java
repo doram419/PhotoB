@@ -18,5 +18,5 @@ public interface OrderDao {
 	 * 주문 번호와 일치하는 주문 정보를 찾아오는 메서드
 	 * */
 	public OrdersVo selectByOrderId(String orderId);
-
+	
 }

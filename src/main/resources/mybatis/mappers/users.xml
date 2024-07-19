@@ -26,14 +26,6 @@
         WHERE EMAIL = #{email} AND PASSWORD = #{password}
     </select>
     
-   	<select id="selectUserByUserId" parameterType="String" resultType="UsersVo">
-        SELECT 
-        	USER_ID as userId, EMAIL, PASSWORD, 
-        	USER_NAME as userName, ADDRESS, 
-        	PHONE_NUMBER as phoneNumber, ROLE
-       	FROM USERS
-        	WHERE USER_ID = #{value}
-    </select> 
  	
  	<!-- 게시판 유저 아이디 조회용 -->
     <select id="selectUserById" parameterType="String" resultType="UsersVo">
@@ -54,4 +46,5 @@
             PHONE_NUMBER = #{phoneNumber, jdbcType=VARCHAR}
         WHERE USER_ID = #{userId, jdbcType=VARCHAR}
     </update>
+  
 </mapper>

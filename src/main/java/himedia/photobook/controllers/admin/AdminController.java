@@ -1,13 +1,25 @@
 package himedia.photobook.controllers.admin;
 
-import org.springframework.stereotype.Controller;
+import java.util.List;
+import java.util.Map;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+
+import himedia.photobook.services.users.UBoardServiceImpl;
+
 import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
 @RequestMapping({"/admin"})
 public class AdminController {
+	
+	@Autowired
+	private UBoardServiceImpl uBoardService;
+	
 	@RequestMapping({"","/home"})
 	public String home() {
 		return "/WEB-INF/views/admin/admin_pages.jsp";
@@ -18,13 +30,11 @@ public class AdminController {
 		return "/WEB-INF/views/admin/admin_customer_management.jsp";
 	}
 	
-	@RequestMapping({"/orderManagement", "/orderManage", "/om"})
-	public String orderManagement() {
-		return "/WEB-INF/views/admin/admin_order_management.jsp";
-	}
 	
 	@RequestMapping({"/customerService", "/cs"})
-	public String customerService() {
+	public String customerService(Model md) {
+		List<Map<String, Object>> list = uBoardService.getBoardInfos();
+		md.addAttribute("postList", list);
 		return "/WEB-INF/views/admin/admin_customer_service.jsp";
 	}
 	
@@ -58,4 +68,5 @@ public class AdminController {
 	public String customerDelete() {
 		return "/WEB-INF/views/admin/admin_customer_delete.jsp";
 	}
+
 }
