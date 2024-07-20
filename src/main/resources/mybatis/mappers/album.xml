@@ -40,6 +40,7 @@
             ALBUM_ID as albumId, MATERIAL,
 			COLOR, ALBUM_SIZE as albumSize
         FROM ALBUM
+    </select>
 	<select id="selectByAlbumId" parameterType="String" resultType="AlbumVo">
         SELECT 
             ALBUM_ID as albumId, 
