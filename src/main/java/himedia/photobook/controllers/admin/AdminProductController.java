@@ -25,8 +25,13 @@ public class AdminProductController {
 	
 	@GetMapping("/products/search")
     	public String showAlbumInventory(Model model) {
-        Map<String, Object> ProductMap = adminProductService.getProductMap();
-        model.addAttribute("ProductMap", ProductMap);
+		try {
+        Map<String, Object> productMap = adminProductService.getProductMap();
+        model.addAttribute("ProductMap", productMap);
+		} catch(Exception e) {
+			e.printStackTrace();
+			model.addAttribute("error", "제품 목록을 가져오는 중 오류가 발생했습니다.");
+		}
         return "/WEB-INF/views/admin/product/admin_product.jsp";
     }
 

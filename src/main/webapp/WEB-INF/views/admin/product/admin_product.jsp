@@ -50,15 +50,15 @@
 					</thead>
 
 					<tbody>
-						<c:forEach var="album" items="${ProductMap}" varStatus="status">
+						<c:forEach var="entry" items="${ProductMap}" varStatus="status">
 							<tr>
 								<td>${status.index + 1}</td>
 								<td>이미지넣기</td>
-								<td>${album.albumId}</td>
-								<td align="center">${inventory.albumPrice}</td>
-								<td>${album.albumSize}</td>
+								<td>${entry.value.album.albumId}</td>
+								<td align="center">${entry.value.inventory.albumPrice}</td>
+								<td>${entry.value.album.albumSize}</td>
 								<td>
-								<a href="<c:url value='/admin/product/productEdit?albumId=${entry.key.albumId}'/>">
+								<a href="<c:url value='/admin/product/productEdit?albumId=${entry.key}'/>">
 										<button class="btn btn-primary">수정</button>
 								</a></td>
 							</tr>
@@ -69,5 +69,5 @@
 		</div>
 	</div>
 </body>
-<c:import url="/WEB-INF/views/admin/includes/admin_footer.jsp"></c:import>
+<!-- <c:import url="/WEB-INF/views/admin/includes/admin_footer.jsp"></c:import>-->
 </html>
