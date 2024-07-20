@@ -1,6 +1,8 @@
 package himedia.photobook.repositories.dao;
-
 import java.util.HashMap;
+
+
+
 import java.util.List;
 import java.util.Map;
 import org.apache.ibatis.session.SqlSession;
@@ -42,20 +44,45 @@ public class UsersDaoImpl implements UsersDao {
 	public UsersVo selectUserByEmailAndPassword(String email, String password) {
 		Map<String, String> userMap = new HashMap<>();
 		userMap.put("email", email);
+
 		userMap.put("password", password);
 		UsersVo userVo = sqlSession.selectOne("users.selectUserByEmailAndPassword", userMap);
+
+	
 		return userVo;
 	}
 
 	@Override
-	public UsersVo selectUserByUserId(String userId) {
-		return sqlSession.selectOne("users.selectUserByUserId", userId);
+	public UsersVo getUserById(String userId) {
+		return sqlSession.selectOne("users.getUSerById", userId);
 	}
 	
 	@Override
+	public List<UsersVo> searchUsers(String keyword) {
+		//파라미터
+		return sqlSession.selectList("users.searchUsers", keyword)  ;
+	}
+	
+	@Override
+	public void deleteUsers(String userId) {
+		sqlSession.delete("users.deleteUsers", userId);
+	}
+	
+	@Override
+	public int updateUsers(UsersVo user) {
+		try {
+			System.out.println(user);
+			int updatedCount = sqlSession.update("users.updateUsers", user);
+			return updatedCount;
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw new UsersDaoException("업데이트 도중 예외 발생!");
+		}
+	}
+
 	// 프로필 업데이트에 쓸거
+	@Override
     public int updateUser(UsersVo user) {
-    	
         try {
             int updatedCount = sqlSession.update("users.updateUser", user);
             return updatedCount;
@@ -65,10 +92,9 @@ public class UsersDaoImpl implements UsersDao {
         }
     }
 	 
+    @Override
 	public UsersVo selectOneUserById(String Id) {
-		System.out.println("selectOneUserById-id : " + Id);
 		UsersVo est = sqlSession.selectOne("users.selectUserById", Id);
-		System.out.println("selectOneUserById-users : " + est);
 		return est;
 	}
 }

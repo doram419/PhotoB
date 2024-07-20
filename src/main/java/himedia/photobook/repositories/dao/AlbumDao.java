@@ -1,5 +1,7 @@
 package himedia.photobook.repositories.dao;
 
+import java.util.List;
+
 import himedia.photobook.repositories.vo.AlbumVo;
 
 public interface AlbumDao {
@@ -12,4 +14,9 @@ public interface AlbumDao {
 	 * exception 처리 필요함
 	 * */
 	public AlbumVo selectOneById(String albumId);
+	
+	// 앨범 목록
+	public List<AlbumVo> searchAlbum(String keyword);
+	public List<AlbumVo> selectAll();
+	 public AlbumVo selectByAlbumId(String albumId);
 }

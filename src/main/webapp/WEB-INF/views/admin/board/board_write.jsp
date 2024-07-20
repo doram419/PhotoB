@@ -22,7 +22,7 @@
     
     <!-- 게시글을 나타낼 수 있는 vo 작성  -->
     <div class="main-content">
-	    <form method="POST" action="<c:url value="/users/board/write"/>" >
+	    <form method="POST" action="<c:url value="/admin/board/write"/>" >
 	    	<label for="title">글 제목</label>
 	   		<input type="text" id="title" name="title" required>
 	   		<br>
@@ -32,9 +32,9 @@
 	    </form>
     </div>
     
-    <p> <a href="<c:url value="/users/boardList"/>">돌아가기</a> </p>
+    <p> <a href="<c:url value="/admin/boardList"/>">돌아가기</a> </p>
     
-    <c:import url="/WEB-INF/views/users/includes/users_footer.jsp"></c:import>
+    <c:import url="/WEB-INF/views/admin/includes/users_footer.jsp"></c:import>
 </body>
 
 </html>

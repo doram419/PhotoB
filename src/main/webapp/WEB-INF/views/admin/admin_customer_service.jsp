@@ -42,24 +42,24 @@
                             <th>문의번호</th>
                             <th>고객명</th>
                             <th>제목</th>
-                            <th>접수일</th>
                             <th>상태</th>
                             <th>작업</th>
                         </tr>
                     </thead>
                     <tbody>
                         <%-- 여기에 문의 데이터를 동적으로 생성하는 Java 코드를 추가할 수 있습니다 --%>
+                       <c:forEach items="${postList}" var="postMap" varStatus="status">
                         <tr>
-                            <td>1</td>
-                            <td>나그네</td>
-                            <td>배송 관련 문의</td>
-                            <td></td>
-                            <td>답변대기</td>
+                            <td>${postMap['boardVo'].boardId}</td>
+                            <td>${postMap['usersVo'].userName}</td>
+                            <td>${postMap['boardVo'].title}</td>
+                            <td>${postMap['boardVo'].status}</td>
                             <td>
-                            	<a href="<c:url value="/board/post"/>"><button class="btn btn-primary">상세보기</button></a>
-                                <a href="<c:url value="/board/write"/>"><button class="btn btn-primary">답변하기</button></a>
+                            	<a href="<c:url value="/admin/board/post/${postMap['boardVo'].userId}/${postMap['boardVo'].boardId }"/>"><button class="btn btn-primary">상세보기</button></a>
+                                <a href="<c:url value="/admin/board/${postMap['boardVo'].userId}/${postMap['boardVo'].boardId }"/>"><button class="btn btn-primary">답변하기</button></a>
                             </td>
                         </tr>
+                        </c:forEach>
                     </tbody>
                 </table>
             </div>

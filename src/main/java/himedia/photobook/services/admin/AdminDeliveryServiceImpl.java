@@ -54,7 +54,7 @@ public class AdminDeliveryServiceImpl {
 			status = dataConverter.statusToWord(status);
 			
 			ordersVo = orderDaoImpl.selectByOrderId(shipmentsVo.getOrderId());
-			usersVo = usersDaoImpl.selectUserByUserId(ordersVo.getUserId());
+			usersVo = usersDaoImpl.selectOneUserById(ordersVo.getUserId());
 		
 			deliveryInfos.put("shipmentsVo", shipmentsVo);
 			deliveryInfos.put("shipmentDate", 
@@ -74,7 +74,7 @@ public class AdminDeliveryServiceImpl {
 	public Map<String, Object> getDeliveryDetailInfo(String orderId){
 		Map<String, Object> deliveryDetailInfo = new HashMap<String, Object>();
 		OrdersVo ordersVo = orderDaoImpl.selectByOrderId(orderId);
-		UsersVo usersVo = usersDaoImpl.selectUserByUserId(ordersVo.getUserId());
+		UsersVo usersVo = usersDaoImpl.selectOneUserById(ordersVo.getUserId());
 		ShipmentsVo shipmentsVo = shipmentsDaoImpl.selectShipmentInfoByOrderID(orderId);
 		AlbumVo albumVo = albumDaoImpl.selectOneById(ordersVo.getAlbumId());
 		

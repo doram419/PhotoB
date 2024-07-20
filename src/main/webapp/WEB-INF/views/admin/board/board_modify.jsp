@@ -8,9 +8,9 @@
 	<link type="text/css" rel="stylesheet" href="<c:url value="/css/board.css"/>">
 </head>
 <body>
-	<form method="POST" action="<c:url value="/users/modify"/>">
-		<input type="hidden" name="userId" value="${vo.userId }">
-		<input type="hidden" name="boardId" value="${vo.boardId }">
+	<form method="POST" action="<c:url value="/admin/modify"/>">
+	<input type="hidden" name="userId" value="${vo.userId }">
+	<input type="hidden" name="boardId" value="${vo.boardId }">
 		<table border="1" width="640">
 			<tr>
 				<td colspan="2"><h3>게시판</h3></td>
@@ -30,7 +30,7 @@
 			</tr>
 			<tr>
 				<td colspan="2">
-					<a href="<c:url value="/users/boardList"/>">취소</a>
+					<a href="<c:url value="/admin/boardList"/>">취소</a>
 					<input type="submit" value="수정">
 				</td>
 			</tr>
