@@ -39,7 +39,6 @@ public class UsersController {
 
 	@PostMapping("/login") // 로그인 실패 메세지 출력기능 구현 필요!!!
 	public String loginAction(@RequestParam(value = "email", required = false, defaultValue = "") String email,
-
 			@RequestParam(value = "password", required = false, defaultValue = "") String password,
 
 			HttpSession session) {
@@ -92,7 +91,6 @@ public class UsersController {
 	public String updateUser(UsersVo updatedUser, HttpSession session) {
 
 		UsersVo currentUser = (UsersVo) session.getAttribute("authUser");
-		System.out.println("currentusr:" + currentUser);
 		if (currentUser != null) {
 			currentUser.setUserName(updatedUser.getUserName());
 			currentUser.setPassword(updatedUser.getPassword());
@@ -104,11 +102,9 @@ public class UsersController {
 				session.setAttribute("authUser", currentUser);
 				return "redirect:/users/profile";
 			} else {
-				System.out.println("else:" + currentUser);
 				return "redirect:/users/profile?error=1";
 			}
 		} else {
-			System.out.println("else:" + currentUser);
 			return "redirect:/users/login";
 		}
 	}

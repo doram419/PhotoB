@@ -12,6 +12,7 @@ import org.springframework.stereotype.Repository;
 import himedia.photobook.exceptions.UsersDaoException;
 import himedia.photobook.repositories.vo.UsersVo;
 
+@Repository
 public class UsersDaoImpl implements UsersDao {
 	@Autowired
 	private SqlSession sqlSession;

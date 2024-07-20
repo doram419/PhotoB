@@ -16,7 +16,7 @@ import himedia.photobook.repositories.vo.OrdersVo;
 @Service("userOrderService")
 public class UsersOrderServiceImpl {
 	@Autowired
-	private OrderDao ordersDao;
+	private OrderDao orderDaoImpl;
 	@Autowired
 	private ShipmentsDaoImpl shipDao;
 	@Autowired
@@ -28,7 +28,7 @@ public class UsersOrderServiceImpl {
 	public List<Map<String, Object>> getOrderInfos(String userId){
 		List<Map<String, Object>> orderInfoList = new ArrayList<Map<String, Object>>();
 		Map<String, Object> orderInfos = null;
-		List<OrdersVo> orderList = ordersDao.selectAllOrdersByUserId(userId);
+		List<OrdersVo> orderList = orderDaoImpl.selectAllOrdersByUserId(userId);
 		String orderStatus = null;
 		
 		for (OrdersVo ordersVo : orderList) {
