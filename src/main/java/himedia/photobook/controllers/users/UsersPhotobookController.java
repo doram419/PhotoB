@@ -1,6 +1,7 @@
 package himedia.photobook.controllers.users;
 
 import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -41,6 +42,7 @@ public class UsersPhotobookController {
 		System.out.println(oQuantity);
 		AlbumVo albumVo = userPhotobookService.findAlbumIdByOptions(material, color, albumSize);
 		if (albumVo == null) {
+			System.out.println(",앨범vo널임"+albumVo);
 			model.addAttribute("error");
 			return "redirect:/users/photobook";
 		}
@@ -49,6 +51,7 @@ public class UsersPhotobookController {
 
 		albumsession.setAttribute("albumId", albumId);
 		albumsession.setAttribute("oQuantity", oQuantity);
+		System.out.println("create_photobook으로 들어오는 수량" + oQuantity);
 		return "/WEB-INF/views/users/users_create_photobook.jsp";
 	}
 
@@ -60,6 +63,7 @@ public class UsersPhotobookController {
 		InventoryVo inventoryVo = userPhotobookService.findAlbumPriceByAlbumId(albumId);
 		Long albumPrice = inventoryVo.getAlbumPrice();
 		Long oQuantity = (Long) session.getAttribute("oQuantity");
+		System.out.println("photobookorder에서 받아오는 수량"+oQuantity);
 		userPhotobookService.orderInsert(userId, albumId, oQuantity);
 		
 		return "redirect:/users/order";

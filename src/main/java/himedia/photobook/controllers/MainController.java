@@ -1,5 +1,7 @@
 package himedia.photobook.controllers;
 
+import org.apache.ibatis.reflection.SystemMetaObject;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 

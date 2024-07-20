@@ -15,7 +15,6 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import himedia.photobook.repositories.dao.UsersDao;
 import himedia.photobook.repositories.vo.BoardVo;
-import himedia.photobook.repositories.vo.CommentsVo;
 import himedia.photobook.repositories.vo.UsersVo;
 import himedia.photobook.services.users.UBoardService;
 import jakarta.servlet.http.HttpSession;
@@ -29,8 +28,6 @@ import jakarta.servlet.http.HttpSession;
 public class UsersBoardController {
 	@Autowired
 	private UBoardService uBoardService;
-	@Autowired
-	private UsersDao usersDao;
 
 	@GetMapping({"/board"})
 	public String usersBoard() {
@@ -41,7 +38,6 @@ public class UsersBoardController {
 	public String list(Model md) {
 		List<Map<String, Object>> list = uBoardService.getBoardInfos();
 		md.addAttribute("postList",list);
-		System.out.println(list);
 		return "/WEB-INF/views/users/users_board.jsp";
 	}
 	
@@ -64,15 +60,12 @@ public class UsersBoardController {
 	
 	@GetMapping("/board/post/{userId}/{boardId}")
 	public String view(@PathVariable("userId") String userId,@PathVariable("boardId") Long boardId, Model md, HttpSession session) {
-		System.out.println("userId: "+userId);
 		UsersVo authUser = (UsersVo) session.getAttribute("authUser");
 		if(authUser==null) {
 			return "redirect:/users/boardList";
 		}
 		
-
 		Map<String, Object> boardVo = uBoardService.getContent(userId,boardId);
-
 
 		md.addAttribute("vo",boardVo);
 
@@ -100,7 +93,10 @@ public class UsersBoardController {
 			redirectAtt.addFlashAttribute("errorMsg","자격이 없습니다.");
 			return "redirect:/users/boardList";
 		}
+		System.out.println("updateVo.getUserId : " + updateVo.getUserId());
+		System.out.println("updateVo.getBoardId : " + updateVo.getBoardId());
 		BoardVo boardVo = uBoardService.getBoardVo(updateVo.getUserId(),updateVo.getBoardId());
+		System.out.println("여기보세요");
 		
 		boardVo.setTitle(updateVo.getTitle());
 		boardVo.setContent(updateVo.getContent());

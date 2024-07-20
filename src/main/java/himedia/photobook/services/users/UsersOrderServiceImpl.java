@@ -9,18 +9,18 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import himedia.photobook.repositories.dao.OrderDao;
-import himedia.photobook.repositories.dao.RefundDao;
-import himedia.photobook.repositories.dao.ShipmentsDao;
+import himedia.photobook.repositories.dao.RefundDaoImpl;
+import himedia.photobook.repositories.dao.ShipmentsDaoImpl;
 import himedia.photobook.repositories.vo.OrdersVo;
 
-@Service
-public class UserOrderServiceImpl {
+@Service("userOrderService")
+public class UsersOrderServiceImpl {
 	@Autowired
 	private OrderDao orderDaoImpl;
 	@Autowired
-	private ShipmentsDao shipmentsDaoImpl;
+	private ShipmentsDaoImpl shipDao;
 	@Autowired
-	private RefundDao refundDaoImpl;
+	private RefundDaoImpl refundDao;
 	
 	/**
 	 * 주문 조회에 필요한 정보들을 담아서 보내주는 메서드
@@ -37,11 +37,11 @@ public class UserOrderServiceImpl {
 
 			orderInfos.put("ordersVo", ordersVo);
 			
-			orderStatus = shipmentsDaoImpl.selectStatusByOrderID(ordersVo.getOrderId());
+			orderStatus = shipDao.selectStatusByOrderID(ordersVo.getOrderId());
 			if(orderStatus != null)
 			{
 				if(orderStatus.equals("R"))
-					orderStatus = refundDaoImpl.selectStatusByOrderID(ordersVo.getOrderId());
+					orderStatus = refundDao.selectStatusByOrderID(ordersVo.getOrderId());
 				
 				orderStatus = statusToWord(orderStatus);
 			}

@@ -34,17 +34,15 @@
                             <th>주문상태</th>
                         </tr>
                     </thead>
-                   <c:forEach items="${orderDetail}" var="orderDetailVo">
                     <tbody>
                         <tr>
-                            <td>${orderDetailVo.orderId }</td>
-                            <td>${orderDetailVo.userName }</td>
-                            <td>${orderDetailVo.orderDate }</td>
-                            <td>${orderDetailVo.status }</td>
+                            <td>1001</td>
+                            <td>홍길동</td>
+                            <td>2024-07-09 14:30</td>
+                            <td>배송 완료</td>
                         </tr>
                         <!-- 추가 주문 데이터 -->
                     </tbody>
-                   </c:forEach>
                 </table>
             </div>
         </div>

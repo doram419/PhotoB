@@ -1,12 +1,15 @@
 package himedia.photobook.repositories.dao;
 import java.util.HashMap;
+
+import java.util.List;
 import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-import himedia.photobook.repositories.vo.AlbumVo;
+
 import himedia.photobook.exceptions.UsersAlbumException;
+import himedia.photobook.repositories.vo.AlbumVo;
 
 @Repository
 public class AlbumDaoImpl implements AlbumDao {
@@ -20,7 +23,6 @@ public class AlbumDaoImpl implements AlbumDao {
 	        options.put("color", color);
 	        options.put("albumSize", albumSize);
 	        AlbumVo albumVo = sqlSession.selectOne("album.findAlbumIdByOptions", options);
-	        System.out.println(albumVo);
 	        return albumVo;
 	 }
 
@@ -34,8 +36,19 @@ public class AlbumDaoImpl implements AlbumDao {
 			throw new UsersAlbumException(
 					"UserAlbumException::SelectOneById01 [에러 발생]");
 		}
-		
 	}
+	
+	// 앨범 목록
+	@Override
+	public List<AlbumVo> searchAlbum(String keyword) {
+		return sqlSession.selectList("album.albumList", keyword);
+	}
+	
+	@Override
+    public List<AlbumVo> selectAll() {
+		return sqlSession.selectList("album.selectAll");
+	}
+	
 	 @Override
 	    public AlbumVo selectByAlbumId(String albumId) {
 	        try {

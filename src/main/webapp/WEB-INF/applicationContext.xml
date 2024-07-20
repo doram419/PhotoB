@@ -18,15 +18,9 @@
                            http://mybatis.org/schema/mybatis-spring.xsd">
 
     <context:annotation-config/>
-    <context:component-scan base-package="himedia.photobook.services, himedia.photobook.repositories">
-		<context:include-filter type="annotation"
-			expression="org.springframework.stereotype.Repository" />
-		<context:include-filter type="annotation"
-			expression="org.springframework.stereotype.Service" />
-		<context:include-filter type="annotation"
-			expression="org.springframework.stereotype.Component" />
-		<context:exclude-filter type="annotation"
-			expression="org.springframework.stereotype.Controller" />
+    <context:component-scan base-package="himedia.photobook">
+        <context:include-filter type="annotation" expression="org.springframework.stereotype.Service"/>
+        <context:include-filter type="annotation" expression="org.springframework.stereotype.Repository"/>
     </context:component-scan>
 
     <!-- Oracle DataSource -->
@@ -50,5 +44,4 @@
 
     <!-- MyBatis Mapper 스캔 설정 추가 -->
     <mybatis-spring:scan base-package="himedia.photobook.repositories"/>
-
 </beans>
