@@ -113,6 +113,7 @@ public class UsersBoardController {
 			redirectAtt.addFlashAttribute("errorMsg", "자격이 없습니다.");
 			return "redirect:/users/boardList";
 		}
+		
 		BoardVo boardVo = uBoardService.getBoardVo(userId, boardId);
 		
 		uBoardService.delete(userId, boardVo.getBoardId());
