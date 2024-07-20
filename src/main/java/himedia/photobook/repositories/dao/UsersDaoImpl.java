@@ -43,20 +43,23 @@ public class UsersDaoImpl implements UsersDao {
 	public UsersVo selectUserByEmailAndPassword(String email, String password) {
 		Map<String, String> userMap = new HashMap<>();
 		userMap.put("email", email);
+
 		userMap.put("password", password);
 		UsersVo userVo = sqlSession.selectOne("users.selectUserByEmailAndPassword", userMap);
+
+	
 		return userVo;
 	}
 
 	@Override
-	public List<UsersVo> searchUsers(String keyword) {
-		//파라미터
-		return sqlSession.selectList("users.searchUsers", keyword)  ;
+	public UsersVo getUserById(String userId) {
+		return sqlSession.selectOne("users.getUSerById", userId);
 	}
 	
 	@Override
-	public UsersVo getUserById(String userId) {
-		return sqlSession.selectOne("users.getUSerById", userId);
+	public List<UsersVo> searchUsers(String keyword) {
+		//파라미터
+		return sqlSession.selectList("users.searchUsers", keyword)  ;
 	}
 	
 	@Override
@@ -77,8 +80,8 @@ public class UsersDaoImpl implements UsersDao {
 	}
 
 	// 프로필 업데이트에 쓸거
+	@Override
     public int updateUser(UsersVo user) {
-    	
         try {
             int updatedCount = sqlSession.update("users.updateUser", user);
             return updatedCount;
@@ -87,4 +90,10 @@ public class UsersDaoImpl implements UsersDao {
             throw new UsersDaoException("예외 발생!");
         }
     }
+	 
+    @Override
+	public UsersVo selectOneUserById(String Id) {
+		UsersVo est = sqlSession.selectOne("users.selectUserById", Id);
+		return est;
+	}
 }

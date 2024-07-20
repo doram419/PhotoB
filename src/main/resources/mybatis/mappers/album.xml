@@ -33,7 +33,6 @@
         FROM ALBUM
         WHERE
             ALBUM_ID LIKE ('%' || #{value} || '%')
-            
     </select>
 
     <select id="selectAll" resultType="AlbumVo">
@@ -41,5 +40,15 @@
             ALBUM_ID as albumId, MATERIAL,
 			COLOR, ALBUM_SIZE as albumSize
         FROM ALBUM
+	<select id="selectByAlbumId" parameterType="String" resultType="AlbumVo">
+        SELECT 
+            ALBUM_ID as albumId, 
+            MATERIAL as material,
+            COLOR as color, 
+            ALBUM_SIZE as albumSize
+        FROM
+            ALBUM
+        WHERE
+            ALBUM_ID = #{albumId}
     </select>
 </mapper>

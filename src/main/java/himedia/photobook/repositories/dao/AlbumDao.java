@@ -18,5 +18,5 @@ public interface AlbumDao {
 	// 앨범 목록
 	public List<AlbumVo> searchAlbum(String keyword);
 	public List<AlbumVo> selectAll();
-
+	 public AlbumVo selectByAlbumId(String albumId);
 }

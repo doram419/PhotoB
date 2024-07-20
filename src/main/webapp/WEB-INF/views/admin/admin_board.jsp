@@ -34,15 +34,15 @@
 						<tr>
 							<td>${postMap['boardVo'].boardId}</td>
 							<td><a
-								href="<c:url value="/users/board/post/${postMap['boardVo'].userId}/${postMap['boardVo'].boardId }"/>">${postMap['boardVo'].title}</a></td>
+								href="<c:url value="/admin/board/post/${postMap['boardVo'].userId}/${postMap['boardVo'].boardId }"/>">${postMap['boardVo'].title}</a></td>
 							<td>${postMap['usersVo'].userName}</td>
 							<td>${postMap['boardVo'].regDate}</td>
 							<td>${postMap['boardVo'].status}</td>
 							<td>
 								<c:if test="${not empty authUser }">
-									<c:if test="${authUser.userId == postMap['boardVo'].userId}">
-										<a href="<c:url value="/users/board/${postMap['boardVo'].userId}/${postMap['boardVo'].boardId }/modify"/>">수정</a>
-										<a href="<c:url value="/users/board/${postMap['boardVo'].userId}/${postMap['boardVo'].boardId }/delete"/>">삭제</a>
+									<c:if test="${authUser.userId == postMap['boardVo'].userId || authUser.role.equals('A') }">
+										<a href="<c:url value="/admin/board/${postMap['boardVo'].userId}/${postMap['boardVo'].boardId }/modify"/>">수정</a>
+										<a href="<c:url value="/admin/board/${postMap['boardVo'].userId}/${postMap['boardVo'].boardId }/delete"/>">삭제</a>
 									</c:if>
 								</c:if>
 							</td>
@@ -52,7 +52,7 @@
 			</table>
 
 			<p>
-				<a href="<c:url value="/users/board/write"/>">글쓰기</a>
+				<a href="<c:url value="/admin/board/write"/>">글쓰기</a>
 			</p>
 
 		</section>

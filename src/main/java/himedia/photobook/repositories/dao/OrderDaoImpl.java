@@ -29,4 +29,12 @@ public class OrderDaoImpl implements OrderDao {
 	public List<OrdersVo> selectAllOrdersByUserId(String userId){
 		return sqlSession.selectList("order.selectAllOrdersByUserId", userId);
 	}
+
+	public List<OrdersVo> selectAllOrders(){
+		return sqlSession.selectList("order.selectAllOrders");
+	}
+	
+	public OrdersVo selectByOrderId(String orderId) {
+		return sqlSession.selectOne("order.selectByOrderId", orderId);
+	}
 }

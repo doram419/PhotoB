@@ -41,11 +41,21 @@ public class AlbumDaoImpl implements AlbumDao {
 	// 앨범 목록
 	@Override
 	public List<AlbumVo> searchAlbum(String keyword) {
-		return sqlSession.selectList("album.albumList");
+		return sqlSession.selectList("album.albumList", keyword);
 	}
 	
 	@Override
     public List<AlbumVo> selectAll() {
 		return sqlSession.selectList("album.selectAll");
 	}
+	
+	 @Override
+	    public AlbumVo selectByAlbumId(String albumId) {
+	        try {
+	            return sqlSession.selectOne("album.selectByAlbumId", albumId);
+	        } catch (Exception e) {
+	            e.printStackTrace();
+	            throw new UsersAlbumException("[에러 발생]");
+	        }
+	    }
 }
