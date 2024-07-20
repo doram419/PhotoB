@@ -9,8 +9,8 @@
 </head>
 <body>
 	<form method="POST" action="<c:url value="/users/modify"/>">
-	<input type="hidden" name="userId" value="${vo.userId }">
-	<input type="hidden" name="boardId" value="${vo.boardId }">
+		<input type="hidden" name="userId" value="${vo.userId }">
+		<input type="hidden" name="boardId" value="${vo.boardId }">
 		<table border="1" width="640">
 			<tr>
 				<td colspan="2"><h3>게시판</h3></td>

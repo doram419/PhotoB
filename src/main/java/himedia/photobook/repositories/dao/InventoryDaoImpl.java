@@ -1,6 +1,7 @@
 package himedia.photobook.repositories.dao;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
@@ -18,8 +19,15 @@ public class InventoryDaoImpl implements InventoryDao {
 	public InventoryVo findAlbumPriceByAlbumId(String albumId)	{
 		Map<String,String> ai = new HashMap<>();
 		ai.put("albumId",albumId);
+		System.out.println("sql들어가기전 ai"+ai);
 		InventoryVo inventoryVo = sqlSession.selectOne("inventory.findAlbumPriceByAlbumId",ai);// xml수정필요
 		
 		return inventoryVo;
 	}
+	
+
+		@Override
+		public List<InventoryVo> listInventory() { 
+			return sqlSession.selectList("inventory.listInventory");
+		}
 }

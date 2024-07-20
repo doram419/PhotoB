@@ -34,8 +34,6 @@ public class AdminBoardController {
 	@Autowired
 	private UsersDao usersDaoImpl;
 
-
-	
 	@RequestMapping("/boardList")
 	public String list(Model md) {
 		List<Map<String, Object>> list = uBoardService.getBoardInfos();
