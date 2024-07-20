@@ -26,7 +26,7 @@ public class AdminProductController {
 	@GetMapping("/products/search")
     	public String showAlbumInventory(Model model) {
         Map<String, Object> ProductMap = adminProductService.getProductMap();
-        model.addAttribute("albumInventoryMap", ProductMap);
+        model.addAttribute("ProductMap", ProductMap);
         return "/WEB-INF/views/admin/product/admin_product.jsp";
     }
 
