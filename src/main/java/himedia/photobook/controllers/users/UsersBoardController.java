@@ -29,8 +29,7 @@ import jakarta.servlet.http.HttpSession;
 public class UsersBoardController {
 	@Autowired
 	private UBoardService uBoardService;
-	@Autowired
-	private UsersDao usersDao;
+	
 
 	@GetMapping({"/board"})
 	public String usersBoard() {

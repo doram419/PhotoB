@@ -8,13 +8,13 @@
 	<typeAliases>
 		<typeAlias type="himedia.photobook.repositories.vo.UsersVo"
 			alias="UsersVo" />
-			<typeAlias
+		<typeAlias
 			type="himedia.photobook.repositories.vo.AlbumVo"
 			alias="AlbumVo" />
-			<typeAlias
+		<typeAlias
 			type="himedia.photobook.repositories.vo.InventoryVo"
 			alias="InventoryVo" />
-			<typeAlias
+		<typeAlias
 			type="himedia.photobook.repositories.vo.OrdersVo"
 			alias="OrdersVo" />
 		<typeAlias 

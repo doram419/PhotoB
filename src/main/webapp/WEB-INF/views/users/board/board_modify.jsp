@@ -9,8 +9,8 @@
 </head>
 <body>
 	<form method="POST" action="<c:url value="/users/modify"/>">
-	<input type="hidden" name="userId" value="${vo.userId }">
-	<input type="hidden" name="boardId" value="${vo.boardId }">
+	<input type="hidden" name="userId" value="${vo['boardVo'].userId }">
+	<input type="hidden" name="boardId" value="${vo['boardVo'].boardId }">
 		<table border="1" width="640">
 			<tr>
 				<td colspan="2"><h3>게시판</h3></td>
@@ -20,12 +20,12 @@
 			</tr>
 			<tr>
 				<td>제목</td>
-				<td><input type="text" name="title" value="${vo.title }"></td>
+				<td><input type="text" name="title" value="${vo['boardVo'].title }"></td>
 			</tr>
 			<tr>
 				<td>내용</td>
 				<td>
-					<textarea id="content" name="content">${vo.content }</textarea>
+					<textarea id="content" name="content">${vo['boardVo'].content }</textarea>
 				</td>
 			</tr>
 			<tr>
