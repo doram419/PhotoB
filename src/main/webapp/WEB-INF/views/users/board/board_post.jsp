@@ -46,11 +46,7 @@
 	</c:forEach>   
 	</table> 
     <hr>
-	    <form method="POST" action="<c:url value="/comment/write"/>" >
-	   		<label for="content">관리자 코멘트</label>
-	   		<textarea id="content" name="content" rows="5" cols="175">댓글은 여기 적어주세요</textarea>
-	        <button type="submit">작성하기</button>
-	    </form>
+	   
 	   
     </div>    
     

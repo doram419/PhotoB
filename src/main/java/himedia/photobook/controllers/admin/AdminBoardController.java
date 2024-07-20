@@ -19,6 +19,7 @@ import himedia.photobook.repositories.dao.UsersDaoImpl;
 import himedia.photobook.repositories.vo.BoardVo;
 import himedia.photobook.repositories.vo.CommentsVo;
 import himedia.photobook.repositories.vo.UsersVo;
+import himedia.photobook.services.admin.AdminCommentServiceImpl;
 import himedia.photobook.services.users.UBoardServiceImpl;
 import jakarta.servlet.http.HttpSession;
 
@@ -32,8 +33,9 @@ public class AdminBoardController {
 	@Autowired
 	private UBoardServiceImpl uBoardService;
 	@Autowired
-	private UsersDao usersDaoImpl;
+	private AdminCommentServiceImpl adminCommentService;
 
+	
 
 	
 	@RequestMapping("/boardList")
@@ -123,14 +125,17 @@ public class AdminBoardController {
 	}
 	
 	
-//	// 관리자 댓글 작성
-//			@PostMapping("/comment/write")
-//			public String commentAction(@ModelAttribute CommentsVo commentsVo,HttpSession session, RedirectAttributes redirectAtt) {
-//				UsersVo authUser= (UsersVo) session.getAttribute("authUser");
-//				if(authUser == null) {
-//					redirectAtt.addFlashAttribute("errorMsg", "자격이 없습니다.");
-//					return "redirect:/users/boardList";
-//				}
-//				commentsVo.set
-//			}
+	// 관리자 댓글 작성
+	@PostMapping("/comment/write")
+	public String commentAction(@ModelAttribute CommentsVo commentsVo,HttpSession session, RedirectAttributes redirectAtt) {
+		UsersVo authUser= (UsersVo) session.getAttribute("authUser");
+		if(authUser == null) {
+			redirectAtt.addFlashAttribute("errorMsg", "자격이 없습니다.");
+			return "redirect:/users/boardList";
+		}
+		commentsVo.setUserName(authUser.getUserName());
+		adminCommentService.write(commentsVo);
+		
+		return "/WEB-INF/views/admin/board/board_post.jsp";
+	}
 }
