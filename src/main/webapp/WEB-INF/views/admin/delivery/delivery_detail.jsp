@@ -42,7 +42,7 @@
 	               <td>
 	               <select id="delivery_status" name="shipmentStatus"
 	               	data-default="${deliveryDetailInfos['shipmentsVo'].shipmentStatus}" disabled>
-		               <option value="A" selected>배송 준비</option>
+		               <option value="A">배송 준비</option>
 		               <option value="B">배송 중</option>
 		               <option value="C">배송 완료</option>
 		               <option value="R">환불</option> 
@@ -111,9 +111,9 @@
 	           <tr>
 	               <td>표지 재질</td>
 	               <td>
-	               <select id="material_status" name="material"
+	               <select id="material" name="material"
 	               	data-default="${deliveryDetailInfos['albumVo'].material}" disabled>
-		               <option value="LINEN" selected>린넨</option>
+		               <option value="LINEN">린넨</option>
 		               <option value="LEATHER">가죽</option>
 		               <option value="HARD">하드</option>
 		               <option value="SOFT">소프트</option> 
@@ -123,13 +123,27 @@
 	           </tr>
 	           <tr>
 	               <td>표지 색</td>
-	               <td>${deliveryDetailInfos['albumVo'].color}</td>
-	               <td><button class="edit-btn">수정</button></td>
+	               <td>
+	               <select id="color" name="color"
+	               	data-default="${deliveryDetailInfos['albumVo'].color}" disabled>
+		               <option value="GRAY">회색</option>
+		               <option value="BLUE">파란색</option>
+		               <option value="BROWN">갈색</option>
+	               </select>
+	               </td>
+	               <td><button type=button id="confirm-btn" class="edit-btn">수정</button></td>
 	           </tr>
 	           <tr>
 	               <td>앨범 사이즈</td>
-	               <td>${deliveryDetailInfos['albumVo'].albumSize}</td>
-	               <td><button class="edit-btn">수정</button></td>
+	               <td>
+	               <select id="albumSize" name="albumSize"
+	               	data-default="${deliveryDetailInfos['albumVo'].albumSize}" disabled>
+		               <option value="S">Small</option>
+		               <option value="M">Middle</option>
+		               <option value="B">Big</option>
+	               </select>
+	               </td>
+	               <td><button type=button id="confirm-btn" class="edit-btn">수정</button></td>
 	           </tr>
 	           <tr class="section-end">
 	               <td colspan="3"></td>
@@ -139,13 +153,21 @@
 	           </tr>
 	           <tr>
 	               <td>총 금액</td>
-	               <td>${deliveryDetailInfos['ordersVo'].total}</td>
-	               <td><button class="edit-btn">수정</button></td>
+	               <td>
+	               <input type="number" name="total" step="1000"
+	               		value="${deliveryDetailInfos['ordersVo'].total}" 
+	               		disabled/>
+	               </td>
+	               <td><button type=button id="confirm-btn" class="edit-btn">수정</button></td>
 	           </tr>
 	           <tr>
 	               <td>총 수량</td>
-	               <td>${deliveryDetailInfos['ordersVo'].oQuantity}</td>
-	               <td><button class="edit-btn">수정</button></td>
+	               <td>
+	               <input type="number" name="oQuantity" min="1"
+	               		value="${deliveryDetailInfos['ordersVo'].oQuantity}" 
+	               		disabled/>
+	               </td>
+	               <td><button type=button id="confirm-btn" class="edit-btn">수정</button></td>
 	            </tr>
         	</table>
         </form>

@@ -19,9 +19,19 @@ window.addEventListener("load", event => {
 	selectorFunction(deliveryStatusSelector, deliveryStatusSelectedValue);
 	
 	// 앨범 재질의 초깃값을 정해주는 코드
-	let albumMaterialSelector = document.getElementById("material_status");
+	let albumMaterialSelector = document.getElementById("material");
 	let albumMaterialSelectedValue = albumMaterialSelector.getAttribute("data-default");
 	selectorFunction(albumMaterialSelector, albumMaterialSelectedValue);
+
+	// 앨범 색상의 초깃값을 정해주는 코드
+	let albumColorSelector = document.getElementById("color");
+	let albumColorSelectedValue = albumColorSelector.getAttribute("data-default");
+	selectorFunction(albumColorSelector, albumColorSelectedValue);
+	
+	// 앨범 사이즈의 초깃값을 정해주는 코드
+	let albumSizeSelector = document.getElementById("albumSize");
+	let albumSizeSelectedValue = albumSizeSelector.getAttribute("data-default");
+	selectorFunction(albumSizeSelector, albumSizeSelectedValue);
 });
 
 /**  수정 버튼을 누르면, 
@@ -53,11 +63,10 @@ function editAble(event){
  * selectedValue : 컨트롤러에서 가져온 값 [예: ${map[key].value}]
  */ 
 function selectorFunction(selector, selectedValue){	
-	console.log(selectedValue);
 	for(let index = 0; index < selector.options.length; index++)
 	{
 		if(selectedValue == selector.options[index].value) {
-			selector.options[index].selectde = true;
+			selector.options[index].selected = true;
 			break;
 		}
 	}
