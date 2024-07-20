@@ -10,7 +10,6 @@ import org.springframework.stereotype.Repository;
 
 import himedia.photobook.repositories.vo.OrdersVo;
 
-@Repository("ordersDao")
 public class OrderDaoImpl implements OrderDao {
 	@Autowired
 	private SqlSession sqlSession;
