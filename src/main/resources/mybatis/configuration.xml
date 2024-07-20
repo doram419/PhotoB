@@ -24,6 +24,9 @@
 		<typeAlias 
 			type="himedia.photobook.repositories.vo.RefundVo"
 			alias="RefundVo" />
+		<typeAlias 
+			type="himedia.photobook.repositories.vo.BoardVo"
+			alias="BoardVo" />
 	</typeAliases>
 	
 	<!-- MyBatis 매퍼 -->
@@ -34,5 +37,6 @@
 		<mapper resource="mybatis/mappers/order.xml" />
 		<mapper resource="mybatis/mappers/shipments.xml" />
 		<mapper resource="mybatis/mappers/refund.xml" />
+		<mapper resource="mybatis/mappers/board.xml" />
 	</mappers>
 </configuration>

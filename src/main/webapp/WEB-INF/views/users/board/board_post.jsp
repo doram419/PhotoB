@@ -47,12 +47,13 @@
 	</table> 
     <hr>
 	    <form method="POST" action="<c:url value="/comment/write"/>" >
-	   		<label for="content">댓글 달기</label>
-	   		<textarea id="content" name="content" rows="10" col="50">댓글은 여기 적어주세요</textarea>
+	   		<label for="content">관리자 코멘트</label>
+	   		<textarea id="content" name="content" rows="5" cols="175">댓글은 여기 적어주세요</textarea>
 	        <button type="submit">작성하기</button>
 	    </form>
+	   
     </div>    
-                        
+    
     <p><a href="<c:url value="/board"/>">돌아가기</a></p>
  
     <c:import url="/WEB-INF/views/users/includes/users_footer.jsp"></c:import>

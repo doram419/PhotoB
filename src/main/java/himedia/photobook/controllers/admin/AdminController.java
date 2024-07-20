@@ -16,9 +16,19 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 @RequestMapping({"/admin"})
 public class AdminController {
+	@Autowired
+	private UBoardServiceImpl uBoardService;
+	
 	@RequestMapping({"","/home"})
 	public String home() {
 		return "/WEB-INF/views/admin/admin_pages.jsp";
+	}
+	
+	@RequestMapping({"/customerService", "/cs"})
+	public String customerService(Model md) {
+		List<Map<String, Object>> list = uBoardService.getBoardInfos();
+		md.addAttribute("postList", list);
+		return "/WEB-INF/views/admin/admin_customer_service.jsp";
 	}
 	
 	/**

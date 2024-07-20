@@ -11,25 +11,25 @@ import himedia.photobook.repositories.vo.UsersVo;
 @Service
 public class AdminCustomerService {
 	@Autowired
-	private UsersDao usersDao;
+	private UsersDao usersDaoImpl;
 	
 	// 관리자 고객검색
 	public List<UsersVo> searchUsers(String searchCategory, String keyword) {
-			return usersDao.searchUsers(keyword);
+			return usersDaoImpl.searchUsers(keyword);
 	}
 	
 	// 관리자 고객삭제
 	public UsersVo getUserById(String userId) {
-		return usersDao.getUserById(userId);
+		return usersDaoImpl.getUserById(userId);
 	}
 	
 	public void deleteUsers(String userId) {
-		usersDao.deleteUsers(userId);
+		usersDaoImpl.deleteUsers(userId);
 	}
 	
 	// 관리자 고객수정
 	public boolean updateUsers(UsersVo userVo) {
-        int updatedCount = usersDao.updateUsers(userVo);
+        int updatedCount = usersDaoImpl.updateUsers(userVo);
         return updatedCount == 1;
     }
 }

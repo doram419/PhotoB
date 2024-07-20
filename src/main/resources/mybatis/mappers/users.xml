@@ -31,6 +31,7 @@
         	USER_NAME as userName,  
         	PHONE_NUMBER as phoneNumber,
         	ADDRESS as address
+        FROM USERS
     </select>
  	
  	<!-- 게시판 유저 아이디 조회용 -->
