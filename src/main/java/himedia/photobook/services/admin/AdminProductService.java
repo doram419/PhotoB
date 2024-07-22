@@ -70,6 +70,11 @@ public class AdminProductService {
  		return updatedCount == 1;
  	}
  	
+ 	public boolean updateAlbum(InventoryVo vo) {
+ 		int updatedCount = inventoryDaoImpl.updateAlbum(vo);
+ 		return updatedCount == 1;
+ 	}
+ 	
  	public void deleteAlbum(String albumId) {
  		albumDaoImpl.deleteAlbum(albumId);
  	}
