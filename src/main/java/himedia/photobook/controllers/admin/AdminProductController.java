@@ -34,7 +34,7 @@ public class AdminProductController {
         return "/WEB-INF/views/admin/product/admin_product.jsp";
     }
 	
-	@GetMapping("/productEdit")
+	@GetMapping("/product/productEdit")
 	public String editProduct(@RequestParam("albumId") String albumId, Model model) {
 	    return "/WEB-INF/views/admin/product/productEdit.jsp";
 	}
