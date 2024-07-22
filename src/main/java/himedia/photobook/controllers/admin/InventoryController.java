@@ -12,7 +12,7 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
-@WebServlet({"/inventory", "/iv", "/inven"})
+@WebServlet({"/inventory", "/iv", "/inven", "/addInventory", "/sellInventory"})
 public class InventoryController extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
@@ -28,7 +28,7 @@ public class InventoryController extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.setAttribute("inventory", inventory);
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/inventory.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/admin_inventory.jsp");
         dispatcher.forward(request, response);
     }
 
@@ -53,7 +53,12 @@ public class InventoryController extends HttpServlet {
         Long albumPrice = Long.parseLong(request.getParameter("albumPrice"));
         String aQuantity = request.getParameter("aQuantity");
         
-        inventory.add(new InventoryVo(albumId, albumPrice, aQuantity));
+        // 예외 처리: albumPrice와 aQuantity가 올바른 형식이 아닐 경우 처리 필요
+        
+        synchronized (inventory) {
+            inventory.add(new InventoryVo(albumId, albumPrice, aQuantity));
+        }
+        
         response.sendRedirect(request.getContextPath() + "/inventory");
     }
 
@@ -61,12 +66,17 @@ public class InventoryController extends HttpServlet {
         String albumId = request.getParameter("albumId");
         int quantity = Integer.parseInt(request.getParameter("quantity"));
         
-        InventoryVo item = inventory.stream().filter(i -> i.getAlbumId().equals(albumId)).findFirst().orElse(null);
-        if (item != null && Integer.parseInt(item.getaQuantity()) >= quantity) {
-            item.setaQuantity(String.valueOf(Integer.parseInt(item.getaQuantity()) - quantity));
+        // 예외 처리: quantity가 음수일 경우 처리 필요
+        
+        synchronized (inventory) {
+            InventoryVo item = inventory.stream().filter(i -> i.getAlbumId().equals(albumId)).findFirst().orElse(null);
+            if (item != null && Integer.parseInt(item.getaQuantity()) >= quantity) {
+                item.setaQuantity(String.valueOf(Integer.parseInt(item.getaQuantity()) - quantity));
+            }
         }
         
         response.sendRedirect(request.getContextPath() + "/inventory");
     }
+
 }
 

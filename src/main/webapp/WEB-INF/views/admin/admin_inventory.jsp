@@ -48,8 +48,8 @@
     <h2>재고 추가</h2>
     <form action="${pageContext.request.contextPath}/addInventory" method="post">
         앨범 ID: <input type="text" name="albumId" required>
-        앨범 가격: <input type="number" name="albumPrice" min="1" required>
-        수량: <input type="number" name="aQuantity" min="1" required>
+        앨범 가격: <input type="text" name="albumPrice" placeholder="Album Price" required>
+        수량: <input type="text" name="aQuantity" placeholder="Quantity" required>
         <button type="submit">추가</button>
     </form>
     
