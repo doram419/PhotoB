@@ -54,7 +54,7 @@
 								<td>${entry.value.album.albumSize}</td>
 								<td>
 								<a href="<c:url value='/admin/product/productEdit?albumId=${entry.key}'/>">
-										<button class="btn btn-primary">수정</button>
+										<button class="btn btn-primary">편집</button>
 								</a></td>
 							</tr>
 						</c:forEach>
