@@ -34,7 +34,7 @@
     
     <!-- 댓글 기능 지원 -->
     <hr>
-   	<p>댓글</p>
+   	<p>관리자 답글</p>
     <table>
     <c:forEach items="${commentList}" var="commentVo" varStatus="status">
 		<tr>
@@ -43,14 +43,14 @@
 			<td>${commentVo.content}</td>
 			<td>${commentVo.comDate}</td>
 		</tr>
-	</c:forEach>   
+	</c:forEach>  
 	</table> 
     <hr>
 	   
 	   
     </div>    
     
-    <p><a href="<c:url value="/board"/>">돌아가기</a></p>
+    <p><a href="<c:url value="/users/boardList"/>">돌아가기</a></p>
  
     <c:import url="/WEB-INF/views/users/includes/users_footer.jsp"></c:import>
 </body>

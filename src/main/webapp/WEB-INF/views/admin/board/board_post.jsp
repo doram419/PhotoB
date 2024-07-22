@@ -37,13 +37,9 @@
    	<p>댓글</p>
     <table>
 		<tr>
-		
 			<td>${commentVo.commentId}</td>
-		
-			<td>${commentVo.userName} 님 에게</td>
-		
+			<td>${commentVo.userName} 님에게</td>
 			<td>${commentVo.content}</td>
-	
 			<td>${commentVo.comDate}</td>
 		</tr>
 	</table> 
