@@ -24,6 +24,7 @@
             <li><a href="admin_customer_center.jsp">고객 센터</a></li>
             <li><a href="admin_delivery.jsp">배송 관리</a></li>
             <li><a href="admin_refund.jsp">환불 관리</a></li>
+            <li><a href="admin_inventory.jsp">재고 관리</a></li>
         </ul>
     </nav>
 	</header>

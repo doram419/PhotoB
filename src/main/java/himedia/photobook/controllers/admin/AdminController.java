@@ -56,6 +56,11 @@ public class AdminController {
 		return "/WEB-INF/views/admin/admin_customer_delete.jsp";
 
 	}
+	@GetMapping({"/inventory","/inven", "/iv"})
+	public String inventory() {
+		return "/WEB-INF/views/admin/admin_inventory.jsp";
+
+	}
 	
 
 }

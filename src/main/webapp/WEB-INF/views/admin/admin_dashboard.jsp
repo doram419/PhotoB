@@ -62,21 +62,21 @@
                         <tr>
                             <th>회원ID</th>
                             <th>이름</th>
-                            <th>가입일</th>
+                            <th>전화번호</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
                             <td>user001</td>
                             <td>이영희</td>
-                            <td>2024-07-08</td>
+                            <td>010-1234-5678</td>
                         </tr>
                         <!-- 추가 회원 데이터 -->
                         <c:forEach items="${memberList}" var="member">
                     <tr>
                         <td>${member.memberId}</td>
                         <td>${member.name}</td>
-                        <td>${member.joinDate}</td>
+                        <td>${member.phoneNumber}</td>
                     </tr>
                 </c:forEach>
                     </tbody>	

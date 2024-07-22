@@ -10,9 +10,13 @@ public class UsersVo {
 	private String phoneNumber;
 	private String role;  /*  -- 사용자 : U / 관리자 : A   */
 	
-	public UsersVo() {
+	public UsersVo(String userId, String userName, String phoneNumber) {
+        this.userId = userId;
+        this.userName = userName;
+        this.phoneNumber = phoneNumber;
+    } 
 		
-	}
+	
 
 	public UsersVo(String userId, String email, String password, String userName, String address, String phoneNumber,
 			String role) {
