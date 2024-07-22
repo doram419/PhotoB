@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import himedia.photobook.controllers.DataConverter;
-import himedia.photobook.repositories.vo.AlbumVo;
 import himedia.photobook.repositories.vo.OrdersVo;
 import himedia.photobook.repositories.vo.ShipmentsVo;
 import himedia.photobook.repositories.vo.UsersVo;
@@ -47,7 +46,6 @@ public class AdminDeliveryController {
 	public String modify(@ModelAttribute ShipmentsVo shipmentsVo,
 			@ModelAttribute UsersVo usersVo,
 			@ModelAttribute OrdersVo ordersVo,
-			@ModelAttribute AlbumVo alblumVo,
 			@ModelAttribute("stringShipmentDate") String shipmentDate,
 			@ModelAttribute("stringOrderDate") String orderDate,
 			@ModelAttribute("targetOrderId") String targetOrderId){
@@ -64,7 +62,6 @@ public class AdminDeliveryController {
 		deliveryInfo.put("usersVo", usersVo);
 		deliveryInfo.put("ordersVo", ordersVo);
 		deliveryInfo.put("targetOrderId", targetOrderId);
-		System.out.println(ordersVo);
 		
 		adminDeliveryServiceImpl.updateDeliveryInfo(deliveryInfo);
 		
@@ -72,9 +69,10 @@ public class AdminDeliveryController {
 	}
 	
 	@PostMapping("/delivery/search")
-	public String search(Model model) {
-		model.addAttribute("searchInfos");
-
+	public String search(Model model, 
+			@RequestParam("keyword") String keyword) {
+		model.addAttribute("searchInfos", adminDeliveryServiceImpl.searchDeliveryInfos(keyword));
+		
 		return "/WEB-INF/views/admin/admin_delivery.jsp";
 	}
 }

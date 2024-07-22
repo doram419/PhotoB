@@ -61,7 +61,7 @@
            				</c:forEach>   
            				<c:forEach items="${searchInfos}" var="infoMap">				
                         <tr>
-	                		<td>${infoMap['ordersVo'].orderId}</td>
+	                		<td>${infoMap['shipmentsVo'].orderId}</td>
 	                        <td>${infoMap['usersVo'].userName}</td>
 	                        <td>${infoMap['shipmentsVo'].shipmentId}</td>
 	                        <td>${infoMap['shipmentDate']}</td>

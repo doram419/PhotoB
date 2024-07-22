@@ -30,4 +30,9 @@ public class ShipmentsDaoImpl implements ShipmentsDao{
 	public int updateDateAndStatusByShipmentId(ShipmentsVo updateVo) {
 		return session.update("shipments.updateDateAndStatusByShipmentId", updateVo);
 	}
+	
+    @Override
+    public List<ShipmentsVo> searchAllByOrderId(String keyword){
+    	return session.selectList("shipments.searchAllByOrderId", keyword);
+    }
 }

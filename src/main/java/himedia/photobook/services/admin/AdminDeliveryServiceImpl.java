@@ -114,4 +114,36 @@ public class AdminDeliveryServiceImpl {
 		
 		return result;
 	}
+	
+	/**
+	 * 키워드를 보고 검색해서 배송 리스트를 가져와 주는 함수
+	 * */
+	public List<Map<String, Object>> searchDeliveryInfos(String keyword){
+		List<Map<String, Object>> searchInfos = new ArrayList<Map<String, Object>>();
+		Map<String, Object> infoMap = null;
+		UsersVo usersVo = null;
+		String status = null;
+		OrdersVo ordersVo = null;
+		
+		List<ShipmentsVo> shipmentsList = shipmentsDaoImpl.searchAllByOrderId(keyword);
+		for (ShipmentsVo shipmentsVo: shipmentsList) {
+			infoMap = new HashMap<String, Object>();	
+			status = shipmentsVo.getShipmentStatus();
+			ordersVo = orderDaoImpl.selectByOrderId(shipmentsVo.getOrderId());
+			usersVo = usersDaoImpl.selectOneUserById(ordersVo.getUserId());
+			
+			if(status.equals("R"))	
+				status = refundDaoImpl.selectStatusByOrderID(shipmentsVo.getOrderId());
+			status = dataConverter.statusToWord(status);
+			
+			infoMap.put("shipmentsVo", shipmentsVo);
+			infoMap.put("shipmentDate", 
+					dataConverter.kstToYYYY(shipmentsVo.getShipmentDate()));
+			infoMap.put("status", status);
+			infoMap.put("usersVo", usersVo);
+			
+			searchInfos.add(infoMap);
+		}
+		return searchInfos;
+	}
 }
