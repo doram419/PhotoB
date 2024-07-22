@@ -22,6 +22,6 @@
 		</li>
 		<li><a href="<c:url value="/admin/cs"/>">고객 센터</a></li>
 		<li><a href="<c:url value="/admin/dash"/>">설정</a></li>
-		<li><a href="<c:url value="/admin/iv"/>">재고 관리</a></li>
+		<li><a href="<c:url value="/admin/inventory"/>">재고 관리</a></li>
 	</ul>
 </div>
