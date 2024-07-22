@@ -37,4 +37,16 @@ public class OrderDaoImpl implements OrderDao {
 	public OrdersVo selectByOrderId(String orderId) {
 		return sqlSession.selectOne("order.selectByOrderId", orderId);
 	}
+	
+	
+//	@Override
+//	public List<OrdersVo> searchOrders(Map<String, Object> params) {
+//	    System.out.println("sql전 keyword:" + params.get("keyword"));
+//	    return sqlSession.selectList("order.searchOrders", params);
+//	}
+	// 이름으로 userId찾는 메서드
+	@Override
+	public String getUserIdByUserName(String keyword) {
+		return sqlSession.selectOne("users.getUserIdByUserName",keyword);
+	}
 }

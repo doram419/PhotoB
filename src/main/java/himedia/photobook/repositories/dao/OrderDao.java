@@ -1,6 +1,7 @@
 package himedia.photobook.repositories.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import himedia.photobook.repositories.vo.OrdersVo;
 
@@ -17,4 +18,9 @@ public interface OrderDao {
 	 * */
 	public OrdersVo selectByOrderId(String orderId);
 	
-}
+	// 관리자 주문검색
+//	List<OrdersVo> searchOrders(Map<String, Object> params);
+//	
+//
+	public String getUserIdByUserName(String keyword);
+	}

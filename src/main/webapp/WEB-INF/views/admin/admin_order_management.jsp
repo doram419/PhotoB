@@ -9,7 +9,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>주문 관리</title>
 <link type="text/css" rel="stylesheet"
-	href='<c:url value="/css/common_style.css"/>' />
+	href="<c:url value='/css/common_style.css'/>" />
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
 	function confirmStatusChange() {
@@ -27,9 +27,10 @@
 		<div class="card">
 			<div class="card-header">주문 검색</div>
 			<div class="card-body">
-				<form action="<c:url value="/admin/order/search"/>" method="GET">
+				<form action="<c:url value='/admin/order/search'/>" method="GET">
 					<div class="form-group">
-						<input type="text" name="keyword" placeholder="주문번호 또는 고객ID 검색">
+						<input type="text" name="keyword" placeholder="주문번호 또는 고객명 검색"
+							value="${param.keyword}">
 					</div>
 					<button type="submit" class="btn btn-primary">검색</button>
 				</form>
@@ -55,9 +56,9 @@
 							<tr>
 								<td><a
 									href="<c:url value='/admin/order/detail'>
-                             <c:param name='orderId' value='${orderInfo["ordersVo"].orderId}'/>
-                         </c:url>">
-										${orderInfo['ordersVo'].orderId}</a></td>
+<c:param name='orderId' value='${orderInfo["ordersVo"].orderId}'/>
+</c:url>">
+										${orderInfo['ordersVo'].orderId} </a></td>
 								<td>${orderInfo['usersVo'].userName}</td>
 								<td>${orderInfo['ordersVo'].orderDate}</td>
 								<td>${orderInfo['ordersVo'].oQuantity}</td>
@@ -72,9 +73,13 @@
 									onchange="if(confirmStatusChange()){location.href=this.value}">
 										<option value="">상태 변경</option>
 										<option
-											value="<c:url value="/admin/delivery?orderId=${orderInfo['ordersVo'].orderId}"/>">배송</option>
+											value="<c:url value='/admin/delivery'>
+<c:param name='orderId' value='${orderInfo["ordersVo"].orderId}'/>
+</c:url>">배송</option>
 										<option
-											value="<c:url value="/admin/refund?orderId=${orderInfo['ordersVo'].orderId}"/>">환불</option>
+											value="<c:url value='/admin/refund'>
+<c:param name='orderId' value='${orderInfo["ordersVo"].orderId}'/>
+</c:url>">환불</option>
 								</select></td>
 							</tr>
 						</c:forEach>
