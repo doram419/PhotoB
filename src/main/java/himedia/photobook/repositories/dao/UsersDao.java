@@ -17,4 +17,5 @@ public interface UsersDao {
 	 * 고객 상세 조회 (이름 , 회원id, 이메일, 핸드폰 으로 조회) 
 	 * */
 	public UsersVo selectOneUserById(String Id);
+	public UsersVo selectUserByName(String userName);
 }

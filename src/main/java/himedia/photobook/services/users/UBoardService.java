@@ -9,6 +9,7 @@ import himedia.photobook.repositories.vo.BoardVo;
 public interface UBoardService {
 	public List<Map<String, Object>> getBoardInfos();
 	public Map<String, Object> getContent(String userId,Long boardId);
+	public Map<String, Object> getContentByName(String userName);
 	public BoardVo getBoardVo(String userId,Long boardId);
 	public boolean write(BoardVo boardVo);
 	public boolean update(BoardVo boardVo);

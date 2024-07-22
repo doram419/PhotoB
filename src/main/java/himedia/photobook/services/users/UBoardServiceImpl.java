@@ -30,10 +30,6 @@ public class UBoardServiceImpl implements UBoardService {
 		contentMap.put("usersVo", usersVo);
 		
 		return contentMap;
-		
-		
-		
-		
 	}
 
 	@Override
@@ -70,17 +66,20 @@ public class UBoardServiceImpl implements UBoardService {
 		}
 		return result;
 	}
-
-//	@Override
-//	public boolean delete(String userId, String string) {
-//		int deleteCount = uBoardDao.delete(userId);
-//		return false;
-//	}
-
 	@Override
 	public boolean delete(String userId, Long boardId) {
 		int deletedCount = uBoardDao.delete(userId, boardId);
 		return deletedCount==1;
+	}
+
+	@Override
+	public Map<String, Object> getContentByName(String userName) {
+		UsersVo usersVo = usersDaoImpl.selectUserByName(userName);
+		BoardVo boardVo = uBoardDao.getContentById(usersVo.getUserId());
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("boardVo", boardVo);
+		map.put("usersVo", usersVo);		
+		return map;
 	}
 
 	
