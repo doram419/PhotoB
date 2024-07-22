@@ -23,23 +23,31 @@
 	<section id="update">
 		<form action="<c:url value='/admin/product/productEdit'/>" id="form1" name="form1" enctype="multipart/form-data" method="post">
 			<table class="table">
-				<tr>
-					<td>상품이미지</td>
-					<td><input type="file" name="albumPhoto" id="albumPhoto"></td>
-				</tr>
-				<tr>
-					<td>상품코드</td>
-					<td><input type="text" name="albumId" id="albumId" value="${album.albumId}"></td>
-				</tr>
-				<tr>
-					<td>가격</td>
-					<td><input type="text" name="albumPrice" id="albumPrice" value="${inventory.albumPrice}"></td>
-				</tr>
+				<c:forEach var="entry" items="${ProductMap}" varStatus="status">
+						<tr>
+							<td>상품이미지</td>
+							<td>
+								<input type="file" name="albumPhoto_${status.index}" id="albumPhoto_${status.index}">
+							</td>
+						</tr>
+						<tr>
+							<td>상품코드</td>
+							<td>
+								<input type="text" name="albumVo[${status.index}].albumId" id="albumId_${status.index}" value="${entry.value.album.albumId}">
+							</td>
+						</tr>
+						<tr>
+							<td>가격</td>
+							<td>
+								<input type="text" name="inventoryVo[${status.index}].albumPrice" id="albumPrice_${status.index}" value="${entry.value.inventory.albumPrice}">
+							</td>
+						</tr>
+					</c:forEach>
 				<tr>
 					<td colspan="2" align="center">
 					<input type="submit" value="확인">
 					<input type="button" id="deleteBtn" value="삭제"
-					onclick="location.href='<c:url value='/admin/product/delete?albumId='/>${album.albumId}'">
+					onclick="location.href='<c:url value='/admin/product/delete?albumId='/>${entry.value.album.albumId}'">
 					<input type="button" id="listBtn" value="상품목록"
 					onclick="location.href='<c:url value='/admin/products/search'/>'">
 					</td>
