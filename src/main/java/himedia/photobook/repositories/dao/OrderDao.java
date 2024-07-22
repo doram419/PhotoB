@@ -23,5 +23,5 @@ public interface OrderDao {
 	 *  ordersVo - 업데이트할 정보 
 	 * return type : 업데이트 영향 받은 튜플 수
 	 * */
-	int updateOrderIdAndOrderDateByOrderId(String updateId, OrdersVo ordersVo);
+	int updateByOrderId(String updateId, OrdersVo ordersVo);
 }

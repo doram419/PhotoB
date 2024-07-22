@@ -41,13 +41,17 @@ public class OrderDaoImpl implements OrderDao {
 	}
 	
 	@Override
-	public int updateOrderIdAndOrderDateByOrderId(String updateId, OrdersVo ordersVo) {
+	public int updateByOrderId(String updateId, OrdersVo ordersVo) {
 		Map<String, Object> updateMap = new HashMap<String, Object>();
 		updateMap.put("updateId", updateId);
 		updateMap.put("orderId", ordersVo.getOrderId());
 		updateMap.put("orderDate", ordersVo.getOrderDate());
+		updateMap.put("oQuantity", ordersVo.getoQuantity());
+		updateMap.put("total", ordersVo.getTotal());
 		
-		return sqlSession.update("order.updateOrderIdAndOrderDateByOrderId", 
+		System.out.println(updateMap);
+		
+		return sqlSession.update("order.updateByOrderId", 
 				updateMap);
 	}
 }

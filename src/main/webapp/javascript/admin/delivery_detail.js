@@ -18,6 +18,11 @@ window.addEventListener("load", event => {
 	let deliveryStatusSelectedValue = deliveryStatusSelector.getAttribute("data-default");
 	selectorFunction(deliveryStatusSelector, deliveryStatusSelectedValue);
 	
+	// 앨범 id의 초깃값을 정해주는 코드
+	let albumSelector = document.getElementById("albumVo");
+	let albumSelectedValue = albumSelector.getAttribute("data-default");
+	selectorFunction(albumSelector, albumSelectedValue);
+	
 	// 앨범 재질의 초깃값을 정해주는 코드
 	let albumMaterialSelector = document.getElementById("material");
 	let albumMaterialSelectedValue = albumMaterialSelector.getAttribute("data-default");
@@ -73,4 +78,6 @@ function selectorFunction(selector, selectedValue){
 		}
 	}
 }
+
+
 

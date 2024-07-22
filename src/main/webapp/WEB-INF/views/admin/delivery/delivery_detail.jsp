@@ -106,7 +106,7 @@
 	           <tr>
 	               <td>상품 id</td>
 	               <td>
-	               <select id="albumId"
+	               <select id="albumVo"
 	               	data-default="${deliveryDetailInfos['albumVo'].albumId}" disabled>
 	               	<c:forEach items="${deliveryDetailInfos['albumList']}" var="album">
 		               	<option value="${album.albumId}">
@@ -114,44 +114,10 @@
 		               	</option>
 	               	</c:forEach>
 	               </select>
-	               <input type="hidden" name="albumId"
+	               <input type="hidden" name="albumVo"
 	               		 value="${deliveryDetailInfos['albumVo'].albumId}"/>
 	               </td>
 	               <td><button type=button id="confirm-btn" class="edit-btn">수정</button></td>
-	           </tr>
-	           <tr>
-	               <td>표지 재질</td>
-	               <td>
-	               <select id="material" 
-	               	data-default="${deliveryDetailInfos['albumVo'].material}" disabled>
-		               <option value="LINEN">린넨</option>
-		               <option value="LEATHER">가죽</option>
-		               <option value="HARD">하드</option>
-		               <option value="SOFT">소프트</option> 
-	               </select>
-	               </td>
-	           </tr>
-	           <tr>
-	               <td>표지 색</td>
-	               <td>
-	               <select id="color" 
-	               	data-default="${deliveryDetailInfos['albumVo'].color}" disabled>
-		               <option value="GRAY">회색</option>
-		               <option value="BLUE">파란색</option>
-		               <option value="BROWN">갈색</option>
-	               </select>
-	               </td>
-	           </tr>
-	           <tr>
-	               <td>앨범 사이즈</td>
-	               <td>
-	               <select id="albumSize" 
-	               	data-default="${deliveryDetailInfos['albumVo'].albumSize}" disabled>
-		               <option value="S">Small</option>
-		               <option value="M">Middle</option>
-		               <option value="B">Big</option>
-	               </select>
-	               </td>
 	           </tr>
 	           <tr class="section-end">
 	               <td colspan="3"></td>

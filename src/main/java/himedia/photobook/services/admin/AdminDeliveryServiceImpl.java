@@ -2,7 +2,6 @@ package himedia.photobook.services.admin;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -77,6 +76,7 @@ public class AdminDeliveryServiceImpl {
 		OrdersVo ordersVo = orderDaoImpl.selectByOrderId(orderId);
 		UsersVo usersVo = usersDaoImpl.selectOneUserById(ordersVo.getUserId());
 		ShipmentsVo shipmentsVo = shipmentsDaoImpl.selectShipmentInfoByOrderID(orderId);
+		AlbumVo albumVo = albumDaoImpl.selectByAlbumId(ordersVo.getAlbumId());
 		List<AlbumVo> albumList = albumDaoImpl.selectAll();
 		
 		deliveryDetailInfo.put("ordersVo", ordersVo);
@@ -86,6 +86,7 @@ public class AdminDeliveryServiceImpl {
 		deliveryDetailInfo.put("orderDate", 
 				dataConverter.kstToYYYY(ordersVo.getOrderDate()));
 		deliveryDetailInfo.put("shipmentsVo", shipmentsVo);
+		deliveryDetailInfo.put("albumVo", albumVo);
 		deliveryDetailInfo.put("albumList", albumList);
 
 		return deliveryDetailInfo;
@@ -100,7 +101,6 @@ public class AdminDeliveryServiceImpl {
 		OrdersVo ordersVo = null;
 		String targetOrderId = (String) updateDeliveryInfo.get("targetOrderId");
 		
-		
 		if(updateDeliveryInfo.get("shipmentsVo") instanceof ShipmentsVo)
 			shipmentsVo = (ShipmentsVo) updateDeliveryInfo.get("shipmentsVo");
 		result = 1 == shipmentsDaoImpl.
@@ -110,7 +110,7 @@ public class AdminDeliveryServiceImpl {
 			ordersVo = (OrdersVo) updateDeliveryInfo.get("ordersVo");
 		
 		result = result && 
-				(1 == orderDaoImpl.updateOrderIdAndOrderDateByOrderId(targetOrderId, ordersVo)); 
+				(1 == orderDaoImpl.updateByOrderId(targetOrderId, ordersVo)); 
 		
 		return result;
 	}
