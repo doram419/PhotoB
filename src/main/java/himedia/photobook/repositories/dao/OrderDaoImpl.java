@@ -30,11 +30,24 @@ public class OrderDaoImpl implements OrderDao {
 		return sqlSession.selectList("order.selectAllOrdersByUserId", userId);
 	}
 
+	@Override
 	public List<OrdersVo> selectAllOrders(){
 		return sqlSession.selectList("order.selectAllOrders");
 	}
 	
+	@Override
 	public OrdersVo selectByOrderId(String orderId) {
 		return sqlSession.selectOne("order.selectByOrderId", orderId);
+	}
+	
+	@Override
+	public int updateOrderIdAndOrderDateByOrderId(String updateId, OrdersVo ordersVo) {
+		Map<String, Object> updateMap = new HashMap<String, Object>();
+		updateMap.put("updateId", updateId);
+		updateMap.put("orderId", ordersVo.getOrderId());
+		updateMap.put("orderDate", ordersVo.getOrderDate());
+		
+		return sqlSession.update("order.updateOrderIdAndOrderDateByOrderId", 
+				updateMap);
 	}
 }

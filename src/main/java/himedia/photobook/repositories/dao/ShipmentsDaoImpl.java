@@ -25,4 +25,9 @@ public class ShipmentsDaoImpl implements ShipmentsDao{
 	public List<ShipmentsVo> selectAll() {
 		return session.selectList("shipments.selectAll");
 	}
+
+	@Override
+	public int updateDateAndStatusByShipmentId(ShipmentsVo updateVo) {
+		return session.update("shipments.updateDateAndStatusByShipmentId", updateVo);
+	}
 }

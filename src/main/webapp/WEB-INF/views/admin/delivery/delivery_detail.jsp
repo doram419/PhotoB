@@ -30,6 +30,9 @@
 	        	<tr>
 	               <td>배송 일자</td>
 	               <td>
+	               <!-- 관련은 없지만 shipmentId의 필요성으로 일부러 넣음 -->
+	               <input type="hidden" name="shipmentId"
+	               		value="${deliveryDetailInfos['shipmentsVo'].shipmentId}"/>
 	               <!-- Date는 서비스에서 "yyyy-MM-dd" 형식으로 변환 필요 -->
 	               <input type="date" 
 	               		value="${deliveryDetailInfos['shipmentDate']}" 
@@ -66,6 +69,8 @@
 	               <input type="text" value="${deliveryDetailInfos['ordersVo'].orderId}" disabled/>
 	               <input type="hidden" 
 	               		name="orderId" value="${deliveryDetailInfos['ordersVo'].orderId}"/>
+	               <input type="hidden" 
+	               		name="targetOrderId" value="${deliveryDetailInfos['ordersVo'].orderId}"/>
 	               </td>
 	               <td><button type=button id="confirm-btn" class="edit-btn">수정</button></td>
 	           </tr>
@@ -73,27 +78,21 @@
 	               <td>주문자 아이디</td>
 	               <td>
 	               <input type="text" value="${deliveryDetailInfos['usersVo'].userId}" disabled/>
-	               <input type="hidden" 
-	               		name="userId" value="${deliveryDetailInfos['usersVo'].userId}"/>
+	               <input type="hidden" name="userId" value="${deliveryDetailInfos['usersVo'].userId}"/>
 	               </td>
-	               <td><button type=button id="confirm-btn" class="edit-btn">수정</button></td>
 	           </tr>
 	           <tr>
 	               <td>주문자 이름</td>
 	               <td>
 	               <input type="text" value="${deliveryDetailInfos['usersVo'].userName}" disabled/>
-	               <input type="hidden" 
-	               		name="userName" value="${deliveryDetailInfos['usersVo'].userName}"/>
 	               </td>
 	           </tr>
 	           <tr>
 	               <td>주문 일자</td>
 	               <td>
 	               <!-- Date는 서비스에서 "yyyy-MM-dd" 형식으로 변환 필요 -->
-	               <input type="date" name="orderDate" value="${deliveryDetailInfos['orderDate']}" disabled/>
+	               <input type="date" value="${deliveryDetailInfos['orderDate']}" disabled/>
 	               <input type="hidden" 
-	               		 value="${deliveryDetailInfos['orderDate']}"/>
-	                <input type="hidden" 
 	               		name="stringOrderDate" value="${deliveryDetailInfos['orderDate']}"/>
 	               </td>
 	               <td><button type=button class="edit-btn">수정</button></td>
@@ -107,7 +106,14 @@
 	           <tr>
 	               <td>상품 id</td>
 	               <td>
-	               <input type="text" value="${deliveryDetailInfos['albumVo'].albumId}" disabled/>
+	               <select id="albumId"
+	               	data-default="${deliveryDetailInfos['albumVo'].albumId}" disabled>
+	               	<c:forEach items="${deliveryDetailInfos['albumList']}" var="album">
+		               	<option value="${album.albumId}">
+		               		${album.albumId}
+		               	</option>
+	               	</c:forEach>
+	               </select>
 	               <input type="hidden" name="albumId"
 	               		 value="${deliveryDetailInfos['albumVo'].albumId}"/>
 	               </td>
@@ -123,10 +129,7 @@
 		               <option value="HARD">하드</option>
 		               <option value="SOFT">소프트</option> 
 	               </select>
-	               <input type="hidden" name="material"
-	               		 value="${deliveryDetailInfos['albumVo'].material}"/>
 	               </td>
-	               <td><button type=button id="confirm-btn" class="edit-btn">수정</button></td>
 	           </tr>
 	           <tr>
 	               <td>표지 색</td>
@@ -137,10 +140,7 @@
 		               <option value="BLUE">파란색</option>
 		               <option value="BROWN">갈색</option>
 	               </select>
-	               <input type="hidden" name="color"
-	               		 value="${deliveryDetailInfos['albumVo'].color}"/>
 	               </td>
-	               <td><button type=button id="confirm-btn" class="edit-btn">수정</button></td>
 	           </tr>
 	           <tr>
 	               <td>앨범 사이즈</td>
@@ -151,10 +151,7 @@
 		               <option value="M">Middle</option>
 		               <option value="B">Big</option>
 	               </select>
-	               <input type="hidden" name="albumSize"
-	               		 value="${deliveryDetailInfos['albumVo'].albumSize}"/>
 	               </td>
-	               <td><button type=button id="confirm-btn" class="edit-btn">수정</button></td>
 	           </tr>
 	           <tr class="section-end">
 	               <td colspan="3"></td>

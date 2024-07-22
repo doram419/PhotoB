@@ -2,6 +2,7 @@ package himedia.photobook.services.admin;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -76,7 +77,7 @@ public class AdminDeliveryServiceImpl {
 		OrdersVo ordersVo = orderDaoImpl.selectByOrderId(orderId);
 		UsersVo usersVo = usersDaoImpl.selectOneUserById(ordersVo.getUserId());
 		ShipmentsVo shipmentsVo = shipmentsDaoImpl.selectShipmentInfoByOrderID(orderId);
-		AlbumVo albumVo = albumDaoImpl.selectOneById(ordersVo.getAlbumId());
+		List<AlbumVo> albumList = albumDaoImpl.selectAll();
 		
 		deliveryDetailInfo.put("ordersVo", ordersVo);
 		deliveryDetailInfo.put("usersVo", usersVo);
@@ -84,9 +85,33 @@ public class AdminDeliveryServiceImpl {
 				dataConverter.kstToYYYY(shipmentsVo.getShipmentDate()));
 		deliveryDetailInfo.put("orderDate", 
 				dataConverter.kstToYYYY(ordersVo.getOrderDate()));
-		deliveryDetailInfo.put("albumVo", albumVo);
 		deliveryDetailInfo.put("shipmentsVo", shipmentsVo);
+		deliveryDetailInfo.put("albumList", albumList);
 
 		return deliveryDetailInfo;
+	}
+	
+	/**
+	 * 배송에 쓰이는 모든 정보를 변경을 해주는 함수
+	 * */
+	public boolean updateDeliveryInfo(Map<String, Object> updateDeliveryInfo) {
+		boolean result = false;
+		ShipmentsVo shipmentsVo = null;
+		OrdersVo ordersVo = null;
+		String targetOrderId = (String) updateDeliveryInfo.get("targetOrderId");
+		
+		
+		if(updateDeliveryInfo.get("shipmentsVo") instanceof ShipmentsVo)
+			shipmentsVo = (ShipmentsVo) updateDeliveryInfo.get("shipmentsVo");
+		result = 1 == shipmentsDaoImpl.
+				updateDateAndStatusByShipmentId(shipmentsVo);
+
+		if(updateDeliveryInfo.get("ordersVo") instanceof OrdersVo)
+			ordersVo = (OrdersVo) updateDeliveryInfo.get("ordersVo");
+		
+		result = result && 
+				(1 == orderDaoImpl.updateOrderIdAndOrderDateByOrderId(targetOrderId, ordersVo)); 
+		
+		return result;
 	}
 }

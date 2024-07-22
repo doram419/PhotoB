@@ -43,4 +43,10 @@
 		WHERE
 			ORDER_ID = #{value}
 	</select>
+	<update id="updateOrderIdAndOrderDateByOrderId" parameterType="map">
+		UPDATE ORDERS 
+			SET ORDER_ID = #{orderId},
+			ORDER_DATE = #{orderDate}
+		WHERE ORDER_ID=#{updateId}
+	</update>
 </mapper>

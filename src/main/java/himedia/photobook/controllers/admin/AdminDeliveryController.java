@@ -50,22 +50,24 @@ public class AdminDeliveryController {
 			@ModelAttribute OrdersVo ordersVo,
 			@ModelAttribute AlbumVo alblumVo,
 			@ModelAttribute("stringShipmentDate") String shipmentDate,
-			@ModelAttribute("stringOrderDate") String orderDate) {
+			@ModelAttribute("stringOrderDate") String orderDate,
+			@ModelAttribute("targetOrderId") String targetOrderId){
 		try {
 			shipmentsVo.setShipmentDate(dataConverter.StringToDate(shipmentDate));
 			ordersVo.setOrderDate(dataConverter.StringToDate(orderDate));
 		} catch (ParseException e) {
 			e.printStackTrace();
-			// throw 하기
+			// TODO: custom Error throw 하기
 		}
 		
 		Map<String, Object> deliveryInfo = new HashMap<String, Object>();	
 		deliveryInfo.put("shipmentsVo", shipmentsVo);
 		deliveryInfo.put("usersVo", usersVo);
 		deliveryInfo.put("ordersVo", ordersVo);
+		deliveryInfo.put("targetOrderId", targetOrderId);
 		deliveryInfo.put("alblumVo", alblumVo);
-
-		System.out.println(deliveryInfo);
+		
+		adminDeliveryServiceImpl.updateDeliveryInfo(deliveryInfo);
 		
 		return "redirect:/admin/delivery";
 	}

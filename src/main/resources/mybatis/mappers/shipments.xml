@@ -32,4 +32,11 @@
 		WHERE
 			ORDER_ID = #{value}
 	</select>
+	
+	<update id="updateDateAndStatusByShipmentId" parameterType="shipmentsVo">
+		UPDATE SHIPMENTS 
+			SET SHIPMENT_STATUS = #{shipmentStatus},
+			SHIPMENT_DATE = #{shipmentDate}
+		WHERE SHIPMENT_ID=#{shipmentId}
+	</update>
 </mapper>
