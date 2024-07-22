@@ -49,8 +49,6 @@ public class OrderDaoImpl implements OrderDao {
 		updateMap.put("oQuantity", ordersVo.getoQuantity());
 		updateMap.put("total", ordersVo.getTotal());
 		
-		System.out.println(updateMap);
-		
 		return sqlSession.update("order.updateByOrderId", 
 				updateMap);
 	}
