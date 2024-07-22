@@ -21,9 +21,9 @@
         <div class="card">
             <div class="card-header">배송 검색</div>
             <div class="card-body">
-                <form>
+                <form action="<c:url value="/admin/delivery/search"/>" method="post">
                     <div class="form-group">
-                        <input type="text" placeholder="주문번호 또는 고객ID 검색">
+                        <input type="text" name="keyword" placeholder="주문번호 또는 고객ID 검색">
                     </div>
                     <button type="submit" class="btn btn-primary">검색</button>
                 </form>
@@ -45,6 +45,21 @@
                     </thead>
                     <tbody>
                         <c:forEach items="${deliveryInfos}" var="infoMap">				
+                        <tr>
+	                		<td>${infoMap['ordersVo'].orderId}</td>
+	                        <td>${infoMap['usersVo'].userName}</td>
+	                        <td>${infoMap['shipmentsVo'].shipmentId}</td>
+	                        <td>${infoMap['shipmentDate']}</td>
+	                        <td>${infoMap['status']}</td>
+	                        <td>
+	                        	<form action="<c:url value="/admin/delivery/detail"/>" method="GET">
+	                        		<input type="hidden" name="orderId" value = "${infoMap['ordersVo'].orderId}"/>
+	                        		<button class="btn btn-primary">조회/변경</button>
+	                        	</form>
+                            </td>
+                		</tr>
+           				</c:forEach>   
+           				<c:forEach items="${searchInfos}" var="infoMap">				
                         <tr>
 	                		<td>${infoMap['ordersVo'].orderId}</td>
 	                        <td>${infoMap['usersVo'].userName}</td>

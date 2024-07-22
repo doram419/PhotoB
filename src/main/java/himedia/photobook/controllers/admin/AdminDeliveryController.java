@@ -70,4 +70,11 @@ public class AdminDeliveryController {
 		
 		return "redirect:/admin/delivery";
 	}
+	
+	@PostMapping("/delivery/search")
+	public String search(Model model) {
+		model.addAttribute("searchInfos");
+
+		return "/WEB-INF/views/admin/admin_delivery.jsp";
+	}
 }
