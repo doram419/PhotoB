@@ -1,6 +1,8 @@
 package himedia.photobook.repositories.dao;
 
 
+import java.util.List;
+
 import himedia.photobook.repositories.vo.UsersVo;
 
 public interface UsersDao {
@@ -17,5 +19,5 @@ public interface UsersDao {
 	 * 고객 상세 조회 (이름 , 회원id, 이메일, 핸드폰 으로 조회) 
 	 * */
 	public UsersVo selectOneUserById(String Id);
-	public UsersVo selectUserByName(String userName);
+	public List<UsersVo> selectUserByName(String userName);
 }

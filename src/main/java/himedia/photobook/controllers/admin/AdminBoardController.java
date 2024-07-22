@@ -140,8 +140,7 @@ public class AdminBoardController {
 
 	@GetMapping("/customerService/search")
 	public String searchBoard(@RequestParam(value = "keyword") String keyword, Model md) {
-		Map<String, Object> boardDetail = uBoardService.getContentByName(keyword);
-		System.out.println(boardDetail);
+		List<Map<String, Object>> boardDetail = uBoardService.getContentByName(keyword);
 		md.addAttribute("boardDetail",boardDetail);
 		return "/WEB-INF/views/admin/admin_customer_service.jsp";
 	}

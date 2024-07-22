@@ -8,7 +8,7 @@ public interface UBoardDao {
 	public List<BoardVo> selectAllList();
 	public int insert(BoardVo boardVo);
 	public BoardVo getContent(String userId,Long boardId);
-	public BoardVo getContentById(String userId);
+	public List<BoardVo> getContentById(String userId);
 	public int update(BoardVo boardVo);
 	public int delete(String userId, Long boardId);
 }

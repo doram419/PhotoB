@@ -69,8 +69,7 @@ public class UsersDaoImpl implements UsersDao {
 	}
 
 	@Override
-	public UsersVo selectUserByName(String userName) {
-		UsersVo est = sqlSession.selectOne("users.selectUserByName", userName);
-		return est;
+	public List<UsersVo> selectUserByName(String userName) {
+		return sqlSession.selectList("users.selectUserByName", userName);
 	}
 }

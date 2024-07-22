@@ -58,15 +58,18 @@
 											class="btn btn-primary">상세보기</button></a></td>
 							</tr>
 						</c:forEach>
+						<c:forEach items="${boardDetail}" var="postMap" varStatus="status">
 							<tr>
-								<td>${boardDetail['boardVo'].boardId}</td>
-								<td>${boardDetail['usersVo'].userName}</td>
-								<td>${boardDetail['boardVo'].title}</td>
-								<td>${boardDetail['boardVo'].status}</td>
+								<td>${postMap['boardVo'].boardId}</td>
+								<td>${postMap['usersVo'].userName}</td>
+								<td>${postMap['boardVo'].title}</td>
+								<td>${postMap['boardVo'].status}</td>
 								<td><a
 									href="<c:url value="/admin/board/post/${postMap['boardVo'].userId}/${postMap['boardVo'].boardId }"/>"><button
 											class="btn btn-primary">상세보기</button></a></td>
+							
 							</tr>
+						</c:forEach>
 					</tbody>
 				</table>
 			</div>

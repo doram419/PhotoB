@@ -22,10 +22,17 @@
 		(SEQ_BOARD_PK.nextval, #{title}, #{content}, #{userId})
 	</insert>
 	
+	  <select id="getContent" parameterType="map" resultType="BoardVo">
+      SELECT
+      BOARD_ID as boardId, TITLE, CONTENT,USER_ID as userId
+      FROM BOARD
+      WHERE
+      USER_ID=#{userId} AND BOARD_ID = #{boardId}
+   </select>
 	
 	<!-- 이름으로 관리자 게시물 검색 -->
 	<select id="getContentById" parameterType="String" resultType="BoardVo">
-		SELECT BOARD_ID, TITLE, CONTENT, REG_DATE,USER_ID, STATUS
+		SELECT BOARD_ID as boardId, TITLE, CONTENT, REG_DATE as regDate ,USER_ID as userId, STATUS
 		FROM BOARD 
 		WHERE USER_ID = #{userId}
 	</select>
