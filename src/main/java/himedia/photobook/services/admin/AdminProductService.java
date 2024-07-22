@@ -64,5 +64,22 @@ public class AdminProductService {
 
         return productMap;
     }
+    
+ 	public boolean updateAlbum(AlbumVo vo) {
+ 		int updatedCount = albumDaoImpl.updateAlbum(vo);
+ 		return updatedCount == 1;
+ 	}
+ 	
+ 	public boolean updateAlbum(InventoryVo vo) {
+ 		int updatedCount = inventoryDaoImpl.updateAlbum(vo);
+ 		return updatedCount == 1;
+ 	}
+ 	
+ 	public void deleteAlbum(String albumId) {
+ 		albumDaoImpl.deleteAlbum(albumId);
+ 	}
 
+ 	public int insertAlbum(AlbumVo vo) {
+ 		return albumDaoImpl.insertAlbum(vo);	
+ 	}
 }

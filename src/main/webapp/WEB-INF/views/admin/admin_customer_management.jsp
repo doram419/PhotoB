@@ -26,8 +26,8 @@
 			<div class="card-body">
 				<form method="get" action="<c:url value='/admin/search'/>">
 					<div class="form-group">
-						<label for="search-category">검색 분류:</label> <select
-							id="search-category" name="search-category">
+						<label for="search-category">검색 분류:</label>
+						<select id="search-category" name="search-category">
 							<option value="all">전체</option>
 							<option value="USER_NAME">이름</option>
 							<option value="USER_ID">회원 ID</option>
@@ -37,10 +37,9 @@
 							name="keyword" placeholder="검색어를 입력하세요">
 					</div>
 					<div class="form-group">
-						<label>기간 검색:</label> <select id="date-type" name="date-type">
-							<option value="registration">가입일</option>
-						</select> <input type="date" id="start-date" name="start-date"> <input
-							type="date" id="end-date" name="end-date">
+						<label>가입일</label> 
+						<input type="date" id="start-date" name="start-date">
+						<input type="date" id="end-date" name="end-date">
 					</div>
 					<button type="submit" class="btn btn-primary">검색</button>
 					<button type="reset" class="btn btn-secondary">초기화</button>
