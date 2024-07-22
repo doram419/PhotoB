@@ -41,15 +41,17 @@ window.addEventListener("load", event => {
  * 
  * event : 해당 함수를 적용할 수정 버튼
  */
-function editAble(event){
+function editAble(event){	
 	let target = event.target;
 	let Node = target.parentElement.previousElementSibling.firstElementChild;
+	let valueSave = Node.nextElementSibling;
 	
 	if(target.innerText == "수정")
-	{
+	{		
 		Node.disabled= false;
 		target.innerText = "확인";
 	} else {
+		valueSave.value = Node.value;
 		Node.disabled= true;
 		target.innerText = "수정";
 	}

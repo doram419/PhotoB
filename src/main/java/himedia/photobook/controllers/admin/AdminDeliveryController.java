@@ -1,5 +1,8 @@
 package himedia.photobook.controllers.admin;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -9,6 +12,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import himedia.photobook.repositories.vo.AlbumVo;
+import himedia.photobook.repositories.vo.OrdersVo;
+import himedia.photobook.repositories.vo.ShipmentsVo;
+import himedia.photobook.repositories.vo.UsersVo;
 import himedia.photobook.services.admin.AdminDeliveryServiceImpl;
 
 @Controller
@@ -32,11 +39,26 @@ public class AdminDeliveryController {
 		return "/WEB-INF/views/admin/delivery/delivery_detail.jsp";
 	}
 	
-	@PostMapping
-	public String modify(Model model,
-			@ModelAttribute("orderId") String orderId) {
-		model.addAttribute("deliveryDetailInfos", adminDeliveryServiceImpl.getDeliveryDetailInfo(orderId));
+	@PostMapping("/delivery/modify")
+	public String modify(@ModelAttribute ShipmentsVo shipmentsVo,
+			@ModelAttribute UsersVo usersVo,
+			@ModelAttribute OrdersVo ordersVo,
+			@ModelAttribute AlbumVo alblumVo,
+			@ModelAttribute("stringShipmentDate") String shipmentDate,
+			@ModelAttribute("stringOrderDate") String orderDate) {
+	
 		
-		return "/WEB-INF/views/admin/delivery/delivery_detail.jsp";
+		Map<String, Object> deliveryInfo = new HashMap<String, Object>();
+		
+		
+		deliveryInfo.put("shipmentsVo", shipmentsVo);
+		
+		
+		System.out.println(shipmentsVo);
+		System.out.println(usersVo);
+		System.out.println(ordersVo);
+		System.out.println(alblumVo);
+		
+		return "redirect:/admin/delivery";
 	}
 }

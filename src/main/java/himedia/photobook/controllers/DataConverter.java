@@ -1,7 +1,9 @@
 package himedia.photobook.controllers;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+
 
 /**
  * 코드, 날짜등을 사용자가 인지하기 편한 값으로 변환해주고 리턴해주는 클래스
@@ -45,5 +47,17 @@ public class DataConverter {
 		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 		
 		return dateFormat.format(date);
+	}
+	
+	/**
+	 * String 타입의 데이터를 java.util.date 타입으로 변환시켜주는 메서드
+	 * parameter : Date 타입
+	 * return : "yyyy-MM-dd"의 String
+	 * @throws ParseException 
+	 * */
+	public Date StringToDate(String src) throws ParseException {
+		SimpleDateFormat dateFormat = new SimpleDateFormat();
+		
+		return dateFormat.parse(src);
 	}
 }
