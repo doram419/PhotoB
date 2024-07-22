@@ -28,11 +28,12 @@
 	              <td colspan="3">배송 정보</td>
 	        	</tr>
 	        	<tr>
-	               <td>배송 일자</td>
-	               <td>
+	               <td>배송 일자
 	               <!-- 관련은 없지만 shipmentId의 필요성으로 일부러 넣음 -->
 	               <input type="hidden" name="shipmentId"
 	               		value="${deliveryDetailInfos['shipmentsVo'].shipmentId}"/>
+	               </td>
+	               <td>
 	               <!-- Date는 서비스에서 "yyyy-MM-dd" 형식으로 변환 필요 -->
 	               <input type="date" 
 	               		value="${deliveryDetailInfos['shipmentDate']}" 
@@ -107,15 +108,15 @@
 	               <td>상품 id</td>
 	               <td>
 	               <select id="albumVo"
-	               	data-default="${deliveryDetailInfos['albumVo'].albumId}" disabled>
+	               	data-default="${deliveryDetailInfos['ordersVo'].albumId}" disabled>
 	               	<c:forEach items="${deliveryDetailInfos['albumList']}" var="album">
 		               	<option value="${album.albumId}">
 		               		${album.albumId}
 		               	</option>
 	               	</c:forEach>
 	               </select>
-	               <input type="hidden" name="albumVo"
-	               		 value="${deliveryDetailInfos['albumVo'].albumId}"/>
+	               <input type="hidden" name="albumId"
+	               		 value="${deliveryDetailInfos['ordersVo'].albumId}"/>
 	               </td>
 	               <td><button type=button id="confirm-btn" class="edit-btn">수정</button></td>
 	           </tr>

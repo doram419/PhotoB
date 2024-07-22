@@ -46,6 +46,7 @@
 	<update id="updateByOrderId" parameterType="map">
 		UPDATE ORDERS 
 			SET ORDER_ID = #{orderId},
+			ALBUM_ID = #{albumId},
 			ORDER_DATE = #{orderDate},
 			O_Quantity = #{oQuantity},
 			TOTAL = #{total}

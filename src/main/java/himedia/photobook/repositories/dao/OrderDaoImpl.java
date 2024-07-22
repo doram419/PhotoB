@@ -45,6 +45,7 @@ public class OrderDaoImpl implements OrderDao {
 		Map<String, Object> updateMap = new HashMap<String, Object>();
 		updateMap.put("updateId", updateId);
 		updateMap.put("orderId", ordersVo.getOrderId());
+		updateMap.put("albumId", ordersVo.getAlbumId());
 		updateMap.put("orderDate", ordersVo.getOrderDate());
 		updateMap.put("oQuantity", ordersVo.getoQuantity());
 		updateMap.put("total", ordersVo.getTotal());

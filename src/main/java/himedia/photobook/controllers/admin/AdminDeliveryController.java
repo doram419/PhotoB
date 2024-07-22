@@ -64,7 +64,7 @@ public class AdminDeliveryController {
 		deliveryInfo.put("usersVo", usersVo);
 		deliveryInfo.put("ordersVo", ordersVo);
 		deliveryInfo.put("targetOrderId", targetOrderId);
-		deliveryInfo.put("alblumVo", alblumVo);
+		System.out.println(ordersVo);
 		
 		adminDeliveryServiceImpl.updateDeliveryInfo(deliveryInfo);
 		
