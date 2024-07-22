@@ -61,7 +61,8 @@
 	   </c:if>
     </div>    
     
-    <p><a href="<c:url value="/admin/boardList"/>">돌아가기</a></p>
+    <p><a href="<c:url value="/admin/boardList"/>">돌아가기</a></p><br>
+    <p><a href="<c:url value="/admin/cs"/>">관리자 페이지로</a></p>
  
     <c:import url="/WEB-INF/views/users/includes/users_footer.jsp"></c:import>
 </body>

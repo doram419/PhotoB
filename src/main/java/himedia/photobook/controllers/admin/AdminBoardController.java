@@ -137,11 +137,12 @@ public class AdminBoardController {
 		return "redirect:/admin/boardList";
 //		return "/WEB-INF/views/admin/board/board_post.jsp";
 	}
-
+// 관리자 이름 검색
 	@GetMapping("/customerService/search")
 	public String searchBoard(@RequestParam(value = "keyword") String keyword, Model md) {
 		List<Map<String, Object>> boardDetail = uBoardService.getContentByName(keyword);
 		md.addAttribute("boardDetail",boardDetail);
 		return "/WEB-INF/views/admin/admin_customer_service.jsp";
 	}
+
 }
