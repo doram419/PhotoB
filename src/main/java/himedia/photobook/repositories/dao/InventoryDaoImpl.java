@@ -19,7 +19,6 @@ public class InventoryDaoImpl implements InventoryDao {
 	public InventoryVo findAlbumPriceByAlbumId(String albumId)	{
 		Map<String,String> ai = new HashMap<>();
 		ai.put("albumId",albumId);
-		System.out.println("sql들어가기전 ai"+ai);
 		InventoryVo inventoryVo = sqlSession.selectOne("inventory.findAlbumPriceByAlbumId",ai);// xml수정필요
 		
 		return inventoryVo;
