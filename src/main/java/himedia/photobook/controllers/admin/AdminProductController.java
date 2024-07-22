@@ -2,13 +2,12 @@ package himedia.photobook.controllers.admin;
 
 import java.util.Map;
 
-
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import himedia.photobook.services.admin.AdminProductService;
 
@@ -24,9 +23,9 @@ public class AdminProductController {
 	}
 	
 	@GetMapping("/products/search")
-    	public String showAlbumInventory(Model model) {
+    	public String searchProducts(@RequestParam(value = "keyword", required = false) String keyword, Model model) {
 		try {
-        Map<String, Object> productMap = adminProductService.getProductMap();
+        Map<String, Object> productMap = adminProductService.getProductMap(keyword);
         model.addAttribute("ProductMap", productMap);
 		} catch(Exception e) {
 			e.printStackTrace();
@@ -34,5 +33,11 @@ public class AdminProductController {
 		}
         return "/WEB-INF/views/admin/product/admin_product.jsp";
     }
+	
+	@GetMapping("/productEdit")
+	public String editProduct(@RequestParam("albumId") String albumId, Model model) {
+	    return "/WEB-INF/views/admin/product/productEdit.jsp";
+	}
+
 
 }

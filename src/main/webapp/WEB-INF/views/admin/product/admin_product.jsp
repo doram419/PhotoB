@@ -45,7 +45,7 @@
 							<th>상품코드</th>
 							<th>가격</th>
 							<th>사이즈</th>
-							<th>작업</th>
+							<th></th>
 						</tr>
 					</thead>
 
