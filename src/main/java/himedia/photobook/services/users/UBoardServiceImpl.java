@@ -43,6 +43,7 @@ public class UBoardServiceImpl implements UBoardService {
 	@Override
 	public boolean write(BoardVo boardVo) {
 		int insertedCount = uBoardDao.insert(boardVo);
+		
 		return insertedCount==1;
 	}
 

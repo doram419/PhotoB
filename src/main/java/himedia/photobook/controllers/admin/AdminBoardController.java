@@ -3,6 +3,7 @@ package himedia.photobook.controllers.admin;
 import java.util.List;
 import java.util.Map;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -11,11 +12,10 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import himedia.photobook.repositories.dao.UBoardDao;
-import himedia.photobook.repositories.dao.UsersDao;
-import himedia.photobook.repositories.dao.UsersDaoImpl;
+
 import himedia.photobook.repositories.vo.BoardVo;
 import himedia.photobook.repositories.vo.CommentsVo;
 import himedia.photobook.repositories.vo.UsersVo;
@@ -42,7 +42,6 @@ public class AdminBoardController {
 	public String list(Model md) {
 		List<Map<String, Object>> list = uBoardService.getBoardInfos();
 		md.addAttribute("postList",list);
-		System.out.println(list);
 		return "/WEB-INF/views/admin/admin_board.jsp";
 	}
 	
@@ -65,15 +64,17 @@ public class AdminBoardController {
 	
 	@GetMapping("/board/post/{userId}/{boardId}")
 	public String view(@PathVariable("userId") String userId,@PathVariable("boardId") Long boardId, Model md, HttpSession session) {
-		System.out.println("userId: "+userId);
 		UsersVo authUser = (UsersVo) session.getAttribute("authUser");
 		if(authUser==null) {
 			return "redirect:/admin/boardList";
 		}
 		
-		Map<String, Object> boardVo = uBoardService.getContent(userId,boardId);
-//		UsersVo usersVo = userDao.selectOneUserById(userId);
+		Map<String, Object> boardVo = uBoardService.getContent(userId,boardId);	
+		CommentsVo commentsVo = adminCommentService.getCommentsByBoardId(boardId);
+		boolean hasComment = adminCommentService.hasComment(boardId);
 		md.addAttribute("vo",boardVo);
+		md.addAttribute("commentVo",commentsVo);
+		md.addAttribute("hasComment",hasComment);
 //		md.addAttribute("userVo",usersVo);
 		return "/WEB-INF/views/admin/board/board_post.jsp";
 	}
@@ -124,18 +125,20 @@ public class AdminBoardController {
 		return "redirect:/admin/boardList";
 	}
 	
-	
 	// 관리자 댓글 작성
 	@PostMapping("/comment/write")
-	public String commentAction(@ModelAttribute CommentsVo commentsVo,HttpSession session, RedirectAttributes redirectAtt) {
+	public String commentAction(@ModelAttribute CommentsVo commentsVo,@RequestParam("boardId") Long boardId,HttpSession session, RedirectAttributes redirectAtt) {
 		UsersVo authUser= (UsersVo) session.getAttribute("authUser");
 		if(authUser == null) {
 			redirectAtt.addFlashAttribute("errorMsg", "자격이 없습니다.");
 			return "redirect:/users/boardList";
 		}
+		
 		commentsVo.setUserName(authUser.getUserName());
 		adminCommentService.write(commentsVo);
+		redirectAtt.addAttribute("boardId",boardId);
 		
-		return "/WEB-INF/views/admin/board/board_post.jsp";
+		return "redirect:/admin/boardList";
+//		return "/WEB-INF/views/admin/board/board_post.jsp";
 	}
 }

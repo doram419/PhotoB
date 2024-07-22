@@ -70,4 +70,6 @@ public class UBoardDaoImpl implements UBoardDao{
 
 	
 
+	
+
 }

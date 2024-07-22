@@ -8,8 +8,17 @@
 			order="BEFORE">
 			SELECT SEQ_COMMENTS_PK.nextval from dual
 		</selectKey>
-		INSERT INTO COMMENTS(COMMENT_ID, USER_NAME, CONTENT, COM_DATE)
+		INSERT INTO COMMENTS(COMMENT_ID,BOARD_ID, USER_NAME, CONTENT,COM_DATE)
 		VALUES
-		(SEQ_COMMENTS_PK.nextval, #{userName}, #{content}, #{comDate})
+		(SEQ_COMMENTS_PK.nextval,#{boardId}, #{userName}, #{content},SYSDATE)
 	</insert>
+	
+	<select id="getCommentsByBoardId" parameterType="Long" resultType="CommentsVo">
+		SELECT COMMENT_ID as commentId, BOARD_ID as boardId, USER_NAME as userName, CONTENT, COM_DATE as comDate
+		FROM COMMENTS 
+		WHERE BOARD_ID = #{boardId}
+	</select>
+	<!-- <select id="countComment" parameterType="Long" resultType="CommentsVo">
+	SELECT COUNT(*) FROM COMMENTS WHERE BOARD_ID=#{boardId}
+	</select> -->
    </mapper>

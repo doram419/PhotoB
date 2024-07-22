@@ -43,7 +43,7 @@
                             <th>고객명</th>
                             <th>제목</th>
                             <th>상태</th>
-                            <th>작업</th>
+                            <th>&nbsp;</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -56,7 +56,6 @@
                             <td>${postMap['boardVo'].status}</td>
                             <td>
                             	<a href="<c:url value="/admin/board/post/${postMap['boardVo'].userId}/${postMap['boardVo'].boardId }"/>"><button class="btn btn-primary">상세보기</button></a>
-                                <a href="<c:url value="/admin/board/${postMap['boardVo'].userId}/${postMap['boardVo'].boardId }"/>"><button class="btn btn-primary">답변하기</button></a>
                             </td>
                         </tr>
                         </c:forEach>

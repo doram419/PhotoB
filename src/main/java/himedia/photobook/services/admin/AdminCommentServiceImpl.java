@@ -14,7 +14,20 @@ public class AdminCommentServiceImpl implements AdminCommentService{
 	@Override
 	public boolean write(CommentsVo commentsVo) {
 		int insertedCount = commentsDaoImpl.insert(commentsVo);
+		commentsDaoImpl.updateStatus(commentsVo.getBoardId());
 		return insertedCount==1;
+	}
+
+	@Override
+	public CommentsVo getCommentsByBoardId(Long boardId) {
+		CommentsVo commentsVo = commentsDaoImpl.getCommentsByBoardId(boardId);
+		return commentsVo;
+	}
+
+	@Override
+	public boolean hasComment(Long boardId) {
+		CommentsVo comment = commentsDaoImpl.getCommentsByBoardId(boardId);
+		return comment != null;
 	}
 	
 }

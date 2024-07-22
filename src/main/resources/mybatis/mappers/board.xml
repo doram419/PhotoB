@@ -34,6 +34,10 @@
 		SET TITLE=#{title}, CONTENT=#{content}
 		WHERE USER_ID = #{userId} AND BOARD_ID = #{boardId}
 	</update>
+	<update id="updateStatus" parameterType="BoardVo">
+		UPDATE BOARD SET STATUS='처리 완료'
+		WHERE BOARD_ID = #{boardId}
+	</update>
 	<delete id="delete" parameterType="map">
 		DELETE FROM BOARD WHERE USER_ID = #{userId} AND BOARD_ID = #{boardId}
 	</delete>
