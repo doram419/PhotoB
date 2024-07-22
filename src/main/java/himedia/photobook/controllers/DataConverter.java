@@ -51,12 +51,12 @@ public class DataConverter {
 	
 	/**
 	 * String 타입의 데이터를 java.util.date 타입으로 변환시켜주는 메서드
-	 * parameter : Date 타입
-	 * return : "yyyy-MM-dd"의 String
+	 * parameter : 날짜 형식의 String 
+	 * return : date 타입 
 	 * @throws ParseException 
 	 * */
 	public Date StringToDate(String src) throws ParseException {
-		SimpleDateFormat dateFormat = new SimpleDateFormat();
+		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 		
 		return dateFormat.parse(src);
 	}
