@@ -83,7 +83,7 @@
 								</form>
 								<form action="<c:url value="/admin/order/createRefund"/>" method="post">
 									<input type="hidden" name="createOrderId" value="${orderInfo['ordersVo'].orderId}"/>
-									<button type="submit" class="btn btn-primary" disabled>환불 생성</button>
+									<button type="submit" class="btn btn-primary">환불 생성</button>
 								</form>
 								</td>
 							</tr>
