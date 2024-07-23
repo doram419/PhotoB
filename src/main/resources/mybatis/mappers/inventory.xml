@@ -14,7 +14,7 @@
             album_price as albumPrice
         FROM inventory
     </select>
-    <select id="selectOneByAlbumId" parameterType="String">
+    <select id="selectOneByAlbumId" parameterType="String" resultType="InventoryVo">
         SELECT 
         	ALBUM_ID as albumId, 
         	ALBUM_PRICE as albumPrice,
@@ -22,15 +22,9 @@
 		FROM INVENTORY
 		WHERE ALBUM_ID = #{value}
     </select>
-	<update id="decreaseQuantity" parameterType="InventoryVo">
-		<selectKey keyProperty="quantity" resultType="Long" order="BEFORE">
-			SELECT A_QUANTITY 
-			FROM INVENTORY
-			WHERE ALBUM_ID = #{albumId}
-		</selectKey>
-			UPDATE INVENTORY 
-				SET A_QUANTITY = (quantity - #{aQuantity})
-			WHERE ALBUM_ID=#{albumId} AND
-				(quantity - #{aQuantity}) > 0
+	<update id="updateQuantity" parameterType="InventoryVo">
+		UPDATE INVENTORY 
+			SET A_QUANTITY = #{aQuantity}
+		WHERE ALBUM_ID=#{albumId} 
 	</update>
 </mapper>

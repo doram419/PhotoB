@@ -80,25 +80,19 @@ public Map<String, Object> getOrderDetail(String orderId) {
 	 * */
 	public boolean createShipmentByOrderId(String orderId) {
 		boolean result = false;
-		System.out.println("createShipmentByOrderId : " + orderId);
 		
 		if (shipmentsDaoImpl.selectStatusByOrderID(orderId) == null) {
 			OrdersVo order = orderDaoImpl.selectByOrderId(orderId);
-			System.out.println("배송과 연관된 오더 정보 선택해오기 : " + order);
-			InventoryVo inventoryVo = new InventoryVo();
-			inventoryVo.setAlbumId(order.getAlbumId());
-			inventoryVo.setaQuantity(order.getoQuantity());
-			System.out.println("수량과 앨범 : " + inventoryVo);
+			InventoryVo inventoryVo = inventoryDaoImpl.selectOneByAlbumId(order.getAlbumId());
 			
-//			boolean ableOrder = false;
-//			ableOrder = 1 == inventoryDaoImpl.decreaseQuantity(inventoryVo);
-//			System.out.println("수량 차감 결과 : " + ableOrder);
-			
-//			if(ableOrder)
+			if(inventoryVo.getaQuantity() >= order.getoQuantity())
+			{
+				inventoryVo.setaQuantity(inventoryVo.getaQuantity() - order.getoQuantity());
 				result = 1 == shipmentsDaoImpl.insert(orderId);
+				inventoryDaoImpl.updateQuantity(inventoryVo);
+			}
 		}
 		
-		System.out.println("createShipmentByOrderId Result: " + result);
 		return result;
 	}
 	
