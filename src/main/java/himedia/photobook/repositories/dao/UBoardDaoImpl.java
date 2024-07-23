@@ -39,7 +39,6 @@ public class UBoardDaoImpl implements UBoardDao{
 		map.put("userId", userId);
 		map.put("boardId",boardId);
 		return sqlSession.selectOne("board.getContent",map);
-		
 	}
 
 	@Override

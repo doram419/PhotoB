@@ -2,18 +2,23 @@ package himedia.photobook.controllers.users;
 
 
 import himedia.photobook.repositories.vo.UsersVo;
+
+
+
 import himedia.photobook.services.users.UsersService;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+
+
 // 로그인, 회원가입, 로그아웃, 프로필업데이트기능 여기에 다 넣었습니다.
+
 @Controller
 @RequestMapping("/users")
 public class UsersController {
@@ -103,6 +108,5 @@ public class UsersController {
 			return "redirect:/users/login";
 		}
 	}
-
 
 }

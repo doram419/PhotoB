@@ -23,5 +23,3 @@ public class UsersDaoException extends RuntimeException {
 		}
 
 	}
-
-

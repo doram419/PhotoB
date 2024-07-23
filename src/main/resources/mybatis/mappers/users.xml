@@ -6,8 +6,7 @@
      	INSERT INTO USERS (USER_ID, EMAIL, PASSWORD, USER_NAME, ADDRESS, PHONE_NUMBER, ROLE) 
         VALUES ('USER' || LPAD((SELECT NVL(MAX(TO_NUMBER(SUBSTR(USER_ID, 5))) + 1, 1) FROM USERS), 4, '0'),
         	 #{email}, #{password}, #{userName}, #{address}, #{phoneNumber}, #{role})
-    </insert> 
-    
+    </insert>
     <select id="selectUserByEmail" parameterType="String" resultType="UsersVo">
         SELECT 
         	USER_ID as userId, EMAIL, PASSWORD, 
@@ -16,7 +15,7 @@
         FROM USERS
         WHERE EMAIL = #{value}
     </select>
-    
+
     <select id="selectUserByEmailAndPassword" parameterType="map" resultType="UsersVo">
         SELECT 
         	USER_ID as userId, EMAIL, PASSWORD, 
@@ -26,6 +25,21 @@
         WHERE EMAIL = #{email} AND PASSWORD = #{password}
     </select>
     
+    <select id="searchUsers" parameterType="string" resultType="UsersVo">
+          SELECT 
+        	USER_ID as userId, EMAIL,  
+        	USER_NAME as userName,  
+        	PHONE_NUMBER as phoneNumber,
+        	ADDRESS as address
+        FROM USERS
+        WHERE 
+            USER_NAME LIKE ('%' || #{value} || '%')
+            OR USER_ID LIKE ('%' || #{value} || '%')
+        	OR EMAIL LIKE ('%' || #{value} || '%')
+        	OR PHONE_NUMBER LIKE ('%' || #{value} || '%')
+        	OR ADDRESS LIKE ('%' || #{value} || '%')
+        ORDER BY USER_ID
+    </select>
  	
  	<!-- 게시판 유저 아이디 조회용 -->
     <select id="selectUserById" parameterType="String" resultType="UsersVo">
@@ -34,8 +48,15 @@
         	USER_NAME as userName, ADDRESS, 
         	PHONE_NUMBER as phoneNumber
         FROM USERS
-        WHERE USER_ID = #{value}
+        WHERE 
+            USER_NAME LIKE ('%' || #{value} || '%')
+            OR USER_ID LIKE ('%' || #{value} || '%')
+        	OR EMAIL LIKE ('%' || #{value} || '%')
+        	OR PHONE_NUMBER LIKE ('%' || #{value} || '%')
+        	OR ADDRESS LIKE ('%' || #{value} || '%')
+        ORDER BY USER_ID
     </select>
+
       <select id="selectUserByName" parameterType="String" resultType="UsersVo">
         SELECT 
         	USER_ID as userId, EMAIL, 
@@ -44,6 +65,33 @@
         FROM USERS
         WHERE USER_Name = #{value}
     </select>
+
+    <select id="getUserById" parameterType="string" resultType="UsersVo">
+    	SELECT 
+        	USER_ID as userId, EMAIL,  
+        	USER_NAME as userName,  
+        	PHONE_NUMBER as phoneNumber,
+        	ADDRESS as address
+        FROM USERS
+        WHERE
+        	USER_ID = #{value}
+    </select>
+    
+    <delete id="deleteUsers" parameterType="string">
+    	DELETE FROM USERS
+    	WHERE USER_ID = #{value}
+    </delete>
+    
+    <update id="updateUsers" parameterType="UsersVo">
+       UPDATE USERS
+        SET
+            PASSWORD = 'encrypted_' || #{password},
+            USER_NAME = #{userName},
+            EMAIL = #{email},
+            ADDRESS = #{address},
+            PHONE_NUMBER = #{phoneNumber}
+        WHERE USER_ID = #{userId}
+    </update>
 
     <update id="updateUser" parameterType="UsersVo">
        UPDATE USERS
@@ -54,5 +102,4 @@
             PHONE_NUMBER = #{phoneNumber, jdbcType=VARCHAR}
         WHERE USER_ID = #{userId, jdbcType=VARCHAR}
     </update>
-  
 </mapper>

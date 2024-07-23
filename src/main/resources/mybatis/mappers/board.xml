@@ -49,6 +49,4 @@
 	<delete id="delete" parameterType="map">
 		DELETE FROM BOARD WHERE USER_ID = #{userId} AND BOARD_ID = #{boardId}
 	</delete>
-
-
 </mapper>
