@@ -26,7 +26,6 @@ public class AdminOrderController {
 	public String order(Model model) {
 		List<Map<String, Object>> orderInfoList = adminOrderService.getOrderAdmin();
 		model.addAttribute("orderInfoList", orderInfoList);
-		System.out.println(model); // 조회 확인용
 		return "/WEB-INF/views/admin/admin_order_management.jsp";
 	}
 
@@ -37,12 +36,22 @@ public class AdminOrderController {
 		return "/WEB-INF/views/admin/admin_order_detail.jsp";
 	}
 	
-	@PostMapping("/order/create")
+	@PostMapping("/order/createShipment")
 	public String createOrder(@ModelAttribute("createOrderId") String orderId) {
 		// TODO: service에서 order를 위해 map으로 보낼 때, 해당 order_id로 배송을 만들 수 있는지 없는지 체크 해야함 
 		
 		// TODO: 여기서도 결과가 되는지 안 되는지 체크
 		boolean createResult = adminOrderService.createShipmentByOrderId(orderId);
+		
+		return "redirect:/admin/om";
+	}
+	
+	@PostMapping("/order/createRefund")
+	public String createRefund(@ModelAttribute("createOrderId") String orderId) {
+		// TODO: service에서 order를 위해 map으로 보낼 때, 해당 order_id로 배송을 만들 수 있는지 없는지 체크 해야함 
+		
+		// TODO: 여기서도 결과가 되는지 안 되는지 체크
+		boolean createResult = adminOrderService.createRefundByOrderId(orderId);
 		
 		return "redirect:/admin/om";
 	}

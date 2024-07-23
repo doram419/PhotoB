@@ -10,7 +10,6 @@
 		WHERE
 			ORDER_ID = #{value}
 	</select>
-	
 	<select id="selectAllRefunds" resultType="RefundVo">
 		SELECT 
 			REFUND_ID as refundId,
@@ -19,4 +18,9 @@
 		FROM
 		 	REFUND
 	</select>
+	<insert id="insert" parameterType="String">
+		INSERT INTO REFUND (REFUND_ID, ORDER_ID, REFUND_STATUS)
+			VALUES (NVL(NULL, SEQ_REFUND_PK.NEXTVAL), #{value},'P'
+			)
+    </insert>
 </mapper>
