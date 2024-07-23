@@ -70,9 +70,14 @@ public class AdminDeliveryController {
 	
 	@PostMapping("/delivery/search")
 	public String search(Model model, 
-			@RequestParam("keyword") String keyword) {
-		model.addAttribute("searchInfos", adminDeliveryServiceImpl.searchDeliveryInfos(keyword));
-		
+			@RequestParam("keyword") String keyword,
+			@RequestParam("search-category") String category) {
+
+		if(category.equals("orderId"))
+			model.addAttribute("searchInfos", adminDeliveryServiceImpl.searchInfosByOrderId(keyword));
+		else if(category.equals("usersName"))
+			model.addAttribute("searchInfos", adminDeliveryServiceImpl.searchInfosByUserName(keyword));
+			
 		return "/WEB-INF/views/admin/admin_delivery.jsp";
 	}
 }

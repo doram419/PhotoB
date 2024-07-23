@@ -116,9 +116,9 @@ public class AdminDeliveryServiceImpl {
 	}
 	
 	/**
-	 * 키워드를 보고 검색해서 배송 리스트를 가져와 주는 함수
+	 * 오더 아이디를 기준으로 검색해서 배송 리스트를 가져와 주는 함수
 	 * */
-	public List<Map<String, Object>> searchDeliveryInfos(String keyword){
+	public List<Map<String, Object>> searchInfosByOrderId(String keyword){
 		List<Map<String, Object>> searchInfos = new ArrayList<Map<String, Object>>();
 		Map<String, Object> infoMap = null;
 		UsersVo usersVo = null;
@@ -144,6 +144,43 @@ public class AdminDeliveryServiceImpl {
 			
 			searchInfos.add(infoMap);
 		}
+		return searchInfos;
+	}
+	
+	/**
+	 * 주문자명을 기준으로 검색해서 배송 리스트를 가져와 주는 함수
+	 * */
+	public List<Map<String, Object>> searchInfosByUserName(String keyword){
+		List<Map<String, Object>> searchInfos = new ArrayList<Map<String, Object>>();
+		Map<String, Object> infoMap = null;
+		ShipmentsVo shipmentsVo = null;
+		String status = null;
+		
+		List<OrdersVo> ordersList = null;
+		List<UsersVo> usersList = usersDaoImpl.searchUsers(keyword);
+		
+		for (UsersVo usersVo: usersList) {
+			ordersList = orderDaoImpl.selectAllOrdersByUserId(usersVo.getUserId());
+			
+			for (OrdersVo ordersVo : ordersList) {
+				infoMap = new HashMap<String, Object>();
+				shipmentsVo = shipmentsDaoImpl.selectShipmentInfoByOrderID(ordersVo.getOrderId());
+				
+				if(shipmentsVo != null)
+				{
+					status = shipmentsVo.getShipmentStatus();
+					if(status.equals("R"))	
+						status = refundDaoImpl.selectStatusByOrderID(shipmentsVo.getOrderId());
+					status = dataConverter.statusToWord(status);
+					
+					infoMap.put("usersVo", usersVo);
+					infoMap.put("shipmentsVo", shipmentsVo);
+					infoMap.put("status", status);
+					searchInfos.add(infoMap);
+				}
+			}
+		}
+		
 		return searchInfos;
 	}
 }
