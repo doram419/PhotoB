@@ -13,10 +13,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import himedia.photobook.repositories.dao.UsersDao;
 import himedia.photobook.repositories.vo.BoardVo;
 import himedia.photobook.repositories.vo.CommentsVo;
 import himedia.photobook.repositories.vo.UsersVo;
+import himedia.photobook.services.admin.AdminCommentService;
 import himedia.photobook.services.users.UBoardService;
 import jakarta.servlet.http.HttpSession;
 
@@ -29,6 +29,8 @@ import jakarta.servlet.http.HttpSession;
 public class UsersBoardController {
 	@Autowired
 	private UBoardService uBoardService;
+	@Autowired
+	private AdminCommentService adminCommentService;
 	
 
 	@GetMapping({"/board"})
@@ -68,13 +70,11 @@ public class UsersBoardController {
 		if(authUser==null) {
 			return "redirect:/users/boardList";
 		}
-		
-
 		Map<String, Object> boardVo = uBoardService.getContent(userId,boardId);
-
+		CommentsVo commentsVo = adminCommentService.getCommentsByBoardId(boardId);
 
 		md.addAttribute("vo",boardVo);
-
+		md.addAttribute("commentVo",commentsVo);
 		return "/WEB-INF/views/users/board/board_post.jsp";
 	}
 	

@@ -36,14 +36,12 @@
     <hr>
    	<p>관리자 답글</p>
     <table>
-    <c:forEach items="${commentList}" var="commentVo" varStatus="status">
-		<tr>
+    <tr>
 			<td>${commentVo.commentId}</td>
-			<td>${commentVo.userName}</td>
+			<td>${commentVo.userName} 님에게</td>
 			<td>${commentVo.content}</td>
 			<td>${commentVo.comDate}</td>
 		</tr>
-	</c:forEach>  
 	</table> 
     <hr>
 	   
