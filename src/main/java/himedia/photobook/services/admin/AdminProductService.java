@@ -1,6 +1,5 @@
 package himedia.photobook.services.admin;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -35,8 +34,15 @@ public class AdminProductService {
      * 제품 관리에 필요한 정보
      * */
 
-    public Map<String, Object> getProductMap() {
-        List<AlbumVo> albums = albumDaoImpl.selectAll();
+    public Map<String, Object> getProductMap(String keyword) {
+        List<AlbumVo> albums;
+        
+        if (keyword != null && !keyword.isEmpty()) {
+            albums = albumDaoImpl.searchAlbum(keyword);
+        } else {
+            albums = albumDaoImpl.selectAll(); // 모든 앨범 가져오기
+        }
+        
         List<InventoryVo> inventoryList = inventoryDaoImpl.listInventory();
         
         Map<String, InventoryVo> inventoryMap = new HashMap<>();
@@ -58,4 +64,22 @@ public class AdminProductService {
 
         return productMap;
     }
+    
+ 	public boolean updateAlbum(AlbumVo vo) {
+ 		int updatedCount = albumDaoImpl.updateAlbum(vo);
+ 		return updatedCount == 1;
+ 	}
+ 	
+ 	public boolean updateAlbum(InventoryVo vo) {
+ 		int updatedCount = inventoryDaoImpl.updateAlbum(vo);
+ 		return updatedCount == 1;
+ 	}
+ 	
+ 	public void deleteAlbum(String albumId) {
+ 		albumDaoImpl.deleteAlbum(albumId);
+ 	}
+
+ 	public int insertAlbum(AlbumVo vo) {
+ 		return albumDaoImpl.insertAlbum(vo);	
+ 	}
 }

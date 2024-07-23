@@ -15,8 +15,10 @@ public interface AlbumDao {
 	 * */
 	public AlbumVo selectOneById(String albumId);
 	
-	// 앨범 목록
 	public List<AlbumVo> searchAlbum(String keyword);
 	public List<AlbumVo> selectAll();
-	 public AlbumVo selectByAlbumId(String albumId);
+	public AlbumVo selectByAlbumId(String albumId);
+	public int updateAlbum(AlbumVo vo);
+	public void deleteAlbum(String albumId);
+	public int insertAlbum(AlbumVo vo);
 }
