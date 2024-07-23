@@ -8,16 +8,18 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 
-
+import himedia.photobook.repositories.vo.InventoryVo;
+import himedia.photobook.services.admin.AdminInventoryServiceImpl;
 import himedia.photobook.services.users.UBoardServiceImpl;
 
-import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
 @RequestMapping({"/admin"})
 public class AdminController {
 	@Autowired
 	private UBoardServiceImpl uBoardService;
+	@Autowired
+	private AdminInventoryServiceImpl adminInventoryService;
 	
 	@RequestMapping({"","/home"})
 	public String home() {
@@ -50,5 +52,12 @@ public class AdminController {
 	@RequestMapping("/product")
 	public String product() {
 		return "/WEB-INF/views/admin/admin_product.jsp";
+	}
+	@RequestMapping("/inventory")
+	public String inventory(Model md) {
+		List<InventoryVo> list = adminInventoryService.getInvenInfos();
+		md.addAttribute("invenList",list);
+		System.out.println(list);
+		return "/WEB-INF/views/admin/admin_inventory.jsp";
 	}
 }

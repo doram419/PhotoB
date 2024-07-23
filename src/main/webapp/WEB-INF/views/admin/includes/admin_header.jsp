@@ -23,6 +23,7 @@
 				
 			</ul>
 		</li>
+		<li><a href="<c:url value="/admin/inventory"/>">재고 관리</a>
 		<li><a href="<c:url value="/admin/cs"/>">고객 센터</a></li>
 		<li><a href="<c:url value="/admin/dash"/>">설정</a></li>
 		<li><a href="<c:url value="/users/home"/>">홈</a></li>
