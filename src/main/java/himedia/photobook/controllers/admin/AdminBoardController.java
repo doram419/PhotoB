@@ -16,8 +16,10 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import himedia.photobook.repositories.vo.BoardVo;
 import himedia.photobook.repositories.vo.CommentsVo;
+import himedia.photobook.repositories.vo.InventoryVo;
 import himedia.photobook.repositories.vo.UsersVo;
 import himedia.photobook.services.admin.AdminCommentServiceImpl;
+import himedia.photobook.services.admin.AdminInventoryServiceImpl;
 import himedia.photobook.services.users.UBoardServiceImpl;
 import jakarta.servlet.http.HttpSession;
 
@@ -31,7 +33,9 @@ public class AdminBoardController {
 	private UBoardServiceImpl uBoardService;
 	@Autowired
 	private AdminCommentServiceImpl adminCommentService;
-
+	@Autowired
+	private AdminInventoryServiceImpl adminInventoryService;
+	
 	@RequestMapping("/boardList")
 	public String list(Model md) {
 		List<Map<String, Object>> list = uBoardService.getBoardInfos();
@@ -137,12 +141,20 @@ public class AdminBoardController {
 		return "redirect:/admin/boardList";
 //		return "/WEB-INF/views/admin/board/board_post.jsp";
 	}
-// 관리자 이름 검색
+// 관리자 이름 검색 ( 고객센터 )
 	@GetMapping("/customerService/search")
 	public String searchBoard(@RequestParam(value = "keyword") String keyword, Model md) {
 		List<Map<String, Object>> boardDetail = uBoardService.getContentByName(keyword);
 		md.addAttribute("boardDetail",boardDetail);
 		return "/WEB-INF/views/admin/admin_customer_service.jsp";
 	}
-
+	
+// 재고 가격으로 검색 ( 재고 관리 )
+	@GetMapping("/inventory/search")
+	public String searchInventory(@RequestParam(value = "keyword") String keyword, Model md) {
+		InventoryVo invenDetail = adminInventoryService.findAlbumPriceByAlbumId(keyword);
+		md.addAttribute("invenDetail",invenDetail);
+		System.out.println(invenDetail);
+		return "/WEB-INF/views/admin/admin_inventory.jsp";
+	}
 }

@@ -13,12 +13,18 @@ public class AdminInventoryServiceImpl implements AdminInventoryService {
 	@Autowired
 	private InventoryDao inventoryDaoImpl;
 	
-	
 	@Override
 	public List<InventoryVo> getInvenInfos() {
 		List<InventoryVo> invenList = inventoryDaoImpl.listInventory();
 		return invenList;
 
+	}
+
+	@Override
+	public InventoryVo findAlbumPriceByAlbumId(String albumId) {
+		InventoryVo inventoryVo = inventoryDaoImpl.findAlbumPriceByAlbumId(albumId);
+		System.out.println("service:"+inventoryVo);
+		return inventoryVo;
 	}
 
 }

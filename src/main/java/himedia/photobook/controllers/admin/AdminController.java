@@ -57,7 +57,7 @@ public class AdminController {
 	public String inventory(Model md) {
 		List<InventoryVo> list = adminInventoryService.getInvenInfos();
 		md.addAttribute("invenList",list);
-		System.out.println(list);
 		return "/WEB-INF/views/admin/admin_inventory.jsp";
 	}
+	
 }

@@ -37,7 +37,7 @@
 		SELECT 
 			ORDER_ID as orderId, USER_ID as userId,
 			ALBUM_ID as albumId, ORDER_DATE as orderDate,
-			TOTAL, O_QUANTITY as oQuantity
+			TOTAL, O_QUANTITY as oQuantity	
 		FROM
 		 	ORDERS
 		WHERE

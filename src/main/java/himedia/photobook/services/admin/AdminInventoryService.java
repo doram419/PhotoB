@@ -7,4 +7,6 @@ import himedia.photobook.repositories.vo.InventoryVo;
 
 public interface AdminInventoryService {
 	public List<InventoryVo> getInvenInfos();
+//	public List<InventoryVo> getContentByPrice(Long price);
+	public InventoryVo findAlbumPriceByAlbumId(String albumId);
 }

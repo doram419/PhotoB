@@ -22,9 +22,9 @@
 			<h2>고객 센터</h2>
 		</div>
 		<div class="card">
-			<div class="card-header">문의 검색</div>
+			<div class="card-header">재고 검색</div>
 			<div class="card-body">
-				<form action="<c:url value="/admin/customerService/search"/>" method="GET">
+				<form action="<c:url value="/admin/inventory/search"/>" method="GET">
 					<div class="form-group">
 						<input type="text" name="keyword" placeholder="고객 이름 검색">
 					</div>
@@ -46,15 +46,26 @@
 					</thead>
 					<tbody>
 						<%-- 여기에 문의 데이터를 동적으로 생성하는 Java 코드를 추가할 수 있습니다 --%>
-						<c:forEach items="${invenList }" var="invenVo">
+						<c:forEach items="${invenList }" var="invenVo" varStatus="status">
 							<tr>
 								<td>${invenVo.albumId }</td>
 								<td>${invenVo.albumPrice }</td>
 								<td>${invenVo.aQuantity }</td>
-								<td><button class="btn btn-primary">입고</button></td>
+								<td><button class="btn btn-primary">입고</button>
+								<button class="btn btn-primary">갱신</button>
+								</td>
 							</tr>
 						</c:forEach>
-			
+						
+							<tr>
+								<td>${invenDetail.albumId }</td>
+								<td>${invenDetail.albumPrice }</td>
+								<td>${invenDetail.aQuantity }</td>
+								<td><button class="btn btn-primary">입고</button>
+								<button class="btn btn-primary">갱신</button>
+								</td>
+							</tr>
+				
 					</tbody>
 				</table>
 			</div>
