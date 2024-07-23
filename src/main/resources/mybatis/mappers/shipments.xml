@@ -30,6 +30,25 @@
 		FROM
 		 	SHIPMENTS
 		WHERE
-			ORDER_ID = #{value}
+			ORDER_ID = #{value} 
 	</select>
+	
+	<select id="searchAllByOrderId" parameterType="String" resultType="ShipmentsVo">
+		SELECT 
+			SHIPMENT_ID as shipmentId,
+			ORDER_ID as orderId,
+			SHIPMENT_DATE as shipmentDate,
+			SHIPMENT_STATUS as shipmentStatus
+		FROM
+		 	SHIPMENTS
+		WHERE
+			ORDER_ID LIKE ('%' || #{value} || '%')
+	</select>
+	
+	<update id="updateDateAndStatusByShipmentId" parameterType="shipmentsVo">
+		UPDATE SHIPMENTS 
+			SET SHIPMENT_STATUS = #{shipmentStatus},
+			SHIPMENT_DATE = #{shipmentDate}
+		WHERE SHIPMENT_ID=#{shipmentId}
+	</update>
 </mapper>

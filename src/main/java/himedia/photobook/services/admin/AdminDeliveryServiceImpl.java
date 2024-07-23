@@ -76,15 +76,111 @@ public class AdminDeliveryServiceImpl {
 		OrdersVo ordersVo = orderDaoImpl.selectByOrderId(orderId);
 		UsersVo usersVo = usersDaoImpl.selectOneUserById(ordersVo.getUserId());
 		ShipmentsVo shipmentsVo = shipmentsDaoImpl.selectShipmentInfoByOrderID(orderId);
-		AlbumVo albumVo = albumDaoImpl.selectOneById(ordersVo.getAlbumId());
+		AlbumVo albumVo = albumDaoImpl.selectByAlbumId(ordersVo.getAlbumId());
+		List<AlbumVo> albumList = albumDaoImpl.selectAll();
 		
 		deliveryDetailInfo.put("ordersVo", ordersVo);
 		deliveryDetailInfo.put("usersVo", usersVo);
 		deliveryDetailInfo.put("shipmentDate", 
 				dataConverter.kstToYYYY(shipmentsVo.getShipmentDate()));
-		deliveryDetailInfo.put("albumVo", albumVo);
+		deliveryDetailInfo.put("orderDate", 
+				dataConverter.kstToYYYY(ordersVo.getOrderDate()));
 		deliveryDetailInfo.put("shipmentsVo", shipmentsVo);
+		deliveryDetailInfo.put("albumVo", albumVo);
+		deliveryDetailInfo.put("albumList", albumList);
 
 		return deliveryDetailInfo;
+	}
+	
+	/**
+	 * 배송에 쓰이는 모든 정보를 변경을 해주는 함수
+	 * */
+	public boolean updateDeliveryInfo(Map<String, Object> updateDeliveryInfo) {
+		boolean result = false;
+		ShipmentsVo shipmentsVo = null;
+		OrdersVo ordersVo = null;
+		String targetOrderId = (String) updateDeliveryInfo.get("targetOrderId");
+		
+		if(updateDeliveryInfo.get("shipmentsVo") instanceof ShipmentsVo)
+			shipmentsVo = (ShipmentsVo) updateDeliveryInfo.get("shipmentsVo");
+		result = 1 == shipmentsDaoImpl.
+				updateDateAndStatusByShipmentId(shipmentsVo);
+
+		if(updateDeliveryInfo.get("ordersVo") instanceof OrdersVo)
+			ordersVo = (OrdersVo) updateDeliveryInfo.get("ordersVo");
+		
+		result = result && 
+				(1 == orderDaoImpl.updateByOrderId(targetOrderId, ordersVo)); 
+		
+		return result;
+	}
+	
+	/**
+	 * 오더 아이디를 기준으로 검색해서 배송 리스트를 가져와 주는 함수
+	 * */
+	public List<Map<String, Object>> searchInfosByOrderId(String keyword){
+		List<Map<String, Object>> searchInfos = new ArrayList<Map<String, Object>>();
+		Map<String, Object> infoMap = null;
+		UsersVo usersVo = null;
+		String status = null;
+		OrdersVo ordersVo = null;
+		
+		List<ShipmentsVo> shipmentsList = shipmentsDaoImpl.searchAllByOrderId(keyword);
+		for (ShipmentsVo shipmentsVo: shipmentsList) {
+			infoMap = new HashMap<String, Object>();	
+			status = shipmentsVo.getShipmentStatus();
+			ordersVo = orderDaoImpl.selectByOrderId(shipmentsVo.getOrderId());
+			usersVo = usersDaoImpl.selectOneUserById(ordersVo.getUserId());
+			
+			if(status.equals("R"))	
+				status = refundDaoImpl.selectStatusByOrderID(shipmentsVo.getOrderId());
+			status = dataConverter.statusToWord(status);
+			
+			infoMap.put("shipmentsVo", shipmentsVo);
+			infoMap.put("shipmentDate", 
+					dataConverter.kstToYYYY(shipmentsVo.getShipmentDate()));
+			infoMap.put("status", status);
+			infoMap.put("usersVo", usersVo);
+			
+			searchInfos.add(infoMap);
+		}
+		return searchInfos;
+	}
+	
+	/**
+	 * 주문자명을 기준으로 검색해서 배송 리스트를 가져와 주는 함수
+	 * */
+	public List<Map<String, Object>> searchInfosByUserName(String keyword){
+		List<Map<String, Object>> searchInfos = new ArrayList<Map<String, Object>>();
+		Map<String, Object> infoMap = null;
+		ShipmentsVo shipmentsVo = null;
+		String status = null;
+		
+		List<OrdersVo> ordersList = null;
+		List<UsersVo> usersList = usersDaoImpl.searchUsers(keyword);
+		
+		for (UsersVo usersVo: usersList) {
+			ordersList = orderDaoImpl.selectAllOrdersByUserId(usersVo.getUserId());
+			
+			for (OrdersVo ordersVo : ordersList) {
+				infoMap = new HashMap<String, Object>();
+				shipmentsVo = shipmentsDaoImpl.selectShipmentInfoByOrderID(ordersVo.getOrderId());
+				
+				if(shipmentsVo != null)
+				{
+					status = shipmentsVo.getShipmentStatus();
+					if(status.equals("R"))	
+						status = refundDaoImpl.selectStatusByOrderID(shipmentsVo.getOrderId());
+					status = dataConverter.statusToWord(status);
+					
+					infoMap.put("usersVo", usersVo);
+					infoMap.put("shipmentsVo", shipmentsVo);
+					infoMap.put("status", status);
+					searchInfos.add(infoMap);
+				}
+			}
+		}
+		
+		return searchInfos;
 	}
 }

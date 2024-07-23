@@ -14,20 +14,28 @@
 </head>
 <body>
 	<c:import url="/WEB-INF/views/admin/includes/admin_header.jsp"></c:import>
+	
 	<div class="main-content">
 		<div class="header">
             <h2>배송 조회</h2>
         </div>
         <div class="card">
-            <div class="card-header">배송 검색</div>
-            <div class="card-body">
-                <form>
-                    <div class="form-group">
-                        <input type="text" placeholder="주문번호 또는 고객ID 검색">
-                    </div>
-                    <button type="submit" class="btn btn-primary">검색</button>
-                </form>
-            </div>
+	        <div class="card-header">배송 검색</div>
+			<div class="card-body">
+				 <form action="<c:url value="/admin/delivery/search"/>" method="post">
+					<div class="form-group">
+						<label for="search-category">검색 분류:</label>
+						<select id="search-category" name="search-category">
+							<option value="usersName">주문자명</option>
+							<option value="orderId">주문번호</option>
+						</select> 
+						<label for="search-input">검색어:</label> 
+						<input type="text" name="keyword" placeholder="검색할 단어 입력">
+					</div>
+					<button type="submit" class="btn btn-primary">검색</button>
+					<button type="reset" class="btn btn-secondary">초기화</button>
+				</form>
+			</div>
         </div>
         <div class="card">
             <div class="card-header">배송 목록</div>
@@ -56,6 +64,22 @@
 	                        		<input type="hidden" name="orderId" value = "${infoMap['ordersVo'].orderId}"/>
 	                        		<button class="btn btn-primary">조회/변경</button>
 	                        	</form>
+	                        	
+                            </td>
+                		</tr>
+           				</c:forEach>   
+           				<c:forEach items="${searchInfos}" var="infoMap">				
+                        <tr>
+	                		<td>${infoMap['shipmentsVo'].orderId}</td>
+	                        <td>${infoMap['usersVo'].userName}</td>
+	                        <td>${infoMap['shipmentsVo'].shipmentId}</td>
+	                        <td>${infoMap['shipmentDate']}</td>
+	                        <td>${infoMap['status']}</td>
+	                        <td>
+	                        	<form action="<c:url value="/admin/delivery/detail"/>" method="GET">
+	                        		<input type="hidden" name="orderId" value = "${infoMap['ordersVo'].orderId}"/>
+	                        		<button class="btn btn-primary">조회/변경</button>
+	                        	</form>
                             </td>
                 		</tr>
            				</c:forEach>   
@@ -63,8 +87,7 @@
                 </table>
             </div>
         </div>
-	</div>
-        
+    </div>
     <c:import url="/WEB-INF/views/admin/includes/admin_footer.jsp"></c:import>
 </body>
 

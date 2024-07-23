@@ -56,7 +56,16 @@
         	OR ADDRESS LIKE ('%' || #{value} || '%')
         ORDER BY USER_ID
     </select>
-    
+
+      <select id="selectUserByName" parameterType="String" resultType="UsersVo">
+        SELECT 
+        	USER_ID as userId, EMAIL, 
+        	USER_NAME as userName, ADDRESS, 
+        	PHONE_NUMBER as phoneNumber
+        FROM USERS
+        WHERE USER_Name = #{value}
+    </select>
+
     <select id="getUserById" parameterType="string" resultType="UsersVo">
     	SELECT 
         	USER_ID as userId, EMAIL,  

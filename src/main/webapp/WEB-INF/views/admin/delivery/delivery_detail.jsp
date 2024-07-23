@@ -28,22 +28,33 @@
 	              <td colspan="3">배송 정보</td>
 	        	</tr>
 	        	<tr>
-	               <td>배송 일자</td>
+	               <td>배송 일자
+	               <!-- 관련은 없지만 shipmentId의 필요성으로 일부러 넣음 -->
+	               <input type="hidden" name="shipmentId"
+	               		value="${deliveryDetailInfos['shipmentsVo'].shipmentId}"/>
+	               </td>
 	               <td>
-	               <input type="date" id="delivery_data"
+	               <!-- Date는 서비스에서 "yyyy-MM-dd" 형식으로 변환 필요 -->
+	               <input type="date" 
 	               		value="${deliveryDetailInfos['shipmentDate']}" 
 	              			disabled/>
+	               <input type="hidden" 
+	               		name="stringShipmentDate" value="${deliveryDetailInfos['shipmentDate']}"/>
 	               </td>
 	               <td><button type=button class="edit-btn">수정</button></td>
 	           </tr>
 	           <tr>
 	               <td>배송 상태</td>
 	               <td>
-	               <select id="delivery_status" data-default="${deliveryDetailInfos['status']}" disabled>
-		               <option value="A" selected>배송 준비</option>
+	               <select id="delivery_status" 
+	               	data-default="${deliveryDetailInfos['shipmentsVo'].shipmentStatus}" disabled>
+		               <option value="A">배송 준비</option>
 		               <option value="B">배송 중</option>
 		               <option value="C">배송 완료</option>
+		               <option value="R">환불</option> 
 	               </select>
+	               <input type="hidden" 
+	               		name="shipmentStatus" value="${deliveryDetailInfos['shipmentsVo'].shipmentStatus}"/>
 	               </td>
 	               <td><button type=button id="confirm-btn" class="edit-btn">수정</button></td>
 	           </tr>
@@ -55,23 +66,37 @@
 	           </tr>
 	           <tr>
 	               <td>주문 번호</td>
-	               <td>${deliveryDetailInfos['ordersVo'].orderId}</td>
-	               <td><button class="edit-btn">수정</button></td>
+	               <td>
+	               <input type="text" value="${deliveryDetailInfos['ordersVo'].orderId}" disabled/>
+	               <input type="hidden" 
+	               		name="orderId" value="${deliveryDetailInfos['ordersVo'].orderId}"/>
+	               <input type="hidden" 
+	               		name="targetOrderId" value="${deliveryDetailInfos['ordersVo'].orderId}"/>
+	               </td>
+	               <td><button type=button id="confirm-btn" class="edit-btn">수정</button></td>
 	           </tr>
 	           <tr>
 	               <td>주문자 아이디</td>
-	               <td>${deliveryDetailInfos['usersVo'].userId}</td>
-	               <td><button class="edit-btn">수정</button></td>
+	               <td>
+	               <input type="text" value="${deliveryDetailInfos['usersVo'].userId}" disabled/>
+	               <input type="hidden" name="userId" value="${deliveryDetailInfos['usersVo'].userId}"/>
+	               </td>
 	           </tr>
 	           <tr>
 	               <td>주문자 이름</td>
-	               <td>${deliveryDetailInfos['usersVo'].userName}</td>
-	               <td><button class="edit-btn">수정</button></td>
+	               <td>
+	               <input type="text" value="${deliveryDetailInfos['usersVo'].userName}" disabled/>
+	               </td>
 	           </tr>
 	           <tr>
 	               <td>주문 일자</td>
-	               <td>${deliveryDetailInfos['ordersVo'].orderDate}</td>
-	               <td><button class="edit-btn">수정</button></td>
+	               <td>
+	               <!-- Date는 서비스에서 "yyyy-MM-dd" 형식으로 변환 필요 -->
+	               <input type="date" value="${deliveryDetailInfos['orderDate']}" disabled/>
+	               <input type="hidden" 
+	               		name="stringOrderDate" value="${deliveryDetailInfos['orderDate']}"/>
+	               </td>
+	               <td><button type=button class="edit-btn">수정</button></td>
 	           </tr>
 	           <tr class="section-end">
 	               <td colspan="3"></td>
@@ -81,23 +106,19 @@
 	           </tr>
 	           <tr>
 	               <td>상품 id</td>
-	               <td>${deliveryDetailInfos['albumVo'].albumId}</td>
-	               <td><button class="edit-btn">수정</button></td>
-	           </tr>
-	           <tr>
-	               <td>표지 재질</td>
-	               <td>${deliveryDetailInfos['albumVo'].material}</td>
-	               <td><button class="edit-btn">수정</button></td>
-	           </tr>
-	           <tr>
-	               <td>표지 색</td>
-	               <td>${deliveryDetailInfos['albumVo'].color}</td>
-	               <td><button class="edit-btn">수정</button></td>
-	           </tr>
-	           <tr>
-	               <td>앨범 사이즈</td>
-	               <td>${deliveryDetailInfos['albumVo'].albumSize}</td>
-	               <td><button class="edit-btn">수정</button></td>
+	               <td>
+	               <select id="albumVo"
+	               	data-default="${deliveryDetailInfos['ordersVo'].albumId}" disabled>
+	               	<c:forEach items="${deliveryDetailInfos['albumList']}" var="album">
+		               	<option value="${album.albumId}">
+		               		${album.albumId}
+		               	</option>
+	               	</c:forEach>
+	               </select>
+	               <input type="hidden" name="albumId"
+	               		 value="${deliveryDetailInfos['ordersVo'].albumId}"/>
+	               </td>
+	               <td><button type=button id="confirm-btn" class="edit-btn">수정</button></td>
 	           </tr>
 	           <tr class="section-end">
 	               <td colspan="3"></td>
@@ -107,13 +128,25 @@
 	           </tr>
 	           <tr>
 	               <td>총 금액</td>
-	               <td>${deliveryDetailInfos['ordersVo'].total}</td>
-	               <td><button class="edit-btn">수정</button></td>
+	               <td>
+	               <input type="number" step="1000"
+	               		value="${deliveryDetailInfos['ordersVo'].total}" 
+	               		disabled/>
+	               <input type="hidden" name="total"
+	               		 value="${deliveryDetailInfos['ordersVo'].total}"/>
+	               </td>
+	               <td><button type=button id="confirm-btn" class="edit-btn">수정</button></td>
 	           </tr>
 	           <tr>
 	               <td>총 수량</td>
-	               <td>${deliveryDetailInfos['ordersVo'].oQuantity}</td>
-	               <td><button class="edit-btn">수정</button></td>
+	               <td>
+	               <input type="number" min="1"
+	               		value="${deliveryDetailInfos['ordersVo'].oQuantity}" 
+	               		disabled/>
+	               <input type="hidden" name="oQuantity"
+	               		 value="${deliveryDetailInfos['ordersVo'].oQuantity}"/>
+	               </td>
+	               <td><button type=button id="confirm-btn" class="edit-btn">수정</button></td>
 	            </tr>
         	</table>
         </form>

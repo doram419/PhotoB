@@ -2,7 +2,6 @@ package himedia.photobook.repositories.vo;
 
 import java.util.Date;
 
-//최초 작성자 : 김지환
 public class ShipmentsVo {
 	// 필드
 	private Long shipmentId;

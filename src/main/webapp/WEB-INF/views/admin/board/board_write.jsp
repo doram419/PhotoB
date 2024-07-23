@@ -34,7 +34,7 @@
     
     <p> <a href="<c:url value="/admin/boardList"/>">돌아가기</a> </p>
     
-    <c:import url="/WEB-INF/views/admin/includes/users_footer.jsp"></c:import>
+    <c:import url="/WEB-INF/views/users/includes/users_footer.jsp"></c:import>
 </body>
 
 </html>

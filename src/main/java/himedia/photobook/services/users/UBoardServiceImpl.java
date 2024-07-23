@@ -2,6 +2,7 @@ package himedia.photobook.services.users;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -26,9 +27,9 @@ public class UBoardServiceImpl implements UBoardService {
 		BoardVo boardVo = uBoardDao.getContent(userId, boardId);
 		Map<String, Object> contentMap = new HashMap<String, Object>();
 		UsersVo usersVo = usersDaoImpl.selectOneUserById(boardVo.getUserId());
+		System.out.println(usersVo);
 		contentMap.put("boardVo", boardVo);
 		contentMap.put("usersVo", usersVo);
-		
 		return contentMap;
 	}
 
@@ -39,6 +40,7 @@ public class UBoardServiceImpl implements UBoardService {
 	@Override
 	public boolean write(BoardVo boardVo) {
 		int insertedCount = uBoardDao.insert(boardVo);
+		
 		return insertedCount==1;
 	}
 
@@ -65,17 +67,33 @@ public class UBoardServiceImpl implements UBoardService {
 		}
 		return result;
 	}
-
-//	@Override
-//	public boolean delete(String userId, String string) {
-//		int deleteCount = uBoardDao.delete(userId);
-//		return false;
-//	}
-
 	@Override
 	public boolean delete(String userId, Long boardId) {
 		int deletedCount = uBoardDao.delete(userId, boardId);
 		return deletedCount==1;
+	}
+
+
+	@Override
+	public List<Map<String, Object>> getContentByName(String userName) {
+		List<Map<String, Object>> contentList = new ArrayList<Map<String,Object>>();
+		Map<String, Object> map = null;
+		
+		List<UsersVo> userList = usersDaoImpl.selectUserByName(userName);
+		
+		for (UsersVo usersVo : userList) {
+			List<BoardVo> boardList = uBoardDao.getContentById(usersVo.getUserId());
+			
+			for (BoardVo boardVo : boardList) {
+				map = new HashMap<String, Object>();
+				map.put("boardVo", boardVo);
+				map.put("usersVo", usersVo);	
+				contentList.add(map);
+			}
+		}
+		System.out.println(contentList);
+		return contentList;
+	
 	}
 
 	
