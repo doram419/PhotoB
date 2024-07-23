@@ -21,12 +21,18 @@ public InventoryVo findAlbumPriceByAlbumId(String albumId);
 	 * Param : InventoryVo inventoryVo - 경감시킬 albumId와 수가 든 inventoryVo
 	 * return : 영향 받은 튜플 수
 	 * */
-	int decreaseQuantity(InventoryVo inventoryVo);
+	//public int decreaseQuantity(InventoryVo inventoryVo);
 	/**
 	 * 파라미터로 들어
 	 * Param : 경감시킬 albumId와 그 수가 든 inventoryVo
 	 * return : 영향 받은 튜플 수
 	 * */
-	int update(InventoryVo inventoryVo);
+	//public int update(InventoryVo inventoryVo);
+	/**
+	 * albumId로 Inventory를 가져오는 메서드
+	 * Param : String albumId - albumId와 일치하는 Inventory 튜플을 가져옴
+	 * return : InventoryVo - 일치하는 튜플
+	 * */
+	public InventoryVo selectOneByAlbumId(String albumId);
 }
 

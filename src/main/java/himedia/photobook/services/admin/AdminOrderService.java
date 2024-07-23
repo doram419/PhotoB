@@ -90,11 +90,11 @@ public Map<String, Object> getOrderDetail(String orderId) {
 			inventoryVo.setaQuantity(order.getoQuantity());
 			System.out.println("수량과 앨범 : " + inventoryVo);
 			
-			boolean ableOrder = false;
-			ableOrder = 1 == inventoryDaoImpl.decreaseQuantity(inventoryVo);
-			System.out.println("수량 차감 결과 : " + ableOrder);
+//			boolean ableOrder = false;
+//			ableOrder = 1 == inventoryDaoImpl.decreaseQuantity(inventoryVo);
+//			System.out.println("수량 차감 결과 : " + ableOrder);
 			
-			if(ableOrder)
+//			if(ableOrder)
 				result = 1 == shipmentsDaoImpl.insert(orderId);
 		}
 		
