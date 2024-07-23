@@ -8,7 +8,7 @@
 
 <head>
 <meta charset="UTF-8">
-<title>제품관리 수정</title>
+<title>제품 수정</title>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link type="text/css" rel="stylesheet"
@@ -21,7 +21,7 @@
 			<h2>제품 수정</h2>
 	</div>		
 <section id="update">
-    <form action="<c:url value='/admin/product/productEdit'/>" id="form1" name="form1" enctype="multipart/form-data" method="get">
+    <form action="<c:url value='/admin/product/productEdit'/>" id="form1" name="form1" enctype="multipart/form-data" method="post">
         <table class="table" border="1">
             <thead>
                 <tr>
@@ -32,32 +32,23 @@
             </thead>
             <tbody>
                 <tr>
-                    <td><input type="file" name="albumPhoto" id="albumPhoto"></td>
-                    <td><input type="text" name="albumId" id="albumId"></td>
-                    <td><input type="text" name="albumPrice" id="albumPrice"></td>
+                    <td><input type="file" name="albumPhoto_${status.index}" id="albumPhoto_${status.index}"></td>
+                    <td>${album.albumId}</td>
+                    <td>
+    					<input type="text" name="albumPrice_${status.index}" id="albumPrice_${status.index}" value="${inventory.albumPrice}">
+					</td>
                 </tr>
-                <c:forEach var="entry" items="${ProductMap}" varStatus="status">
-                    <tr>
-                        <td>
-                            <input type="file" name="albumPhoto_${status.index}" id="albumPhoto_${status.index}">
-                        </td>
-                        <td>
-                            <input type="text" name="albumVo[${status.index}].albumId" id="albumId_${status.index}" value="${entry.value.album.albumId}">
-                        </td>
-                        <td>
-                            <input type="text" name="inventoryVo[${status.index}].albumPrice" id="albumPrice_${status.index}" value="${entry.value.inventory.albumPrice}">
-                        </td>
-                    </tr>
-                </c:forEach>
             </tbody>
             <tfoot>
                 <tr>
                     <td colspan="3" style="text-align: center;">
-                        <input type="submit" value="확인">
+                    	<input type="hidden" name="albumId" value="${album.albumId}">
+                        <input type="button" value="확인"
+                        	onclick="location.href='<c:url value='/admin/product/update?albumId='/>${album.albumId}'">
                         <input type="button" id="deleteBtn" value="삭제"
-                               onclick="location.href='<c:url value='/admin/product/delete?albumId='/>${entry.value.album.albumId}'">
+                            onclick="location.href='<c:url value='/admin/product/delete?albumId='/>${album.albumId}'">
                         <input type="button" id="listBtn" value="상품목록" style="float: right;"
-                               onclick="location.href='<c:url value='/admin/products/search'/>'">
+                            onclick="location.href='<c:url value='/admin/products/search'/>'">
                     </td>
                 </tr>
             </tfoot>

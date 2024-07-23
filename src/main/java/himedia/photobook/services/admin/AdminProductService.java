@@ -1,6 +1,7 @@
 package himedia.photobook.services.admin;
 
 import java.util.HashMap;
+
 import java.util.List;
 import java.util.Map;
 
@@ -70,7 +71,7 @@ public class AdminProductService {
  		return updatedCount == 1;
  	}
  	
- 	public boolean updateAlbum(InventoryVo vo) {
+ 	public boolean updateInventory(InventoryVo vo) {
  		int updatedCount = inventoryDaoImpl.updateAlbum(vo);
  		return updatedCount == 1;
  	}
@@ -79,7 +80,7 @@ public class AdminProductService {
  		albumDaoImpl.deleteAlbum(albumId);
  	}
 
- 	public int insertAlbum(AlbumVo vo) {
- 		return albumDaoImpl.insertAlbum(vo);	
+ 	public boolean insertAlbum(AlbumVo vo) {
+ 		return albumDaoImpl.insertAlbum(vo) == 1;	
  	}
 }
