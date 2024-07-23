@@ -2,6 +2,7 @@ package himedia.photobook.repositories.dao;
 
 import java.util.HashMap;
 
+
 import java.util.List;
 import java.util.Map;
 
@@ -10,7 +11,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import himedia.photobook.exceptions.UsersAlbumException;
-import himedia.photobook.exceptions.UsersDaoException;
 import himedia.photobook.repositories.vo.AlbumVo;
 
 @Repository
@@ -61,9 +61,9 @@ public class AlbumDaoImpl implements AlbumDao {
 	}
 
 	@Override
-	public int updateAlbum(AlbumVo vo) {
+	public int updateProduct(AlbumVo vo) {
 		try {
-            int updatedCount = sqlSession.update("album.updateAlbum", vo);
+            int updatedCount = sqlSession.update("album.updateProduct", vo);
             return updatedCount;
 		} catch (Exception e) {
         	e.printStackTrace();
@@ -72,12 +72,12 @@ public class AlbumDaoImpl implements AlbumDao {
 	}
 
 	@Override
-	public void deleteAlbum(String albumId) {
-		sqlSession.delete("album.deleteAlbum", albumId);
+	public void deleteProduct(String albumId) {
+		sqlSession.delete("album.deleteProduct", albumId);
 	}
 
 	@Override
-	public int insertAlbum(AlbumVo vo) {
-		return sqlSession.insert("album.insertAlbum", vo);
+	public int insertProduct(AlbumVo vo) {
+		return sqlSession.insert("album.insertProduct", vo);
 	}
 }

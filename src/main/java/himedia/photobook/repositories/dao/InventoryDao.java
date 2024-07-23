@@ -14,7 +14,8 @@ public InventoryVo findAlbumPriceByAlbumId(String albumId);
  * 	앨범 목록 가져오기
  * */
 	public List<InventoryVo> listInventory();
-	public int updateAlbum(InventoryVo vo);
-	
+	public int updateProduct(InventoryVo vo);
+	public void deleteProduct(Long albumPrice);
+	public int insertProduct(InventoryVo vo);
 }
 

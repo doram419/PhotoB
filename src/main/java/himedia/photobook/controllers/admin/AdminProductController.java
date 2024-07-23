@@ -58,11 +58,14 @@ public class AdminProductController {
 
 
 	@PostMapping("/product/update")
-    public String updateProduct(@ModelAttribute AlbumVo albumVo, @ModelAttribute InventoryVo inventoryVo, 
-            HttpSession session, @RequestParam("albumId") String albumId, Model model) {
+    public String updateProduct(@ModelAttribute AlbumVo albumVo,
+    							@ModelAttribute InventoryVo inventoryVo,
+            HttpSession session, @RequestParam("albumId") String albumId,
+            					@RequestParam("albumPrice") Long albumPrice,
+            					Model model) {
         try {
-            boolean isUpdated1 = adminProductService.updateAlbum(albumVo);
-            boolean isUpdated2 = adminProductService.updateInventory(inventoryVo);
+            boolean isUpdated1 = adminProductService.updateProduct(albumVo);
+            boolean isUpdated2 = adminProductService.updateProduct(inventoryVo);
             if (isUpdated1 && isUpdated2) {
                 model.addAttribute("success", "앨범이 성공적으로 업데이트 되었습니다.");
             } else {
@@ -76,9 +79,12 @@ public class AdminProductController {
     }
 	
 	@PostMapping("/product/delete")
-    public String deleteProduct(@RequestParam("albumId") String albumId, Model model) {
+    public String deleteProduct(@RequestParam("albumId") String albumId,
+    							@RequestParam("albumPrice") Long albumPrice,
+    							Model model) {
         try {
-            adminProductService.deleteAlbum(albumId);
+            adminProductService.deleteProduct(albumId);
+            adminProductService.deleteProduct(albumPrice);
             model.addAttribute("success", "앨범이 성공적으로 삭제되었습니다.");
         } catch (Exception e) {
             e.printStackTrace();
@@ -90,7 +96,7 @@ public class AdminProductController {
     @GetMapping("/product/add")
     public String addProduct(AlbumVo albumVo, Model model) {
         try {
-        	boolean result = adminProductService.insertAlbum(albumVo);
+        	boolean result = adminProductService.insertProduct(albumVo);
             if (result) {
                 model.addAttribute("success", "앨범이 성공적으로 추가되었습니다.");
             } else {

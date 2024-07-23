@@ -1,6 +1,7 @@
 package himedia.photobook.repositories.dao;
 
 import java.util.HashMap;
+
 import java.util.List;
 import java.util.Map;
 
@@ -9,7 +10,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import himedia.photobook.exceptions.UsersAlbumException;
-import himedia.photobook.repositories.vo.AlbumVo;
 import himedia.photobook.repositories.vo.InventoryVo;
 
 @Repository
@@ -32,13 +32,23 @@ public class InventoryDaoImpl implements InventoryDao {
 	}
 
 	@Override
-	public int updateAlbum(InventoryVo vo) {
+	public int updateProduct(InventoryVo vo) {
 		try {
-			int updatedCount = sqlSession.update("album.updateAlbum", vo);
+			int updatedCount = sqlSession.update("inventory.updateProduct", vo);
 			return updatedCount;
 		} catch (Exception e) {
 			e.printStackTrace();
 			throw new UsersAlbumException("업데이트 도중 예외 발생!");
 		}
+	}
+	
+	@Override
+    public void deleteProduct(Long albumPrice) { // 메소드 이름 변경
+        sqlSession.delete("inventory.deleteProduct", albumPrice); // 변경된 메소드 이름
+    }
+	
+	@Override
+	public int insertProduct(InventoryVo vo) {
+		return sqlSession.insert("inventory.insertProduct", vo);
 	}
 }
