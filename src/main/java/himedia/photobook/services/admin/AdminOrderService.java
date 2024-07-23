@@ -62,4 +62,21 @@ public Map<String, Object> getOrderDetail(String orderId) {
     
     return orderDetail;
 }
+	
+	/**
+	 * 받은 orderId를 기준으로 배송을 만들어주는 테이블
+	 * 이미 해당 orderId로 만들어진 shipment가 만들어져 있으면 만들어지지 않는다.
+	 * 기본 ShipmentStatus는 A이다.
+	 * param : String - 주문 아이디 
+	 * return : boolean - 성공/실패 여부
+	 * */
+	public boolean createShipmentByOrderId(String orderId) {
+		boolean result = false;
+		
+		if (shipmentsDaoImpl.selectStatusByOrderID(orderId) == null) {
+			result = 1 == shipmentsDaoImpl.insert(orderId);
+		}
+		
+		return result;
+	}
 }
