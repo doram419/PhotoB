@@ -30,6 +30,9 @@
 					</div>
 					<button type="submit" class="btn btn-primary">검색</button>	
 				</form>
+				<br>
+				<a href="<c:url value="/admin/inventory"/>"><button type="submit" class="btn btn-primary">초기화</button></a>
+				
 			</div>
 		</div>
 		<div class="card">

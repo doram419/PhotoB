@@ -154,7 +154,6 @@ public class AdminBoardController {
 	public String searchInventory(@RequestParam(value = "keyword") String keyword, Model md) {
 		InventoryVo invenDetail = adminInventoryService.findAlbumPriceByAlbumId(keyword);
 		md.addAttribute("invenDetail",invenDetail);
-		System.out.println(invenDetail);
 		return "/WEB-INF/views/admin/admin_inventory.jsp";
 	}
 }
