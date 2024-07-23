@@ -3,13 +3,13 @@ package himedia.photobook.controllers.admin;
 import java.util.List;
 
 
+
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -57,7 +57,7 @@ public class AdminProductController {
    }
 
 
-	@PostMapping("/product/productEdit")
+	@GetMapping("/product/update")
     public String updateProduct(AlbumVo albumVo, InventoryVo inventoryVo, Model model) {
         try {
             boolean isUpdated1 = adminProductService.updateAlbum(albumVo);
@@ -86,7 +86,7 @@ public class AdminProductController {
         return "/WEB-INF/views/admin/product/productEdit.jsp"; // 삭제 후 목록으로 리디렉션
     }
 
-    @PostMapping("/product/add")
+    @GetMapping("/product/add")
     public String addProduct(AlbumVo albumVo, Model model) {
         try {
             int result = adminProductService.insertAlbum(albumVo);

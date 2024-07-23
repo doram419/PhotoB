@@ -21,7 +21,7 @@
 			<h2>제품 수정</h2>
 	</div>		
 <section id="update">
-    <form action="<c:url value='/admin/product/productEdit'/>" id="form1" name="form1" enctype="multipart/form-data" method="post">
+    <form action="<c:url value='/admin/product/productEdit'/>" id="form1" name="form1" enctype="multipart/form-data" method="get">
         <table class="table" border="1">
             <thead>
                 <tr>
