@@ -65,6 +65,13 @@ public class UBoardDaoImpl implements UBoardDao{
 		}
 	}
 
+	@Override
+	public List<BoardVo> getContentById(String userId) {
+		return  sqlSession.selectList("board.getContentById",userId);
+	}
+
+	
+
 	
 
 	

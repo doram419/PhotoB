@@ -99,4 +99,8 @@ public class UsersDaoImpl implements UsersDao {
 		return est;
 	}
 
+	@Override
+	public List<UsersVo> selectUserByName(String userName) {
+		return sqlSession.selectList("users.selectUserByName", userName);
+	}
 }

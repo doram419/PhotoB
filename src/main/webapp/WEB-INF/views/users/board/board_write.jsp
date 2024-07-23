@@ -27,7 +27,7 @@
 	   		<input type="text" id="title" name="title" required>
 	   		<br>
 	   		<label for="content">글 내용</label>
-	   		<textarea id="content" name="content" rows="10" col="50">문의사항은 여기 적어주세요</textarea>
+	   		<textarea id="content" name="content" rows="5" cols="180">문의사항은 여기 적어주세요</textarea>
 	        <button type="submit">글 작성</button>
 	    </form>
     </div>
