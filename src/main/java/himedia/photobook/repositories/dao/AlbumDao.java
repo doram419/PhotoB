@@ -19,7 +19,7 @@ public interface AlbumDao {
 	public List<AlbumVo> selectAll();
 	public AlbumVo selectByAlbumId(String albumId);
 	
-	public int updateProduct(AlbumVo vo);
-	public void deleteProduct(String albumId);
-	public int insertProduct(AlbumVo vo);
+	public int delete(String albumId);
+	public int insertAlbum(AlbumVo vo);
+	public int updateAlbum(AlbumVo albumVo);
 }

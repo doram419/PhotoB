@@ -61,9 +61,9 @@ public class AlbumDaoImpl implements AlbumDao {
 	}
 
 	@Override
-	public int updateProduct(AlbumVo vo) {
+	public int updateAlbum(AlbumVo albumVo) {
 		try {
-            int updatedCount = sqlSession.update("album.updateProduct", vo);
+            int updatedCount = sqlSession.update("album.updateAlbum", albumVo);
             return updatedCount;
 		} catch (Exception e) {
         	e.printStackTrace();
@@ -72,12 +72,12 @@ public class AlbumDaoImpl implements AlbumDao {
 	}
 
 	@Override
-	public void deleteProduct(String albumId) {
-		sqlSession.delete("album.deleteProduct", albumId);
+	public int delete(String albumId) {
+		return sqlSession.delete("album.deleteAlbum", albumId);
 	}
-
+	
 	@Override
-	public int insertProduct(AlbumVo vo) {
-		return sqlSession.insert("album.insertProduct", vo);
+	public int insertAlbum(AlbumVo vo) {
+		return sqlSession.insert("album.insertAlbum", vo);
 	}
 }

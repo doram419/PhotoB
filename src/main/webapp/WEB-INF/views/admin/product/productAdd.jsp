@@ -26,12 +26,20 @@
                         <input type="text" id="albumId" name="albumId" placeholder="상품코드 입력" required>
                     </div>
                     <div class="form-group">
-                        <label for="price">가격</label>
-                        <input type="number" id="price" name="price" placeholder="가격 입력" required>
+                        <label for="albumPrice">가격</label>
+                        <input type="number" id="albumPrice" name="albumPrice" placeholder="가격 입력" min="0" required>
                     </div>
                     <div class="form-group">
-                        <label for="size">사이즈</label>
-                        <input type="text" id="size" name="size" placeholder="사이즈 입력" required>
+                        <label for="material">재질</label>
+                        <input type="text" id="material" name="material" placeholder="재질 입력" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="color">색깔</label>
+                        <input type="text" id="color" name="color" placeholder="컬러 입력" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="albumSize">사이즈</label>
+                        <input type="text" id="albumSize" name="albumSize" placeholder="사이즈 입력" required>
                     </div>
                     <div class="form-group">
                         <label for="imageUrl">이미지 URL</label>

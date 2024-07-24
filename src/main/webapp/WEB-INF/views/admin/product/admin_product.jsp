@@ -31,9 +31,9 @@
 		</div>
 		<div class="card">
 			 <div class="card-header">제품 목록
-        	<a href="<c:url value='/admin/product/add'/>" style="float: right;">
+        	<form method="get" action="<c:url value='/admin/product/add'/>" style="float: right;">
             <button class="btn btn-primary">제품 추가</button>
-        </a>
+        </form>
     </div>
 			<div class="card-body">
 				<table class="table">
@@ -49,16 +49,23 @@
 					</thead>
 
 					<tbody>
+						<c:set var="index" value="1"/>
 						<c:forEach var="entry" items="${ProductMap}" varStatus="status">
 							<tr>
-								<td>${status.index + 1}</td>
+								<td>${index}
+									<c:set var="index" value="${index + 1}"/>
+								</td>
 								<td>이미지넣기</td>
-								<td>${entry.value.album.albumId}</td>
-								<td align="center">${entry.value.inventory.albumPrice}</td>
-								<td>${entry.value.album.albumSize}</td>
+								<td>${entry['albumVo'].albumId}</td>
+								<td>${entry['inventoryVo'].albumPrice}</td>
+								<td>${entry['albumVo'].albumSize}</td>
 								<td>
-								<a href="<c:url value='/admin/product/productEdit?albumId=${entry.key}'/>">
-										<button class="btn btn-primary">편집</button>
+								<a class="btn btn-primary" href="<c:url value="/admin/product/productEdit?albumId=${entry['albumVo'].albumId}"/>">
+										수정
+								</a></td>
+								<td>
+								<a class="btn btn-primary" href="<c:url value="/admin/product/delete?albumId=${entry['albumVo'].albumId}"/>">
+										삭제
 								</a></td>
 							</tr>
 						</c:forEach>

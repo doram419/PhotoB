@@ -1,8 +1,7 @@
 package himedia.photobook.services.admin;
 
+import java.util.ArrayList;
 import java.util.HashMap;
-
-
 import java.util.List;
 import java.util.Map;
 
@@ -22,74 +21,110 @@ public class AdminProductService {
 
     @Autowired
     private InventoryDao inventoryDaoImpl;
-
+    
     // 앨범 및 가격 목록
     public List<AlbumVo> searchAlbum(String searchCategory, String keyword) {
-        return albumDaoImpl.searchAlbum(keyword);
+      return albumDaoImpl.searchAlbum(keyword);
     }
-
-    public List<InventoryVo> listInventory() {
-        return inventoryDaoImpl.listInventory();
+    
+    /**
+   * 제품 관리에 필요한 정보
+   * */
+    public List<Map<String, Object>>getProductInfos() {
+    	List<Map<String, Object>> productInfoList = new ArrayList<Map<String, Object>>();
+    	List<AlbumVo> albumlist = albumDaoImpl.selectAll();
+    	
+    	for(AlbumVo albumVo : albumlist) {
+    		Map<String, Object> productMap = new HashMap<String, Object>();
+    		InventoryVo inventoryVo = inventoryDaoImpl.selectOneByAlbumId(albumVo.getAlbumId());
+    		
+    		productMap.put("albumVo", albumVo);
+    		productMap.put("inventoryVo", inventoryVo);
+    		
+    		productInfoList.add(productMap);
+    		
+    	}
+    	
+    	return productInfoList;
     }
     
     /**
      * 제품 관리에 필요한 정보
      * */
-
-    public Map<String, Object> getProductMap(String keyword) {
-        List<AlbumVo> albums;
-        
-        if (keyword != null && !keyword.isEmpty()) {
-            albums = albumDaoImpl.searchAlbum(keyword);
-        } else {
-            albums = albumDaoImpl.selectAll(); // 모든 앨범 가져오기
-        }
-        
-        List<InventoryVo> inventoryList = inventoryDaoImpl.listInventory();
-        
-        Map<String, InventoryVo> inventoryMap = new HashMap<>();
-        for (InventoryVo inventory : inventoryList) {
-            inventoryMap.put(inventory.getAlbumId(), inventory);
-        }
-        
+      public List<Map<String, Object>>getProductInfos(String keyword) {
+      	List<Map<String, Object>> productInfoList = new ArrayList<Map<String, Object>>();
+      	List<AlbumVo> albumlist = albumDaoImpl.searchAlbum(keyword);
+      	
+      	for(AlbumVo albumVo : albumlist) {
+      		Map<String, Object> productMap = new HashMap<String, Object>();
+      		InventoryVo inventoryVo = inventoryDaoImpl.selectOneByAlbumId(albumVo.getAlbumId());
+      		
+      		productMap.put("albumVo", albumVo);
+      		productMap.put("inventoryVo", inventoryVo);
+      		
+      		productInfoList.add(productMap);
+      		
+      	}
+      	
+      	return productInfoList;
+     }
+    
+    public Map<String, Object> getAlbumInfoMap(String albumId) {
+        AlbumVo albumVo = albumDaoImpl.selectByAlbumId(albumId);
+        InventoryVo inventory = inventoryDaoImpl.selectOneByAlbumId(albumId);
+    	
         Map<String, Object> productMap = new HashMap<String, Object>();
-        for (AlbumVo album : albums) {
-            InventoryVo inventory = inventoryMap.get(album.getAlbumId());
-            if (inventory != null) {
-                Map<String, Object> productPair = new HashMap<>();
-                productPair.put("album", album);
-                productPair.put("inventory", inventory);
-                
-                productMap.put(album.getAlbumId(), productPair);
-            }
+        
+        if (inventory != null) {
+        	productMap.put("album", albumVo);
+        	productMap.put("inventory", inventory);
         }
 
         return productMap;
     }
     
- 	public boolean updateProduct(AlbumVo vo) {
- 		int updatedCount = albumDaoImpl.updateProduct(vo);
+    public boolean updateProduct(AlbumVo albumVo, Long albumPrice) {
+ 		int updatedCount = albumDaoImpl.updateAlbum(albumVo);
+ 		InventoryVo inventoryVo = new InventoryVo();
+ 		inventoryVo.setAlbumPrice(albumPrice);
+ 		inventoryVo.setAlbumId(albumVo.getAlbumId());
+ 		
+ 		inventoryDaoImpl.updateProduct(inventoryVo);
  		return updatedCount == 1;
  	}
+    
+ 	public boolean deleteProduct(String albumId) {
+    	return (1 == inventoryDaoImpl.delete(albumId)) && (1 == albumDaoImpl.delete(albumId));
+	}
  	
- 	public boolean updateProduct(InventoryVo vo) {
- 		int updatedCount = inventoryDaoImpl.updateProduct(vo);
- 		return updatedCount == 1;
- 	}
- 	
- 	public void deleteProduct(String albumId) {
- 		albumDaoImpl.deleteProduct(albumId);
- 	}
- 	
- 	public void deleteProduct(Long albumPrice) {
- 		inventoryDaoImpl.deleteProduct(albumPrice);
- 	}
+ 	public boolean insertProduct(AlbumVo albumVo, Long albumPrice) {
+ 		int albumInsertedCount = albumDaoImpl.insertAlbum(albumVo);
+ 		
+ 		InventoryVo inventoryVo = new InventoryVo();
+ 		inventoryVo.setAlbumId(albumVo.getAlbumId());
+ 		inventoryVo.setAlbumPrice(albumPrice);
+ 		inventoryVo.setaQuantity(0l);
+ 		int inventoryInsertedCount = inventoryDaoImpl.insertInventory(inventoryVo);
+ 		
+ 		return (1 == albumInsertedCount) && (1 == inventoryInsertedCount);
+	}
 
- 	public boolean insertProduct(AlbumVo vo) {
- 		return albumDaoImpl.insertProduct(vo) == 1;	
- 	}
- 	
- 	public boolean insertProduct(InventoryVo vo) {
- 		return inventoryDaoImpl.insertProduct(vo) == 1;	
- 	}
+    
+//    public List<InventoryVo> listInventory() {
+//        return inventoryDaoImpl.listInventory();
+//    }
+//    
+// 	
+// 	public boolean updateProduct(InventoryVo vo) {
+// 		int updatedCount = inventoryDaoImpl.updateProduct(vo);
+// 		return updatedCount == 1;
+// 	}
+
+// 	public void deleteProduct(Long albumPrice) {
+// 		inventoryDaoImpl.deleteProduct(albumPrice);
+// 	}
+//
+// 	public boolean insertProduct(InventoryVo vo) {
+// 		return inventoryDaoImpl.insertProduct(vo) == 1;	
+// 	}
 }

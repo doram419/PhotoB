@@ -34,7 +34,7 @@ public class InventoryDaoImpl implements InventoryDao {
 	@Override
 	public int updateProduct(InventoryVo vo) {
 		try {
-			int updatedCount = sqlSession.update("inventory.updateProduct", vo);
+			int updatedCount = sqlSession.update("inventory.updatePrice", vo);
 			return updatedCount;
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -43,13 +43,13 @@ public class InventoryDaoImpl implements InventoryDao {
 	}
 	
 	@Override
-    public void deleteProduct(Long albumPrice) { // 메소드 이름 변경
-        sqlSession.delete("inventory.deleteProduct", albumPrice); // 변경된 메소드 이름
+	public int delete(String albumId) {        
+		return sqlSession.delete("inventory.deleteInventory", albumId); // 변경된 메소드 이름
     }
 	
 	@Override
-	public int insertProduct(InventoryVo vo) {
-		return sqlSession.insert("inventory.insertProduct", vo);
+	public int insertInventory(InventoryVo inventoryVo) {
+		return sqlSession.insert("inventory.insertInventory", inventoryVo);
 	}
 
 	public int updateQuantity(InventoryVo inventoryVo) {

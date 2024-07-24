@@ -15,20 +15,20 @@
         FROM INVENTORY
     </select>
     
-    <update id="updateProduct" parameterType="InventoryVo">
+    <update id="updatePrice" parameterType="InventoryVo">
 		UPDATE INVENTORY
 		SET ALBUM_PRICE = #{albumPrice}
 		WHERE
 			ALBUM_ID = #{albumId}
 	</update>
 	
-	<delete id="deleteProduct">
+	<delete id="deleteInventory">
 		DELETE FROM INVENTORY
 		WHERE ALBUM_ID = #{albumId}
 	</delete>
 	
-	<insert id="addProduct" parameterType="InventoryVo">
-    INSERT INTO INVENTORY (ALBUM_ID, ALBUM_PRICE, QUANTITY)
+	<insert id="insertInventory" parameterType="InventoryVo">
+    INSERT INTO INVENTORY (ALBUM_ID, ALBUM_PRICE, A_QUANTITY)
     VALUES (
         #{albumId},
         #{albumPrice},
