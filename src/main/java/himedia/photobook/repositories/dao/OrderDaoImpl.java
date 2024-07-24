@@ -1,5 +1,4 @@
 package himedia.photobook.repositories.dao;
-
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -40,6 +39,21 @@ public class OrderDaoImpl implements OrderDao {
 		return sqlSession.selectOne("order.selectByOrderId", orderId);
 	}
 	
+//	@Override
+//	public List<OrdersVo> searchOrders(Map<String, Object> params) {
+//	    System.out.println("sql전 keyword:" + params.get("keyword"));
+//	    return sqlSession.selectList("order.searchOrders", params);
+//	}
+	// 이름으로 userId찾는 메서드
+	@Override
+	public String getUserIdByUserName(String keyword) {
+		return sqlSession.selectOne("users.getUserIdByUserName",keyword);
+	}
+	
+	public String getAlbumIdByOrderId(String orderId)	{
+		return sqlSession.selectOne("order.getAlbumIdByOrderId",orderId);
+		}
+
 	@Override
 	public int updateByOrderId(String updateId, OrdersVo ordersVo) {
 		Map<String, Object> updateMap = new HashMap<String, Object>();
@@ -52,5 +66,6 @@ public class OrderDaoImpl implements OrderDao {
 		
 		return sqlSession.update("order.updateByOrderId", 
 				updateMap);
+
 	}
 }

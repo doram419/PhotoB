@@ -23,4 +23,23 @@
 			VALUES (NVL(NULL, SEQ_REFUND_PK.NEXTVAL), #{value},'P'
 			)
     </insert>
+    <update id="updateStatus" parameterType="RefundVo">
+		UPDATE REFUND 
+			SET REFUND_STATUS = #{refundStatus}
+		WHERE ORDER_ID = #{orderId}
+	</update>
+	<delete id="delete">
+		DELETE FROM REFUND
+		WHERE ORDER_ID = #{orderId}
+	</delete>
+	<select id="selectOneByOrderId" parameterType="String" resultType="RefundVo">
+		SELECT 
+			REFUND_ID as refundId,
+			ORDER_ID as orderId,
+			REFUND_STATUS as refundStatus
+		FROM
+		 	REFUND
+		WHERE
+			ORDER_ID = #{value}
+	</select>
 </mapper>

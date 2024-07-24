@@ -74,9 +74,9 @@ public class AdminDeliveryController {
 			@RequestParam("search-category") String category) {
 
 		if(category.equals("orderId"))
-			model.addAttribute("searchInfos", adminDeliveryServiceImpl.searchInfosByOrderId(keyword));
+			model.addAttribute("deliveryInfos", adminDeliveryServiceImpl.searchInfosByOrderId(keyword));
 		else if(category.equals("usersName"))
-			model.addAttribute("searchInfos", adminDeliveryServiceImpl.searchInfosByUserName(keyword));
+			model.addAttribute("deliveryInfos", adminDeliveryServiceImpl.searchInfosByUserName(keyword));
 			
 		return "/WEB-INF/views/admin/admin_delivery.jsp";
 	}

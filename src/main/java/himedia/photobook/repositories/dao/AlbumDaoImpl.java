@@ -50,6 +50,12 @@ public class AlbumDaoImpl implements AlbumDao {
 		return sqlSession.selectList("album.selectAll");
 	}
 
+	 @Override
+	 public String findOptionsByOrderId(String orderId)	{
+		 return sqlSession.selectOne("album.findOptionsByOrderId", orderId);
+	 }
+
+
 	@Override
 	public AlbumVo selectByAlbumId(String albumId) {
 		try {
@@ -80,4 +86,5 @@ public class AlbumDaoImpl implements AlbumDao {
 	public int insertAlbum(AlbumVo vo) {
 		return sqlSession.insert("album.insertAlbum", vo);
 	}
+
 }

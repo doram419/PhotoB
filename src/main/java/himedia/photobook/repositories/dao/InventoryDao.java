@@ -29,7 +29,6 @@ public InventoryVo findAlbumPriceByAlbumId(String albumId);
 	 * return : InventoryVo - 일치하는 튜플
 	 * */
 	public InventoryVo selectOneByAlbumId(String albumId);
-
 	public int insertInventory(InventoryVo inventoryVo);
 
 }

@@ -24,17 +24,22 @@ public class AdminOrderController {
 
 	@GetMapping("/om")
 	public String order(Model model) {
-		List<Map<String, Object>> orderInfoList = adminOrderService.getOrderAdmin();
-		model.addAttribute("orderInfoList", orderInfoList);
+		List<Map<String, Object>> orderList = adminOrderService.getOrderAdmin();
+		model.addAttribute("orderList", orderList);
 		return "/WEB-INF/views/admin/admin_order_management.jsp";
 	}
 
-	@GetMapping("/order/detail") //상세조회 페이지 수정 필요
+	@GetMapping("/order/detail") // 상세조회 페이지 수정 필요
 	public String orderDetail(@RequestParam("orderId") String orderId, Model model) {
 		Map<String, Object> orderDetail = adminOrderService.getOrderDetail(orderId);
 		model.addAttribute("orderDetail", orderDetail);
 		return "/WEB-INF/views/admin/admin_order_detail.jsp";
 	}
+
+	@GetMapping("/order/search")
+	public String searchUserId(@RequestParam(value = "keyword", required = false) String keyword, Model model) {
+		model.addAttribute("orderList", adminOrderService.searchOrderInfo(keyword));	
+		return "/WEB-INF/views/admin/admin_order_management.jsp";}
 	
 	@PostMapping("/order/createShipment")
 	public String createOrder(@ModelAttribute("createOrderId") String orderId) {

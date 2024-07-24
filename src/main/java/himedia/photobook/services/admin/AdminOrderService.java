@@ -36,6 +36,7 @@ private RefundDao refundDaoImpl;
 @Autowired
 private InventoryDao inventoryDaoImpl;
 
+//관리자 주문 조회
 public List<Map<String, Object>> getOrderAdmin() {
     List<Map<String, Object>> orderInfoList = new ArrayList<>();
     List<OrdersVo> orderList = orderDaoImpl.selectAllOrders();
@@ -48,6 +49,9 @@ public List<Map<String, Object>> getOrderAdmin() {
         orderMap.put("usersVo", user);
         
         String status = shipmentsDaoImpl.selectStatusByOrderID(order.getOrderId());
+        
+        if (status == null || status.isEmpty()) {
+            status = "A";}
         orderMap.put("status", status);
         
         orderInfoList.add(orderMap);
@@ -56,20 +60,77 @@ public List<Map<String, Object>> getOrderAdmin() {
     return orderInfoList;
 }
 
+// 관리자 주문 상세조회
 public Map<String, Object> getOrderDetail(String orderId) {
     Map<String, Object> orderDetail = new HashMap<>();
-    
+	String albumId = orderDaoImpl.getAlbumIdByOrderId(orderId);
+	AlbumVo album = albumDaoImpl.selectByAlbumId(albumId);
+	orderDetail.put("album", album);
+	
     OrdersVo order = orderDaoImpl.selectByOrderId(orderId);
     orderDetail.put("order", order);
     
     UsersVo user = usersDaoImpl.selectOneUserById(order.getUserId());
     orderDetail.put("user", user);
     
-    AlbumVo album = albumDaoImpl.selectByAlbumId(order.getAlbumId());
-    orderDetail.put("album", album);
+    
+    
     
     return orderDetail;
 }
+
+
+public String getSearchUserId(String keyword) {
+    String userId = orderDaoImpl.getUserIdByUserName(keyword);
+    return userId;
+}
+
+
+public List<Map<String,Object>> searchOrderInfo(String keyword) {
+	List<Map<String,Object>> orderInfo = new ArrayList<Map<String,Object>>();
+	List<UsersVo> usersList = usersDaoImpl.selectUserByKeyword(keyword);
+	
+	for (UsersVo usersVo : usersList) {
+		List<OrdersVo> ordersList = orderDaoImpl.selectAllOrdersByUserId(usersVo.getUserId());
+		for (OrdersVo ordersVo : ordersList) {
+			Map<String, Object> map = new HashMap<String, Object>();
+			map.put("userName", usersVo.getUserName());
+			map.put("ordersVo", ordersVo);
+			orderInfo.add(map);
+		}
+	}
+	System.out.println(orderInfo);
+	return orderInfo;
+			
+
+	
+}
+//user id로 주문리스트 가져옴
+public List<OrdersVo> getOrdersByUserId(String userId) {
+    return orderDaoImpl.selectAllOrdersByUserId(userId);
+}
+
+// user id 로 배송상태 조회
+public String getShipmentStatusByOrderId(String orderId)	{
+	String shipmentStatus = shipmentsDaoImpl.selectStatusByOrderID(orderId);
+	return shipmentStatus;
+}
+public String getOptionsByOrderId(String orderId)	{
+	String options = albumDaoImpl.findOptionsByOrderId(orderId);
+	return options;
+}
+
+public AlbumVo selectByAlbumId(String albumId)	{
+	AlbumVo options = albumDaoImpl.selectByAlbumId(albumId);
+	System.out.println("admin orderService의 옵션"+options);
+	return options;
+}
+public String getAlbumIdByOrderId(String orderId)	{
+	String albumId = orderDaoImpl.getAlbumIdByOrderId(orderId);
+	return albumId;
+}
+
+
 	
 	/**
 	 * 받은 orderId를 기준으로 배송을 만들어주는 테이블
@@ -112,4 +173,5 @@ public Map<String, Object> getOrderDetail(String orderId) {
 		
 		return result;
 	}
+
 }

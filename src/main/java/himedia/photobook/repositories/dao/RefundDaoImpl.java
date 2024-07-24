@@ -24,7 +24,22 @@ public class RefundDaoImpl implements RefundDao{
 	}
 	
 	@Override
+	public RefundVo selectOneByOrderId(String orderId) {
+		return session.selectOne("refund.selectOneByOrderId", orderId);
+	}
+	
+	@Override
 	public int insert(String orderId) {
 		return session.insert("refund.insert", orderId);
+	}
+	
+	@Override
+	public int updateStatus(RefundVo refundVo) {
+		return session.update("refund.updateStatus", refundVo);
+	}
+	
+	@Override
+	public int delete(String orderId) {
+		return session.delete("refund.delete", orderId);
 	}
 }
