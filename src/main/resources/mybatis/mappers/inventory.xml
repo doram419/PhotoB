@@ -22,8 +22,18 @@
 		WHERE
 			ALBUM_ID = #{albumId}
 	</update>
+	
 	<delete id="deleteProduct">
 		DELETE FROM INVENTORY
 		WHERE ALBUM_ID = #{albumId}
 	</delete>
+	
+	<insert id="addProduct" parameterType="InventoryVo">
+    INSERT INTO INVENTORY (ALBUM_ID, ALBUM_PRICE, QUANTITY)
+    VALUES (
+        #{albumId},
+        #{albumPrice},
+        #{aQuantity}
+    )
+</insert>
 </mapper>

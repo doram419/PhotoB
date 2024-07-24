@@ -106,7 +106,7 @@ public class AdminProductController {
             e.printStackTrace();
             model.addAttribute("error", "앨범 추가 중 오류가 발생했습니다.");
         }
-        return "redirect:/admin/products/search"; // 추가 후 목록으로 리디렉션
+        return "/WEB-INF/views/admin/product/productAdd.jsp"; // 추가 후 목록으로 리디렉션
     }
 
 }

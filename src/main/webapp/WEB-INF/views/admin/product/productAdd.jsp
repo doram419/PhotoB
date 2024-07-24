@@ -18,12 +18,12 @@
             <h2>제품 추가</h2>
         </div>
         <div class="card">
-            <div class="card-header">새로운 제품 추가</div>
+            <div class="card-header">제품 추가</div>
             <div class="card-body">
-                <form method="post" action="<c:url value='/admin/products/add'/>">
+                <form method="post" action="<c:url value='/admin/product/add'/>">
                     <div class="form-group">
-                        <label for="productCode">상품코드</label>
-                        <input type="text" id="productCode" name="productCode" placeholder="상품코드 입력" required>
+                        <label for="albumId">상품코드</label>
+                        <input type="text" id="albumId" name="albumId" placeholder="상품코드 입력" required>
                     </div>
                     <div class="form-group">
                         <label for="price">가격</label>

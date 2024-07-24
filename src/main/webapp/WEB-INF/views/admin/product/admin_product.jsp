@@ -31,8 +31,8 @@
 		</div>
 		<div class="card">
 			 <div class="card-header">제품 목록
-        	<a href="<c:url value='/admin/products/productAdd.jsp'/>" style="float: right;">
-            <button class="btn btn-info">제품 추가</button>
+        	<a href="<c:url value='/admin/product/add'/>" style="float: right;">
+            <button class="btn btn-primary">제품 추가</button>
         </a>
     </div>
 			<div class="card-body">
