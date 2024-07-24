@@ -14,7 +14,7 @@
 
 	<select id="selectStatusByOrderID" parameterType="String" resultType="String">
 		SELECT 
-			SHIPMENT_STATUS
+			SHIPMENT_STATUS as shipmentStatus
 		FROM
 		 	SHIPMENTS
 		WHERE

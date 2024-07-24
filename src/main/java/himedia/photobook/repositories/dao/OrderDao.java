@@ -1,11 +1,13 @@
 package himedia.photobook.repositories.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import himedia.photobook.repositories.vo.OrdersVo;
 
 public interface OrderDao {
 	public int orderInsert(String userId, String albumId, Long oQuantity);	// 주문생성
+	
 	public List<OrdersVo> selectAllOrdersByUserId(String userId);
 
 	/**
@@ -16,6 +18,18 @@ public interface OrderDao {
 	 * 주문 번호와 일치하는 주문 정보를 찾아오는 메서드
 	 * */
 	public OrdersVo selectByOrderId(String orderId);
+	
+	// 관리자 주문검색
+//	List<OrdersVo> searchOrders(Map<String, Object> params);
+
+	public String getUserIdByUserName(String keyword);
+	
+	
+//주문번호로 앨범아이디 가져오는 메서드
+	public String getAlbumIdByOrderId(String orderId);
+
+
+
 	/**
 	 * 주문번호와 주문일자를 업데이트 하는 메서드
 	 * param : 

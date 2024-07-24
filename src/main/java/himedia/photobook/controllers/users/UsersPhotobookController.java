@@ -37,9 +37,6 @@ public class UsersPhotobookController {
 			@RequestParam(value = "albumSize", required = false) String albumSize,
 			@RequestParam(value = "oQuantity", required = false) Long oQuantity, HttpSession albumsession,
 			Model model) {
-		System.out.println(color);
-		System.out.println(albumSize);
-		System.out.println(oQuantity);
 		AlbumVo albumVo = userPhotobookService.findAlbumIdByOptions(material, color, albumSize);
 		if (albumVo == null) {
 			System.out.println(",앨범vo널임"+albumVo);
