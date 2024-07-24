@@ -58,4 +58,8 @@ public class AlbumDaoImpl implements AlbumDao {
 	            throw new UsersAlbumException("[에러 발생]");
 	        }
 	    }
+	 @Override
+	 public String findOptionsByOrderId(String orderId)	{
+		 return sqlSession.selectOne("album.findOptionsByOrderId", orderId);
+	 }
 }

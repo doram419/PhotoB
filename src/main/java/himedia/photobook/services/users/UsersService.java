@@ -1,5 +1,7 @@
 package himedia.photobook.services.users;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -56,6 +58,8 @@ public class UsersService {
 	        int updatedCount = usersDaoImpl.updateUser(userVo);
 	        return updatedCount == 1;
 	    }
-	 
-   
+	 // id로 이름찾기
+	 public List<String> getUserNameByUserId(String userId) {
+	        return usersDaoImpl.getUserNameByUserId(userId);
+	    }
 }

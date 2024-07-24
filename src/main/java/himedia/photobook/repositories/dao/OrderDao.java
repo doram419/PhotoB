@@ -7,6 +7,7 @@ import himedia.photobook.repositories.vo.OrdersVo;
 
 public interface OrderDao {
 	public int orderInsert(String userId, String albumId, Long oQuantity);	// 주문생성
+	
 	public List<OrdersVo> selectAllOrdersByUserId(String userId);
 
 	/**
@@ -20,7 +21,12 @@ public interface OrderDao {
 	
 	// 관리자 주문검색
 //	List<OrdersVo> searchOrders(Map<String, Object> params);
-//	
-//
+
 	public String getUserIdByUserName(String keyword);
-	}
+	
+	
+//주문번호로 앨범아이디 가져오는 메서드
+	public String getAlbumIdByOrderId(String orderId);
+
+
+}

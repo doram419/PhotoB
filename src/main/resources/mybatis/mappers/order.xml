@@ -68,4 +68,12 @@
 		WHERE U.USER_NAME LIKE CONCAT('%', #{keyword}, '%') or
         O.ORDER_ID LIKE CONCAT('%', #{keyword}, '%') 
 	</select>
+	
+	<select id="getAlbumIdByOrderId" parameterType="String" resultType="String">
+	select album_id as albumId
+	from orders
+	where
+	order_id = #{orderId}
+	
+	</select>
 </mapper>

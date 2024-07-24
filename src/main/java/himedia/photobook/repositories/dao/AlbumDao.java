@@ -18,5 +18,12 @@ public interface AlbumDao {
 	// 앨범 목록
 	public List<AlbumVo> searchAlbum(String keyword);
 	public List<AlbumVo> selectAll();
-	 public AlbumVo selectByAlbumId(String albumId);
+	
+	
+	public AlbumVo selectByAlbumId(String albumId);
+	 
+	 
+	 
+	 //주문번호로 상품 옵션을 들고오는 메서드
+	 public String findOptionsByOrderId(String orderId);
 }

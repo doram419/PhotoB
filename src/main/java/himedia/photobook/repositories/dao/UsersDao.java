@@ -18,5 +18,5 @@ public interface UsersDao {
 	 * */
 	public int updateUser(UsersVo vo);	//	프로필 업데이트
 	public UsersVo selectOneUserById(String Id);
-
+	List<String> getUserNameByUserId(String userId);
 }

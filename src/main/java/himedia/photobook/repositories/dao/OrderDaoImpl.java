@@ -49,4 +49,8 @@ public class OrderDaoImpl implements OrderDao {
 	public String getUserIdByUserName(String keyword) {
 		return sqlSession.selectOne("users.getUserIdByUserName",keyword);
 	}
+	
+	public String getAlbumIdByOrderId(String orderId)	{
+		return sqlSession.selectOne("order.getAlbumIdByOrderId",orderId);
+	}
 }

@@ -1,5 +1,7 @@
 package himedia.photobook.controllers.admin;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -10,7 +12,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import himedia.photobook.repositories.vo.AlbumVo;
+import himedia.photobook.repositories.vo.OrdersVo;
 import himedia.photobook.services.admin.AdminOrderService;
+import himedia.photobook.services.users.UsersService;
 
 @Controller
 
@@ -19,11 +24,13 @@ public class AdminOrderController {
 
 	@Autowired
 	private AdminOrderService adminOrderService;
+	@Autowired
+	private UsersService usersService;
 
 	@GetMapping("/om")
 	public String order(Model model) {
-		List<Map<String, Object>> orderInfoList = adminOrderService.getOrderAdmin();
-		model.addAttribute("orderInfoList", orderInfoList);
+		List<Map<String, Object>> orderList = adminOrderService.getOrderAdmin();
+		model.addAttribute("orderList", orderList);
 		return "/WEB-INF/views/admin/admin_order_management.jsp";
 	}
 
@@ -31,6 +38,7 @@ public class AdminOrderController {
 	public String orderDetail(@RequestParam("orderId") String orderId, Model model) {
 		Map<String, Object> orderDetail = adminOrderService.getOrderDetail(orderId);
 		model.addAttribute("orderDetail", orderDetail);
+		System.out.println("상세조회 옵션들과 디테일"+model);
 		return "/WEB-INF/views/admin/admin_order_detail.jsp";
 	}
 
@@ -46,9 +54,25 @@ public class AdminOrderController {
 
 	@GetMapping("/order/search")
 	public String searchUserId(@RequestParam(value = "keyword", required = false) String keyword, Model model) {
-	    String userId = adminOrderService.getUserIdByUserName(keyword);
-	    model.addAttribute("userId", userId);
-		System.out.println("search의 model:"+model);
+		List<Map<String, Object>> orderList = new ArrayList<>();
+
+		if (keyword != null && !keyword.trim().isEmpty()) {
+			String userId = adminOrderService.getUserIdByUserName(keyword);
+			List<OrdersVo> orders = adminOrderService.getOrdersByUserId(userId);
+
+			for (OrdersVo order : orders) {
+				Map<String, Object> orderInfo = new HashMap<>();
+				orderInfo.put("userName",usersService.getUserNameByUserId(order.getUserId()));
+				orderInfo.put("ordersVo", order);
+				orderInfo.put("usersVo", adminOrderService.getUserIdByUserName(order.getUserId()));
+				orderInfo.put("status", adminOrderService.getShipmentStatusByOrderId(order.getOrderId()));
+				orderList.add(orderInfo);
+			}
+		} else {
+			orderList = adminOrderService.getOrderAdmin();
+		}
+		model.addAttribute("orderList", orderList);
+		System.out.println("search의 model:" + model);
 		return "/WEB-INF/views/admin/admin_order_management.jsp";
 	}
 }

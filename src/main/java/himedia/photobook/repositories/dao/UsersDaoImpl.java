@@ -97,4 +97,9 @@ public class UsersDaoImpl implements UsersDao {
 		UsersVo est = sqlSession.selectOne("users.selectUserById", Id);
 		return est;
 	}
+    @Override
+    public List<String> getUserNameByUserId(String userId)	{
+    	
+    	return sqlSession.selectList("users.getUserNameByUserId", userId); 
+    }
 }

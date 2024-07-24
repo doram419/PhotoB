@@ -55,15 +55,22 @@ public List<Map<String, Object>> getOrderAdmin() {
 // 관리자 주문 상세조회
 public Map<String, Object> getOrderDetail(String orderId) {
     Map<String, Object> orderDetail = new HashMap<>();
-    
+	String albumId = orderDaoImpl.getAlbumIdByOrderId(orderId);
+	AlbumVo album = albumDaoImpl.selectByAlbumId(albumId);
+	orderDetail.put("album", album);
+	
     OrdersVo order = orderDaoImpl.selectByOrderId(orderId);
     orderDetail.put("order", order);
     
     UsersVo user = usersDaoImpl.selectOneUserById(order.getUserId());
     orderDetail.put("user", user);
     
+    
+    
+    
     return orderDetail;
 }
+
 
 public String getSearchUserId(String keyword) {
     String userId = orderDaoImpl.getUserIdByUserName(keyword);
@@ -71,28 +78,34 @@ public String getSearchUserId(String keyword) {
 }
 
 
-//관리자 주문 검색
-//public List<Map<String, Object>> searchOrders(String keyword) {
-//    List<Map<String, Object>> orderInfoList = new ArrayList<>();
-//    Map<String, Object> params = new HashMap<>();
-//    params.put("keyword", keyword);
-//    List<OrdersVo> orderList = orderDaoImpl.searchOrders(params);
-//    System.out.println("service의orderList" + orderList);
-//    for (OrdersVo order : orderList) {
-//        Map<String, Object> orderMap = new HashMap<>();
-//        orderMap.put("ordersVo", order);
-//        UsersVo user = usersDaoImpl.selectOneUserById(order.getUserId());
-//        orderMap.put("usersVo", user);
-//        String status = shipmentsDaoImpl.selectStatusByOrderID(order.getOrderId());
-//        orderMap.put("status", status);
-//        orderInfoList.add(orderMap);
-//        System.out.println("list에 들어간 orderMap" + orderInfoList);
-//    }
-//    return orderInfoList;
-//}
 public String getUserIdByUserName(String keyword) {
     String userId = orderDaoImpl.getUserIdByUserName(keyword);
     System.out.println("받아온 userId: "+userId);
     return userId;
 }
+//user id로 주문리스트 가져옴
+public List<OrdersVo> getOrdersByUserId(String userId) {
+    return orderDaoImpl.selectAllOrdersByUserId(userId);
+}
+
+// user id 로 배송상태 조회
+public String getShipmentStatusByOrderId(String orderId)	{
+	String shipmentStatus = shipmentsDaoImpl.selectStatusByOrderID(orderId);
+	return shipmentStatus;
+}
+public String getOptionsByOrderId(String orderId)	{
+	String options = albumDaoImpl.findOptionsByOrderId(orderId);
+	return options;
+}
+
+public AlbumVo selectByAlbumId(String albumId)	{
+	AlbumVo options = albumDaoImpl.selectByAlbumId(albumId);
+	System.out.println("admin orderService의 옵션"+options);
+	return options;
+}
+public String getAlbumIdByOrderId(String orderId)	{
+	String albumId = orderDaoImpl.getAlbumIdByOrderId(orderId);
+	return albumId;
+}
+
 }
