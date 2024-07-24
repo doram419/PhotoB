@@ -12,8 +12,29 @@
         SELECT 
             album_id as albumId,
             album_price as albumPrice
-        FROM inventory
+        FROM INVENTORY
     </select>
+    
+    <update id="updatePrice" parameterType="InventoryVo">
+		UPDATE INVENTORY
+		SET ALBUM_PRICE = #{albumPrice}
+		WHERE
+			ALBUM_ID = #{albumId}
+	</update>
+	
+	<delete id="deleteInventory">
+		DELETE FROM INVENTORY
+		WHERE ALBUM_ID = #{albumId}
+	</delete>
+	
+	<insert id="insertInventory" parameterType="InventoryVo">
+    INSERT INTO INVENTORY (ALBUM_ID, ALBUM_PRICE, A_QUANTITY)
+    VALUES (
+        #{albumId},
+        #{albumPrice},
+        #{aQuantity}
+    )
+</insert>
     <select id="selectOneByAlbumId" parameterType="String" resultType="InventoryVo">
         SELECT 
         	ALBUM_ID as albumId, 

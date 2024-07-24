@@ -1,6 +1,7 @@
 package himedia.photobook.repositories.dao;
 
 import java.util.HashMap;
+
 import java.util.List;
 import java.util.Map;
 
@@ -9,7 +10,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import himedia.photobook.exceptions.UsersAlbumException;
-import himedia.photobook.repositories.vo.AlbumVo;
 import himedia.photobook.repositories.vo.InventoryVo;
 
 @Repository
@@ -32,9 +32,9 @@ public class InventoryDaoImpl implements InventoryDao {
 	}
 
 	@Override
-	public int updateAlbum(InventoryVo vo) {
+	public int updateProduct(InventoryVo vo) {
 		try {
-			int updatedCount = sqlSession.update("album.updateAlbum", vo);
+			int updatedCount = sqlSession.update("inventory.updatePrice", vo);
 			return updatedCount;
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -43,6 +43,15 @@ public class InventoryDaoImpl implements InventoryDao {
 	}
 	
 	@Override
+	public int delete(String albumId) {        
+		return sqlSession.delete("inventory.deleteInventory", albumId); // 변경된 메소드 이름
+    }
+	
+	@Override
+	public int insertInventory(InventoryVo inventoryVo) {
+		return sqlSession.insert("inventory.insertInventory", inventoryVo);
+	}
+
 	public int updateQuantity(InventoryVo inventoryVo) {
 		return sqlSession.update("inventory.updateQuantity", inventoryVo);
 	}
@@ -50,5 +59,6 @@ public class InventoryDaoImpl implements InventoryDao {
 	@Override
 	public InventoryVo selectOneByAlbumId(String albumId) {
 		return sqlSession.selectOne("inventory.selectOneByAlbumId", albumId);
+
 	}
 }
