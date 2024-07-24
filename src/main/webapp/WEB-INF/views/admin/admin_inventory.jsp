@@ -54,18 +54,21 @@
 								<td>${invenVo.albumId }</td>
 								<td>${invenVo.albumPrice }</td>
 								<td>${invenVo.aQuantity }</td>
-								<td><button class="btn btn-primary">입고</button>
-								<button class="btn btn-primary">갱신</button>
+								<td>
+								<form action="<c:url value="/admin/inventory/store"/>" method="GET">
+								<input type="hidden" name="albumId" value="${invenVo.albumId }">
+								<button class="btn btn-primary">입고</button>
+								</form>
+				
 								</td>
 							</tr>
 						</c:forEach>
-						
 							<tr>
 								<td>${invenDetail.albumId }</td>
 								<td>${invenDetail.albumPrice }</td>
 								<td>${invenDetail.aQuantity }</td>
-								<td><button class="btn btn-primary">입고</button>
-								<button class="btn btn-primary">갱신</button>
+								<td>
+								<button class="btn btn-primary">입고</button>
 								</td>
 							</tr>
 				

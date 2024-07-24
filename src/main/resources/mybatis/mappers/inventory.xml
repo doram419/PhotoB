@@ -16,4 +16,9 @@
             A_QUANTITY as aQuantity
         FROM inventory
     </select>
+    
+    <update id="updateQuantity" parameterType="Inventoryvo">
+    	
+    </update>
+    
 </mapper>
