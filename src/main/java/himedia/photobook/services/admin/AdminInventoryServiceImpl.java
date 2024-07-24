@@ -2,6 +2,7 @@ package himedia.photobook.services.admin;
 
 import java.util.List;
 
+import org.apache.ibatis.session.RowBounds;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -20,6 +21,12 @@ public class AdminInventoryServiceImpl implements AdminInventoryService {
 
 	}
 
+	public List<InventoryVo> getPagedInventory(int page, int pageSize) {
+        int offset = (page - 1) * pageSize;
+        RowBounds rowBounds = new RowBounds(offset, pageSize);
+        return inventoryDaoImpl.listPage(rowBounds);
+    }
+	
 	@Override
 	public InventoryVo findAlbumPriceByAlbumId(String albumId) {
 		InventoryVo inventoryVo = inventoryDaoImpl.findAlbumPriceByAlbumId(albumId);

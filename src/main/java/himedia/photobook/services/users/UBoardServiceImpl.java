@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 import himedia.photobook.repositories.dao.UBoardDao;
 import himedia.photobook.repositories.dao.UsersDao;
 import himedia.photobook.repositories.vo.BoardVo;
+import himedia.photobook.repositories.vo.ShipmentsVo;
 import himedia.photobook.repositories.vo.UsersVo;
 
 
@@ -83,6 +84,7 @@ public class UBoardServiceImpl implements UBoardService {
 		
 		for (UsersVo usersVo : userList) {
 			List<BoardVo> boardList = uBoardDao.getContentById(usersVo.getUserId());
+		
 			
 			for (BoardVo boardVo : boardList) {
 				map = new HashMap<String, Object>();

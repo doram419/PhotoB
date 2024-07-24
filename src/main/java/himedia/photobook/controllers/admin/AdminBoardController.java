@@ -156,6 +156,8 @@ public class AdminBoardController {
 		md.addAttribute("invenDetail",invenDetail);
 		return "/WEB-INF/views/admin/admin_inventory.jsp";
 	}
+	
+	
 
 // 제품 입고 
 	@GetMapping("/inventory/store")

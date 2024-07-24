@@ -2,6 +2,8 @@ package himedia.photobook.controllers.admin;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
 import java.util.List;
 import java.util.Map;
 
@@ -54,9 +56,11 @@ public class AdminController {
 		return "/WEB-INF/views/admin/admin_product.jsp";
 	}
 	@RequestMapping("/inventory")
-	public String inventory(Model md) {
-		List<InventoryVo> list = adminInventoryService.getInvenInfos();
+	public String inventory(@RequestParam(value = "page", defaultValue = "1") int page,@RequestParam(value = "size", defaultValue = "10") int size ,Model md) {
+		List<InventoryVo> list = adminInventoryService.getPagedInventory(page, size);
+		
 		md.addAttribute("invenList",list);
+	    md.addAttribute("currentPage", page);
 		return "/WEB-INF/views/admin/admin_inventory.jsp";
 	}
 	

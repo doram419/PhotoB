@@ -18,6 +18,11 @@ public class InventoryDaoImpl implements InventoryDao {
 	private SqlSession sqlSession;
 
 	@Override
+	public List<InventoryVo> listInventory() {
+		
+		return sqlSession.selectList("inventory.listInventory");
+	}
+	@Override
 	public InventoryVo findAlbumPriceByAlbumId(String albumId) {
 		Map<String, String> ai = new HashMap<>();
 		ai.put("albumId", albumId);
@@ -26,11 +31,6 @@ public class InventoryDaoImpl implements InventoryDao {
 		return inventoryVo;
 	}
 
-	@Override
-	public List<InventoryVo> listInventory() {
-		
-		return sqlSession.selectList("inventory.listInventory");
-	}
 
 	@Override
 	public int updateAlbum(InventoryVo vo) {
@@ -46,5 +46,9 @@ public class InventoryDaoImpl implements InventoryDao {
 	@Override
 	public int updateQuantity(InventoryVo vo) {
 		return sqlSession.update("inventory.updateQuantity",vo);
+	}
+	@Override
+	public List<InventoryVo> listPage(RowBounds rowBounds) {
+		 return sqlSession.selectList("inventory.listInventory", null, rowBounds);
 	}
 }

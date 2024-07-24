@@ -2,6 +2,9 @@ package himedia.photobook.repositories.dao;
 
 import java.util.List;
 
+import org.apache.ibatis.session.RowBounds;
+import org.apache.ibatis.session.SqlSession;
+
 import himedia.photobook.repositories.vo.InventoryVo;
 
 public interface InventoryDao {
@@ -16,6 +19,19 @@ public InventoryVo findAlbumPriceByAlbumId(String albumId);
 
 
 	public int updateAlbum(InventoryVo vo);
+
+
+	public List<InventoryVo> listPage(RowBounds rowBounds);
+
+
+//	public List<InventoryVo> listPage(int offset, int limit);
+
+
+
+
+
+
+
 	
 }
 

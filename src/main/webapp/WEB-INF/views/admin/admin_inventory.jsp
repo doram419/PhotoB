@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-
+<%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
 <!DOCTYPE html>
 
 <html lang="ko">
@@ -12,6 +12,7 @@
 <title>고객 센터</title>
 <link type="text/css" rel="stylesheet"
 	href='<c:url value="/css/common_style.css"/>' />
+	
 </head>
 
 <body>
@@ -78,7 +79,18 @@
 			</div>
 		</div>
 	</div>
+	  
 	<c:import url="/WEB-INF/views/admin/includes/admin_footer.jsp"></c:import>
 </body>
-
+	<footer>
+	<div class="pagination">
+        <c:if test="${currentPage > 1}">
+            <a href="<c:url value='/admin/inventory?page=${currentPage - 1}&size=10'/>">Previous</a>
+        </c:if>
+        <span>Page ${currentPage}</span>
+        <c:if test="${invenList.size() == 10}">
+            <a href="<c:url value='/admin/inventory?page=${currentPage + 1}&size=10'/>">Next</a>
+        </c:if>
+    </div>
+	</footer>
 </html>
