@@ -62,6 +62,7 @@
 	                        <td>${infoMap['ordersVo'].total}</td>
 	                        <td>${infoMap['status']}</td>
 	                        <td>
+	                        <form action="/admin/refund/complete"></form>
 	                        	<button type=button class="btn btn-primary">환불 완료</button>
 	                        	<button type=button class="btn btn-primary">환불 취소</button>
 	                        </td>

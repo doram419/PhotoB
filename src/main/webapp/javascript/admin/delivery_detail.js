@@ -40,10 +40,13 @@ window.addEventListener("load", event => {
 });
 
 /**  수정 버튼을 누르면, 
- * <Input> 태그의 사촌을 선택해서,
+ * <Input> 태그의 부모의 이전 형제의 첫 사촌을 선택해서,
  * disabled를 풀어주고 
  * 한번 더 누르면 diabled를 걸어주는 함수
  * 
+ * disabled가 걸린 태그는 값을 쓸 수가 없다. 
+ * 그래서 disabled한 태그(Node)의 다음 형제를 만들어서
+ * hidden을 부여해서 값을 쓰겠끔함
  * event : 해당 함수를 적용할 수정 버튼
  */
 function editAble(event){	
