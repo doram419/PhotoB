@@ -1,68 +1,129 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>포토북 제작 - 사진 업로드 및 미리보기</title>
-    <link type="text/css" rel="stylesheet" href='<c:url value="/css/create_photobook_style.css"/>'>
-    <link rel="stylesheet" href="<c:url value='/css/header_footer.css'/>">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>포토북 제작 - 사진 업로드 및 미리보기</title>
+<link type="text/css" rel="stylesheet"
+	href='<c:url value="/css/create_photobook_style.css"/>'>
+<link rel="stylesheet" href="<c:url value='/css/header_footer.css'/>">
+<style>
+/* 팝업 스타일 */
+.popup {
+	display: none;
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	background-color: white;
+	padding: 20px;
+	border: 1px solid #ccc;
+	box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+	z-index: 1000;
+}
+
+.popup h2 {
+	margin-top: 0;
+}
+
+.popup-buttons {
+	text-align: right;
+	margin-top: 20px;
+}
+
+.popup-buttons button {
+	margin-left: 10px;
+}
+
+.overlay {
+	display: none;
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0, 0, 0, 0.5);
+	z-index: 999;
+}
+</style>
 </head>
 <body>
-    <c:import url="/WEB-INF/views/users/includes/users_header.jsp" />
+	<c:import url="/WEB-INF/views/users/includes/users_header.jsp" />
 
-    <h1>포토북 제작 - 사진 업로드 및 미리보기</h1>
+	<h1>포토북 제작 - 사진 업로드 및 미리보기</h1>
 
-    <div class="selected-options">
-        <h2>선택된 옵션</h2>
-        <p>커버 재질: ${param.material}</p>
-        <p>사이즈: ${param.albumSize}</p>
-        <p>색상: ${param.color}</p>
-    </div>
+	<div class="selected-options">
+		<h2>선택된 옵션</h2>
+		<p>커버 재질: ${param.material}</p>
+		<p>사이즈: ${param.albumSize}</p>
+		<p>색상: ${param.color}</p>
+	</div>
 
-    <div class="upload-section">
-        <h2>사진 업로드</h2>
-        <input type="file" id="photoUpload" accept="image/*" multiple>
-    </div>
+	<div class="upload-section">
+		<h2>사진 업로드</h2>
+		<input type="file" id="photoUpload" accept="image/*" multiple>
+	</div>
 
-    <div class="preview-section">
-        <h2>미리보기</h2>
-        <div class="preview-container">
-            <!-- 여기에 미리보기 이미지들이 동적으로 추가됩니다 -->
-        </div>
-    </div>
+	<div class="preview-section">
+		<h2>미리보기</h2>
+		<div class="preview-container">
+			<!-- 여기에 미리보기 이미지들이 동적으로 추가됩니다 -->
+		</div>
+	</div>
 
-    <div class="style-options">
-        <label><input type="radio" name="style" value="1" checked> 1장</label>
-        <label><input type="radio" name="style" value="2"> 2장</label>
-        <label><input type="radio" name="style" value="3"> 3장</label>
-        <label><input type="radio" name="style" value="4"> 4장</label>
-    </div>
+	<div class="style-options">
+		<label><input type="radio" name="style" value="1" checked>
+			1장</label> <label><input type="radio" name="style" value="2">
+			2장</label> <label><input type="radio" name="style" value="3">
+			3장</label> <label><input type="radio" name="style" value="4">
+			4장</label>
+	</div>
 
-    <div class="nav-buttons">
-        <button id="prevPage">이전 페이지</button>
-        <button id="nextPage">다음 페이지</button>
-    </div>
+	<div class="nav-buttons">
+		<button id="prevPage">이전 페이지</button>
+		<button id="nextPage">다음 페이지</button>
+	</div>
 
-    <form action="<c:url value='/users/photobookOrder'/>" method="post">
-        <input type="hidden" id="selectedStyle" name="selectedStyle">
-        <input type="hidden" name="albumId" value="${sessionScope.albumId}">
-        <input type="hidden" name="userId" value="${sessionScope.authUser.userId}">
-            
-        <button type="submit" class="create-button">제작 완료</button>
-    </form>
+	<form id="orderForm" action="<c:url value='/users/photobookOrder'/>"
+		method="post">
+		<input type="hidden" id="selectedStyle" name="selectedStyle">
+		<input type="hidden" name="albumId" value="${sessionScope.albumId}">
+		<input type="hidden" name="userId"
+			value="${sessionScope.authUser.userId}">
 
-    <script>
+		<button type="button" id="createButton" class="create-button">제작
+			완료</button>
+	</form>
+
+	<!-- 팝업 -->
+	<div class="overlay" id="overlay"></div>
+	<div class="popup" id="confirmationPopup">
+		<h2>주문 정보 확인</h2>
+		<div id="orderDetails"></div>
+		<div class="popup-buttons">
+			<button id="cancelOrder">취소</button>
+			<button id="confirmOrder">확인</button>
+		</div>
+	</div>
+
+	<script>
         const material = "${param.material}";
         const albumSize = "${param.albumSize}";
         const color = "${param.color}";
 
-        // 여기에 사진 업로드, 미리보기, 스타일 선택 등의 JavaScript 코드를 추가합니다
         const photoUpload = document.getElementById('photoUpload');
         const previewContainer = document.querySelector('.preview-container');
         const styleOptions = document.querySelectorAll('input[name="style"]');
         const selectedStyleInput = document.getElementById('selectedStyle');
+        const createButton = document.getElementById('createButton');
+        const confirmationPopup = document.getElementById('confirmationPopup');
+        const overlay = document.getElementById('overlay');
+        const cancelOrderButton = document.getElementById('cancelOrder');
+        const confirmOrderButton = document.getElementById('confirmOrder');
+        const orderForm = document.getElementById('orderForm');
 
         // 사진 업로드 처리
         photoUpload.addEventListener('change', function(event) {
@@ -92,8 +153,33 @@
 
         // 초기 스타일 설정
         selectedStyleInput.value = document.querySelector('input[name="style"]:checked').value;
+
+        // 제작 완료 버튼 클릭 시 팝업 표시
+        createButton.addEventListener('click', function() {
+            const orderDetails = document.getElementById('orderDetails');
+            orderDetails.innerHTML = `
+                <p>커버 재질: ${param.material}</p>
+                <p>사이즈: ${param.albumSize}</p>
+                <p>색상: ${param.color}</p>
+               <p>주문 수량: ${param.oQuantity}개</p>
+           
+            `;
+            confirmationPopup.style.display = 'block';
+            overlay.style.display = 'block';
+        });
+
+        // 취소 버튼 클릭 시 팝업 닫기
+        cancelOrderButton.addEventListener('click', function() {
+            confirmationPopup.style.display = 'none';
+            overlay.style.display = 'none';
+        });
+
+        // 확인 버튼 클릭 시 주문 처리
+        confirmOrderButton.addEventListener('click', function() {
+            orderForm.submit();
+        });
     </script>
 
-    <c:import url="/WEB-INF/views/users/includes/users_footer.jsp" />
+	<c:import url="/WEB-INF/views/users/includes/users_footer.jsp" />
 </body>
 </html>
