@@ -51,4 +51,14 @@ public class InventoryDaoImpl implements InventoryDao {
 	public int insertProduct(InventoryVo vo) {
 		return sqlSession.insert("inventory.insertProduct", vo);
 	}
+
+	public int updateQuantity(InventoryVo inventoryVo) {
+		return sqlSession.update("inventory.updateQuantity", inventoryVo);
+	}
+	
+	@Override
+	public InventoryVo selectOneByAlbumId(String albumId) {
+		return sqlSession.selectOne("inventory.selectOneByAlbumId", albumId);
+
+	}
 }

@@ -30,6 +30,33 @@
 		FROM
 		 	SHIPMENTS
 		WHERE
-			ORDER_ID = #{value}
+			ORDER_ID = #{value} 
 	</select>
+	
+	<select id="searchAllByOrderId" parameterType="String" resultType="ShipmentsVo">
+		SELECT 
+			SHIPMENT_ID as shipmentId,
+			ORDER_ID as orderId,
+			SHIPMENT_DATE as shipmentDate,
+			SHIPMENT_STATUS as shipmentStatus
+		FROM
+		 	SHIPMENTS
+		WHERE
+			ORDER_ID LIKE ('%' || #{value} || '%')
+	</select>
+	
+	<update id="updateDateAndStatusByShipmentId" parameterType="ShipmentsVo">
+		UPDATE SHIPMENTS 
+			SET SHIPMENT_STATUS = #{shipmentStatus},
+			SHIPMENT_DATE = #{shipmentDate}
+		WHERE SHIPMENT_ID=#{shipmentId}
+	</update>
+	
+	<insert id="insert" parameterType="String">
+		INSERT INTO SHIPMENTS (SHIPMENT_ID, ORDER_ID, SHIPMENT_DATE, SHIPMENT_STATUS)
+		VALUES (
+			NVL(NULL, SEQ_SHIPMENTS_PK.NEXTVAL), #{value}, 
+    		SYSDATE, 'A'
+    		)
+    </insert>
 </mapper>

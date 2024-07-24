@@ -11,124 +11,138 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import himedia.photobook.repositories.dao.UBoardDao;
-import himedia.photobook.repositories.dao.UsersDao;
-import himedia.photobook.repositories.dao.UsersDaoImpl;
 import himedia.photobook.repositories.vo.BoardVo;
 import himedia.photobook.repositories.vo.CommentsVo;
 import himedia.photobook.repositories.vo.UsersVo;
+import himedia.photobook.services.admin.AdminCommentServiceImpl;
 import himedia.photobook.services.users.UBoardServiceImpl;
 import jakarta.servlet.http.HttpSession;
 
 /**
- * UsersController에서 모두 처리하지말고,
- * 고객 게시판 세부 상황은 이쪽으로 빼기
- * */
+ * UsersController에서 모두 처리하지말고, 고객 게시판 세부 상황은 이쪽으로 빼기
+ */
 @Controller
 @RequestMapping("/admin")
 public class AdminBoardController {
 	@Autowired
 	private UBoardServiceImpl uBoardService;
 	@Autowired
-	private UsersDao usersDaoImpl;
+	private AdminCommentServiceImpl adminCommentService;
 
 	@RequestMapping("/boardList")
 	public String list(Model md) {
 		List<Map<String, Object>> list = uBoardService.getBoardInfos();
-		md.addAttribute("postList",list);
-		System.out.println(list);
+		md.addAttribute("postList", list);
 		return "/WEB-INF/views/admin/admin_board.jsp";
 	}
-	
+
 //	작성 페이지로 이동
 	@GetMapping("/board/write")
 	public String writeForm(HttpSession session, RedirectAttributes redirectAtt) {
-		UsersVo authUser= (UsersVo) session.getAttribute("authUser");
+		UsersVo authUser = (UsersVo) session.getAttribute("authUser");
 		return "/WEB-INF/views/admin/board/board_write.jsp";
 	}
-	
+
 	@PostMapping("/board/write")
-	public String writeAction(@ModelAttribute BoardVo boardVo,HttpSession session, RedirectAttributes redirectAtt) {
+	public String writeAction(@ModelAttribute BoardVo boardVo, HttpSession session, RedirectAttributes redirectAtt) {
 		UsersVo authUser = (UsersVo) session.getAttribute("authUser");
-		
+
 		boardVo.setUserId(authUser.getUserId());
 		uBoardService.write(boardVo);
-		
+
 		return "redirect:/admin/boardList";
 	}
-	
+
 	@GetMapping("/board/post/{userId}/{boardId}")
-	public String view(@PathVariable("userId") String userId,@PathVariable("boardId") Long boardId, Model md, HttpSession session) {
-		System.out.println("userId: "+userId);
+	public String view(@PathVariable("userId") String userId, @PathVariable("boardId") Long boardId, Model md,
+			HttpSession session) {
 		UsersVo authUser = (UsersVo) session.getAttribute("authUser");
-		if(authUser==null) {
+		if (authUser == null) {
 			return "redirect:/admin/boardList";
 		}
-		
-		Map<String, Object> boardVo = uBoardService.getContent(userId,boardId);
-//		UsersVo usersVo = userDao.selectOneUserById(userId);
-		md.addAttribute("vo",boardVo);
+
+		Map<String, Object> boardVo = uBoardService.getContent(userId, boardId);
+		CommentsVo commentsVo = adminCommentService.getCommentsByBoardId(boardId);
+		boolean hasComment = adminCommentService.hasComment(boardId);
+		md.addAttribute("vo", boardVo);
+		md.addAttribute("commentVo", commentsVo);
+		md.addAttribute("hasComment", hasComment);
 //		md.addAttribute("userVo",usersVo);
 		return "/WEB-INF/views/admin/board/board_post.jsp";
 	}
-	
+
 	// 편집 페이지
 	@GetMapping("/board/{userId}/{boardId}/modify")
-	public String modifyForm(@PathVariable("userId") String userId,@PathVariable("boardId") Long boardId,Model md, HttpSession session, RedirectAttributes redirectAtt) {
+	public String modifyForm(@PathVariable("userId") String userId, @PathVariable("boardId") Long boardId, Model md,
+			HttpSession session, RedirectAttributes redirectAtt) {
 		UsersVo authUser = (UsersVo) session.getAttribute("authUser");
-		if(authUser == null) {
-			redirectAtt.addFlashAttribute("errorMsg","자격이 없습니다.");
+		if (authUser == null) {
+			redirectAtt.addFlashAttribute("errorMsg", "자격이 없습니다.");
 			return "redirect:/admin/boardList";
 		}
 		Map<String, Object> boardVo = uBoardService.getContent(userId, boardId);
-		md.addAttribute("vo",boardVo);
+		md.addAttribute("vo", boardVo);
 		return "/WEB-INF/views/admin/board/board_modify.jsp";
 	}
-	
+
 	// 편집 수행 액션
 	@PostMapping("/modify")
-	public String modifyAction(@ModelAttribute BoardVo updateVo,HttpSession session, RedirectAttributes redirectAtt) {
+	public String modifyAction(@ModelAttribute BoardVo updateVo, HttpSession session, RedirectAttributes redirectAtt) {
 		UsersVo authUser = (UsersVo) session.getAttribute("authUser");
-		if(authUser == null) {
-			redirectAtt.addFlashAttribute("errorMsg","자격이 없습니다.");
+		if (authUser == null) {
+			redirectAtt.addFlashAttribute("errorMsg", "자격이 없습니다.");
 			return "redirect:/admin/boardList";
 		}
-		BoardVo boardVo = uBoardService.getBoardVo(updateVo.getUserId(),updateVo.getBoardId());
-		
+		BoardVo boardVo = uBoardService.getBoardVo(updateVo.getUserId(), updateVo.getBoardId());
+
 		boardVo.setTitle(updateVo.getTitle());
 		boardVo.setContent(updateVo.getContent());
-		
+
 		boolean success = uBoardService.update(boardVo);
 		return "redirect:/admin/boardList";
 	}
-	
-	
-	
+
 	// 게시물 삭제
 	@RequestMapping("/board/{userId}/{boardId}/delete")
-	public String deleteAction(@PathVariable("userId") String userId,@PathVariable("boardId") Long boardId,Model md, HttpSession session, RedirectAttributes redirectAtt) {
+	public String deleteAction(@PathVariable("userId") String userId, @PathVariable("boardId") Long boardId, Model md,
+			HttpSession session, RedirectAttributes redirectAtt) {
 		UsersVo authUser = (UsersVo) session.getAttribute("authUser");
 		if (authUser == null) {
 			redirectAtt.addFlashAttribute("errorMsg", "자격이 없습니다.");
 			return "redirect:/admin/boardList";
 		}
 		BoardVo boardVo = uBoardService.getBoardVo(userId, boardId);
-		
+
 		uBoardService.delete(userId, boardVo.getBoardId());
 		return "redirect:/admin/boardList";
 	}
-	
-	
-//	// 관리자 댓글 작성
-//			@PostMapping("/comment/write")
-//			public String commentAction(@ModelAttribute CommentsVo commentsVo,HttpSession session, RedirectAttributes redirectAtt) {
-//				UsersVo authUser= (UsersVo) session.getAttribute("authUser");
-//				if(authUser == null) {
-//					redirectAtt.addFlashAttribute("errorMsg", "자격이 없습니다.");
-//					return "redirect:/users/boardList";
-//				}
-//				commentsVo.set
-//			}
+
+	// 관리자 댓글 작성
+	@PostMapping("/comment/write")
+	public String commentAction(@ModelAttribute CommentsVo commentsVo, @RequestParam("boardId") Long boardId,
+			HttpSession session, RedirectAttributes redirectAtt) {
+		UsersVo authUser = (UsersVo) session.getAttribute("authUser");
+		if (authUser == null) {
+			redirectAtt.addFlashAttribute("errorMsg", "자격이 없습니다.");
+			return "redirect:/users/boardList";
+		}
+
+		commentsVo.setUserName(authUser.getUserName());
+		adminCommentService.write(commentsVo);
+		redirectAtt.addAttribute("boardId", boardId);
+
+		return "redirect:/admin/boardList";
+//		return "/WEB-INF/views/admin/board/board_post.jsp";
+	}
+// 관리자 이름 검색
+	@GetMapping("/customerService/search")
+	public String searchBoard(@RequestParam(value = "keyword") String keyword, Model md) {
+		List<Map<String, Object>> boardDetail = uBoardService.getContentByName(keyword);
+		md.addAttribute("boardDetail",boardDetail);
+		return "/WEB-INF/views/admin/admin_customer_service.jsp";
+	}
+
 }

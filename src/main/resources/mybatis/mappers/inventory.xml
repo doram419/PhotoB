@@ -6,9 +6,8 @@
     	select album_price as albumPrice
     	from inventory
     	where album_id = #{albumId}
-        </select>
-
-   <!-- listInventory 메서드를 위한 매핑 추가 -->
+   	</select>
+    <!-- listInventory 메서드를 위한 매핑 추가 -->
     <select id="listInventory" resultType="InventoryVo">
         SELECT 
             album_id as albumId,
@@ -36,4 +35,17 @@
         #{aQuantity}
     )
 </insert>
+    <select id="selectOneByAlbumId" parameterType="String" resultType="InventoryVo">
+        SELECT 
+        	ALBUM_ID as albumId, 
+        	ALBUM_PRICE as albumPrice,
+        	A_QUANTITY as aQuantity
+		FROM INVENTORY
+		WHERE ALBUM_ID = #{value}
+    </select>
+	<update id="updateQuantity" parameterType="InventoryVo">
+		UPDATE INVENTORY 
+			SET A_QUANTITY = #{aQuantity}
+		WHERE ALBUM_ID=#{albumId} 
+	</update>
 </mapper>

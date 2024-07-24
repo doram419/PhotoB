@@ -16,5 +16,12 @@ public interface OrderDao {
 	 * 주문 번호와 일치하는 주문 정보를 찾아오는 메서드
 	 * */
 	public OrdersVo selectByOrderId(String orderId);
-	
+	/**
+	 * 주문번호와 주문일자를 업데이트 하는 메서드
+	 * param : 
+	 * 	updateId - where절에 쓸 업데이트 할 주문 튜플의 id
+	 *  ordersVo - 업데이트할 정보 
+	 * return type : 업데이트 영향 받은 튜플 수
+	 * */
+	int updateByOrderId(String updateId, OrdersVo ordersVo);
 }
