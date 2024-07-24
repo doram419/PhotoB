@@ -32,4 +32,10 @@ public interface RefundDao {
 	 * return : int - 영향 받은 튜플의 수 
 	 * */
 	public int delete(String orderId);
+	/**
+	 * orderId를 기준으로 환불 정보 하나를 들고 와주는 메서드
+	 * param :  String orderId : 가져올 튜플의 orderId
+	 * return : RefundVo - 조회된 튜플 
+	 * */
+	public RefundVo selectOneByOrderId(String orderId);
 }

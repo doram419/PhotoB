@@ -32,4 +32,14 @@
 		DELETE FROM REFUND
 		WHERE ORDER_ID = #{orderId}
 	</delete>
+	<select id="selectOneByOrderId" parameterType="String" resultType="RefundVo">
+		SELECT 
+			REFUND_ID as refundId,
+			ORDER_ID as orderId,
+			REFUND_STATUS as refundStatus
+		FROM
+		 	REFUND
+		WHERE
+			ORDER_ID = #{value}
+	</select>
 </mapper>
