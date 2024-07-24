@@ -41,4 +41,14 @@ public class InventoryDaoImpl implements InventoryDao {
 			throw new UsersAlbumException("업데이트 도중 예외 발생!");
 		}
 	}
+	
+	@Override
+	public int updateQuantity(InventoryVo inventoryVo) {
+		return sqlSession.update("inventory.updateQuantity", inventoryVo);
+	}
+	
+	@Override
+	public InventoryVo selectOneByAlbumId(String albumId) {
+		return sqlSession.selectOne("inventory.selectOneByAlbumId", albumId);
+	}
 }

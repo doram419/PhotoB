@@ -37,5 +37,11 @@ public interface ShipmentsDao {
 	 * param : String - 주문 아이디  
 	 * return type : List<ShipmentsVo> 배송 정보들의 List 
 	 * */
-	List<ShipmentsVo> searchAllByOrderId(String keyword);
+	public List<ShipmentsVo> searchAllByOrderId(String keyword);
+	/**
+	 * 받은 orderId를 기준으로 배송을 만들어주는 테이블
+	 * 기본 ShipmentStatus는 A이다
+	 * param : String - 주문 아이디 
+	 * */
+	public int insert(String orderId);
 }

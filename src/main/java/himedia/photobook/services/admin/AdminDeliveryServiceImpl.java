@@ -47,11 +47,8 @@ public class AdminDeliveryServiceImpl {
 		List<ShipmentsVo> shipmentsList = shipmentsDaoImpl.selectAll();
 		
 		for (ShipmentsVo shipmentsVo: shipmentsList) {
-			deliveryInfos = new HashMap<String, Object>();	
-			status = shipmentsVo.getShipmentStatus();
-			if(status.equals("R"))	
-				status = refundDaoImpl.selectStatusByOrderID(shipmentsVo.getOrderId());
-			status = dataConverter.statusToWord(status);
+			deliveryInfos = new HashMap<String, Object>();
+			status = shipmentsStatusToString(shipmentsVo);
 			
 			ordersVo = orderDaoImpl.selectByOrderId(shipmentsVo.getOrderId());
 			usersVo = usersDaoImpl.selectOneUserById(ordersVo.getUserId());
@@ -131,16 +128,13 @@ public class AdminDeliveryServiceImpl {
 			status = shipmentsVo.getShipmentStatus();
 			ordersVo = orderDaoImpl.selectByOrderId(shipmentsVo.getOrderId());
 			usersVo = usersDaoImpl.selectOneUserById(ordersVo.getUserId());
+			status = shipmentsStatusToString(shipmentsVo);
 			
-			if(status.equals("R"))	
-				status = refundDaoImpl.selectStatusByOrderID(shipmentsVo.getOrderId());
-			status = dataConverter.statusToWord(status);
-			
+			infoMap.put("usersVo", usersVo);
 			infoMap.put("shipmentsVo", shipmentsVo);
 			infoMap.put("shipmentDate", 
 					dataConverter.kstToYYYY(shipmentsVo.getShipmentDate()));
 			infoMap.put("status", status);
-			infoMap.put("usersVo", usersVo);
 			
 			searchInfos.add(infoMap);
 		}
@@ -168,13 +162,12 @@ public class AdminDeliveryServiceImpl {
 				
 				if(shipmentsVo != null)
 				{
-					status = shipmentsVo.getShipmentStatus();
-					if(status.equals("R"))	
-						status = refundDaoImpl.selectStatusByOrderID(shipmentsVo.getOrderId());
-					status = dataConverter.statusToWord(status);
+					status = shipmentsStatusToString(shipmentsVo);
 					
 					infoMap.put("usersVo", usersVo);
 					infoMap.put("shipmentsVo", shipmentsVo);
+					infoMap.put("shipmentDate", 
+							dataConverter.kstToYYYY(shipmentsVo.getShipmentDate()));
 					infoMap.put("status", status);
 					searchInfos.add(infoMap);
 				}
@@ -182,5 +175,26 @@ public class AdminDeliveryServiceImpl {
 		}
 		
 		return searchInfos;
+	}
+	
+	/**
+	 * shipment_status와 refund_status를 조건을 따져 사람이 인지할 수 있는 문장으로 바꿔서 return 해주는 메서드
+	 * param : ShipmentsVo - 배송 정보
+	 * return : String - 배송 문자열(배송 완료, 환불 준비 등)
+	 * */
+	private String shipmentsStatusToString(ShipmentsVo shipmentsVo)
+	{
+		String result = null;
+		
+		result = shipmentsVo.getShipmentStatus();
+		if(result.equals("R"))	
+		{
+			String refundStatus = refundDaoImpl.selectStatusByOrderID(shipmentsVo.getOrderId());
+			if(refundStatus != null)
+				result = refundStatus;
+		}
+		result = dataConverter.statusToWord(result);
+		
+		return result;
 	}
 }

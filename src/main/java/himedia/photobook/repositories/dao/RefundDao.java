@@ -14,4 +14,8 @@ public interface RefundDao {
 	 * 모든 환불 정보를 들고 와주는 메서드
 	 * */
 	public List<RefundVo> selectAllRefunds();
+	/**
+	 * orderId를 기준으로 refund 튜플을 만들어 주는 메서드
+	 * */
+	int insert(String orderId);
 }

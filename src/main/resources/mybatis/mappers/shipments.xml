@@ -45,10 +45,18 @@
 			ORDER_ID LIKE ('%' || #{value} || '%')
 	</select>
 	
-	<update id="updateDateAndStatusByShipmentId" parameterType="shipmentsVo">
+	<update id="updateDateAndStatusByShipmentId" parameterType="ShipmentsVo">
 		UPDATE SHIPMENTS 
 			SET SHIPMENT_STATUS = #{shipmentStatus},
 			SHIPMENT_DATE = #{shipmentDate}
 		WHERE SHIPMENT_ID=#{shipmentId}
 	</update>
+	
+	<insert id="insert" parameterType="String">
+		INSERT INTO SHIPMENTS (SHIPMENT_ID, ORDER_ID, SHIPMENT_DATE, SHIPMENT_STATUS)
+		VALUES (
+			NVL(NULL, SEQ_SHIPMENTS_PK.NEXTVAL), #{value}, 
+    		SYSDATE, 'A'
+    		)
+    </insert>
 </mapper>
