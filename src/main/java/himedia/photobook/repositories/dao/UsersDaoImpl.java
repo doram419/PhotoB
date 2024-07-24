@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import himedia.photobook.exceptions.UsersDaoException;
+import himedia.photobook.repositories.vo.ShipmentsVo;
 import himedia.photobook.repositories.vo.UsersVo;
 
 @Repository
@@ -54,7 +55,7 @@ public class UsersDaoImpl implements UsersDao {
 
 	@Override
 	public UsersVo getUserById(String userId) {
-		return sqlSession.selectOne("users.getUSerById", userId);
+		return sqlSession.selectOne("users.getUserById", userId);
 	}
 	
 	@Override
@@ -97,9 +98,17 @@ public class UsersDaoImpl implements UsersDao {
 		UsersVo est = sqlSession.selectOne("users.selectUserById", Id);
 		return est;
 	}
+
     @Override
     public List<String> getUserNameByUserId(String userId)	{
     	
     	return sqlSession.selectList("users.getUserNameByUserId", userId); 
     }
+
+
+	@Override
+	public List<UsersVo> selectUserByName(String userName) {
+		return sqlSession.selectList("users.selectUserByName", userName);
+	}
+
 }

@@ -9,13 +9,13 @@
 		<typeAlias 
 			type="himedia.photobook.repositories.vo.UsersVo"
 			alias="UsersVo" />
-			<typeAlias
+		<typeAlias
 			type="himedia.photobook.repositories.vo.AlbumVo"
 			alias="AlbumVo" />
-			<typeAlias
+		<typeAlias
 			type="himedia.photobook.repositories.vo.InventoryVo"
 			alias="InventoryVo" />
-			<typeAlias
+		<typeAlias
 			type="himedia.photobook.repositories.vo.OrdersVo"
 			alias="OrdersVo" />
 		<typeAlias 
@@ -27,6 +27,8 @@
 		<typeAlias 
 			type="himedia.photobook.repositories.vo.BoardVo"
 			alias="BoardVo" />
+		<typeAlias type="himedia.photobook.repositories.vo.CommentsVo"
+			alias="CommentsVo" />
 	</typeAliases>
 	
 	
@@ -39,5 +41,6 @@
 		<mapper resource="mybatis/mappers/shipments.xml" />
 		<mapper resource="mybatis/mappers/refund.xml" />
 		<mapper resource="mybatis/mappers/board.xml" />
+		<mapper resource="mybatis/mappers/comments.xml"/>
 	</mappers>
 </configuration>

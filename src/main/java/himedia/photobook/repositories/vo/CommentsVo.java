@@ -4,6 +4,7 @@ import java.util.Date;
 
 public class CommentsVo {
 	private Long commentId;
+	private Long boardId;
 	private String userName;
 	private String content;
 	private Date comDate;
@@ -60,6 +61,14 @@ public class CommentsVo {
 		this.comDate = comDate;
 	}
 
+	
+	public Long getBoardId() {
+		return boardId;
+	}
+
+	public void setBoardId(Long boardId) {
+		this.boardId = boardId;
+	}
 
 	@Override
 	public String toString() {

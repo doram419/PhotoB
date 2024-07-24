@@ -34,27 +34,21 @@
     
     <!-- 댓글 기능 지원 -->
     <hr>
-   	<p>댓글</p>
+   	<p>관리자 답글</p>
     <table>
-    <c:forEach items="${commentList}" var="commentVo" varStatus="status">
-		<tr>
+    <tr>
 			<td>${commentVo.commentId}</td>
-			<td>${commentVo.userName}</td>
+			<td>${commentVo.userName} 님에게</td>
 			<td>${commentVo.content}</td>
 			<td>${commentVo.comDate}</td>
 		</tr>
-	</c:forEach>   
 	</table> 
     <hr>
-	    <form method="POST" action="<c:url value="/comment/write"/>" >
-	   		<label for="content">관리자 코멘트</label>
-	   		<textarea id="content" name="content" rows="5" cols="175">댓글은 여기 적어주세요</textarea>
-	        <button type="submit">작성하기</button>
-	    </form>
+	   
 	   
     </div>    
     
-    <p><a href="<c:url value="/board"/>">돌아가기</a></p>
+    <p><a href="<c:url value="/users/boardList"/>">돌아가기</a></p>
  
     <c:import url="/WEB-INF/views/users/includes/users_footer.jsp"></c:import>
 </body>

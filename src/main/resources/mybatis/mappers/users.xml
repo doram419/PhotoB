@@ -26,12 +26,19 @@
     </select>
     
     <select id="searchUsers" parameterType="string" resultType="UsersVo">
-        SELECT 
+          SELECT 
         	USER_ID as userId, EMAIL,  
         	USER_NAME as userName,  
         	PHONE_NUMBER as phoneNumber,
         	ADDRESS as address
         FROM USERS
+        WHERE 
+            USER_NAME LIKE ('%' || #{value} || '%')
+            OR USER_ID LIKE ('%' || #{value} || '%')
+        	OR EMAIL LIKE ('%' || #{value} || '%')
+        	OR PHONE_NUMBER LIKE ('%' || #{value} || '%')
+        	OR ADDRESS LIKE ('%' || #{value} || '%')
+        ORDER BY USER_ID
     </select>
  	
  	<!-- 게시판 유저 아이디 조회용 -->
@@ -49,7 +56,16 @@
         	OR ADDRESS LIKE ('%' || #{value} || '%')
         ORDER BY USER_ID
     </select>
-    
+
+      <select id="selectUserByName" parameterType="String" resultType="UsersVo">
+        SELECT 
+        	USER_ID as userId, EMAIL, 
+        	USER_NAME as userName, ADDRESS, 
+        	PHONE_NUMBER as phoneNumber
+        FROM USERS
+        WHERE USER_Name = #{value}
+    </select>
+
     <select id="getUserById" parameterType="string" resultType="UsersVo">
     	SELECT 
         	USER_ID as userId, EMAIL,  
