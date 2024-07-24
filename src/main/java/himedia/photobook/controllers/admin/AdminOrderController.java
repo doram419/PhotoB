@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import himedia.photobook.repositories.vo.AlbumVo;
 import himedia.photobook.repositories.vo.OrdersVo;
+import himedia.photobook.repositories.vo.UsersVo;
 import himedia.photobook.services.admin.AdminOrderService;
 import himedia.photobook.services.users.UsersService;
 
@@ -40,40 +41,12 @@ public class AdminOrderController {
 	public String orderDetail(@RequestParam("orderId") String orderId, Model model) {
 		Map<String, Object> orderDetail = adminOrderService.getOrderDetail(orderId);
 		model.addAttribute("orderDetail", orderDetail);
-		System.out.println("상세조회 옵션들과 디테일"+model);
 		return "/WEB-INF/views/admin/admin_order_detail.jsp";
 	}
-//	  @GetMapping("/order/search")
-//	  public String searchOrder(@RequestParam(value = "keyword", required = false) String keyword, Model model) {
-//		    System.out.println("들어가는 keyword: " + keyword);
-//		  List<Map<String, Object>> orderInfoList = adminOrderService.searchOrders(keyword);
-//	    System.out.println("search"+orderInfoList);
-//	    model.addAttribute("orderInfoList", orderInfoList);
-//	    System.out.println("controller 모델에 들어가는 정보"+orderInfoList);
-//	    return "/WEB-INF/views/admin/admin_order_management.jsp";
-//	  }
 
 	@GetMapping("/order/search")
 	public String searchUserId(@RequestParam(value = "keyword", required = false) String keyword, Model model) {
-		List<Map<String, Object>> orderList = new ArrayList<>();
-
-		if (keyword != null && !keyword.trim().isEmpty()) {
-			String userId = adminOrderService.getUserIdByUserName(keyword);
-			List<OrdersVo> orders = adminOrderService.getOrdersByUserId(userId);
-
-			for (OrdersVo order : orders) {
-				Map<String, Object> orderInfo = new HashMap<>();
-				orderInfo.put("userName",usersService.getUserNameByUserId(order.getUserId()));
-				orderInfo.put("ordersVo", order);
-				orderInfo.put("usersVo", adminOrderService.getUserIdByUserName(order.getUserId()));
-				orderInfo.put("status", adminOrderService.getShipmentStatusByOrderId(order.getOrderId()));
-				orderList.add(orderInfo);
-			}
-		} else {
-			orderList = adminOrderService.getOrderAdmin();
-		}
-		model.addAttribute("orderList", orderList);
-		System.out.println("search의 model:" + model);
+		model.addAttribute("orderList", adminOrderService.searchOrderInfo(keyword));	
 		return "/WEB-INF/views/admin/admin_order_management.jsp";}
 	
 	@PostMapping("/order/createShipment")

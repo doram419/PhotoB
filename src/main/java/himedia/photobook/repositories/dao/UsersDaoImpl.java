@@ -110,5 +110,10 @@ public class UsersDaoImpl implements UsersDao {
 	public List<UsersVo> selectUserByName(String userName) {
 		return sqlSession.selectList("users.selectUserByName", userName);
 	}
+	@Override
+	public List<UsersVo> selectUserByKeyword(String keyword)	{
+		return sqlSession.selectList("users.selectUserByKeyword", keyword);
+	
+	}
 
 }

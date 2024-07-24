@@ -45,9 +45,7 @@ value="${param.keyword}">
 <th>고객명</th>
 <th>주문일시</th>
 <th>주문상품 개수</th>
-<th>주문상태</th>
 <th>총액</th>
-<th>작업</th>
 </tr>
 </thead>
 <tbody>
@@ -67,22 +65,7 @@ value="${param.keyword}">
     </c:choose></td>
     <td>${orderInfo.ordersVo.orderDate}</td>
     <td>${orderInfo.ordersVo.oQuantity}</td>
-    <td><c:choose>
-    <c:when test="${orderInfo.status == 'A'}">준비</c:when>
-    <c:when test="${orderInfo.status == 'B'}">배송중</c:when>
-    <c:when test="${orderInfo.status == 'C'}">배송완료</c:when>
-    <c:otherwise>환불</c:otherwise>
-    </c:choose></td>
     <td>${orderInfo.ordersVo.total}원</td>
-<td><select onchange="if(confirmStatusChange()){location.href=this.value}">
-<option value="">상태 변경</option>
-<option value="<c:url value='/admin/delivery'>
-<c:param name='orderId' value='${orderInfo["ordersVo"].orderId}'/>
-</c:url>">배송</option>
-<option value="<c:url value='/admin/refund'>
-<c:param name='orderId' value='${orderInfo["ordersVo"].orderId}'/>
-</c:url>">환불</option>
-</select></td>
 </tr>
 </c:forEach>
 </tbody>

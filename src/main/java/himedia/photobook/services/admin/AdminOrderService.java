@@ -86,10 +86,24 @@ public String getSearchUserId(String keyword) {
 }
 
 
-public String getUserIdByUserName(String keyword) {
-    String userId = orderDaoImpl.getUserIdByUserName(keyword);
-    System.out.println("받아온 userId: "+userId);
-    return userId;
+public List<Map<String,Object>> searchOrderInfo(String keyword) {
+	List<Map<String,Object>> orderInfo = new ArrayList<Map<String,Object>>();
+	List<UsersVo> usersList = usersDaoImpl.selectUserByKeyword(keyword);
+	
+	for (UsersVo usersVo : usersList) {
+		List<OrdersVo> ordersList = orderDaoImpl.selectAllOrdersByUserId(usersVo.getUserId());
+		for (OrdersVo ordersVo : ordersList) {
+			Map<String, Object> map = new HashMap<String, Object>();
+			map.put("userName", usersVo.getUserName());
+			map.put("ordersVo", ordersVo);
+			orderInfo.add(map);
+		}
+	}
+	System.out.println(orderInfo);
+	return orderInfo;
+			
+
+	
 }
 //user id로 주문리스트 가져옴
 public List<OrdersVo> getOrdersByUserId(String userId) {
