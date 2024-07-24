@@ -94,7 +94,9 @@ public class AdminProductService {
  	}
     
  	public boolean deleteProduct(String albumId) {
-    	return (1 == inventoryDaoImpl.delete(albumId)) && (1 == albumDaoImpl.delete(albumId));
+ 		boolean result = 1 == inventoryDaoImpl.delete(albumId);
+ 		
+    	return result && (1 == albumDaoImpl.delete(albumId));
 	}
  	
  	public boolean insertProduct(AlbumVo albumVo, Long albumPrice) {
