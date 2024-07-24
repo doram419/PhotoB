@@ -1,6 +1,5 @@
 package himedia.photobook.repositories.vo;
 
-// 최초 작성자 : 김지환
 public class RefundVo {
 	// 필드
 	private Long refundId;

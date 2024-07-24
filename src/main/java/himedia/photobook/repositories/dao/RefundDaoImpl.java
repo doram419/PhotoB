@@ -27,4 +27,14 @@ public class RefundDaoImpl implements RefundDao{
 	public int insert(String orderId) {
 		return session.insert("refund.insert", orderId);
 	}
+	
+	@Override
+	public int updateStatus(RefundVo refundVo) {
+		return session.update("refund.updateStatus", refundVo);
+	}
+	
+	@Override
+	public int delete(String orderId) {
+		return session.delete("refund.delete", orderId);
+	}
 }

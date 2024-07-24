@@ -6,6 +6,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import himedia.photobook.services.admin.AdminRefundServiceImpl;
 
@@ -22,5 +23,17 @@ public class AdminRefundController {
 		return "/WEB-INF/views/admin/admin_refund.jsp";
 	}
 	
+	@PostMapping("/refund/changeStatus")
+	public String changeStatus(@RequestParam("orderId") String orderId) {
+		adminRefundServiceImpl.updateStatusToFinish(orderId);
+		
+		return "redirect:/admin/refund";
+	}
 	
+	@PostMapping("/refund/cancle")
+	public String cancle(@RequestParam("orderId") String orderId) {
+		adminRefundServiceImpl.delete(orderId);
+		
+		return "redirect:/admin/refund";
+	}
 }

@@ -62,9 +62,14 @@
 	                        <td>${infoMap['ordersVo'].total}</td>
 	                        <td>${infoMap['status']}</td>
 	                        <td>
-	                        <form action="/admin/refund/complete"></form>
-	                        	<button type=button class="btn btn-primary">환불 완료</button>
-	                        	<button type=button class="btn btn-primary">환불 취소</button>
+	                        <form action="<c:url value="/admin/refund/changeStatus"/>" method="post">
+	                        	<input type="hidden" name="orderId" value="${infoMap['ordersVo'].orderId}"/>
+	                        	<button type=submit class="btn btn-primary">환불 완료</button>
+	                        </form>
+	                        <form action="<c:url value="/admin/refund/cancle"/>" method="post">
+	                        	<input type="hidden" name="orderId" value="${infoMap['ordersVo'].orderId}"/>
+	                        	<button type=submit class="btn btn-primary">환불 취소</button>
+	                        </form>
 	                        </td>
                 		</tr>
            				</c:forEach>   

@@ -37,7 +37,6 @@ public class AdminRefundServiceImpl {
 		UsersVo usersVo = null;
 		String status = null;
 		
-		// 환불 요청을 해야지 환불 테이블이 생긴다.
 		// 환불 테이블에 있는 환불 리스트를 전부 들고온다
 		List<RefundVo> refundList = refundDaoImpl.selectAllRefunds();
 		for (RefundVo refundVo : refundList) {
@@ -55,5 +54,27 @@ public class AdminRefundServiceImpl {
 		}
 		
 		return refundInfoList;
+	}
+	
+	/**
+	 * 환불 상태를 환불 완료로 변경해주는 메서드
+	 * param : String orderId - 변경할 튜플의 orderId
+	 * return : boolean - 성공 실패 여부 
+	 * */
+	public boolean updateStatusToFinish(String orderId) {
+		RefundVo refundVo = new RefundVo();
+		refundVo.setOrderId(orderId);
+		refundVo.setRefundStatus("F");
+		
+		return 1 == refundDaoImpl.updateStatus(refundVo);
+	}
+	
+	/**
+	 * 환불 정보를 삭제해주는 메서드
+	 * param : String orderId - 삭제할 튜플의 orderId
+	 * return : boolean - 성공 실패 여부 
+	 * */
+	public boolean delete(String orderId) {
+		return 1 == refundDaoImpl.delete(orderId);
 	}
 }
