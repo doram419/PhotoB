@@ -56,11 +56,14 @@ public class AdminController {
 		return "/WEB-INF/views/admin/admin_product.jsp";
 	}
 	@RequestMapping("/inventory")
-	public String inventory(@RequestParam(value = "page", defaultValue = "1") int page,@RequestParam(value = "size", defaultValue = "10") int size ,Model md) {
+	public String inventory(@RequestParam(value = "page", defaultValue = "1") int page,@RequestParam(value = "size", defaultValue = "5") int size ,Model md) {
 		List<InventoryVo> list = adminInventoryService.getPagedInventory(page, size);
+		int totalItems =  adminInventoryService.getTotalCount();
+		int totalPages =(int)Math.ceil((double) totalItems/size);
 		
 		md.addAttribute("invenList",list);
 	    md.addAttribute("currentPage", page);
+	    md.addAttribute("totalPages",totalPages);
 		return "/WEB-INF/views/admin/admin_inventory.jsp";
 	}
 	

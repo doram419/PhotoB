@@ -51,4 +51,9 @@ public class InventoryDaoImpl implements InventoryDao {
 	public List<InventoryVo> listPage(RowBounds rowBounds) {
 		 return sqlSession.selectList("inventory.listInventory", null, rowBounds);
 	}
+	@Override
+	public int getTotalCount() {
+		return sqlSession.selectOne("inventory.getTotalCount");
+	}
+	
 }

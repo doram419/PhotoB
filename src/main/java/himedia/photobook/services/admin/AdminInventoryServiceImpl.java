@@ -46,6 +46,11 @@ public class AdminInventoryServiceImpl implements AdminInventoryService {
 		int updatedCount = inventoryDaoImpl.updateQuantity(inventoryVo);
 		return updatedCount == 1;
 	}
+
+	@Override
+	public int getTotalCount() {
+		return inventoryDaoImpl.getTotalCount();
+	}
 	
 	
 }

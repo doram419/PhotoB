@@ -10,4 +10,5 @@ public interface AdminInventoryService {
 //	public List<InventoryVo> getContentByPrice(Long price);
 	public InventoryVo findAlbumPriceByAlbumId(String albumId);
 	public boolean updateQuantity(InventoryVo inventoryVo);
+	public int getTotalCount();
 }

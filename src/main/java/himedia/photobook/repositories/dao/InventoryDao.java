@@ -24,7 +24,7 @@ public InventoryVo findAlbumPriceByAlbumId(String albumId);
 	public List<InventoryVo> listPage(RowBounds rowBounds);
 
 
-//	public List<InventoryVo> listPage(int offset, int limit);
+	public int getTotalCount();
 
 
 

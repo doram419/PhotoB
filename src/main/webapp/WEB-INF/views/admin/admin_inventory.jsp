@@ -83,14 +83,25 @@
 	<c:import url="/WEB-INF/views/admin/includes/admin_footer.jsp"></c:import>
 </body>
 	<footer>
-	<div class="pagination">
-        <c:if test="${currentPage > 1}">
-            <a href="<c:url value='/admin/inventory?page=${currentPage - 1}&size=10'/>">Previous</a>
-        </c:if>
-        <span>Page ${currentPage}</span>
-        <c:if test="${invenList.size() == 10}">
-            <a href="<c:url value='/admin/inventory?page=${currentPage + 1}&size=10'/>">Next</a>
-        </c:if>
-    </div>
+	 <div class="pagination">
+            <c:if test="${currentPage > 1}">
+                <a href="<c:url value='/admin/inventory?page=${currentPage - 1}&size=5'/>">Previous</a>
+            </c:if>
+
+            <c:forEach begin="1" end="${totalPages}" var="pageNum">
+                <c:choose>
+                    <c:when test="${pageNum == currentPage}">
+                        <span>${pageNum}</span>
+                    </c:when>
+                    <c:otherwise>
+                        <a href="<c:url value='/admin/inventory?page=${pageNum}&size=5'/>">${pageNum}</a>
+                    </c:otherwise>
+                </c:choose>
+            </c:forEach>
+
+            <c:if test="${currentPage < totalPages}">
+                <a href="<c:url value='/admin/inventory?page=${currentPage + 1}&size=5'/>">Next</a>
+            </c:if>
+        </div>
 	</footer>
 </html>
