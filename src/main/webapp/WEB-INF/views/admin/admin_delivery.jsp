@@ -68,21 +68,6 @@
                             </td>
                 		</tr>
            				</c:forEach>   
-           				<c:forEach items="${searchInfos}" var="infoMap">				
-                        <tr>
-	                		<td>${infoMap['shipmentsVo'].orderId}</td>
-	                        <td>${infoMap['usersVo'].userName}</td>
-	                        <td>${infoMap['shipmentsVo'].shipmentId}</td>
-	                        <td>${infoMap['shipmentDate']}</td>
-	                        <td>${infoMap['status']}</td>
-	                        <td>
-	                        	<form action="<c:url value="/admin/delivery/detail"/>" method="GET">
-	                        		<input type="hidden" name="orderId" value = "${infoMap['shipmentsVo'].orderId}"/>
-	                        		<button class="btn btn-primary">조회/변경</button>
-	                        	</form>
-                            </td>
-                		</tr>
-           				</c:forEach>   
                     </tbody>
                 </table>
             </div>

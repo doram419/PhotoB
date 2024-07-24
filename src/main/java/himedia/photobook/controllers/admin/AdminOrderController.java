@@ -1,7 +1,5 @@
 package himedia.photobook.controllers.admin;
 
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -14,11 +12,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import himedia.photobook.repositories.vo.AlbumVo;
-import himedia.photobook.repositories.vo.OrdersVo;
-import himedia.photobook.repositories.vo.UsersVo;
 import himedia.photobook.services.admin.AdminOrderService;
-import himedia.photobook.services.users.UsersService;
 
 @Controller
 
@@ -27,8 +21,6 @@ public class AdminOrderController {
 
 	@Autowired
 	private AdminOrderService adminOrderService;
-	@Autowired
-	private UsersService usersService;
 
 	@GetMapping("/om")
 	public String order(Model model) {

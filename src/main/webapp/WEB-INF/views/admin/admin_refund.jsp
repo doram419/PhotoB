@@ -14,7 +14,6 @@
 </head>
 <body>
 	<c:import url="/WEB-INF/views/admin/includes/admin_header.jsp"></c:import>
-
 	<div class="main-content">
 		<div class="header">
             <h2>환불 조회</h2>
@@ -57,17 +56,22 @@
                         <tr>
 	                		<td>${infoMap['ordersVo'].orderId}</td>
 	                        <td>${infoMap['userName']}</td>
-	                        <td>${infoMap['refundId']}</td>
+	                        <td>${infoMap['refundVo'].refundId}</td>
 	                        <td>${infoMap['ordersVo'].orderDate}</td>
 	                        <td>${infoMap['ordersVo'].total}</td>
 	                        <td>${infoMap['status']}</td>
 	                        <td>
-	                        <form action="/admin/refund/complete"></form>
-	                        	<button type=button class="btn btn-primary">환불 완료</button>
-	                        	<button type=button class="btn btn-primary">환불 취소</button>
+	                        <form action="<c:url value="/admin/refund/changeStatus"/>" method="post">
+	                        	<input type="hidden" name="orderId" value="${infoMap['ordersVo'].orderId}"/>
+	                        	<button type=submit class="btn btn-primary">환불 완료</button>
+	                        </form>
+	                        <form action="<c:url value="/admin/refund/cancle"/>" method="post">
+	                        	<input type="hidden" name="orderId" value="${infoMap['ordersVo'].orderId}"/>
+	                        	<button type=submit class="btn btn-primary">환불 취소</button>
+	                        </form>
 	                        </td>
                 		</tr>
-           				</c:forEach>   
+           				</c:forEach>
                     </tbody>
                 </table>
             </div>

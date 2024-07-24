@@ -17,5 +17,25 @@ public interface RefundDao {
 	/**
 	 * orderId를 기준으로 refund 튜플을 만들어 주는 메서드
 	 * */
-	int insert(String orderId);
+	public int insert(String orderId);
+	/**
+	 * 환불 상태를 변경해주는 메서드
+	 * param : RefundVo refundVo 
+	 * 		- orderId      : 변경할 튜플의 orderId
+	 * 		- refundStatus : 변경할 상태값
+	 * return : int - 영향 받은 튜플의 수 
+	 * */
+	public int updateStatus(RefundVo refundVo);
+	/**
+	 * 환불 상태를 삭제해주는 메서드
+	 * param :  String orderId : 삭제할 튜플의 orderId
+	 * return : int - 영향 받은 튜플의 수 
+	 * */
+	public int delete(String orderId);
+	/**
+	 * orderId를 기준으로 환불 정보 하나를 들고 와주는 메서드
+	 * param :  String orderId : 가져올 튜플의 orderId
+	 * return : RefundVo - 조회된 튜플 
+	 * */
+	public RefundVo selectOneByOrderId(String orderId);
 }
