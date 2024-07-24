@@ -4,12 +4,12 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.ibatis.session.RowBounds;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import himedia.photobook.exceptions.UsersAlbumException;
-import himedia.photobook.repositories.vo.AlbumVo;
 import himedia.photobook.repositories.vo.InventoryVo;
 
 @Repository
@@ -28,6 +28,7 @@ public class InventoryDaoImpl implements InventoryDao {
 
 	@Override
 	public List<InventoryVo> listInventory() {
+		
 		return sqlSession.selectList("inventory.listInventory");
 	}
 
@@ -40,5 +41,10 @@ public class InventoryDaoImpl implements InventoryDao {
 			e.printStackTrace();
 			throw new UsersAlbumException("업데이트 도중 예외 발생!");
 		}
+	}
+
+	@Override
+	public int updateQuantity(InventoryVo vo) {
+		return sqlSession.update("inventory.updateQuantity",vo);
 	}
 }

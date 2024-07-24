@@ -11,6 +11,10 @@ public InventoryVo findAlbumPriceByAlbumId(String albumId);
 
 
 	public List<InventoryVo> listInventory();
+
+	public int updateQuantity(InventoryVo vo);
+
+
 	public int updateAlbum(InventoryVo vo);
 	
 }

@@ -17,8 +17,10 @@
         FROM inventory
     </select>
     
-    <update id="updateQuantity" parameterType="Inventoryvo">
-    	
-    </update>
+    <update id="updateQuantity" parameterType="InventoryVo">
+		UPDATE INVENTORY 
+			SET A_QUANTITY = #{aQuantity}
+		WHERE ALBUM_ID=#{albumId} 
+	</update>
     
 </mapper>

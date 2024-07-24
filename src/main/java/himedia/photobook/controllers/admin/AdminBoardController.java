@@ -157,11 +157,14 @@ public class AdminBoardController {
 		return "/WEB-INF/views/admin/admin_inventory.jsp";
 	}
 
-//// 제품 입고 
-//	@PostMapping("/inventory/store")
-//	public String putStore(@ModelAttribute InventoryVo inventoryVo, @RequestParam("albumId") String albumId) {
-//		inventoryVo.setaQuantity(albumId);
-//		adminInventoryService.
-//	}
+// 제품 입고 
+	@GetMapping("/inventory/store")
+	public String putStore(@ModelAttribute InventoryVo inventoryVo,HttpSession session, RedirectAttributes redirectAtt) {
+		adminInventoryService.updateQuantity(inventoryVo);
+		
+		System.out.println(inventoryVo);
+		
+		return "redirect:/admin/inventory";
+	}
 
 }

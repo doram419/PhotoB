@@ -4,13 +4,13 @@ package himedia.photobook.repositories.vo;
 public class InventoryVo {
 	private String albumId;
 	private Long albumPrice;
-	private String aQuantity;
+	private Long aQuantity;
 	
 	public InventoryVo() {
 		
 	}
 
-	public InventoryVo(String albumId,Long albumPrice, String aQuantity) {
+	public InventoryVo(String albumId,Long albumPrice, Long aQuantity) {
 		super();
 		this.albumId = albumId;
 		this.albumPrice = albumPrice;
@@ -33,11 +33,11 @@ public class InventoryVo {
 		this.albumPrice = albumPrice;
 	}
 
-	public String getaQuantity() {
+	public Long getaQuantity() {
 		return aQuantity;
 	}
 
-	public void setaQuantity(String aQuantity) {
+	public void setaQuantity(Long aQuantity) {
 		this.aQuantity = aQuantity;
 	}
 

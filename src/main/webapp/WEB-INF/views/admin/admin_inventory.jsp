@@ -56,6 +56,7 @@
 								<td>${invenVo.aQuantity }</td>
 								<td>
 								<form action="<c:url value="/admin/inventory/store"/>" method="GET">
+								<input type="number" name="aQuantity" value="0"min="0" step="10">
 								<input type="hidden" name="albumId" value="${invenVo.albumId }">
 								<button class="btn btn-primary">입고</button>
 								</form>

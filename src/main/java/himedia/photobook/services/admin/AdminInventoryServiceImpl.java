@@ -27,4 +27,18 @@ public class AdminInventoryServiceImpl implements AdminInventoryService {
 		return inventoryVo;
 	}
 
+	@Override
+	public boolean updateQuantity(InventoryVo inventoryVo) {
+		InventoryVo invenVo = inventoryDaoImpl.findAlbumPriceByAlbumId(inventoryVo.getAlbumId());
+		
+//		Long originQ = invenVo.getaQuantity();
+//		Long changeQ = inventoryVo.getaQuantity()+originQ;
+//		inventoryVo.setaQuantity(changeQ);
+		inventoryVo.setaQuantity(inventoryVo.getaQuantity() + invenVo.getaQuantity());
+		
+		int updatedCount = inventoryDaoImpl.updateQuantity(inventoryVo);
+		return updatedCount == 1;
+	}
+	
+	
 }
