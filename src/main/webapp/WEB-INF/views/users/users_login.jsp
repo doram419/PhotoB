@@ -12,6 +12,9 @@
 <body>
     <div class="auth-container">
         <h2>로그인</h2>
+        <c:if test="${not empty error}">
+    <p style="color: red;">${error}</p> <!-- 로그인 실패시 메세지-->
+</c:if>
         <form action="<c:url value='/users/login' />" method="post">
             <input type="email" name="email" placeholder="이메일" required>
             <input type="password" name="password" placeholder="비밀번호" required>

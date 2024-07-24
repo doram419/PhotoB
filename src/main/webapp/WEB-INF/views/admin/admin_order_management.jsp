@@ -67,6 +67,7 @@ value="${param.keyword}">
     <td>${orderInfo.ordersVo.orderDate}</td>
     <td>${orderInfo.ordersVo.oQuantity}</td>
     <td>${orderInfo.ordersVo.total}원</td>
+    <td>${orderInfo.status}</td>
     <td>
 		<form action="<c:url value="/admin/order/createShipment"/>" method="post">
 			<input type="hidden" name="createOrderId" value="${orderInfo['ordersVo'].orderId}"/>

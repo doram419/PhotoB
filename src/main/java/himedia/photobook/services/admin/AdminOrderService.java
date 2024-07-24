@@ -8,6 +8,7 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import himedia.photobook.controllers.DataConverter;
 import himedia.photobook.repositories.dao.AlbumDao;
 import himedia.photobook.repositories.dao.InventoryDao;
 import himedia.photobook.repositories.dao.OrderDao;
@@ -36,6 +37,8 @@ private RefundDao refundDaoImpl;
 @Autowired
 private InventoryDao inventoryDaoImpl;
 
+private DataConverter converter = new DataConverter();
+
 //관리자 주문 조회
 public List<Map<String, Object>> getOrderAdmin() {
     List<Map<String, Object>> orderInfoList = new ArrayList<>();
@@ -51,9 +54,10 @@ public List<Map<String, Object>> getOrderAdmin() {
         String status = shipmentsDaoImpl.selectStatusByOrderID(order.getOrderId());
         
         if (status == null || status.isEmpty()) {
-            status = "A";}
+            status = "G";
+        }
+        status = converter.statusToWord(status);
         orderMap.put("status", status);
-        
         orderInfoList.add(orderMap);
     }
     
@@ -85,21 +89,28 @@ public String getSearchUserId(String keyword) {
     return userId;
 }
 
-
+// 주문조회 검색
 public List<Map<String,Object>> searchOrderInfo(String keyword) {
 	List<Map<String,Object>> orderInfo = new ArrayList<Map<String,Object>>();
 	List<UsersVo> usersList = usersDaoImpl.selectUserByKeyword(keyword);
+	
 	
 	for (UsersVo usersVo : usersList) {
 		List<OrdersVo> ordersList = orderDaoImpl.selectAllOrdersByUserId(usersVo.getUserId());
 		for (OrdersVo ordersVo : ordersList) {
 			Map<String, Object> map = new HashMap<String, Object>();
+			String status = shipmentsDaoImpl.selectStatusByOrderID(ordersVo.getOrderId());
+			if (status == null || status.isEmpty()) {
+	            status = "G";	           	            	        }
+			status = converter.statusToWord(status);
+			map.put("status", status);
 			map.put("userName", usersVo.getUserName());
 			map.put("ordersVo", ordersVo);
+			System.out.println(map);
 			orderInfo.add(map);
 		}
+		
 	}
-	System.out.println(orderInfo);
 	return orderInfo;
 			
 
