@@ -46,6 +46,7 @@ value="${param.keyword}">
 <th>주문일시</th>
 <th>주문상품 개수</th>
 <th>총액</th>
+<th>처리</th>
 </tr>
 </thead>
 <tbody>
@@ -66,6 +67,16 @@ value="${param.keyword}">
     <td>${orderInfo.ordersVo.orderDate}</td>
     <td>${orderInfo.ordersVo.oQuantity}</td>
     <td>${orderInfo.ordersVo.total}원</td>
+    <td>
+		<form action="<c:url value="/admin/order/createShipment"/>" method="post">
+			<input type="hidden" name="createOrderId" value="${orderInfo['ordersVo'].orderId}"/>
+			<button type="submit" class="btn btn-primary">배송 생성</button>
+		</form>
+		<form action="<c:url value="/admin/order/createRefund"/>" method="post">
+			<input type="hidden" name="createOrderId" value="${orderInfo['ordersVo'].orderId}"/>
+			<button type="submit" class="btn btn-primary">환불 생성</button>
+		</form>
+	</td>
 </tr>
 </c:forEach>
 </tbody>
