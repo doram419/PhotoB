@@ -71,4 +71,7 @@ public class OrderDaoImpl implements OrderDao {
 	public String count()	{
 		return sqlSession.selectOne("order.countOrder");
 	}
+	public Map<String, Object> Salecount()	{
+		return sqlSession.selectOne("order.countSale");
+	}
 }

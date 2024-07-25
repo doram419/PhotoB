@@ -45,6 +45,9 @@ public class AdminController {
 	    model.addAttribute("ShipCount", scount);
 	    model.addAttribute("RefCount",rcount);
 	    model.addAttribute("CsCount",ccount);
+	    Map<String, Object> salesData = adminOrderService.Salecount();
+        model.addAttribute("salesData", salesData);
+        System.out.println("판매량 조회: "+model);
 	    return "/WEB-INF/views/admin/admin_pages.jsp";
 	}
 	

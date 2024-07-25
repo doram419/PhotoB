@@ -203,5 +203,9 @@ public class AdminOrderService {
 		String count = orderDaoImpl.count();
 		return count;
 	}
+	public Map<String, Object> Salecount()	{
+		return orderDaoImpl.Salecount();
+		
+	}
 
 }

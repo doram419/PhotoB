@@ -115,7 +115,18 @@ SELECT
 FROM 
     order_count o, 
     shipment_count s, 
-    refund_count r</select>
+    refund_count r
+    </select>
+    <select id="countSale" resultType="map">
+    SELECT 
+            SUM(CASE WHEN TRUNC(s.SHIPMENT_DATE) = TRUNC(SYSDATE) THEN o.TOTAL ELSE 0 END) as todaySales,
+            SUM(CASE WHEN TRUNC(s.SHIPMENT_DATE) >= TRUNC(SYSDATE, 'MM') THEN o.TOTAL ELSE 0 END) as monthlySales,
+            SUM(CASE WHEN TRUNC(s.SHIPMENT_DATE) >= TRUNC(SYSDATE, 'YYYY') THEN o.TOTAL ELSE 0 END) as yearlySales,
+            SUM(o.TOTAL) as totalSales
+        FROM ORDERS o
+        JOIN SHIPMENTS s ON o.ORDER_ID = s.ORDER_ID
+        WHERE s.SHIPMENT_STATUS = 'C'
+    </select>
     
     
 </mapper>
