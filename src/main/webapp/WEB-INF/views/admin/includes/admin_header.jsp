@@ -5,20 +5,6 @@
 <head>
 <link type="text/css" rel="stylesheet"
 	href='<c:url value="/css/header_footer.css"/>' />
-<style>
-    /* 사이드바를 고정하기 위한 최소한의 추가 스타일 */
-    body {
-        margin-left: 250px; /* 사이드바 너비만큼 본문에 여백 추가. 실제 너비에 맞게 조정하세요 */
-    }
-    .sidebar {
-        position: fixed;
-        top: 0;
-        left: 0;
-        height: 100vh;
-        overflow-y: auto;
-        z-index: 1000;
-    }
-</style>
 </head>
 
 <div class="sidebar">

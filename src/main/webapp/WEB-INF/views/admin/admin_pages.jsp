@@ -23,6 +23,10 @@
         <h2>대시보드</h2>
     </div>
     <div class="card">
+       <div class="card-body">
+       <a>미처리 내역</a>
+       </div>
+       
         <div class="card-header">
             <a href="<c:url value='/admin/Norder'/>">미처리 주문 ${OrderCount}건이 있습니다</a>
         	</div>
