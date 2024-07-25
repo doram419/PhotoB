@@ -95,7 +95,7 @@ public class UsersBoardController {
 	
 	// 편집 수행 액션
 	@PostMapping("/modify")
-	public String modifyAction(@ModelAttribute BoardVo updateVo,HttpSession session, RedirectAttributes redirectAtt) {
+	public String modifyAction(@ModelAttribute BoardVo updateVo, HttpSession session, RedirectAttributes redirectAtt) {
 		UsersVo authUser = (UsersVo) session.getAttribute("authUser");
 		if(authUser == null) {
 			redirectAtt.addFlashAttribute("errorMsg","자격이 없습니다.");
@@ -104,7 +104,6 @@ public class UsersBoardController {
 		System.out.println("updateVo.getUserId : " + updateVo.getUserId());
 		System.out.println("updateVo.getBoardId : " + updateVo.getBoardId());
 		BoardVo boardVo = uBoardService.getBoardVo(updateVo.getUserId(),updateVo.getBoardId());
-		System.out.println("여기보세요");
 		
 		boardVo.setTitle(updateVo.getTitle());
 		boardVo.setContent(updateVo.getContent());

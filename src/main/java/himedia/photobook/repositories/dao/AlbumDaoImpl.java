@@ -2,6 +2,7 @@ package himedia.photobook.repositories.dao;
 
 import java.util.HashMap;
 
+
 import java.util.List;
 import java.util.Map;
 
@@ -10,7 +11,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import himedia.photobook.exceptions.UsersAlbumException;
-import himedia.photobook.exceptions.UsersDaoException;
 import himedia.photobook.repositories.vo.AlbumVo;
 
 @Repository
@@ -50,6 +50,11 @@ public class AlbumDaoImpl implements AlbumDao {
 		return sqlSession.selectList("album.selectAll");
 	}
 
+	 @Override
+	 public String findOptionsByOrderId(String orderId)	{
+		 return sqlSession.selectOne("album.findOptionsByOrderId", orderId);
+	 }
+
 	@Override
 	public AlbumVo selectByAlbumId(String albumId) {
 		try {
@@ -61,9 +66,9 @@ public class AlbumDaoImpl implements AlbumDao {
 	}
 
 	@Override
-	public int updateAlbum(AlbumVo vo) {
+	public int updateAlbum(AlbumVo albumVo) {
 		try {
-            int updatedCount = sqlSession.update("album.updateAlbum", vo);
+            int updatedCount = sqlSession.update("album.updateAlbum", albumVo);
             return updatedCount;
 		} catch (Exception e) {
         	e.printStackTrace();
@@ -72,12 +77,13 @@ public class AlbumDaoImpl implements AlbumDao {
 	}
 
 	@Override
-	public void deleteAlbum(String albumId) {
-		sqlSession.delete("album.deleteAlbum", albumId);
+	public int delete(String albumId) {
+		return sqlSession.delete("album.deleteAlbum", albumId);
 	}
-
+	
 	@Override
 	public int insertAlbum(AlbumVo vo) {
 		return sqlSession.insert("album.insertAlbum", vo);
 	}
+
 }

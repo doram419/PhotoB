@@ -1,6 +1,5 @@
 package himedia.photobook.repositories.vo;
 
-// 작성자 : 유승원
 public class InventoryVo {
 	private String albumId;
 	private Long albumPrice;
@@ -10,7 +9,10 @@ public class InventoryVo {
 		
 	}
 
-	public InventoryVo(String albumId,Long albumPrice, Long aQuantity) {
+
+
+
+	public InventoryVo(String albumId, Long albumPrice, Long aQuantity) {
 		super();
 		this.albumId = albumId;
 		this.albumPrice = albumPrice;

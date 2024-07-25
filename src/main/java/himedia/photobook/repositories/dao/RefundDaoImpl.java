@@ -13,11 +13,33 @@ public class RefundDaoImpl implements RefundDao{
 	@Autowired
 	private SqlSession session;
 	
+	@Override
 	public String selectStatusByOrderID(String orderId) {
 		return session.selectOne("refund.selectStatusByOrderID", orderId);
 	}
 	
+	@Override
 	public List<RefundVo> selectAllRefunds(){
 		return session.selectList("refund.selectAllRefunds");
+	}
+	
+	@Override
+	public RefundVo selectOneByOrderId(String orderId) {
+		return session.selectOne("refund.selectOneByOrderId", orderId);
+	}
+	
+	@Override
+	public int insert(String orderId) {
+		return session.insert("refund.insert", orderId);
+	}
+	
+	@Override
+	public int updateStatus(RefundVo refundVo) {
+		return session.update("refund.updateStatus", refundVo);
+	}
+	
+	@Override
+	public int delete(String orderId) {
+		return session.delete("refund.delete", orderId);
 	}
 }
