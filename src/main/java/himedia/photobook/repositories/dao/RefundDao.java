@@ -38,4 +38,6 @@ public interface RefundDao {
 	 * return : RefundVo - 조회된 튜플 
 	 * */
 	public RefundVo selectOneByOrderId(String orderId);
+	
+	public String count();
 }

@@ -150,4 +150,8 @@ public class AdminRefundServiceImpl {
 		}
 		return searchInfos;
 	}
+	public String count() {
+		String count=refundDaoImpl.count();
+		return count;
+	}
 }

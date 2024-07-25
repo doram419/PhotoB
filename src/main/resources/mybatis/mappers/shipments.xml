@@ -59,4 +59,10 @@
     		SYSDATE, 'A'
     		)
     </insert>
+    
+    <select id="countShipment" resultType ="String">
+    SELECT COUNT(SHIPMENT_ID) AS shipment_count
+	FROM shipments
+	where shipment_status = 'A'
+    </select>
 </mapper>

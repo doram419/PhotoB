@@ -8,7 +8,10 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 
-
+import himedia.photobook.repositories.dao.OrderDaoImpl;
+import himedia.photobook.services.admin.AdminDeliveryServiceImpl;
+import himedia.photobook.services.admin.AdminOrderService;
+import himedia.photobook.services.admin.AdminRefundServiceImpl;
 import himedia.photobook.services.users.UBoardServiceImpl;
 
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,10 +21,22 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class AdminController {
 	@Autowired
 	private UBoardServiceImpl uBoardService;
+	@Autowired
+	private AdminOrderService adminOrderService;
+	@Autowired
+	private AdminDeliveryServiceImpl adminDeliveryServiceImpl;
+	@Autowired
+	private AdminRefundServiceImpl adminRefundServiceImpl;
 	
 	@RequestMapping({"","/home"})
-	public String home() {
-		return "/WEB-INF/views/admin/admin_pages.jsp";
+	public String home(Model model) {
+	    String count = adminOrderService.count();
+	    String scount = adminDeliveryServiceImpl.count();
+	    String rcount = adminRefundServiceImpl.count();
+	    model.addAttribute("OrderCount", count);
+	    model.addAttribute("ShipCount", scount);
+	    model.addAttribute("RefCount",rcount);
+	    return "/WEB-INF/views/admin/admin_pages.jsp";
 	}
 	
 	@RequestMapping({"/customerService", "/cs"})

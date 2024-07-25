@@ -52,8 +52,10 @@ public List<Map<String, Object>> getOrderAdmin() {
         orderMap.put("usersVo", user);
         
         String status = shipmentsDaoImpl.selectStatusByOrderID(order.getOrderId());
+
+        String rstatus =refundDaoImpl.selectStatusByOrderID(order.getOrderId());
         
-        if (status == null || status.isEmpty()) {
+        if (status == null && rstatus == null) {
             status = "G";
         }
         status = converter.statusToWord(status);
@@ -183,6 +185,12 @@ public String getAlbumIdByOrderId(String orderId)	{
 		}
 		
 		return result;
+	}
+	
+	// 주문 갯수 세는 서비스
+	public String count() {
+		String count=orderDaoImpl.count();
+		return count;
 	}
 
 }

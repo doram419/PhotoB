@@ -186,4 +186,8 @@ public class AdminDeliveryServiceImpl {
 
 		return result;
 	}
+	public String count()	{
+		String scount=shipmentsDaoImpl.count();
+		return scount;
+	}
 }

@@ -57,7 +57,6 @@ public class UsersController {
 			ModelAndView mv = new ModelAndView("/WEB-INF/views/users/users_login.jsp");
 			mv.addObject("error", "이메일이나 비밀번호 틀림. 다시.");
 			return mv;
-//			return "redirect:/users/login";
 		}
 	}
 

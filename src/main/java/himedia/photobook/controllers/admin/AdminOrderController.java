@@ -28,6 +28,12 @@ public class AdminOrderController {
 		model.addAttribute("orderList", orderList);
 		return "/WEB-INF/views/admin/admin_order_management.jsp";
 	}
+	@GetMapping("/Norder")
+	public String Norder(Model model)	{
+		List<Map<String, Object>> orderList= adminOrderService.getOrderAdmin();
+		model.addAttribute("orderList",orderList);
+		return "/WEB-INF/views/admin/admin_none_order.jsp";
+	}
 
 	@GetMapping("/order/detail") // 상세조회 페이지 수정 필요
 	public String orderDetail(@RequestParam("orderId") String orderId, Model model) {
@@ -60,4 +66,26 @@ public class AdminOrderController {
 		
 		return "redirect:/admin/om";
 	}
+	
+	
+	//효원코드
+	@PostMapping("/acreateShipment")
+	public String acreateOrder(@ModelAttribute("createOrderId") String orderId) {
+		// TODO: service에서 order를 위해 map으로 보낼 때, 해당 order_id로 배송을 만들 수 있는지 없는지 체크 해야함 
+		
+		// TODO: 여기서도 결과가 되는지 안 되는지 체크
+		boolean createResult = adminOrderService.createShipmentByOrderId(orderId);
+		
+		return "redirect:/admin/Norder";
+	}
+	@PostMapping("/acreateRefund")
+	public String acreateRefund(@ModelAttribute("createOrderId") String orderId) {
+		// TODO: service에서 order를 위해 map으로 보낼 때, 해당 order_id로 배송을 만들 수 있는지 없는지 체크 해야함 
+		
+		// TODO: 여기서도 결과가 되는지 안 되는지 체크
+		boolean createResult = adminOrderService.createRefundByOrderId(orderId);
+		
+		return "redirect:/admin/NOrder";
+	}
+	
 }

@@ -49,4 +49,9 @@
 	<delete id="delete" parameterType="map">
 		DELETE FROM BOARD WHERE USER_ID = #{userId} AND BOARD_ID = #{boardId}
 	</delete>
+	<select id="countBoard" resultType ="String">
+    SELECT COUNT(BOARD_ID) AS BOARD_count
+	FROM BOARD
+	where status = '처리중'
+    </select>
 </mapper>
