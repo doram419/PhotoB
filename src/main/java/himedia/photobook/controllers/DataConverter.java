@@ -31,6 +31,8 @@ public class DataConverter {
 			word = "환불 대기";
 		else if(statusCode.equals("F"))
 			word = "환불 완료";
+		else if(statusCode.equals("G"))
+			word = "주문 요청";
 		else
 			word = "비정상적인 값입니다";	
 

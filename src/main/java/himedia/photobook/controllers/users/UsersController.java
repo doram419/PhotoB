@@ -37,13 +37,13 @@ public class UsersController {
 	}
 
 
-	@PostMapping("/login") // 로그인 실패 메세지 출력기능 구현 필요!!!
-	public String loginAction(@RequestParam(value = "email", required = false, defaultValue = "") String email,
+	@PostMapping("/login")
+	public ModelAndView loginAction(@RequestParam(value = "email", required = false, defaultValue = "") String email,
 			@RequestParam(value = "password", required = false, defaultValue = "") String password,
 
 			HttpSession session) {
 		if (email.length() == 0 || password.length() == 0) {
-			return "redirect:/users/home";
+			return new ModelAndView("redirect:/users/home");
 		}
 
 		UsersVo authUser = usersService.login(email, password);
@@ -52,9 +52,11 @@ public class UsersController {
 
 			session.setAttribute("authUser", authUser);
 
-			return "redirect:/users/home";
+			return new ModelAndView ("redirect:/users/home");
 		} else {
-			return "redirect:/users/login";
+			ModelAndView mv = new ModelAndView("/WEB-INF/views/users/users_login.jsp");
+			mv.addObject("error", "이메일이나 비밀번호 틀림. 다시.");
+			return mv;
 		}
 	}
 

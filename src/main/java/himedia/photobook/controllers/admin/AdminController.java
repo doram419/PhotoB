@@ -3,13 +3,15 @@ package himedia.photobook.controllers.admin;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-
 import java.util.List;
 import java.util.Map;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
-
+import himedia.photobook.repositories.dao.OrderDaoImpl;
+import himedia.photobook.services.admin.AdminCommentServiceImpl;
+import himedia.photobook.services.admin.AdminDeliveryServiceImpl;
+import himedia.photobook.services.admin.AdminOrderService;
+import himedia.photobook.services.admin.AdminRefundServiceImpl;
 import himedia.photobook.repositories.vo.BoardVo;
 import himedia.photobook.repositories.vo.InventoryVo;
 import himedia.photobook.services.admin.AdminInventoryServiceImpl;
@@ -22,11 +24,28 @@ public class AdminController {
 	@Autowired
 	private UBoardServiceImpl uBoardService;
 	@Autowired
+	private AdminOrderService adminOrderService;
+	@Autowired
+	private AdminDeliveryServiceImpl adminDeliveryServiceImpl;
+	@Autowired
+	private AdminRefundServiceImpl adminRefundServiceImpl;
+	@Autowired
+	private AdminCommentServiceImpl adminCommentServiceImpl;
+	
 	private AdminInventoryServiceImpl adminInventoryService;
+
 	
 	@RequestMapping({"","/home"})
-	public String home() {
-		return "/WEB-INF/views/admin/admin_pages.jsp";
+	public String home(Model model) {
+	    String count = adminOrderService.count();
+	    String scount = adminDeliveryServiceImpl.count();
+	    String rcount = adminRefundServiceImpl.count();
+	    String ccount = adminCommentServiceImpl.count();
+	    model.addAttribute("OrderCount", count);
+	    model.addAttribute("ShipCount", scount);
+	    model.addAttribute("RefCount",rcount);
+	    model.addAttribute("CsCount",ccount);
+	    return "/WEB-INF/views/admin/admin_pages.jsp";
 	}
 	
 	@RequestMapping({"/customerService", "/cs"})

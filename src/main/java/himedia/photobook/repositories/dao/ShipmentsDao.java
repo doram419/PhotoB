@@ -44,4 +44,6 @@ public interface ShipmentsDao {
 	 * param : String - 주문 아이디 
 	 * */
 	public int insert(String orderId);
+	public String count();
 }
+	

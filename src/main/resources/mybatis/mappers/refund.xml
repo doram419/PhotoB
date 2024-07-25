@@ -42,4 +42,10 @@
 		WHERE
 			ORDER_ID = #{value}
 	</select>
+	
+	<select id ="countRefund" resultType="String">
+	SELECT COUNT(REFUND_ID) AS refund_count
+	FROM refund
+	where refund_status ='P'
+	</select>
 </mapper>
