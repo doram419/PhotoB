@@ -30,7 +30,6 @@
                             <th>주문일자</th>
                             <th>주문금액</th>
                             <th>환불 상태</th>
-                            <th>환불 상태 변경</th>
                         </tr>
                     </thead>
                     <tbody>
