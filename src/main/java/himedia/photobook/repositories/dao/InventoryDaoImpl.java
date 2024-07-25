@@ -76,4 +76,5 @@ public class InventoryDaoImpl implements InventoryDao {
 		return sqlSession.selectOne("inventory.selectOneByAlbumId", albumId);
 
 	}
+	
 }

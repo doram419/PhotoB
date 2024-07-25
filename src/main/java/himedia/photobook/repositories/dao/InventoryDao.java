@@ -18,7 +18,6 @@ public InventoryVo findAlbumPriceByAlbumId(String albumId);
 
 
 
-	public int updateAlbum(InventoryVo vo);
 
 
 	public List<InventoryVo> listPage(RowBounds rowBounds);

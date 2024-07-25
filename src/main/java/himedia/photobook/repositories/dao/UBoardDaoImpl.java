@@ -11,7 +11,7 @@ import org.springframework.stereotype.Repository;
 import himedia.photobook.exceptions.UBoardDaoException;
 import himedia.photobook.repositories.vo.BoardVo;
 
-@Repository("uBoardDao")
+@Repository
 public class UBoardDaoImpl implements UBoardDao{
 	@Autowired
 	private SqlSession sqlSession;

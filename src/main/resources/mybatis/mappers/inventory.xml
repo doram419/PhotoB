@@ -54,9 +54,5 @@
 		FROM INVENTORY
 		WHERE ALBUM_ID = #{value}
     </select>
-	<update id="updateQuantity" parameterType="InventoryVo">
-		UPDATE INVENTORY 
-			SET A_QUANTITY = #{aQuantity}
-		WHERE ALBUM_ID=#{albumId} 
-	</update>
+
 </mapper>
