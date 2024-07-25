@@ -3,18 +3,18 @@ package himedia.photobook.repositories.vo;
 public class PhotoVo {
 	private String photoId;
 	private String orderId;
-	private String photoName;
+	private String photoPath;
 	private Long photoSeqNo;
 	
 	public PhotoVo() {
 		
 	}
 
-	public PhotoVo(String photoId, String orderId, String photoName, Long photoSeqNo) {
+	public PhotoVo(String photoId, String orderId, String photoPath, Long photoSeqNo) {
 		super();
 		this.photoId = photoId;
 		this.orderId = orderId;
-		this.photoName = photoName;
+		this.photoPath = photoPath;
 		this.photoSeqNo = photoSeqNo;
 	}
 
@@ -34,17 +34,17 @@ public class PhotoVo {
 		this.orderId = orderId;
 	}
 
-	public String getPhotoName() {
-		return photoName;
+	public String getPhotoPath() {
+		return photoPath;
 	}
 
-	public void setPhotoName(String photoName) {
-		this.photoName = photoName;
+	public void setPhotoPath(String photoPath) {
+		this.photoPath = photoPath;
 	}
 
 	@Override
 	public String toString() {
-		return "PhotoVo [photoId=" + photoId + ", orderId=" + orderId + ", photoName=" + photoName +
+		return "PhotoVo [photoId=" + photoId + ", orderId=" + orderId + ", photoPath=" + photoPath +
 				", photoSeqNo=" + photoSeqNo + "]";
 	}
 

@@ -15,19 +15,17 @@ public class FileModule {
 	 * myPortal에서 들고 온 소스
 	 * String : 서버에 파일이 저장된 경로
 	 * */
-	public String saveFile(MultipartFile multipartFile, String path, String saveFilename) 
+	public String saveFile(MultipartFile multipartFile, String path, String filename, String extName) 
 			throws IOException {
 		byte[] fileData = multipartFile.getBytes();
 		File saveFile = new File(path);
 		if(!saveFile.exists())
 			saveFile.mkdirs();
+
+		String finalFileName = filename + extName;
+		String finalPath = saveFile.getPath() + "/" + finalFileName;
 		
-		int number = 1;
-		String extName = saveFilename.substring(saveFilename.lastIndexOf(".")); 
-		String finalFileName = number + extName;
-		String finalPath = saveFile.getPath();
-		
-		FileOutputStream fos = new FileOutputStream(finalPath + "/" + finalFileName);
+		FileOutputStream fos = new FileOutputStream(finalPath);
 		fos.write(fileData);
 		fos.flush();
 		fos.close();

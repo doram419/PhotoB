@@ -12,6 +12,7 @@ import himedia.photobook.repositories.dao.PhotoDao;
 import himedia.photobook.repositories.vo.AlbumVo;
 import himedia.photobook.repositories.vo.InventoryVo;
 import himedia.photobook.repositories.vo.OrdersVo;
+import himedia.photobook.repositories.vo.PhotoVo;
 
 @Service
 public class UserPhotobookService {
@@ -37,26 +38,32 @@ public class UserPhotobookService {
 		return inventoryVo;
 	}
 	
-	public int orderInsert(String userId, String albumId, Long oQuantity, 
+	public boolean orderInsert(String userId, String albumId, Long oQuantity, 
 			MultipartFile file) {
 		boolean result = 1 == orderDaoImpl.orderInsert(userId,albumId,oQuantity);
 		OrdersVo orderVo = orderDaoImpl.selectRecentOrderByUserId(userId);
+		PhotoVo photoVo = null;
 		
 		if(orderVo != null) {
 			String savePath = DEFUALT_PATH + userId + "/" + orderVo.getOrderId();
 			String originalFileName = file.getOriginalFilename();
 			
+			Long number = 1l;
+			String extName = originalFileName.substring(originalFileName.lastIndexOf(".")); 
+			String photoPath = null;
 			try {
-				fileModule.saveFile(file, savePath, originalFileName);
+				photoPath = fileModule.saveFile(file, savePath, number.toString(), extName);
 			} catch (Exception e) {
 				e.printStackTrace();
-				// TODO: 에러 출력하기
+				// TODO: 에러 연결하기
 			}
-			// TODO:photo 객체 생성
+			photoVo = new PhotoVo(null, orderVo.getOrderId(), photoPath, number.longValue());
+			
+			result = result && (1 == photoDaoImpl.insert(photoVo));
 			
 		}
 		
-	    return orderDaoImpl.orderInsert(userId,albumId,oQuantity);
+	    return result;
 	}
 	
 	

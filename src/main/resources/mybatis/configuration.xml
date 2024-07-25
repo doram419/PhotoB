@@ -29,6 +29,8 @@
 			alias="BoardVo" />
 		<typeAlias type="himedia.photobook.repositories.vo.CommentsVo"
 			alias="CommentsVo" />
+		<typeAlias type="himedia.photobook.repositories.vo.PhotoVo"
+			alias="PhotoVo" />
 	</typeAliases>
 	
 	
@@ -42,5 +44,6 @@
 		<mapper resource="mybatis/mappers/refund.xml" />
 		<mapper resource="mybatis/mappers/board.xml" />
 		<mapper resource="mybatis/mappers/comments.xml"/>
+		<mapper resource="mybatis/mappers/photo.xml"/>
 	</mappers>
 </configuration>

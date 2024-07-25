@@ -62,7 +62,7 @@ public class UsersPhotobookController {
 		InventoryVo inventoryVo = userPhotobookService.findAlbumPriceByAlbumId(albumId);
 		Long albumPrice = inventoryVo.getAlbumPrice();
 		Long oQuantity = (Long) session.getAttribute("oQuantity");
-		userPhotobookService.orderInsert(userId, albumId, oQuantity, multipartFile);
+		boolean success = userPhotobookService.orderInsert(userId, albumId, oQuantity, multipartFile);
 		
 		return "redirect:/users/order";
 	}
