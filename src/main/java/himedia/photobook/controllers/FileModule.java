@@ -7,7 +7,6 @@ import java.io.IOException;
 import org.springframework.web.multipart.MultipartFile;
 
 public class FileModule {
-	
 	/**
 	 * Param1 : MultipartFile multipartFile - 저장할 파일
 	 * Param2 : String path - 저장할 경로
@@ -15,6 +14,7 @@ public class FileModule {
 	 * myPortal에서 들고 온 소스
 	 * String : 서버에 파일이 저장된 경로
 	 * */
+	//TODO : 매체별 권한 추가하기
 	public String saveFile(MultipartFile multipartFile, String path, String filename, String extName) 
 			throws IOException {
 		byte[] fileData = multipartFile.getBytes();
@@ -23,7 +23,7 @@ public class FileModule {
 			saveFile.mkdirs();
 
 		String finalFileName = filename + extName;
-		String finalPath = saveFile.getPath() + "/" + finalFileName;
+		String finalPath = saveFile.getPath() + "\\" + finalFileName;
 		
 		FileOutputStream fos = new FileOutputStream(finalPath);
 		fos.write(fileData);

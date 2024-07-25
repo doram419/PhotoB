@@ -50,8 +50,6 @@ public class UsersOrderController {
 			@RequestParam("status") String status,
 			Model model) {
 		
-		System.out.println("-order detail-");
-
 		model.addAttribute("ordersId", ordersId);
 		model.addAttribute("albumId", albumId);
 		model.addAttribute("orderDate", orderDate);

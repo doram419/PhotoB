@@ -55,7 +55,7 @@
 								<td>${index}
 									<c:set var="index" value="${index + 1}"/>
 								</td>
-								<td>이미지넣기</td>
+								<td><img src="<c:url value="/photobook-images/album/${entry['albumVo'].albumId}.jpg" />" /></td>
 								<td>${entry['albumVo'].albumId}</td>
 								<td>${entry['inventoryVo'].albumPrice}</td>
 								<td>${entry['albumVo'].albumSize}</td>

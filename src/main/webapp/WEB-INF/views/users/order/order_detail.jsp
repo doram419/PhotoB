@@ -40,6 +40,10 @@
                 	</tr>
                 </tbody>
             </table>
+            <div>
+            	<h1>포토북 이미지</h1>
+            	<img src="<c:url value="/photobook-images/order/${userId}/${orderId}/1.jpg" />" />
+            </div>
         </section>
     </main>
 

@@ -58,6 +58,7 @@ public class UsersPhotobookController {
 			HttpSession session) {
 		UsersVo authUser = (UsersVo) session.getAttribute("authUser");
 		
+		//TODO:사진 조정하기
 		String userId = authUser.getUserId();
 		InventoryVo inventoryVo = userPhotobookService.findAlbumPriceByAlbumId(albumId);
 		Long albumPrice = inventoryVo.getAlbumPrice();
