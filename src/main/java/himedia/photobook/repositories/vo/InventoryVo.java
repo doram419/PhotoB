@@ -9,6 +9,9 @@ public class InventoryVo {
 		
 	}
 
+
+
+
 	public InventoryVo(String albumId, Long albumPrice, Long aQuantity) {
 		super();
 		this.albumId = albumId;
