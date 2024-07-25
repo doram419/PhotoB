@@ -42,5 +42,8 @@ public class CommentsDaoImpl implements CommentsDao{
 	 * System.out.println(commentsVo); return commentsVo; }
 	 */
 	
-
+	@Override
+	public String count()	{
+		return sqlSession.selectOne("board.countBoard");
+	}
 }

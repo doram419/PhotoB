@@ -68,21 +68,21 @@ public class AdminOrderController {
 	}
 	
 	
-	//효원코드
+	//효원코드 (미처리 주문을 미처리 주문페이지에서 처리할수있게함)
 	@PostMapping("/acreateShipment")
 	public String acreateOrder(@ModelAttribute("createOrderId") String orderId) {
 		// TODO: service에서 order를 위해 map으로 보낼 때, 해당 order_id로 배송을 만들 수 있는지 없는지 체크 해야함 
 		
-		// TODO: 여기서도 결과가 되는지 안 되는지 체크
-		boolean createResult = adminOrderService.createShipmentByOrderId(orderId);
+	// TODO: 여기서도 결과가 되는지 안 되는지 체크
+	boolean createResult = adminOrderService.createShipmentByOrderId(orderId);
 		
 		return "redirect:/admin/Norder";
 	}
 	@PostMapping("/acreateRefund")
 	public String acreateRefund(@ModelAttribute("createOrderId") String orderId) {
 		// TODO: service에서 order를 위해 map으로 보낼 때, 해당 order_id로 배송을 만들 수 있는지 없는지 체크 해야함 
-		
-		// TODO: 여기서도 결과가 되는지 안 되는지 체크
+	
+// TODO: 여기서도 결과가 되는지 안 되는지 체크
 		boolean createResult = adminOrderService.createRefundByOrderId(orderId);
 		
 		return "redirect:/admin/NOrder";

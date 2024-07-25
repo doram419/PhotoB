@@ -24,14 +24,17 @@
     </div>
     <div class="card">
         <div class="card-header">
-            <a href="<c:url value='/admin/Norder'/>">미처리 주문 ${OrderCount}건</a>
+            <a href="<c:url value='/admin/Norder'/>">미처리 주문 ${OrderCount}건이 있습니다</a>
         	</div>
         <div class="card-header">
- 			<a href="<c:url value='/admin/Nshipment'/>">미처리 배송 ${ShipCount}건</a>
+ 			<a href="<c:url value='/admin/Nshipment'/>">미처리 배송 ${ShipCount}건이 있습니다</a>
  			</div>
  		<div class="card-header">
- 			<a href="<c:url value='/admin/Nrefund'/>">미처리 환불 ${RefCount}건</a>
+ 			<a href="<c:url value='/admin/Nrefund'/>">미처리 환불 ${RefCount}건이 있습니다</a>
  			</div>
+ 		<div class="card-header">
+ 			<a href="<c:url value='/admin/cs'/>">미처리 문의 ${CsCount}건이 있습니다</a>
+ 		</div>
         </div>
     </div>
 

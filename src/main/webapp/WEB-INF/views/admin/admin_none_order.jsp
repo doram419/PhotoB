@@ -22,22 +22,10 @@
 
 	<div class="main-content">
 		<div class="header">
-			<h2>주문 관리</h2>
+			<h2>미처리 주문 관리</h2>
 		</div>
 		<div class="card">
-			<div class="card-header">주문 검색</div>
-			<div class="card-body">
-				<form action="<c:url value='/admin/order/search'/>" method="GET">
-					<div class="form-group">
-						<input type="text" name="keyword" placeholder="고객명 검색"
-							value="${param.keyword}">
-					</div>
-					<button type="submit" class="btn btn-primary">검색</button>
-				</form>
-			</div>
-		</div>
-		<div class="card">
-			<div class="card-header">주문 목록</div>
+			<div class="card-header">대기중인 주문 목록</div>
 			<div class="card-body">
 				<table class="table">
 					<thead>
@@ -45,9 +33,10 @@
 							<th>주문번호</th>
 							<th>고객명</th>
 							<th>주문일시</th>
-							<th>주문상품 개수</th>
+							<th>주문수량</th>
 							<th>총액</th>
-							<th>처리</th>
+							<th>주문상태</th>
+							<th>상태변경</th>
 						</tr>
 					</thead>
 					<tbody>

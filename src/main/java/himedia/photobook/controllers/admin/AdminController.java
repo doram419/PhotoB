@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 
 import himedia.photobook.repositories.dao.OrderDaoImpl;
+import himedia.photobook.services.admin.AdminCommentServiceImpl;
 import himedia.photobook.services.admin.AdminDeliveryServiceImpl;
 import himedia.photobook.services.admin.AdminOrderService;
 import himedia.photobook.services.admin.AdminRefundServiceImpl;
@@ -27,15 +28,19 @@ public class AdminController {
 	private AdminDeliveryServiceImpl adminDeliveryServiceImpl;
 	@Autowired
 	private AdminRefundServiceImpl adminRefundServiceImpl;
+	@Autowired
+	private AdminCommentServiceImpl adminCommentServiceImpl;
 	
 	@RequestMapping({"","/home"})
 	public String home(Model model) {
 	    String count = adminOrderService.count();
 	    String scount = adminDeliveryServiceImpl.count();
 	    String rcount = adminRefundServiceImpl.count();
+	    String ccount = adminCommentServiceImpl.count();
 	    model.addAttribute("OrderCount", count);
 	    model.addAttribute("ShipCount", scount);
 	    model.addAttribute("RefCount",rcount);
+	    model.addAttribute("CsCount",ccount);
 	    return "/WEB-INF/views/admin/admin_pages.jsp";
 	}
 	

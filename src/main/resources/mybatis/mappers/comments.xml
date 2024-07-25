@@ -21,4 +21,6 @@
 	<!-- <select id="countComment" parameterType="Long" resultType="CommentsVo">
 	SELECT COUNT(*) FROM COMMENTS WHERE BOARD_ID=#{boardId}
 	</select> -->
+	
+	
    </mapper>
