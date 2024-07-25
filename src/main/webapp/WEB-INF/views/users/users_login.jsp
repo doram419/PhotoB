@@ -11,14 +11,14 @@
 </head>
 <body>
     <div class="auth-container">
-        <h2>로그인</h2>
+        <h2>LOGIN</h2>
         <form action="<c:url value='/users/login' />" method="post">
-            <input type="email" name="email" placeholder="이메일" required>
-            <input type="password" name="password" placeholder="비밀번호" required>
-            <button type="submit">로그인</button>
+            <input type="email" name="email" placeholder="Email" required>
+            <input type="password" name="password" placeholder="Password" required>
+            <button type="submit">OK</button>
         </form>
         <div class="signup-link">
-            <a href="<c:url value='/users/register' />">계정이 없으신가요? 회원가입</a>
+            <a href="<c:url value='/users/register' />">Create Account</a>
         </div>
     </div>
 </body>

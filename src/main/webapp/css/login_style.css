@@ -5,7 +5,7 @@ body {
     align-items: center;
     height: 100vh;
     margin: 0;
-    background-color: #f0f0f0;
+    background-color: #ffffff;
 }
 .auth-container {
     background-color: white;
@@ -40,17 +40,11 @@ button {
 button:hover {
     background-color: #0056b3;
 }
-.signup-link, .social-login {
+.signup-link, .login-link, .social-login {
     text-align: center;
     margin-top: 15px;
 }
 .social-login button {
     margin: 5px;
     width: 100%;
-}
-.social-login .google {
-    background-color: #DB4437;
-}
-.social-login .naver {
-    background-color: #03C75A;
 }

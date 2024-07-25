@@ -9,23 +9,23 @@
 </head>
 
 <header>
-    <h1>포토북 제작 서비스</h1>
+    <h1>PHOTOB</h1>
     <nav>
         <ul>
-	    	<li><a href="<c:url value="/users/home"/>">홈</a></li>
+	    	<li><a href="<c:url value="/users/home"/>">Home</a></li>
     	<c:choose>
     		<c:when test="${not empty authUser}">
-	            <li><a href="<c:url value="/users/profile"/>">프로필 관리</a></li>
-	            <li><a href="<c:url value="/users/photobook"/>">포토북 제작</a></li>
-	            <li><a href="<c:url value="/users/order"/>">주문</a></li>
-	            <li><a href="<c:url value="/users/boardList"/>">1:1문의</a></li>
-        		<li><a href="<c:url value="/users/logout"/>">로그아웃</a></li>
+	            <li><a href="<c:url value="/users/profile"/>">Profile</a></li>
+	            <li><a href="<c:url value="/users/photobook"/>">Creation</a></li>
+	            <li><a href="<c:url value="/users/order"/>">Order</a></li>
+	            <li><a href="<c:url value="/users/boardList"/>">Board</a></li>
+        		<li><a href="<c:url value="/users/logout"/>">Logout</a></li>
 		        <c:if test="${sessionScope.authUser.role == 'A'}">
-		            <li><a href="<c:url value='/admin/home' />" class="admin-menu">관리자 페이지</a></li>
+		            <li><a href="<c:url value='/admin/home' />" class="admin-menu">Admin Page</a></li>
 		        </c:if>
     		</c:when>
 		    <c:otherwise>
-		        <li><a href="<c:url value='/users/login' />">로그인/회원가입</a></li>
+		        <li><a href="<c:url value='/users/login' />">로그인로고박기</a></li>
 		    </c:otherwise>
 		</c:choose>
 		</ul>
