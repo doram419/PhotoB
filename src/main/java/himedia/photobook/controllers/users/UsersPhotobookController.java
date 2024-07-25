@@ -49,7 +49,6 @@ public class UsersPhotobookController {
 
 		albumsession.setAttribute("albumId", albumId);
 		albumsession.setAttribute("oQuantity", oQuantity);
-		System.out.println("create_photobook으로 들어오는 수량" + oQuantity);
 		return "/WEB-INF/views/users/users_create_photobook.jsp";
 	}
 
@@ -58,17 +57,12 @@ public class UsersPhotobookController {
 			@RequestParam("photoUpload") MultipartFile multipartFile,
 			HttpSession session) {
 		UsersVo authUser = (UsersVo) session.getAttribute("authUser");
-		System.out.println("========photobookorder============");
-		System.out.println("multipartFile type : " + multipartFile.getContentType());
-		System.out.println("multipartFile size : " + multipartFile.getSize());
-		
 		
 		String userId = authUser.getUserId();
 		InventoryVo inventoryVo = userPhotobookService.findAlbumPriceByAlbumId(albumId);
 		Long albumPrice = inventoryVo.getAlbumPrice();
 		Long oQuantity = (Long) session.getAttribute("oQuantity");
-		System.out.println("photobookorder에서 받아오는 수량"+oQuantity);
-		userPhotobookService.orderInsert(userId, albumId, oQuantity);
+		userPhotobookService.orderInsert(userId, albumId, oQuantity, multipartFile);
 		
 		return "redirect:/users/order";
 	}

@@ -2,10 +2,13 @@ package himedia.photobook.services.users;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
+import himedia.photobook.controllers.FileModule;
 import himedia.photobook.repositories.dao.AlbumDao;
 import himedia.photobook.repositories.dao.InventoryDao;
 import himedia.photobook.repositories.dao.OrderDao;
+import himedia.photobook.repositories.dao.PhotoDao;
 import himedia.photobook.repositories.vo.AlbumVo;
 import himedia.photobook.repositories.vo.InventoryVo;
 import himedia.photobook.repositories.vo.OrdersVo;
@@ -18,6 +21,11 @@ public class UserPhotobookService {
 	private InventoryDao inventoryDaoImpl;
 	@Autowired
 	private OrderDao orderDaoImpl;
+	@Autowired
+	private PhotoDao photoDaoImpl;
+	
+	private static String DEFUALT_PATH = "C:/photobook/order/";
+	private FileModule fileModule = new FileModule();
 
 	public AlbumVo findAlbumIdByOptions(String material, String color, String albumSize) {
 		AlbumVo albumVo = albumDaoImpl.findAlbumIdByOptions(material, color, albumSize);
@@ -28,7 +36,28 @@ public class UserPhotobookService {
 		InventoryVo inventoryVo = inventoryDaoImpl.findAlbumPriceByAlbumId(albumId);
 		return inventoryVo;
 	}
-	public int orderInsert(String userId, String albumId, Long oQuantity) {
+	
+	public int orderInsert(String userId, String albumId, Long oQuantity, 
+			MultipartFile file) {
+		boolean result = 1 == orderDaoImpl.orderInsert(userId,albumId,oQuantity);
+		OrdersVo orderVo = orderDaoImpl.selectRecentOrderByUserId(userId);
+		
+		if(orderVo != null) {
+			String savePath = DEFUALT_PATH + userId + "/" + orderVo.getOrderId();
+			String originalFileName = file.getOriginalFilename();
+			
+			try {
+				fileModule.saveFile(file, savePath, originalFileName);
+			} catch (Exception e) {
+				e.printStackTrace();
+				// TODO: 에러 출력하기
+			}
+			// TODO:photo 객체 생성
+			
+		}
+		
 	    return orderDaoImpl.orderInsert(userId,albumId,oQuantity);
 	}
+	
+	
 }

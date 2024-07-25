@@ -66,6 +66,10 @@ public class OrderDaoImpl implements OrderDao {
 		
 		return sqlSession.update("order.updateByOrderId", 
 				updateMap);
-
+	}
+	
+	@Override
+	public OrdersVo selectRecentOrderByUserId(String userId) {
+		return sqlSession.selectOne("order.selectRecentOrderByUserId", userId);
 	}
 }

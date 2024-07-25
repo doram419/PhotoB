@@ -27,9 +27,6 @@ public interface OrderDao {
 	
 //주문번호로 앨범아이디 가져오는 메서드
 	public String getAlbumIdByOrderId(String orderId);
-
-
-
 	/**
 	 * 주문번호와 주문일자를 업데이트 하는 메서드
 	 * param : 
@@ -38,4 +35,8 @@ public interface OrderDao {
 	 * return type : 업데이트 영향 받은 튜플 수
 	 * */
 	int updateByOrderId(String updateId, OrdersVo ordersVo);
+	/**
+	 * userId가 일치하는 주문들 중에서 제일 최근에 추가된 하나를 리턴해주는 메서드
+	 */
+	public OrdersVo selectRecentOrderByUserId(String userId);
 }
