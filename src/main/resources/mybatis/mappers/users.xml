@@ -38,6 +38,7 @@
         	OR EMAIL LIKE ('%' || #{value} || '%')
         	OR PHONE_NUMBER LIKE ('%' || #{value} || '%')
         	OR ADDRESS LIKE ('%' || #{value} || '%')
+
         ORDER BY USER_ID
     </select>
  	

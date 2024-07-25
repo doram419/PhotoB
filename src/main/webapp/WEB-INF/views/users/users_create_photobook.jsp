@@ -64,7 +64,15 @@
 
 	<div class="upload-section">
 		<h2>사진 업로드</h2>
-		<input type="file" id="photoUpload" accept="image/*" multiple>
+		<form id="orderForm" action="<c:url value='/users/photobookOrder'/>"
+		method="post" enctype="Multipart/form-data">
+		<input type="hidden" id="selectedStyle" name="selectedStyle">
+		<input type="hidden" name="albumId" value="${sessionScope.albumId}">
+		<input type="hidden" name="userId"
+			value="${sessionScope.authUser.userId}">
+		
+		<input type="file" id="photoUpload" name="photoUpload" accept="image/*" multiple>
+		</form>
 	</div>
 
 	<div class="preview-section">
@@ -86,18 +94,9 @@
 		<button id="prevPage">이전 페이지</button>
 		<button id="nextPage">다음 페이지</button>
 	</div>
-
-	<form id="orderForm" action="<c:url value='/users/photobookOrder'/>"
-		method="post">
-		<input type="hidden" id="selectedStyle" name="selectedStyle">
-		<input type="hidden" name="albumId" value="${sessionScope.albumId}">
-		<input type="hidden" name="userId"
-			value="${sessionScope.authUser.userId}">
-
-		<button type="button" id="createButton" class="create-button">제작
-			완료</button>
-	</form>
-
+		<button type="button" id="createButton" 
+		class="create-button" form="orderForm">제작 완료
+		</button>
 	<!-- 팝업 -->
 	<div class="overlay" id="overlay"></div>
 	<div class="popup" id="confirmationPopup">

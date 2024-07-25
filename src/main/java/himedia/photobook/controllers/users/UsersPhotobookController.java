@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 import himedia.photobook.repositories.vo.AlbumVo;
 import himedia.photobook.repositories.vo.InventoryVo;
@@ -54,8 +55,14 @@ public class UsersPhotobookController {
 
 	@PostMapping("/photobookOrder")
 	public String photobookorder(@RequestParam(value = "albumId", required = false) String albumId,
+			@RequestParam("photoUpload") MultipartFile multipartFile,
 			HttpSession session) {
 		UsersVo authUser = (UsersVo) session.getAttribute("authUser");
+		System.out.println("========photobookorder============");
+		System.out.println("multipartFile type : " + multipartFile.getContentType());
+		System.out.println("multipartFile size : " + multipartFile.getSize());
+		
+		
 		String userId = authUser.getUserId();
 		InventoryVo inventoryVo = userPhotobookService.findAlbumPriceByAlbumId(albumId);
 		Long albumPrice = inventoryVo.getAlbumPrice();

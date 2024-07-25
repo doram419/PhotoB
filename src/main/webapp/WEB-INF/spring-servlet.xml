@@ -17,5 +17,6 @@
     </context:component-scan>
 
     <mvc:annotation-driven/>
+    
     <mvc:default-servlet-handler/>
 </beans>
