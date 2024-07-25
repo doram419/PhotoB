@@ -5,11 +5,11 @@ header {
     justify-content: space-between;
 }
 
-header h1{
-    margin:0;
-    font-size:24px;
-    font-weight: bold;
-    color: #4a90e2;
+header h1 {
+	margin: 0;
+	font-size: 24px;
+	font-weight: bold;
+	color: #4a90e2;
 }
 
 nav {
@@ -24,8 +24,8 @@ nav ul {
 }
 
 nav ul li {
-    display: inline;
-    margin-right: 1rem;
+	display: inline;
+	margin-right: 1rem;
 }
 
 nav ul li a {
@@ -34,10 +34,9 @@ nav ul li a {
 }
 
 .admin-menu {
-    background-color: #ff4500;
-    color: white;
+	background-color: #ff4500;
+	color: white;
 }
-
 
 .hero {
     text-align: center;
@@ -46,19 +45,20 @@ nav ul li a {
 }
 
 .cta-button {
-    display: inline-block;
-    padding: 0.5rem 1rem;
-    background-color: #007bff;
-    color: white;
-    text-decoration: none;
-    border-radius: 5px;
+	display: inline-block;
+	padding: 0.5rem 1rem;
+	background-color: #007bff;
+	color: white;
+	text-decoration: none;
+	border-radius: 5px;
 }
 
 .popular-templates, .customer-reviews {
-    padding: 2rem;
+	padding: 2rem;
 }
 
 footer {
+
     background-color: #ffffff;
     color: black;
     text-align: center;
@@ -66,7 +66,10 @@ footer {
     position: absolute;
     bottom: 0;
     width: 100%;
+	display: flex;
+	flex-direction: column;
 }
+
 #horizontal-underline {
 	position:absolute;
 	width:0;
