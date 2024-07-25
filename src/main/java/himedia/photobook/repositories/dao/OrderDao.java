@@ -42,5 +42,8 @@ public interface OrderDao {
 	public String count();
 	//판매액 조회
 	public Map<String, Object> Salecount();
+	public List<Map<String, Object>> getTopAlbum();
+	
 }
+	
 

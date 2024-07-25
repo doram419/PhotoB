@@ -48,6 +48,9 @@ public class AdminController {
 	    Map<String, Object> salesData = adminOrderService.Salecount();
         model.addAttribute("salesData", salesData);
         System.out.println("판매량 조회: "+model);
+        List<Map<String,Object>> topData = adminOrderService.getTopAlbum();
+        model.addAttribute("topData",topData);
+        System.out.println("상위 다섯개 앨범id:"+ topData);
 	    return "/WEB-INF/views/admin/admin_pages.jsp";
 	}
 	

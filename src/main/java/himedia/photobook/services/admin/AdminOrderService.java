@@ -203,9 +203,12 @@ public class AdminOrderService {
 		String count = orderDaoImpl.count();
 		return count;
 	}
+	//판매량 조회
 	public Map<String, Object> Salecount()	{
 		return orderDaoImpl.Salecount();
 		
 	}
-
+	public List<Map<String,Object>> getTopAlbum()	{
+		return orderDaoImpl.getTopAlbum();
+	}
 }
