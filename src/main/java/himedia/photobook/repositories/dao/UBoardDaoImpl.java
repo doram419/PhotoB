@@ -4,14 +4,16 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.ibatis.session.RowBounds;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import himedia.photobook.exceptions.UBoardDaoException;
 import himedia.photobook.repositories.vo.BoardVo;
+import himedia.photobook.repositories.vo.InventoryVo;
 
-@Repository("uBoardDao")
+@Repository
 public class UBoardDaoImpl implements UBoardDao{
 	@Autowired
 	private SqlSession sqlSession;
@@ -71,9 +73,16 @@ public class UBoardDaoImpl implements UBoardDao{
 	}
 
 	
-
-	
-
+	// 페이징
+	@Override
+	public List<BoardVo> listPage(RowBounds rowBounds) {
+		 return sqlSession.selectList("board.selectAll", null, rowBounds);
+	}
+	// 전체 페이지 수 조회
+	@Override
+	public int getTotalCount() {
+		return sqlSession.selectOne("board.getTotalCount");
+	}
 	
 
 }

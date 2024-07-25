@@ -2,20 +2,21 @@ package himedia.photobook.controllers.admin;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import java.util.List;
 import java.util.Map;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
-
 import himedia.photobook.repositories.dao.OrderDaoImpl;
 import himedia.photobook.services.admin.AdminCommentServiceImpl;
 import himedia.photobook.services.admin.AdminDeliveryServiceImpl;
 import himedia.photobook.services.admin.AdminOrderService;
 import himedia.photobook.services.admin.AdminRefundServiceImpl;
+import himedia.photobook.repositories.vo.BoardVo;
+import himedia.photobook.repositories.vo.InventoryVo;
+import himedia.photobook.services.admin.AdminInventoryServiceImpl;
 import himedia.photobook.services.users.UBoardServiceImpl;
 
-import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
 @RequestMapping({"/admin"})
@@ -31,6 +32,9 @@ public class AdminController {
 	@Autowired
 	private AdminCommentServiceImpl adminCommentServiceImpl;
 	
+	private AdminInventoryServiceImpl adminInventoryService;
+
+	
 	@RequestMapping({"","/home"})
 	public String home(Model model) {
 	    String count = adminOrderService.count();
@@ -45,9 +49,15 @@ public class AdminController {
 	}
 	
 	@RequestMapping({"/customerService", "/cs"})
-	public String customerService(Model md) {
+	public String customerService(@RequestParam(value = "page", defaultValue = "1") int page,@RequestParam(value = "size", defaultValue = "5") int size ,Model md) {
 		List<Map<String, Object>> list = uBoardService.getBoardInfos();
+		List<BoardVo> boardList = uBoardService.getPagedBoard(page,size);
+		int totalItems = uBoardService.getTotalCount();
+		int totalPages = (int)Math.ceil((double)totalItems/size);
+		
 		md.addAttribute("postList", list);
+	    md.addAttribute("currentPage", page);
+	    md.addAttribute("totalPages",totalPages);
 		return "/WEB-INF/views/admin/admin_customer_service.jsp";
 	}
 	
@@ -71,4 +81,16 @@ public class AdminController {
 	public String product() {
 		return "/WEB-INF/views/admin/admin_product.jsp";
 	}
+	@RequestMapping("/inventory")
+	public String inventory(@RequestParam(value = "page", defaultValue = "1") int page,@RequestParam(value = "size", defaultValue = "5") int size ,Model md) {
+		List<InventoryVo> list = adminInventoryService.getPagedInventory(page, size);
+		int totalItems =  adminInventoryService.getTotalCount();
+		int totalPages =(int)Math.ceil((double) totalItems/size);
+		
+		md.addAttribute("invenList",list);
+	    md.addAttribute("currentPage", page);
+	    md.addAttribute("totalPages",totalPages);
+		return "/WEB-INF/views/admin/admin_inventory.jsp";
+	}
+	
 }
