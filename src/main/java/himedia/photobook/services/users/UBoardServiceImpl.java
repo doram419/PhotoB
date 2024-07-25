@@ -5,12 +5,14 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.ibatis.session.RowBounds;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import himedia.photobook.repositories.dao.UBoardDaoImpl;
 import himedia.photobook.repositories.dao.UsersDao;
 import himedia.photobook.repositories.vo.BoardVo;
+import himedia.photobook.repositories.vo.InventoryVo;
 import himedia.photobook.repositories.vo.UsersVo;
 
 
@@ -97,6 +99,16 @@ public class UBoardServiceImpl implements UBoardService {
 	
 	}
 
+	// 페이징
+	public List<BoardVo> getPagedBoard(int page, int pageSize) {
+        int offset = (page - 1) * pageSize;
+        RowBounds rowBounds = new RowBounds(offset, pageSize);
+        return uBoardDaoImpl.listPage(rowBounds);
+    }
 	
+	@Override
+	public int getTotalCount() {
+		return uBoardDaoImpl.getTotalCount();
+	}
 
 }

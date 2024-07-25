@@ -7,6 +7,8 @@ import org.springframework.stereotype.Service;
 
 import himedia.photobook.repositories.dao.UsersDao;
 import himedia.photobook.repositories.vo.UsersVo;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpSession;
 
 
 /**
@@ -62,4 +64,16 @@ public class UsersService {
 	 public List<String> getUserNameByUserId(String userId) {
 	        return usersDaoImpl.getUserNameByUserId(userId);
 	    }
+	 
+	 public boolean isAuthenticated(HttpServletRequest req) {
+//			세션을 통해 사용자 인증 상태 체크 로직
+			HttpSession session = req.getSession(false);
+			
+			if(session != null) { // 인증했을 가능성이 있다.
+				UsersVo authUser = (UsersVo)session.getAttribute("authUser");
+				return authUser != null;
+			}
+			return false;
+		 
+	 }; 
 }

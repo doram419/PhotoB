@@ -10,6 +10,7 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 
+import himedia.photobook.repositories.vo.BoardVo;
 import himedia.photobook.repositories.vo.InventoryVo;
 import himedia.photobook.services.admin.AdminInventoryServiceImpl;
 import himedia.photobook.services.users.UBoardServiceImpl;
@@ -29,9 +30,15 @@ public class AdminController {
 	}
 	
 	@RequestMapping({"/customerService", "/cs"})
-	public String customerService(Model md) {
+	public String customerService(@RequestParam(value = "page", defaultValue = "1") int page,@RequestParam(value = "size", defaultValue = "5") int size ,Model md) {
 		List<Map<String, Object>> list = uBoardService.getBoardInfos();
+		List<BoardVo> boardList = uBoardService.getPagedBoard(page,size);
+		int totalItems = uBoardService.getTotalCount();
+		int totalPages = (int)Math.ceil((double)totalItems/size);
+		
 		md.addAttribute("postList", list);
+	    md.addAttribute("currentPage", page);
+	    md.addAttribute("totalPages",totalPages);
 		return "/WEB-INF/views/admin/admin_customer_service.jsp";
 	}
 	

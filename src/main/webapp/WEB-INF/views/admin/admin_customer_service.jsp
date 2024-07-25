@@ -12,6 +12,7 @@
 <title>고객 센터</title>
 <link type="text/css" rel="stylesheet"
 	href='<c:url value="/css/common_style.css"/>' />
+<script src="<c:url value='/javascript/admin/customer_service.js'/>"></script>
 </head>
 
 <body>
@@ -24,11 +25,12 @@
 		<div class="card">
 			<div class="card-header">문의 검색</div>
 			<div class="card-body">
-				<form action="<c:url value="/admin/customerService/search"/>" method="GET">
+				<form action="<c:url value="/admin/customerService/search"/>"
+					method="GET">
 					<div class="form-group">
 						<input type="text" name="keyword" placeholder="고객 이름 검색">
 					</div>
-					<button type="submit" class="btn btn-primary">검색</button>	
+					<button type="submit" class="btn btn-primary">검색</button>
 				</form>
 			</div>
 		</div>
@@ -54,8 +56,10 @@
 								<td>${postMap['boardVo'].title}</td>
 								<td>${postMap['boardVo'].status}</td>
 								<td><a
-									href="<c:url value="/admin/board/post/${postMap['boardVo'].userId}/${postMap['boardVo'].boardId }"/>"><button
-											class="btn btn-primary">상세보기</button></a></td>
+									href="<c:url value="/admin/board/post/${postMap['boardVo'].userId}/${postMap['boardVo'].boardId }"/>"
+									onclick="confirmNavigation(event)">
+										<button class="btn btn-primary">상세보기</button>
+								</a></td>
 							</tr>
 						</c:forEach>
 						<c:forEach items="${boardDetail}" var="postMap" varStatus="status">
@@ -67,7 +71,7 @@
 								<td><a
 									href="<c:url value="/admin/board/post/${postMap['boardVo'].userId}/${postMap['boardVo'].boardId }"/>"><button
 											class="btn btn-primary">상세보기</button></a></td>
-							
+
 							</tr>
 						</c:forEach>
 					</tbody>
@@ -77,5 +81,29 @@
 	</div>
 	<c:import url="/WEB-INF/views/admin/includes/admin_footer.jsp"></c:import>
 </body>
+<footer>
+	<div class="pagination">
+		<c:if test="${currentPage > 1}">
+			<a
+				href="<c:url value='/admin/inventory?page=${currentPage - 1}&size=5'/>">Previous</a>
+		</c:if>
+
+		<c:forEach begin="1" end="${totalPages}" var="pageNum">
+			<c:choose>
+				<c:when test="${pageNum == currentPage}">
+					<span>${pageNum}</span>
+				</c:when>
+				<c:otherwise>
+					<a href="<c:url value='/admin/inventory?page=${pageNum}&size=5'/>">${pageNum}</a>
+				</c:otherwise>
+			</c:choose>
+		</c:forEach>
+
+		<c:if test="${currentPage < totalPages}">
+			<a
+				href="<c:url value='/admin/inventory?page=${currentPage + 1}&size=5'/>">Next</a>
+		</c:if>
+	</div>
+</footer>
 
 </html>
