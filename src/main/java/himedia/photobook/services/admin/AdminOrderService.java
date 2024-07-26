@@ -99,23 +99,19 @@ public List<Map<String,Object>> searchOrderInfo(String keyword) {
 			orderInfo.add(map);
 		}
 	}
-<<<<<<< Updated upstream
+
 	System.out.println(orderInfo);
 	return orderInfo;
 			
 
 	
 }
-=======
-<<<<<<< Updated upstream
 
-=======
-	System.out.println(orderInfo);
-	return orderInfo;
-			
-}
->>>>>>> Stashed changes
->>>>>>> Stashed changes
+
+
+
+
+
 //user id로 주문리스트 가져옴
 public List<OrdersVo> getOrdersByUserId(String userId) {
     return orderDaoImpl.selectAllOrdersByUserId(userId);
