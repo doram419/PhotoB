@@ -1,4 +1,4 @@
-package himedia.photobook.repositories;
+package himedia.photobook.tools;
 
 import java.util.List;
 import java.util.stream.Collectors;

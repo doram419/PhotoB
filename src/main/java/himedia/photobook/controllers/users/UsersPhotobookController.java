@@ -24,6 +24,7 @@ public class UsersPhotobookController {
 
 	@GetMapping({ "/photobook", "pb", "photo" })
 	public String photobook() {
+		
 		return "/WEB-INF/views/users/users_photobook.jsp";
 	}
 

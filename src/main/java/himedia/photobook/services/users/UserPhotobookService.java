@@ -1,5 +1,9 @@
 package himedia.photobook.services.users;
 
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -13,6 +17,7 @@ import himedia.photobook.repositories.vo.AlbumVo;
 import himedia.photobook.repositories.vo.InventoryVo;
 import himedia.photobook.repositories.vo.OrdersVo;
 import himedia.photobook.repositories.vo.PhotoVo;
+import himedia.photobook.tools.VoConfiguration;
 
 @Service
 public class UserPhotobookService {
@@ -27,6 +32,7 @@ public class UserPhotobookService {
 	
 	private static String DEFUALT_PATH = "C:/photobook/order/";
 	private FileModule fileModule = new FileModule();
+	private VoConfiguration voConfiguration = new VoConfiguration();
 
 	public AlbumVo findAlbumIdByOptions(String material, String color, String albumSize) {
 		AlbumVo albumVo = albumDaoImpl.findAlbumIdByOptions(material, color, albumSize);
@@ -64,6 +70,20 @@ public class UserPhotobookService {
 		}
 		
 	    return result;
+	}
+	
+	/**
+	 * repositories의 VoConfiguration에를 참조하여 앨범의 속성을 
+	 * 불러와주는 메서드
+	 * */
+	public Map<String, List<String>> getAlbumOptions() {
+		Map<String, List<String>> albumOptions = new HashMap<String, List<String>>();
+		
+		albumOptions.put("colorList" ,voConfiguration.getAlbumColorList());
+		albumOptions.put("materialList" ,voConfiguration.getAlbumMaterialList());
+		albumOptions.put("sizeList" ,voConfiguration.getAlbumSizeList());
+		
+		return albumOptions;
 	}
 	
 	
