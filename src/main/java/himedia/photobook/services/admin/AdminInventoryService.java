@@ -11,4 +11,5 @@ public interface AdminInventoryService {
 	public InventoryVo findAlbumPriceByAlbumId(String albumId);
 	public boolean updateQuantity(InventoryVo inventoryVo);
 	public int getTotalCount();
+	public List<InventoryVo> getPagedInventory(int page, int pageSize);
 }

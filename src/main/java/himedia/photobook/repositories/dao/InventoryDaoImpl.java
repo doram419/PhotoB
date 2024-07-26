@@ -43,8 +43,6 @@ public class InventoryDaoImpl implements InventoryDao {
 			throw new UsersAlbumException("업데이트 도중 예외 발생!");
 		}
 	}
-
-
 	
 	@Override
 	public List<InventoryVo> listPage(RowBounds rowBounds) {

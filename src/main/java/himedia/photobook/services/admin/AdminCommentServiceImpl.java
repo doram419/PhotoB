@@ -29,5 +29,9 @@ public class AdminCommentServiceImpl implements AdminCommentService{
 		CommentsVo comment = commentsDaoImpl.getCommentsByBoardId(boardId);
 		return comment != null;
 	}
-	
+	@Override
+	public String count() {
+		String count = commentsDaoImpl.count();
+		return count;
+	}
 }

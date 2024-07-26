@@ -44,9 +44,10 @@ value="${param.keyword}">
 <th>주문번호</th>
 <th>고객명</th>
 <th>주문일시</th>
-<th>주문상품 개수</th>
+<th>주문수량</th>
 <th>총액</th>
-<th>처리</th>
+<th>주문상태</th>
+<th>상태변경</th>
 </tr>
 </thead>
 <tbody>
@@ -67,6 +68,7 @@ value="${param.keyword}">
     <td>${orderInfo.ordersVo.orderDate}</td>
     <td>${orderInfo.ordersVo.oQuantity}</td>
     <td>${orderInfo.ordersVo.total}원</td>
+    <td>${orderInfo.status}</td>
     <td>
 		<form action="<c:url value="/admin/order/createShipment"/>" method="post">
 			<input type="hidden" name="createOrderId" value="${orderInfo['ordersVo'].orderId}"/>

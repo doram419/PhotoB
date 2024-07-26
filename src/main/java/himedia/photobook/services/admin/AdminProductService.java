@@ -16,16 +16,34 @@ import himedia.photobook.repositories.vo.InventoryVo;
 @Service
 public class AdminProductService {
 
-    @Autowired
-    private AlbumDao albumDaoImpl;
+	@Autowired
+	private AlbumDao albumDaoImpl;
 
-    @Autowired
-    private InventoryDao inventoryDaoImpl;
-    
-    // 앨범 및 가격 목록
-    public List<AlbumVo> searchAlbum(String searchCategory, String keyword) {
-      return albumDaoImpl.searchAlbum(keyword);
-    }
+	@Autowired
+	private InventoryDao inventoryDaoImpl;
+
+	// 앨범 및 가격 목록
+	public List<AlbumVo> searchAlbum(String searchCategory, String keyword) {
+		return albumDaoImpl.searchAlbum(keyword);
+	}
+
+	public List<InventoryVo> listInventory() {
+		return inventoryDaoImpl.listInventory();
+	}
+
+	/**
+	 * 제품 관리에 필요한 정보
+	 */
+
+
+	public boolean updateAlbum(AlbumVo vo) {
+		int updatedCount = albumDaoImpl.updateAlbum(vo);
+		return updatedCount == 1;
+	}
+
+	public int insertAlbum(AlbumVo vo) {
+		return albumDaoImpl.insertAlbum(vo);
+	}
     
     /**
    * 제품 관리에 필요한 정보
@@ -110,23 +128,4 @@ public class AdminProductService {
  		
  		return (1 == albumInsertedCount) && (1 == inventoryInsertedCount);
 	}
-
-    
-//    public List<InventoryVo> listInventory() {
-//        return inventoryDaoImpl.listInventory();
-//    }
-//    
-// 	
-// 	public boolean updateProduct(InventoryVo vo) {
-// 		int updatedCount = inventoryDaoImpl.updateProduct(vo);
-// 		return updatedCount == 1;
-// 	}
-
-// 	public void deleteProduct(Long albumPrice) {
-// 		inventoryDaoImpl.deleteProduct(albumPrice);
-// 	}
-//
-// 	public boolean insertProduct(InventoryVo vo) {
-// 		return inventoryDaoImpl.insertProduct(vo) == 1;	
-// 	}
 }

@@ -38,4 +38,6 @@ public interface OrderDao {
 	 * return type : 업데이트 영향 받은 튜플 수
 	 * */
 	int updateByOrderId(String updateId, OrdersVo ordersVo);
+	//미처리 주문 갯수 들고오는
+	public String count();
 }
