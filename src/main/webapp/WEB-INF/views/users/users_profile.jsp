@@ -6,7 +6,7 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>프로필 관리 - 포토북 제작 서비스</title>
+    <title>프로필</title>
     <link type="text/css" 
 		rel="stylesheet" 
 		href='<c:url value="/css/profile_style.css"/>'>
@@ -29,13 +29,13 @@
                 </div>
                 <div>
                     <label for="phoneNumber">전화번호:</label>
-                    <input type="phoneNumber" id="phoneNumber" name="phoneNumber" required>
+                    <input type="phone" id="phoneNumber" name="phoneNumber" required>
                 </div>
                 <div>
                     <label for="address">주소:</label>
                     <input type="text" id="address" name="address" required>
                 </div>
-                <button type="submit" class="btn btn-info">프로필 업데이트</button>
+                <button type="submit">프로필 업데이트</button>
             </form>
         </section>
     </main>

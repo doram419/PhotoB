@@ -17,7 +17,7 @@
         href='<c:url value="/css/home_index_style.css"/>'> -->
 </head>
 
-<body class="d-flex flex-column min-vh-100">
+<body class="d-flex flex-column min-vh-2000">
     <c:import url="/WEB-INF/views/users/includes/users_header.jsp"></c:import>
 
     <main class="flex-grow-1">
