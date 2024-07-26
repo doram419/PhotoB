@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import himedia.photobook.repositories.dao.AlbumDao;
+import himedia.photobook.repositories.dao.AlbumPhotoDao;
 import himedia.photobook.repositories.dao.InventoryDao;
 import himedia.photobook.repositories.vo.AlbumPhotoVo;
 import himedia.photobook.repositories.vo.AlbumVo;
@@ -19,12 +20,12 @@ import himedia.photobook.tools.FileModule;
 
 @Service
 public class AdminProductService {
-
 	@Autowired
 	private AlbumDao albumDaoImpl;
-
 	@Autowired
 	private InventoryDao inventoryDaoImpl;
+	@Autowired
+	private AlbumPhotoDao albumPhotoDaoImpl;
 	private FileModule fileModule = new FileModule();
 	private static String DEFUALT_PATH = "C:/photobook/album/";
 	
@@ -136,7 +137,7 @@ public class AdminProductService {
  		inventoryVo.setaQuantity(0l);
  		int inventoryInsertedCount = inventoryDaoImpl.insertInventory(inventoryVo);
  		
- 		result = result && (1 == albumInsertedCount);
+ 		result = result && (1 == inventoryInsertedCount);
  		
 		AlbumPhotoVo albumPhotoVo = null;
  		
@@ -152,10 +153,9 @@ public class AdminProductService {
 				e.printStackTrace();
 				// TODO: 에러 연결하기
 			}
-//			albumPhotoVo = new PhotoVo(null, orderVo.getOrderId(), photoPath, number.longValue());
+			albumPhotoVo = new AlbumPhotoVo(null, albumVo.getAlbumId(), photoPath, "M");
 			
-//			result = result && (1 == photoDaoImpl.insert(photoVo));
-			
+			result = result && (1 == albumPhotoDaoImpl.insert(albumPhotoVo));
 		}
  		
  		return result;

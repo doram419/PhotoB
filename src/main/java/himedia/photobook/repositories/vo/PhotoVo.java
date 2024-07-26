@@ -42,11 +42,6 @@ public class PhotoVo {
 		this.photoPath = photoPath;
 	}
 
-	@Override
-	public String toString() {
-		return "PhotoVo [photoId=" + photoId + ", orderId=" + orderId + ", photoPath=" + photoPath +
-				", photoSeqNo=" + photoSeqNo + "]";
-	}
 
 	public Long getPhotoSeqNo() {
 		return photoSeqNo;
@@ -54,5 +49,11 @@ public class PhotoVo {
 
 	public void setPhotoSeqNo(Long photoSeqNo) {
 		this.photoSeqNo = photoSeqNo;
+	}
+	
+	@Override
+	public String toString() {
+		return "PhotoVo [photoId=" + photoId + ", orderId=" + orderId + ", photoPath=" + photoPath +
+				", photoSeqNo=" + photoSeqNo + "]";
 	}
 }

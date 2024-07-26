@@ -120,6 +120,8 @@ public class AdminProductController {
     	albumVo.setColor(color);
     	albumVo.setAlbumSize(albumSize);
     	
+    	System.out.println("dafkafm" + albumPrice);
+    	
         try {
         	boolean result = adminProductService.insertProduct(albumVo, albumPrice, multipartFile);
             if (result) {
