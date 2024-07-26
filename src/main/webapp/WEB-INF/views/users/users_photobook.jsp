@@ -18,6 +18,9 @@ pageEncoding="UTF-8"%>
 	<main>
 		<section class="photobook-container">
 			<h2>포토북 제작</h2>
+			<c:if test="${not empty error}">
+    <p style="color: red;">${error}
+    </c:if>
 			<form action="<c:url value='/users/create_photobook'/>" method="post">
 				<div class="form-group">
 					<label for="material">커버 재질:</label> <select id="material"
@@ -110,6 +113,11 @@ pageEncoding="UTF-8"%>
             updateOptions();
         });
         </script>
+         <c:if test="${not empty error}">
+            <script>
+                alert('${error}');
+            </script>
+        </c:if>
     </main>
 
     <c:import url="/WEB-INF/views/users/includes/users_footer.jsp"></c:import>
