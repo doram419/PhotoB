@@ -1,5 +1,86 @@
+/* 전체 레이아웃 */
 body {
     font-family: Arial, sans-serif;
+    line-height: 1.6;
     margin: 0;
     padding: 0;
+}
+
+main {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* 인기 템플릿 섹션 */
+.popular-templates {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    padding: 10px 0;
+    gap: 5px;
+}
+
+.template-item {
+    flex: 0 0 auto;
+    width: 60px;  /* 매우 작은 너비 */
+    text-align: center;
+}
+
+.template-item img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    border-radius: 4px;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.1);
+}
+
+.template-item p {
+    margin-top: 2px;
+    font-size: 8px;  /* 매우 작은 폰트 크기 */
+    color: #333;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* 기타 스타일 */
+.hero h1 {
+    font-size: 2.5em;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+.hero h2 {
+    font-size: 1.8em;
+    color: #444;
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+
+.cta-button {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+    transition: background-color 0.3s;
+}
+
+.cta-button:hover {
+    background-color: #0056b3;
+}
+
+/* 스크롤바 숨기기 */
+.popular-templates::-webkit-scrollbar {
+    display: none;
+}
+
+.popular-templates {
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
 }
