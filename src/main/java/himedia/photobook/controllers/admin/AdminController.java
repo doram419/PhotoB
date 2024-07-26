@@ -31,7 +31,7 @@ public class AdminController {
 	private AdminRefundServiceImpl adminRefundServiceImpl;
 	@Autowired
 	private AdminCommentServiceImpl adminCommentServiceImpl;
-	
+	@Autowired
 	private AdminInventoryServiceImpl adminInventoryService;
 
 	
