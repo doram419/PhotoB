@@ -8,7 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
-import himedia.photobook.controllers.FileModule;
 import himedia.photobook.repositories.dao.AlbumDao;
 import himedia.photobook.repositories.dao.InventoryDao;
 import himedia.photobook.repositories.dao.OrderDao;
@@ -17,6 +16,7 @@ import himedia.photobook.repositories.vo.AlbumVo;
 import himedia.photobook.repositories.vo.InventoryVo;
 import himedia.photobook.repositories.vo.OrdersVo;
 import himedia.photobook.repositories.vo.PhotoVo;
+import himedia.photobook.tools.FileModule;
 import himedia.photobook.tools.VoConfiguration;
 
 @Service

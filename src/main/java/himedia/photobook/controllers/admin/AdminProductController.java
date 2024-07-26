@@ -106,14 +106,22 @@ public class AdminProductController {
 
 	 //TODO:앨범 추가부터
     @PostMapping("/product/add")
-    public String addProduct(AlbumVo albumVo, Model model, 
-    		@RequestParam("albumPrice") Long albumPrice,
-    		@RequestParam("photoUpload") MultipartFile multipartFile) {
-    	System.out.println("=================photobookController===============");
-    	System.out.println("multipartFile : " + multipartFile.getSize());
+    public String addProduct(
+    		@ModelAttribute("albumId") String albumId,
+    		@ModelAttribute("material") String material,
+    		@ModelAttribute("color") String color,
+    		@ModelAttribute("albumSize") String albumSize,
+    		@ModelAttribute("albumPrice") Long albumPrice,
+    		@RequestParam("fileUploader") MultipartFile multipartFile,
+    		Model model) {
+    	AlbumVo albumVo = new AlbumVo();
+    	albumVo.setAlbumId(albumId);
+    	albumVo.setMaterial(material);
+    	albumVo.setColor(color);
+    	albumVo.setAlbumSize(albumSize);
     	
         try {
-        	boolean result = adminProductService.insertProduct(albumVo, albumPrice);
+        	boolean result = adminProductService.insertProduct(albumVo, albumPrice, multipartFile);
             if (result) {
                 model.addAttribute("success", "앨범이 성공적으로 추가되었습니다.");
             } else {

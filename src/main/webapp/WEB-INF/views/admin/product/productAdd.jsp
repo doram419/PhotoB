@@ -46,8 +46,8 @@
                         <input type="text" id="albumSize" name="albumSize" placeholder="사이즈 입력" required>
                     </div>
                     <div class="form-group">
-                        <label for="imageUrl">이미지 업로드</label>
-                        <input type="file" id="fileUploader" name="multipartFile"/>
+                        <label for="fileUploader">이미지 업로드</label>
+                        <input type="file" id="fileUploader" name="fileUploader"/>
                         <div class="preview-container">
                         </div>
                     </div>

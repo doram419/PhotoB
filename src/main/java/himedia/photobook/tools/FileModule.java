@@ -1,4 +1,4 @@
-package himedia.photobook.controllers;
+package himedia.photobook.tools;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -20,7 +20,6 @@ public class FileModule {
 	 * myPortal에서 들고 온 소스
 	 * String : 서버에 파일이 저장된 경로
 	 * */
-	//TODO : 매체별 권한 추가하기
 	public String saveFile(MultipartFile multipartFile, String path, String filename, String extName) 
 			throws IOException {
 		byte[] fileData = multipartFile.getBytes();
