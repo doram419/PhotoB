@@ -34,17 +34,19 @@
                 <tbody>
                 <c:forEach items="${orderInfos}" var="infoMap">				
                 	<tr>
-                		<td>${infoMap['ordersVo'].orderId}</a></td>
+                		<td>${infoMap['ordersVo'].orderId}</td>
                         <td>${infoMap['ordersVo'].albumId}</td>
                         <td>${infoMap['ordersVo'].orderDate}</td>
                         <td>${infoMap['ordersVo'].total}원</td>
                         <td>${infoMap['ordersVo'].oQuantity}</td>
                         <td>${infoMap['status']}</td>
                         <td> 
-	                        <form method="post" 
+	                        <form method="post"
 	                        	action="<c:url value="/users/order/detail"/>">
 	                        	<input type="hidden" name="ordersId" 
 	                        		value="${infoMap['ordersVo'].orderId}"/>
+	                        	<input type="hidden" name="userId" 
+	                        		value="${infoMap['ordersVo'].userId}"/>
 	                        	<input type="hidden" name="albumId" 
 	                        		value="${infoMap['ordersVo'].albumId}"/>
 	                        	<input type="hidden" name="orderDate"

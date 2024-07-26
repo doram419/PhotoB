@@ -22,7 +22,7 @@
     
      <!-- Resource Mapping -->
     <mvc:resources mapping="/photobook-images/order/**"
-    	location="file:c:/photobook/order" />
+    	location="file:c:/photobook/order/" />
     <mvc:resources mapping="/photobook-images/album/**"
-    	location="file:c:/photobook/album" />
+    	location="file:c:/photobook/album/" />
 </beans>

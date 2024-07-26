@@ -22,11 +22,6 @@ public class UsersPhotobookController {
 	@Autowired
 	private UserPhotobookService userPhotobookService;
 
-//	@RequestMapping({ "/photobook", "pb", "photo" })
-//	public String photobook() {
-//		return "/WEB-INF/views/users/users_photobook.jsp";
-//	}
-
 	@GetMapping({ "/photobook", "pb", "photo" })
 	public String photobook() {
 		return "/WEB-INF/views/users/users_photobook.jsp";
@@ -40,7 +35,6 @@ public class UsersPhotobookController {
 			Model model) {
 		AlbumVo albumVo = userPhotobookService.findAlbumIdByOptions(material, color, albumSize);
 		if (albumVo == null) {
-			System.out.println(",앨범vo널임"+albumVo);
 			model.addAttribute("error");
 			return "redirect:/users/photobook";
 		}
@@ -56,6 +50,7 @@ public class UsersPhotobookController {
 	public String photobookorder(@RequestParam(value = "albumId", required = false) String albumId,
 			@RequestParam("photoUpload") MultipartFile multipartFile,
 			HttpSession session) {
+		//TODO: if authUser null?
 		UsersVo authUser = (UsersVo) session.getAttribute("authUser");
 		
 		//TODO:사진 조정하기

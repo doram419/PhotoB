@@ -12,6 +12,7 @@
     <link type="text/css" 
 		rel="stylesheet" 
 		href='<c:url value="/css/header_footer.css"/>'>
+	
 </head>
 
 <body>
@@ -32,17 +33,17 @@
                 </thead>
                 <tbody>
                 	<tr>
-                		<td>${ordersId}</td>
-                		<td>${albumId}</td>
+                		<td>${orderVo.orderId}</td>
+                		<td>${orderVo.albumId}</td>
                 		<td>${orderDate}</td>
-                		<td>${oQuantity}</td>
+                		<td>${orderVo.oQuantity}</td>
                 		<td>${status}</td>
                 	</tr>
                 </tbody>
             </table>
             <div>
             	<h1>포토북 이미지</h1>
-            	<img src="<c:url value="/photobook-images/order/${userId}/${orderId}/1.jpg" />" />
+            	<img src="<c:url value="/photobook-images/order/${orderVo.userId}/${orderVo.orderId}/1.jpg" />" />
             </div>
         </section>
     </main>
