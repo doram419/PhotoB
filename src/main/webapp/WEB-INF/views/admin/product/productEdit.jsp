@@ -34,7 +34,7 @@
         </thead>
         <tbody>
             <tr>
-                <td><input type="file" name="albumPhoto_${status.index}" id="albumPhoto"></td>
+                <td><img src="<c:url value="/photobook-images/album//${ProductMap['album'].albumId}/1.jpg"/>" /></td>
                 <td><input type="hidden" name="albumId" id="albumId" value="${ProductMap['album'].albumId}">
                 	<input type="text" value="${ProductMap['album'].albumId}" disabled></td>
                 <td><input type="text" name="price" id="price" value="${ProductMap['inventory'].albumPrice}"></td>
@@ -43,13 +43,13 @@
                 <td><input type="text" name="albumSize" id="albumSize" value="${ProductMap['album'].albumSize}"></td>
             </tr>
          	<tr>
-                <td colspan="6" style="text-align: center;">
+         		<td><input type="file" name="albumPhoto_${status.index}" id="albumPhoto"></td>
+                <td colspan="5" style="text-align: center;">
                     <input type="submit" value="확인"> 
                     <input type="button" id="listBtn" value="상품목록" style="float: right;"
                         onclick="location.href='<c:url value='/admin/products/search'/>'">
                 </td>
             </tr>
-        	
         </tbody>
       </table>
       </form>

@@ -10,6 +10,7 @@
 <link type="text/css" rel="stylesheet"
 	href='<c:url value="/css/create_photobook_style.css"/>'>
 <link rel="stylesheet" href="<c:url value='/css/header_footer.css'/>">
+
 <style>
 /* 팝업 스타일 */
 .popup {

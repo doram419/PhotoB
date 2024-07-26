@@ -9,6 +9,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>제품 추가</title>
     <link type="text/css" rel="stylesheet" href='<c:url value="/css/common_style.css"/>' />
+    <script type="text/javascript" 
+		src='<c:url value="/javascript/admin/productAdd.js"/>'>
+	</script>
 </head>
 <body>
     <c:import url="/WEB-INF/views/admin/includes/admin_header.jsp"></c:import>
@@ -44,14 +47,17 @@
                     </div>
                     <div class="form-group">
                         <label for="imageUrl">이미지 업로드</label>
-                        <input type="file" name="multipartFile"/>
+                        <input type="file" id="fileUploader" name="multipartFile"/>
+                        <div class="preview-container">
+                        </div>
                     </div>
                     <button type="submit" class="btn btn-success">추가</button>
                 </form>
             </div>
         </div>
     </div>
-
+	
     <c:import url="/WEB-INF/views/admin/includes/admin_footer.jsp"></c:import>
+	
 </body>
 </html>

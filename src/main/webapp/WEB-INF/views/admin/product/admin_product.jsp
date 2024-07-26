@@ -44,7 +44,7 @@
 							<th>상품코드</th>
 							<th>가격</th>
 							<th>사이즈</th>
-							<th></th>
+							<th colspan="2">편집</th>
 						</tr>
 					</thead>
 
@@ -75,5 +75,7 @@
 		</div>
 	</div>
 </body>
+
+
 <!-- <c:import url="/WEB-INF/views/admin/includes/admin_footer.jsp"></c:import>-->
 </html>
