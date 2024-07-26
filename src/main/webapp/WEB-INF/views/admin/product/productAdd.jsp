@@ -20,7 +20,8 @@
         <div class="card">
             <div class="card-header">제품 추가</div>
             <div class="card-body">
-                <form method="post" action="<c:url value='/admin/product/add'/>">
+                <form method="post" action="<c:url value='/admin/product/add'/>"
+                	enctype="Multipart/form-data">
                     <div class="form-group">
                         <label for="albumId">상품코드</label>
                         <input type="text" id="albumId" name="albumId" placeholder="상품코드 입력" required>
@@ -42,8 +43,8 @@
                         <input type="text" id="albumSize" name="albumSize" placeholder="사이즈 입력" required>
                     </div>
                     <div class="form-group">
-                        <label for="imageUrl">이미지 URL</label>
-                        <input type="text" id="imageUrl" name="imageUrl" placeholder="이미지 URL 입력">
+                        <label for="imageUrl">이미지 업로드</label>
+                        <input type="file" name="multipartFile"/>
                     </div>
                     <button type="submit" class="btn btn-success">추가</button>
                 </form>

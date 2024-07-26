@@ -23,7 +23,7 @@ public class FileModule {
 			saveFile.mkdirs();
 
 		String finalFileName = filename + extName;
-		String finalPath = saveFile.getPath() + "\\" + finalFileName;
+		String finalPath = saveFile.getPath() + "/" + finalFileName;
 		
 		FileOutputStream fos = new FileOutputStream(finalPath);
 		fos.write(fileData);

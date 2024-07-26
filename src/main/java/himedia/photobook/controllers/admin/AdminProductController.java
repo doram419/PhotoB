@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 import himedia.photobook.repositories.vo.AlbumVo;
 import himedia.photobook.services.admin.AdminProductService;
@@ -103,8 +104,14 @@ public class AdminProductController {
 	        return "/WEB-INF/views/admin/product/productAdd.jsp"; // 추가 후 목록으로 리디렉션
 	    }
 
+	 //TODO:앨범 추가부터
     @PostMapping("/product/add")
-    public String addProduct(AlbumVo albumVo, Model model, @RequestParam("albumPrice") Long albumPrice) {
+    public String addProduct(AlbumVo albumVo, Model model, 
+    		@RequestParam("albumPrice") Long albumPrice,
+    		@RequestParam("photoUpload") MultipartFile multipartFile) {
+    	System.out.println("=================photobookController===============");
+    	System.out.println("multipartFile : " + multipartFile.getSize());
+    	
         try {
         	boolean result = adminProductService.insertProduct(albumVo, albumPrice);
             if (result) {
