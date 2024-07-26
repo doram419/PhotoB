@@ -8,9 +8,10 @@
 
 <head>
 <meta charset="UTF-8">
-<title>포토북 제작 - 포토북 제작 서비스</title>
+<title>제작</title>
 <link type="text/css" rel="stylesheet"
 	href='<c:url value="/css/photobook_style.css"/>'>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 </head>
 
 <body>
@@ -49,7 +50,7 @@
 						id="oQuantity" name="oQuantity" min="1" max="100" value="1" required>
 				</div>
 				<div class="form-group">
-					<button type="submit">포토북 제작</button>
+					<button type="submit">제작</button>
 				</div>
 			</form>
 		</section>
@@ -98,5 +99,6 @@
 	</main>
 
 	<c:import url="/WEB-INF/views/users/includes/users_footer.jsp"></c:import>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </body>
 </html>

@@ -14,5 +14,5 @@
   </div>
 </div>
 <footer>
-    <p>&copy; 2024 포토북 제작 서비스. All rights reserved.</p>
+    <p>&copy; 2024 불사조 포토북 제작 서비스 &copy;</p>
 </footer>
