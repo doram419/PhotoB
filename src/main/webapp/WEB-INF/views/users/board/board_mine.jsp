@@ -51,6 +51,9 @@
 			<p>
 				<a href="<c:url value="/users/board/write"/>">글쓰기</a>
 			</p>
+			<p>
+				<a href="<c:url value="/users/boardList"/>">목록으로</a>
+			</p>
 
 	
 	</main>
