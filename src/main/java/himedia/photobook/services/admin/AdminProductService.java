@@ -108,14 +108,37 @@ public class AdminProductService {
         return productMap;
     }
     
-    public boolean updateProduct(AlbumVo albumVo, Long albumPrice) {
+    public boolean updateProduct(AlbumVo albumVo, Long albumPrice, MultipartFile multipartFile) {
+    	boolean result = false;
+    	
  		int updatedCount = albumDaoImpl.updateAlbum(albumVo);
+ 		result = 1 == updatedCount;
+ 		
  		InventoryVo inventoryVo = new InventoryVo();
  		inventoryVo.setAlbumPrice(albumPrice);
  		inventoryVo.setAlbumId(albumVo.getAlbumId());
  		
- 		inventoryDaoImpl.updateProduct(inventoryVo);
- 		return updatedCount == 1;
+ 		result = result && (1 == inventoryDaoImpl.updateProduct(inventoryVo));
+ 		// 파일 덧씌우기 
+ 		AlbumPhotoVo albumPhotoVo = null;
+ 		if(result) {
+			String savePath = DEFUALT_PATH + albumVo.getAlbumId();
+			String originalFileName = multipartFile.getOriginalFilename();
+			
+			String extName = originalFileName.substring(originalFileName.lastIndexOf(".")); 
+			String photoPath = null;
+			try {
+				photoPath = fileModule.saveFile(multipartFile, savePath, "mainImg", extName);
+			} catch (Exception e) {
+				e.printStackTrace();
+				// TODO: 에러 연결하기
+			}
+			albumPhotoVo = new AlbumPhotoVo(null, albumVo.getAlbumId(), photoPath, null);
+			
+			result = result && (1 == albumPhotoDaoImpl.updatePath(albumPhotoVo));
+		}
+ 		
+ 		return result;
  	}
     
  	public boolean deleteProduct(String albumId) {
@@ -140,7 +163,6 @@ public class AdminProductService {
  		result = result && (1 == inventoryInsertedCount);
  		
 		AlbumPhotoVo albumPhotoVo = null;
- 		
  		if(result) {
 			String savePath = DEFUALT_PATH + albumVo.getAlbumId();
 			String originalFileName = multipartFile.getOriginalFilename();

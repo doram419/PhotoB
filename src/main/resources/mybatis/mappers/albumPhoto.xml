@@ -8,4 +8,9 @@
 		VALUES
 		(SEQ_ALBUM_PHOTO_PK.nextval, #{albumId}, #{photoPath}, #{albumPhotoType})
 	</insert>
+	<update id="updatePath" parameterType="AlbumPhotoVo">
+		UPDATE ALBUM_PHOTO 
+		SET PHOTO_PATH = #{photoPath}
+		WHERE ALBUM_ID = #{albumId}
+	</update>
 </mapper>

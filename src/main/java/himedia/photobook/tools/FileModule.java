@@ -1,7 +1,6 @@
 package himedia.photobook.tools;
 
 import java.io.File;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -27,9 +26,12 @@ public class FileModule {
 		
 		if(!saveFile.exists())
 			saveFile.mkdirs();
+		if(!extName.equals(".jpg"))
+			extName = ".jpg";
 		String finalFileName = filename + extName;
 		String finalPath = saveFile.getPath() + "\\";
 		Path filePath = Paths.get(finalPath, finalFileName);
+		//TODO : 문제 있으면 exception처리
 		Files.write(filePath, fileData);
 
 		String os = System.getProperty("os.name").toLowerCase();

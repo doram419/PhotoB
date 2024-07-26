@@ -23,7 +23,9 @@ public class AdminProductController {
 	private AdminProductService adminProductService;
 	
 	@GetMapping("/product")
-	public String product() {
+	public String product(Model model) {
+		model.addAttribute("ProductMap", adminProductService.getProductInfos());
+		
 		return "/WEB-INF/views/admin/product/admin_product.jsp";
 	}
 	
@@ -41,19 +43,6 @@ public class AdminProductController {
 	
 	@GetMapping("/product/productEdit")
 	public String editProduct(@RequestParam("albumId") String albumId, Model model) {
-		/*
-		try {
-		List<AlbumVo> albums = adminProductService.searchAlbum("ALBUM_ID", albumId);
-		if (!albums.isEmpty()) {
-            model.addAttribute("album", albums.get(0)); // 첫 번째 앨범 정보 전달
-        } else {
-            model.addAttribute("error", "앨범을 찾을 수 없습니다.");
-        }
-       } catch (Exception e) {
-           e.printStackTrace();
-           model.addAttribute("error", "앨범 업데이트 중 오류가 발생했습니다.");
-       }
-       */
 		try {
 			Map<String, Object> productMap = adminProductService.getAlbumInfoMap(albumId);
 	        model.addAttribute("ProductMap", productMap);
@@ -66,24 +55,37 @@ public class AdminProductController {
 
 
 	@PostMapping("/product/update")
-    public String updateProduct(@ModelAttribute AlbumVo albumVo, @ModelAttribute("price") Long price,
+    public String updateProduct(
+    		@ModelAttribute("albumId") String albumId,
+    		@ModelAttribute("material") String material,
+    		@ModelAttribute("color") String color,
+    		@ModelAttribute("albumSize") String albumSize,
+    		@ModelAttribute("price") Long price,
+    		@RequestParam("changeImg") MultipartFile changeImg,
             					Model model) {
+		AlbumVo albumVo = new AlbumVo();
+		albumVo.setAlbumId(albumId);
+		albumVo.setMaterial(material);
+		albumVo.setColor(color);
+		albumVo.setAlbumSize(albumSize);
+		
         try {
-        	boolean isUpdate = adminProductService.updateProduct(albumVo, price);
+        	boolean isUpdate = adminProductService.updateProduct(albumVo, price, changeImg);
             model.addAttribute("success", "앨범 업데이트에 성공했습니다.");
             
         } catch (Exception e) {
             e.printStackTrace();
             model.addAttribute("error", "앨범 업데이트 중 오류가 발생했습니다.");
         }
-        return "/WEB-INF/views/admin/product/admin_product.jsp";
+        
+        // TODO : 자크 추가
+        return "redirect:/admin/product"; 
     }
 	
 	@GetMapping("/product/update")
     public String updateForm() {
         return "/WEB-INF/views/admin/product/admin_product.jsp"; 
     }
-	
 	
 	@GetMapping("/product/delete")
     public String deleteProduct(@RequestParam("albumId") String albumId, Model model) {
@@ -120,8 +122,7 @@ public class AdminProductController {
     	albumVo.setColor(color);
     	albumVo.setAlbumSize(albumSize);
     	
-    	System.out.println("dafkafm" + albumPrice);
-    	
+    	// TODO : 무결성 체크
         try {
         	boolean result = adminProductService.insertProduct(albumVo, albumPrice, multipartFile);
             if (result) {
@@ -133,7 +134,10 @@ public class AdminProductController {
             e.printStackTrace();
             model.addAttribute("error", "앨범 추가 중 오류가 발생했습니다.");
         }
-        return "/WEB-INF/views/admin/product/productAdd.jsp"; // 추가 후 목록으로 리디렉션
+        
+        // 추가 후 목록으로 리디렉션
+        // TODO : 자크 추가
+        return "redirect:/admin/product"; 
     }
     
 }

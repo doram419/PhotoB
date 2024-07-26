@@ -65,6 +65,7 @@ public class UserPhotobookService {
 			}
 			photoVo = new PhotoVo(null, orderVo.getOrderId(), photoPath, number.longValue());
 			
+			
 			result = result && (1 == photoDaoImpl.insert(photoVo));
 			
 		}

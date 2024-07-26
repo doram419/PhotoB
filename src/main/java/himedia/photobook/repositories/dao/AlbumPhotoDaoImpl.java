@@ -15,5 +15,10 @@ public class AlbumPhotoDaoImpl implements AlbumPhotoDao{
 	public int insert(AlbumPhotoVo albumPhotoVo) {
 		return session.insert("albumPhoto.insert", albumPhotoVo);
 	}
+	
+	@Override
+	public int updatePath(AlbumPhotoVo albumPhotoVo) {
+		return session.insert("albumPhoto.updatePath", albumPhotoVo);
+	}
 
 }

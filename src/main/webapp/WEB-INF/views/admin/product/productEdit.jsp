@@ -13,6 +13,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link type="text/css" rel="stylesheet"
 	href='<c:url value="/css/common_style.css"/>' />
+<script type="text/javascript" 
+	src='<c:url value="/javascript/admin/productAdd.js"/>'>
+</script>
 </head>
 <body>
 	<c:import url="/WEB-INF/views/admin/includes/admin_header.jsp"></c:import>
@@ -20,7 +23,9 @@
 		<div class="header">
 			<h2>제품 수정</h2>
 	</div>		
-	<form action="<c:url value='/admin/product/update'/>" id="form1" method="post">
+	<form action="<c:url value='/admin/product/update'/>" id="form1" method="post" enctype="Multipart/form-data">
+    <h2>미리보기</h2>
+    <div class="preview-container"></div>
     <table class="table" border="1">
         <thead>
             <tr>
@@ -34,7 +39,7 @@
         </thead>
         <tbody>
             <tr>
-                <td><img src="<c:url value="/photobook-images/album//${ProductMap['album'].albumId}/1.jpg"/>" /></td>
+                <td><img width="200em" src="<c:url value="/photobook-images/album/${ProductMap['album'].albumId}/mainImg.jpg"/>" /></td>
                 <td><input type="hidden" name="albumId" id="albumId" value="${ProductMap['album'].albumId}">
                 	<input type="text" value="${ProductMap['album'].albumId}" disabled></td>
                 <td><input type="text" name="price" id="price" value="${ProductMap['inventory'].albumPrice}"></td>
@@ -43,7 +48,7 @@
                 <td><input type="text" name="albumSize" id="albumSize" value="${ProductMap['album'].albumSize}"></td>
             </tr>
          	<tr>
-         		<td><input type="file" name="albumPhoto_${status.index}" id="albumPhoto"></td>
+         		<td><input type="file" name="changeImg" id="fileUploader"></td>
                 <td colspan="5" style="text-align: center;">
                     <input type="submit" value="확인"> 
                     <input type="button" id="listBtn" value="상품목록" style="float: right;"
