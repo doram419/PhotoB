@@ -8,6 +8,7 @@
     <meta charset="UTF-8">
     <title>Login</title>
     <link rel="stylesheet" href="<c:url value='/css/login_style.css' />">
+    
 </head>
 <body>
     <div class="auth-container">

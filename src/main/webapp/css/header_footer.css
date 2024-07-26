@@ -1,15 +1,15 @@
 header {
     background-color: #ffffff;
-    padding: 1rem;
+    padding: rem;
     display: flex;
     justify-content: space-between;
 }
 
 header h1 {
 	margin: 0;
-	font-size: 24px;
+	font-size: 35px;
 	font-weight: bold;
-	color: #4a90e2;
+	color: black;
 }
 
 nav {
@@ -62,7 +62,7 @@ footer {
     background-color: #ffffff;
     color: black;
     text-align: center;
-    padding: 1rem;
+    padding: 0.5rem;
     position: absolute;
     bottom: 0;
     width: 100%;
