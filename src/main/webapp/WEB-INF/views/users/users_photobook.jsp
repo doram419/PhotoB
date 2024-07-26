@@ -16,7 +16,6 @@
 
 <body>
 	<c:import url="/WEB-INF/views/users/includes/users_header.jsp"></c:import>
-
 	<main>
 		<section class="photobook-container">
 			<h2>포토북 제작</h2>
