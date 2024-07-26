@@ -57,4 +57,9 @@ public class AdminRefundController {
 			
 		return "/WEB-INF/views/admin/admin_refund.jsp";
 	}
+	@GetMapping("Nrefund")
+	public String Nrefund(Model model)	{
+		model.addAttribute("refundInfos", adminRefundServiceImpl.getRefundInfos());
+		return "/WEB-INF/views/admin/admin_none_refund.jsp";
+	}
 }

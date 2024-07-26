@@ -68,4 +68,7 @@ public class OrderDaoImpl implements OrderDao {
 				updateMap);
 
 	}
+	public String count()	{
+		return sqlSession.selectOne("order.countOrder");
+	}
 }

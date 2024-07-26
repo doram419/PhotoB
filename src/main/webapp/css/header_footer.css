@@ -1,26 +1,36 @@
 header {
-	background-color: #f8f8f8;
-	padding: 1rem;
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
+    background-color: #ffffff;
+    padding: 2rem;
+    display: flex;
+    justify-content: space-between;
 }
 
 header h1 {
 	margin: 0;
-	font-size: 24px;
+	font-size: 50px;
 	font-weight: bold;
-	color: #4a90e2;
+	color: black;
+}
+
+nav {
+    display: flex; 
+    justify-content: flex-end;
 }
 
 nav ul {
-	list-style-type: none;
-	padding: 0;
+    list-style-type: none;
+    padding: 0;
+    margin-left: auto;
 }
 
 nav ul li {
 	display: inline;
 	margin-right: 1rem;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: black;
 }
 
 .admin-menu {
@@ -29,9 +39,9 @@ nav ul li {
 }
 
 .hero {
-	text-align: center;
-	padding: 3rem 0;
-	background-color: #e9e9e9;
+    text-align: center;
+    padding: 0.5rem 0;
+    background-color: #ffffff;
 }
 
 .cta-button {
@@ -47,14 +57,26 @@ nav ul li {
 	padding: 2rem;
 }
 
+
 footer {
-	background-color: #333;
-	color: white;
-	text-align: center;
-	padding: 1rem;
-	position: absolute;
-	bottom: 0;
-	width: 100%;
+
+    background-color: #ffffff;
+    color: black;
+    text-align: center;
+    padding: 0.5rem;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
 	display: flex;
 	flex-direction: column;
+}
+
+#horizontal-underline {
+	position:absolute;
+	width:0;
+	background-color: black;
+	top:0;
+	left:0;
+	height:3px;
+	transition:0.5s
 }

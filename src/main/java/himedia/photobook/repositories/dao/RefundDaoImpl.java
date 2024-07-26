@@ -42,4 +42,8 @@ public class RefundDaoImpl implements RefundDao{
 	public int delete(String orderId) {
 		return session.delete("refund.delete", orderId);
 	}
+	@Override
+	public String count()	{
+		return session.selectOne("refund.countRefund");
+	}
 }
