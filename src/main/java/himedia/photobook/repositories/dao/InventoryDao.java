@@ -2,6 +2,9 @@ package himedia.photobook.repositories.dao;
 
 import java.util.List;
 
+import org.apache.ibatis.session.RowBounds;
+import org.apache.ibatis.session.SqlSession;
+
 import himedia.photobook.repositories.vo.InventoryVo;
 
 public interface InventoryDao {
@@ -9,11 +12,27 @@ public interface InventoryDao {
 	
 public InventoryVo findAlbumPriceByAlbumId(String albumId);
 
-	// 앨범 가격 목록
-/**
- * 	앨범 목록 가져오기
- * */
+
 	public List<InventoryVo> listInventory();
+
+
+
+
+
+
+	public List<InventoryVo> listPage(RowBounds rowBounds);
+
+
+	public int getTotalCount();
+
+
+
+
+
+
+
+	
+
 	public int updateProduct(InventoryVo vo);
 	public int delete(String albumId);
 	/**
@@ -30,6 +49,7 @@ public InventoryVo findAlbumPriceByAlbumId(String albumId);
 	 * */
 	public InventoryVo selectOneByAlbumId(String albumId);
 	public int insertInventory(InventoryVo inventoryVo);
+
 
 }
 

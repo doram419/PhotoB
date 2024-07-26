@@ -39,4 +39,6 @@ public interface OrderDao {
 	 * userId가 일치하는 주문들 중에서 제일 최근에 추가된 하나를 리턴해주는 메서드
 	 */
 	public OrdersVo selectRecentOrderByUserId(String userId);
+	//미처리 주문 갯수 들고오는
+	public String count();
 }

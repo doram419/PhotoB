@@ -49,4 +49,15 @@
 	<delete id="delete" parameterType="map">
 		DELETE FROM BOARD WHERE USER_ID = #{userId} AND BOARD_ID = #{boardId}
 	</delete>
+
+	<select id="countBoard" resultType ="String">
+    SELECT COUNT(BOARD_ID) AS BOARD_count
+	FROM BOARD
+	where status = '처리중'
+	</select>
+	<!-- 전체 게시물 조회 -->
+	 <select id="getTotalCount" resultType="int">
+        SELECT COUNT(*) 
+        FROM inventory
+    </select>
 </mapper>

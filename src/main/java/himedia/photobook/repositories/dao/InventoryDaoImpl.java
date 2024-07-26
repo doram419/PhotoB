@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.ibatis.session.RowBounds;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -18,6 +19,11 @@ public class InventoryDaoImpl implements InventoryDao {
 	private SqlSession sqlSession;
 
 	@Override
+	public List<InventoryVo> listInventory() {
+		
+		return sqlSession.selectList("inventory.listInventory");
+	}
+	@Override
 	public InventoryVo findAlbumPriceByAlbumId(String albumId) {
 		Map<String, String> ai = new HashMap<>();
 		ai.put("albumId", albumId);
@@ -26,10 +32,6 @@ public class InventoryDaoImpl implements InventoryDao {
 		return inventoryVo;
 	}
 
-	@Override
-	public List<InventoryVo> listInventory() {
-		return sqlSession.selectList("inventory.listInventory");
-	}
 
 	@Override
 	public int updateProduct(InventoryVo vo) {
@@ -41,6 +43,17 @@ public class InventoryDaoImpl implements InventoryDao {
 			throw new UsersAlbumException("업데이트 도중 예외 발생!");
 		}
 	}
+	
+	@Override
+	public List<InventoryVo> listPage(RowBounds rowBounds) {
+		 return sqlSession.selectList("inventory.listInventory", null, rowBounds);
+	}
+	@Override
+	public int getTotalCount() {
+		return sqlSession.selectOne("inventory.getTotalCount");
+	}
+	
+
 	
 	@Override
 	public int delete(String albumId) {        
@@ -61,4 +74,5 @@ public class InventoryDaoImpl implements InventoryDao {
 		return sqlSession.selectOne("inventory.selectOneByAlbumId", albumId);
 
 	}
+	
 }

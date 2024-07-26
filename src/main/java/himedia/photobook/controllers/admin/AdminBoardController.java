@@ -16,8 +16,10 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import himedia.photobook.repositories.vo.BoardVo;
 import himedia.photobook.repositories.vo.CommentsVo;
+import himedia.photobook.repositories.vo.InventoryVo;
 import himedia.photobook.repositories.vo.UsersVo;
 import himedia.photobook.services.admin.AdminCommentServiceImpl;
+import himedia.photobook.services.admin.AdminInventoryServiceImpl;
 import himedia.photobook.services.users.UBoardServiceImpl;
 import jakarta.servlet.http.HttpSession;
 
@@ -28,13 +30,15 @@ import jakarta.servlet.http.HttpSession;
 @RequestMapping("/admin")
 public class AdminBoardController {
 	@Autowired
-	private UBoardServiceImpl uBoardService;
+	private UBoardServiceImpl uBoardServiceImpl;
 	@Autowired
-	private AdminCommentServiceImpl adminCommentService;
-
+	private AdminCommentServiceImpl adminCommentServiceImpl;
+	@Autowired
+	private AdminInventoryServiceImpl adminInventoryServiceImpl;
+	
 	@RequestMapping("/boardList")
 	public String list(Model md) {
-		List<Map<String, Object>> list = uBoardService.getBoardInfos();
+		List<Map<String, Object>> list = uBoardServiceImpl.getBoardInfos();
 		md.addAttribute("postList", list);
 		return "/WEB-INF/views/admin/admin_board.jsp";
 	}
@@ -51,7 +55,7 @@ public class AdminBoardController {
 		UsersVo authUser = (UsersVo) session.getAttribute("authUser");
 
 		boardVo.setUserId(authUser.getUserId());
-		uBoardService.write(boardVo);
+		uBoardServiceImpl.write(boardVo);
 
 		return "redirect:/admin/boardList";
 	}
@@ -64,9 +68,9 @@ public class AdminBoardController {
 			return "redirect:/admin/boardList";
 		}
 
-		Map<String, Object> boardVo = uBoardService.getContent(userId, boardId);
-		CommentsVo commentsVo = adminCommentService.getCommentsByBoardId(boardId);
-		boolean hasComment = adminCommentService.hasComment(boardId);
+		Map<String, Object> boardVo = uBoardServiceImpl.getContent(userId, boardId);
+		CommentsVo commentsVo = adminCommentServiceImpl.getCommentsByBoardId(boardId);
+		boolean hasComment = adminCommentServiceImpl.hasComment(boardId);
 		md.addAttribute("vo", boardVo);
 		md.addAttribute("commentVo", commentsVo);
 		md.addAttribute("hasComment", hasComment);
@@ -83,7 +87,7 @@ public class AdminBoardController {
 			redirectAtt.addFlashAttribute("errorMsg", "자격이 없습니다.");
 			return "redirect:/admin/boardList";
 		}
-		Map<String, Object> boardVo = uBoardService.getContent(userId, boardId);
+		Map<String, Object> boardVo = uBoardServiceImpl.getContent(userId, boardId);
 		md.addAttribute("vo", boardVo);
 		return "/WEB-INF/views/admin/board/board_modify.jsp";
 	}
@@ -96,12 +100,12 @@ public class AdminBoardController {
 			redirectAtt.addFlashAttribute("errorMsg", "자격이 없습니다.");
 			return "redirect:/admin/boardList";
 		}
-		BoardVo boardVo = uBoardService.getBoardVo(updateVo.getUserId(), updateVo.getBoardId());
+		BoardVo boardVo = uBoardServiceImpl.getBoardVo(updateVo.getUserId(), updateVo.getBoardId());
 
 		boardVo.setTitle(updateVo.getTitle());
 		boardVo.setContent(updateVo.getContent());
 
-		boolean success = uBoardService.update(boardVo);
+		boolean success = uBoardServiceImpl.update(boardVo);
 		return "redirect:/admin/boardList";
 	}
 
@@ -114,9 +118,9 @@ public class AdminBoardController {
 			redirectAtt.addFlashAttribute("errorMsg", "자격이 없습니다.");
 			return "redirect:/admin/boardList";
 		}
-		BoardVo boardVo = uBoardService.getBoardVo(userId, boardId);
+		BoardVo boardVo = uBoardServiceImpl.getBoardVo(userId, boardId);
 
-		uBoardService.delete(userId, boardVo.getBoardId());
+		uBoardServiceImpl.delete(userId, boardVo.getBoardId());
 		return "redirect:/admin/boardList";
 	}
 
@@ -131,18 +135,38 @@ public class AdminBoardController {
 		}
 
 		commentsVo.setUserName(authUser.getUserName());
-		adminCommentService.write(commentsVo);
+		adminCommentServiceImpl.write(commentsVo);
 		redirectAtt.addAttribute("boardId", boardId);
 
 		return "redirect:/admin/boardList";
 //		return "/WEB-INF/views/admin/board/board_post.jsp";
 	}
-// 관리자 이름 검색
+// 관리자 이름 검색 ( 고객센터 )
 	@GetMapping("/customerService/search")
 	public String searchBoard(@RequestParam(value = "keyword") String keyword, Model md) {
-		List<Map<String, Object>> boardDetail = uBoardService.getContentByName(keyword);
+		List<Map<String, Object>> boardDetail = uBoardServiceImpl.getContentByName(keyword);
 		md.addAttribute("boardDetail",boardDetail);
 		return "/WEB-INF/views/admin/admin_customer_service.jsp";
+	}
+	
+// 재고 가격으로 검색 ( 재고 관리 )
+	@GetMapping("/inventory/search")
+	public String searchInventory(@RequestParam(value = "keyword") String keyword, Model md) {
+		InventoryVo invenDetail = adminInventoryServiceImpl.findAlbumPriceByAlbumId(keyword);
+		md.addAttribute("invenDetail",invenDetail);
+		return "/WEB-INF/views/admin/admin_inventory.jsp";
+	}
+	
+	
+
+// 제품 입고 
+	@GetMapping("/inventory/store")
+	public String putStore(@ModelAttribute InventoryVo inventoryVo,HttpSession session, RedirectAttributes redirectAtt) {
+		adminInventoryServiceImpl.updateQuantity(inventoryVo);
+		
+		System.out.println(inventoryVo);
+		
+		return "redirect:/admin/inventory";
 	}
 
 }

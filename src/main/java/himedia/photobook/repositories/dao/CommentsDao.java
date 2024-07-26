@@ -8,4 +8,5 @@ public interface CommentsDao {
 	public int insert(CommentsVo commentsVo);
 	public int updateStatus(Long boardId);
 //	public int countComment(Long boardId);
+	public String count();
 }

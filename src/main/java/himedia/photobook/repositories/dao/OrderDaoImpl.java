@@ -72,4 +72,7 @@ public class OrderDaoImpl implements OrderDao {
 	public OrdersVo selectRecentOrderByUserId(String userId) {
 		return sqlSession.selectOne("order.selectRecentOrderByUserId", userId);
 	}
+	public String count()	{
+		return sqlSession.selectOne("order.countOrder");
+	}
 }

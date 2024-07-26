@@ -36,11 +36,15 @@ public class CommentsDaoImpl implements CommentsDao{
 		return sqlSession.update("board.updateStatus",boardId);
 	}
 	
+	
 	/*
 	 * @Override public int countComment(Long boardId) { int commentsVo =
 	 * sqlSession.selectOne("comments.countComment",boardId);
 	 * System.out.println(commentsVo); return commentsVo; }
 	 */
 	
-
+	@Override
+	public String count()	{
+		return sqlSession.selectOne("board.countBoard");
+	}
 }

@@ -23,32 +23,29 @@ import himedia.photobook.services.admin.AdminDeliveryServiceImpl;
 @RequestMapping("admin")
 public class AdminDeliveryController {
 	private DataConverter dataConverter = new DataConverter();
-	
+
 	@Autowired
 	private AdminDeliveryServiceImpl adminDeliveryServiceImpl;
-	
+
 	@GetMapping("/delivery")
 	public String shipment(Model model) {
 		model.addAttribute("deliveryInfos", adminDeliveryServiceImpl.getDeliveryInfos());
-		
+
 		return "/WEB-INF/views/admin/admin_delivery.jsp";
 	}
-	
+
 	@GetMapping("/delivery/detail")
-	public String detail(Model model,
-			@RequestParam("orderId") String orderId) {
+	public String detail(Model model, @RequestParam("orderId") String orderId) {
 		model.addAttribute("deliveryDetailInfos", adminDeliveryServiceImpl.getDeliveryDetailInfo(orderId));
-		
+
 		return "/WEB-INF/views/admin/delivery/delivery_detail.jsp";
 	}
-	
+
 	@PostMapping("/delivery/modify")
-	public String modify(@ModelAttribute ShipmentsVo shipmentsVo,
-			@ModelAttribute UsersVo usersVo,
-			@ModelAttribute OrdersVo ordersVo,
-			@ModelAttribute("stringShipmentDate") String shipmentDate,
+	public String modify(@ModelAttribute ShipmentsVo shipmentsVo, @ModelAttribute UsersVo usersVo,
+			@ModelAttribute OrdersVo ordersVo, @ModelAttribute("stringShipmentDate") String shipmentDate,
 			@ModelAttribute("stringOrderDate") String orderDate,
-			@ModelAttribute("targetOrderId") String targetOrderId){
+			@ModelAttribute("targetOrderId") String targetOrderId) {
 		try {
 			shipmentsVo.setShipmentDate(dataConverter.StringToDate(shipmentDate));
 			ordersVo.setOrderDate(dataConverter.StringToDate(orderDate));
@@ -56,28 +53,34 @@ public class AdminDeliveryController {
 			e.printStackTrace();
 			// TODO: custom Error throw 하기
 		}
-		
-		Map<String, Object> deliveryInfo = new HashMap<String, Object>();	
+
+		Map<String, Object> deliveryInfo = new HashMap<String, Object>();
 		deliveryInfo.put("shipmentsVo", shipmentsVo);
 		deliveryInfo.put("usersVo", usersVo);
 		deliveryInfo.put("ordersVo", ordersVo);
 		deliveryInfo.put("targetOrderId", targetOrderId);
-		
+
 		adminDeliveryServiceImpl.updateDeliveryInfo(deliveryInfo);
-		
+
 		return "redirect:/admin/delivery";
 	}
-	
+
 	@PostMapping("/delivery/search")
-	public String search(Model model, 
-			@RequestParam("keyword") String keyword,
+	public String search(Model model, @RequestParam("keyword") String keyword,
 			@RequestParam("search-category") String category) {
 
-		if(category.equals("orderId"))
+		if (category.equals("orderId"))
 			model.addAttribute("deliveryInfos", adminDeliveryServiceImpl.searchInfosByOrderId(keyword));
-		else if(category.equals("usersName"))
+		else if (category.equals("usersName"))
 			model.addAttribute("deliveryInfos", adminDeliveryServiceImpl.searchInfosByUserName(keyword));
-			
+
 		return "/WEB-INF/views/admin/admin_delivery.jsp";
+	}
+
+	@GetMapping("/Nshipment")
+	public String Nshipment(Model model) {
+		model.addAttribute("deliveryInfos", adminDeliveryServiceImpl.getDeliveryInfos());
+		return "/WEB-INF/views/admin/admin_none_delivery.jsp";
+
 	}
 }

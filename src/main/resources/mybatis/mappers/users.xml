@@ -64,7 +64,7 @@
         	USER_NAME as userName, ADDRESS, 
         	PHONE_NUMBER as phoneNumber
         FROM USERS
-        WHERE USER_Name = #{value}
+        WHERE USER_Name LIKE ('%' || #{value} || '%')
     </select>
 
     <select id="getUserById" parameterType="string" resultType="UsersVo">

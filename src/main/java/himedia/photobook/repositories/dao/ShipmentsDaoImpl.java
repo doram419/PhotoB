@@ -40,4 +40,8 @@ public class ShipmentsDaoImpl implements ShipmentsDao{
     public int insert(String orderId) {
     	return session.insert("shipments.insert", orderId);
     }
+    @Override
+    public String count() {
+    	return session.selectOne("shipments.countShipment");
+    }
 }
