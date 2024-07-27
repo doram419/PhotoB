@@ -5,6 +5,7 @@
 <head>
 <link type="text/css" rel="stylesheet"
 	href='<c:url value="/css/header_footer.css"/>' />
+
 <style>
     /* 사이드바를 고정하기 위한 최소한의 추가 스타일 */
     body {
@@ -19,6 +20,7 @@
         z-index: 1000;
     }
 </style>
+
 </head>
 
 <div class="sidebar">

@@ -116,6 +116,24 @@ FROM
     order_count o, 
     shipment_count s, 
     refund_count r</select>
-    
-    
-</mapper>
+    <!--효원코드 판매량 조회하는거임  -->
+    <select id="countSale" resultType="map">
+    SELECT 
+            SUM(CASE WHEN TRUNC(s.SHIPMENT_DATE) = TRUNC(SYSDATE) THEN o.TOTAL ELSE 0 END) as todaySales,
+            SUM(CASE WHEN TRUNC(s.SHIPMENT_DATE) >= TRUNC(SYSDATE, 'MM') THEN o.TOTAL ELSE 0 END) as monthlySales,
+            SUM(CASE WHEN TRUNC(s.SHIPMENT_DATE) >= TRUNC(SYSDATE, 'YYYY') THEN o.TOTAL ELSE 0 END) as yearlySales,
+            SUM(o.TOTAL) as totalSales
+        FROM ORDERS o
+        JOIN SHIPMENTS s ON o.ORDER_ID = s.ORDER_ID
+        WHERE s.SHIPMENT_STATUS = 'C'
+    </select>
+    <!-- 효원코드 제일 많이팔린거 다섯개 들고오는거임-->
+    <select id="getTopAlbum" resultType="map">
+    SELECT o.ALBUM_ID, SUM(o.O_QUANTITY) as SALES_COUNT
+    FROM ORDERS o
+    JOIN SHIPMENTS s ON o.ORDER_ID = s.ORDER_ID
+    WHERE s.SHIPMENT_STATUS = 'C'
+    GROUP BY o.ALBUM_ID
+    ORDER BY SALES_COUNT DESC
+    FETCH FIRST 5 ROWS ONLY
+</select>
