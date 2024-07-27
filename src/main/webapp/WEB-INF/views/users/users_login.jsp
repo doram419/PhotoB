@@ -13,10 +13,6 @@
 <body>
     <div class="auth-container">
         <h2>LOGIN</h2>
-        <c:if test="${not empty error}">
-         <p style="color: red;">${error}
-        </c:if>
-   
         <form action="<c:url value='/users/login' />" method="post">
             <input type="email" name="email" placeholder="Email" required>
             <input type="password" name="password" placeholder="Password" required>
@@ -27,9 +23,4 @@
         </div>
     </div>
 </body>
- <c:if test="${not empty error}">
-            <script>
-                alert('${error}');
-            </script>
-        </c:if>
 </html>

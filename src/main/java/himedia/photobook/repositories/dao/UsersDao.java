@@ -2,7 +2,6 @@ package himedia.photobook.repositories.dao;
 
 import java.util.List;
 
-import himedia.photobook.repositories.vo.OrdersVo;
 import himedia.photobook.repositories.vo.UsersVo;
 
 public interface UsersDao {

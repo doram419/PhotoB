@@ -10,7 +10,6 @@
 <link type="text/css" rel="stylesheet"
 	href='<c:url value="/css/create_photobook_style.css"/>'>
 <link rel="stylesheet" href="<c:url value='/css/header_footer.css'/>">
-
 <style>
 /* 팝업 스타일 */
 .popup {
@@ -65,16 +64,7 @@
 
 	<div class="upload-section">
 		<h2>사진 업로드</h2>
-		<form id="orderForm" action="<c:url value='/users/photobookOrder'/>"
-		method="post" enctype="Multipart/form-data">
-			<input type="hidden" id="selectedStyle" name="selectedStyle">
-			<input type="hidden" name="albumId" value="${sessionScope.albumId}">
-			<input type="hidden" name="userId"
-				value="${sessionScope.authUser.userId}">
-			<input type="file" id="photoUpload" accept=".jpeg, .jpg" required="required" multiple/>
-		</form>
-		<button type="button" id="img-add-btn">사진 추가</button>
-		
+		<input type="file" id="photoUpload" accept="image/*" multiple>
 	</div>
 
 	<div class="preview-section">
@@ -83,15 +73,31 @@
 			<!-- 여기에 미리보기 이미지들이 동적으로 추가됩니다 -->
 		</div>
 	</div>
-	<div class="img-list">
+
+	<div class="style-options">
+		<label><input type="radio" name="style" value="1" checked>
+			1장</label> <label><input type="radio" name="style" value="2">
+			2장</label> <label><input type="radio" name="style" value="3">
+			3장</label> <label><input type="radio" name="style" value="4">
+			4장</label>
 	</div>
+
 	<div class="nav-buttons">
 		<button id="prevPage">이전 페이지</button>
 		<button id="nextPage">다음 페이지</button>
 	</div>
-		<button type="button" id="createButton" 
-		class="create-button" form="orderForm">제작 완료
-		</button>
+
+	<form id="orderForm" action="<c:url value='/users/photobookOrder'/>"
+		method="post">
+		<input type="hidden" id="selectedStyle" name="selectedStyle">
+		<input type="hidden" name="albumId" value="${sessionScope.albumId}">
+		<input type="hidden" name="userId"
+			value="${sessionScope.authUser.userId}">
+
+		<button type="button" id="createButton" class="create-button">제작
+			완료</button>
+	</form>
+
 	<!-- 팝업 -->
 	<div class="overlay" id="overlay"></div>
 	<div class="popup" id="confirmationPopup">
@@ -119,11 +125,6 @@
         const confirmOrderButton = document.getElementById('confirmOrder');
         const orderForm = document.getElementById('orderForm');
 
-        var imgAddbtn = document.getElementById('img-add-btn');
-        console.log(imgAddbtn)
-        var imgList = document.getElementById('img-list');
-        var imgCount = 1;
-        
         // 사진 업로드 처리
         photoUpload.addEventListener('change', function(event) {
             previewContainer.innerHTML = ''; // 기존 미리보기 삭제
@@ -134,7 +135,7 @@
                 reader.onload = function(e) {
                     const img = document.createElement('img');
                     img.src = e.target.result;
-                    img.style.width = '200px'; // 미리보기 이미지 크기 조정
+                    img.style.width = '100px'; // 미리보기 이미지 크기 조정
                     img.style.height = 'auto';
                     previewContainer.appendChild(img);
                 }
@@ -176,15 +177,6 @@
         // 확인 버튼 클릭 시 주문 처리
         confirmOrderButton.addEventListener('click', function() {
             orderForm.submit();
-        });
-        
-        imgAddbtn.addEventListener('click', function(){
-        	var radio = document.createElement("input")
-        	radio.type = "radio";
-        	radio.name = "created-img";
-        	radio.innerText = imgCount + "페이지"
-        	imgCount = imgCount + 1;
-        	//var newImg = document.createElement("img");
         });
     </script>
 

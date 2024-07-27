@@ -17,12 +17,5 @@
     </context:component-scan>
 
     <mvc:annotation-driven/>
-    
     <mvc:default-servlet-handler/>
-    
-     <!-- Resource Mapping -->
-    <mvc:resources mapping="/photobook-images/order/**"
-    	location="file:c:/photobook/order/" />
-    <mvc:resources mapping="/photobook-images/album/**"
-    	location="file:c:/photobook/album/" />
 </beans>
