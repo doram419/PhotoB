@@ -104,28 +104,18 @@
 		TOTAL = #{total}
 		WHERE ORDER_ID=#{updateId}
 	</update>
-	<select id="selectRecentOrderByUserId" parameterType="String" resultType="OrdersVo">
-		SELECT 
-			ORDER_ID as orderId, 
-			USER_ID as userId,
-			ALBUM_ID as albumId, 
-			ORDER_DATE as orderDate,
-			TOTAL, O_QUANTITY as oQuantity
-		FROM ORDERS
-		Where USER_ID = #{value}
-		ORDER BY ORDER_DATE DESC
-		FETCH FIRST 1 ROW ONLY
-	</select>
+	
 	<select id="countOrder" resultType="String">
-		WITH 
-	order_count AS (SELECT COUNT(order_id) AS count FROM orders),
-	shipment_count AS (SELECT COUNT(shipment_id) AS count FROM shipments),
-	refund_count AS (SELECT COUNT(refund_id) AS count FROM refund)
-	SELECT 
-	    o.count - s.count - r.count AS remaining_orders
-	FROM 
-	    order_count o, 
-	    shipment_count s, 
-	    refund_count r
-    </select>
+	WITH 
+order_count AS (SELECT COUNT(order_id) AS count FROM orders),
+shipment_count AS (SELECT COUNT(shipment_id) AS count FROM shipments),
+refund_count AS (SELECT COUNT(refund_id) AS count FROM refund)
+SELECT 
+    o.count - s.count - r.count AS remaining_orders
+FROM 
+    order_count o, 
+    shipment_count s, 
+    refund_count r</select>
+    
+    
 </mapper>
