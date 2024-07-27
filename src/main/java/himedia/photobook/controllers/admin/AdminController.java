@@ -34,6 +34,7 @@ public class AdminController {
 	@Autowired
 	private AdminInventoryServiceImpl adminInventoryServiceImpl;
 
+
 	
 	@RequestMapping({"","/home"})
 	public String home(Model model) {
