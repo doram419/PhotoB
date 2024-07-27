@@ -1,7 +1,6 @@
 package himedia.photobook.controllers.users;
 
 import java.util.List;
-
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +11,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import himedia.photobook.repositories.vo.OrdersVo;
 import himedia.photobook.repositories.vo.UsersVo;
 import himedia.photobook.services.users.UsersOrderServiceImpl;
 import jakarta.servlet.http.HttpSession;
@@ -46,16 +46,19 @@ public class UsersOrderController {
 	public String detail(@RequestParam("ordersId") String ordersId, 
 			@RequestParam("albumId") String albumId, 
 			@RequestParam("orderDate") String orderDate,
-			@RequestParam("oQuantity") String oQuantity,
+			@RequestParam("oQuantity") Long oQuantity,
+			@RequestParam("userId") String userId,
 			@RequestParam("status") String status,
 			Model model) {
+		OrdersVo orderVo = new OrdersVo();
+		orderVo.setUserId(userId);
+		orderVo.setAlbumId(albumId);
+		orderVo.setOrderId(ordersId);
+		orderVo.setoQuantity(oQuantity);
+		orderVo.setAlbumId(albumId);
 		
-		System.out.println("-order detail-");
-
-		model.addAttribute("ordersId", ordersId);
-		model.addAttribute("albumId", albumId);
+		model.addAttribute("orderVo", orderVo);
 		model.addAttribute("orderDate", orderDate);
-		model.addAttribute("oQuantity", oQuantity);
 		model.addAttribute("status", status);
 		
 		return "/WEB-INF/views/users/order/order_detail.jsp";

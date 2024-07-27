@@ -1,4 +1,4 @@
-package himedia.photobook.controllers;
+package himedia.photobook.tools;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
