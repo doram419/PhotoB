@@ -1,24 +1,27 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
 <!DOCTYPE html>
-
 <html lang="ko">
-
 <head>
+
 <meta charset="UTF-8">
 <title>제작</title>
 <link type="text/css" rel="stylesheet"
 	href='<c:url value="/css/photobook_style.css"/>'>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 </head>
-
 <body>
+
 	<c:import url="/WEB-INF/views/users/includes/users_header.jsp"></c:import>
+
 	<main>
 		<section class="photobook-container">
 			<h2>포토북 제작</h2>
+			<c:if test="${not empty error}">
+    <p style="color: red;">${error}
+    </c:if>
 			<form action="<c:url value='/users/create_photobook'/>" method="post">
 				<div class="form-group">
 					<label for="material">커버 재질:</label> <select id="material"
@@ -49,55 +52,75 @@
 						id="oQuantity" name="oQuantity" min="1" max="100" value="1" required>
 				</div>
 				<div class="form-group">
+                    <label for="price">가격:</label>
+                    <span id="price">0</span>원
+                </div>
+				<div class="form-group">
 					<button type="submit">제작</button>
 				</div>
 			</form>
 		</section>
 
-		<script>
-		document.addEventListener('DOMContentLoaded', function() {
-		  const material = document.getElementById('material');
-		  const albumSize = document.getElementById('albumSize');
-		  const color = document.getElementById('color');
+        <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const material = document.getElementById('material');
+            const albumSize = document.getElementById('albumSize');
+            const color = document.getElementById('color');
+            const quantity = document.getElementById('oQuantity');
+            const priceDisplay = document.getElementById('price');
 
-		  function updateOptions() {
-		    const materialValue = material.value;
-		    albumSize.innerHTML = '';
-		    ['S', 'M', 'B'].forEach(s => {
-		      if (!(materialValue === 'LINEN' && s === 'B') &&
-		          !(materialValue === 'SOFT' && s === 'B')) {
-		        const option = document.createElement('option');
-		        option.value = s;
-		        option.textContent = s;
-		        albumSize.appendChild(option);
-		      }
-		    });
+            const prices = {
+                LINEN: { S: 15000, M: 20000 },
+                LEATHER: { S: 25000, M: 35000, B: 50000 },
+                HARD: { S: 20000, M: 30000, B: 40000 },
+                SOFT: { S: 10000, M: 15000 }
+            };
 
-		    color.innerHTML = '';
-		    if (materialValue === 'LEATHER') {
-		      ['GRAY', 'BROWN'].forEach(c => {
-		        const option = document.createElement('option');
-		        option.value = c;
-		        option.textContent = c === 'GRAY' ? '회색' : '갈색';
-		        color.appendChild(option);
-		      });
-		    } else {
-		      ['GRAY', 'BLUE', 'BROWN'].forEach(c => {
-		        const option = document.createElement('option');
-		        option.value = c;
-		        option.textContent = c === 'GRAY' ? '회색' : (c === 'BLUE' ? '파란색' : '갈색');
-		        color.appendChild(option);
-		      });
-		    }
-		  }
+            function updateOptions() {
+                const materialValue = material.value;
+                albumSize.innerHTML = '';
+                Object.keys(prices[materialValue]).forEach(s => {
+                    const option = document.createElement('option');
+                    option.value = s;
+                    option.textContent = s;
+                    albumSize.appendChild(option);
+                });
 
-		  material.addEventListener('change', updateOptions);
-		  updateOptions();
-		});
-		</script>
-	</main>
+                color.innerHTML = '';
+                const colors = materialValue === 'LEATHER' ? ['GRAY', 'BROWN'] : ['GRAY', 'BLUE', 'BROWN'];
+                colors.forEach(c => {
+                    const option = document.createElement('option');
+                    option.value = c;
+                    option.textContent = c === 'GRAY' ? '회색' : (c === 'BLUE' ? '파란색' : '갈색');
+                    color.appendChild(option);
+                });
+                
+                calculatePrice();
+            }
 
-	<c:import url="/WEB-INF/views/users/includes/users_footer.jsp"></c:import>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+            function calculatePrice() {
+                const materialValue = material.value;
+                const sizeValue = albumSize.value;
+                const basePrice = prices[materialValue][sizeValue];
+                const totalPrice = basePrice * parseInt(quantity.value);
+                priceDisplay.textContent = totalPrice.toLocaleString();
+            }
+
+            material.addEventListener('change', updateOptions);
+            albumSize.addEventListener('change', calculatePrice);
+            color.addEventListener('change', calculatePrice);
+            quantity.addEventListener('input', calculatePrice);
+
+            updateOptions();
+        });
+        </script>
+         <c:if test="${not empty error}">
+            <script>
+                alert('${error}');
+            </script>
+        </c:if>
+    </main>
+
+    <c:import url="/WEB-INF/views/users/includes/users_footer.jsp"></c:import>
 </body>
 </html>
