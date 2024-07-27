@@ -10,9 +10,6 @@
     <title>제품 추가</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link type="text/css" rel="stylesheet" href='<c:url value="/css/common_style.css"/>' />
-    <script type="text/javascript" 
-		src='<c:url value="/javascript/admin/productAdd.js"/>'>
-	</script>
 </head>
 <body>
     <c:import url="/WEB-INF/views/admin/includes/admin_header.jsp"></c:import>
@@ -24,8 +21,7 @@
         <div class="card">
             <div class="card-header">제품 추가</div>
             <div class="card-body">
-                <form method="post" action="<c:url value='/admin/product/add'/>"
-                	enctype="Multipart/form-data">
+                <form method="post" action="<c:url value='/admin/product/add'/>">
                     <div class="form-group">
                         <label for="albumId">상품코드</label>
                         <input type="text" id="albumId" name="albumId" placeholder="상품코드 입력" required>
@@ -47,19 +43,16 @@
                         <input type="text" id="albumSize" name="albumSize" placeholder="사이즈 입력" required>
                     </div>
                     <div class="form-group">
-                        <label for="fileUploader">이미지 업로드</label>
-                        <input type="file" id="fileUploader" name="fileUploader"/>
-                        <div class="preview-container">
-                        </div>
+                        <label for="imageUrl">이미지 URL</label>
+                        <input type="text" id="imageUrl" name="imageUrl" placeholder="이미지 URL 입력">
                     </div>
                     <button type="submit" class="btn btn-success">추가</button>
                 </form>
             </div>
         </div>
     </div>
-	
-    <c:import url="/WEB-INF/views/admin/includes/admin_footer.jsp"></c:import>
 
+    <c:import url="/WEB-INF/views/admin/includes/admin_footer.jsp"></c:import>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </body>
 </html>

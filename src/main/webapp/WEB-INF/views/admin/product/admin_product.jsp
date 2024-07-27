@@ -45,7 +45,7 @@
 							<th>상품코드</th>
 							<th>가격</th>
 							<th>사이즈</th>
-							<th colspan="2">편집</th>
+							<th></th>
 						</tr>
 					</thead>
 
@@ -56,7 +56,7 @@
 								<td>${index}
 									<c:set var="index" value="${index + 1}"/>
 								</td>
-								<td><img width = "200em" src="<c:url value="/photobook-images/album/${entry['albumVo'].albumId}/mainImg.jpg" />" /></td>
+								<td>이미지넣기</td>
 								<td>${entry['albumVo'].albumId}</td>
 								<td>${entry['inventoryVo'].albumPrice}</td>
 								<td>${entry['albumVo'].albumSize}</td>
@@ -76,7 +76,5 @@
 	</div>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </body>
-
 <c:import url="/WEB-INF/views/admin/includes/admin_footer.jsp"></c:import>
-
 </html>
