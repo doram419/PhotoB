@@ -10,7 +10,6 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>고객 센터</title>
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 <link type="text/css" rel="stylesheet"
 	href='<c:url value="/css/common_style.css"/>' />
 	
@@ -21,7 +20,7 @@
 
 	<div class="main-content">
 		<div class="header">
-			<h2>재고 관리</h2>
+			<h2>고객 센터</h2>
 		</div>
 		<div class="card">
 			<div class="card-header">재고 검색</div>
@@ -82,7 +81,6 @@
 	</div>
 	  
 	<c:import url="/WEB-INF/views/admin/includes/admin_footer.jsp"></c:import>
-	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </body>
 	<footer>
 	 <div class="pagination">
