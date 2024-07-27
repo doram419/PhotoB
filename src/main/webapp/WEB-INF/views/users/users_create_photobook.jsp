@@ -71,10 +71,10 @@
 			<input type="hidden" name="albumId" value="${sessionScope.albumId}">
 			<input type="hidden" name="userId"
 				value="${sessionScope.authUser.userId}">
-			
-			<input type="file" id="photoUpload" name="photoUpload" accept="image/*" multiple>
+			<input type="file" id="photoUpload" accept=".jpeg, .jpg" required="required" multiple/>
 		</form>
 		<button type="button" id="img-add-btn">사진 추가</button>
+		
 	</div>
 
 	<div class="preview-section">
