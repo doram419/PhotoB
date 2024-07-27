@@ -8,7 +8,6 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import himedia.photobook.controllers.DataConverter;
 import himedia.photobook.repositories.dao.AlbumDao;
 import himedia.photobook.repositories.dao.InventoryDao;
 import himedia.photobook.repositories.dao.OrderDao;
@@ -20,6 +19,7 @@ import himedia.photobook.repositories.vo.AlbumVo;
 import himedia.photobook.repositories.vo.InventoryVo;
 import himedia.photobook.repositories.vo.OrdersVo;
 import himedia.photobook.repositories.vo.UsersVo;
+import himedia.photobook.tools.DataConverter;
 
 @Service
 public class AdminOrderService {
@@ -203,5 +203,12 @@ public class AdminOrderService {
 		String count = orderDaoImpl.count();
 		return count;
 	}
-
+	//판매량 조회
+	public Map<String, Object> Salecount()	{
+		return orderDaoImpl.Salecount();
+		
+	}
+	public List<Map<String,Object>> getTopAlbum()	{
+		return orderDaoImpl.getTopAlbum();
+	}
 }

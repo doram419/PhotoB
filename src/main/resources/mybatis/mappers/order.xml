@@ -104,8 +104,20 @@
 		TOTAL = #{total}
 		WHERE ORDER_ID=#{updateId}
 	</update>
-	
+	<select id="selectRecentOrderByUserId" parameterType="String" resultType="OrdersVo">
+		SELECT 
+			ORDER_ID as orderId, 
+			USER_ID as userId,
+			ALBUM_ID as albumId, 
+			ORDER_DATE as orderDate,
+			TOTAL, O_QUANTITY as oQuantity
+		FROM ORDERS
+		Where USER_ID = #{value}
+		ORDER BY ORDER_DATE DESC
+		FETCH FIRST 1 ROW ONLY
+	</select>
 	<select id="countOrder" resultType="String">
+
 	WITH 
 order_count AS (SELECT COUNT(order_id) AS count FROM orders),
 shipment_count AS (SELECT COUNT(shipment_id) AS count FROM shipments),
@@ -115,7 +127,28 @@ SELECT
 FROM 
     order_count o, 
     shipment_count s, 
-    refund_count r</select>
-    
-    
+    refund_count r
+    </select>
+    <!--효원코드 판매량 조회하는거임  -->
+    <select id="countSale" resultType="map">
+    SELECT 
+            SUM(CASE WHEN TRUNC(s.SHIPMENT_DATE) = TRUNC(SYSDATE) THEN o.TOTAL ELSE 0 END) as todaySales,
+            SUM(CASE WHEN TRUNC(s.SHIPMENT_DATE) >= TRUNC(SYSDATE, 'MM') THEN o.TOTAL ELSE 0 END) as monthlySales,
+            SUM(CASE WHEN TRUNC(s.SHIPMENT_DATE) >= TRUNC(SYSDATE, 'YYYY') THEN o.TOTAL ELSE 0 END) as yearlySales,
+            SUM(o.TOTAL) as totalSales
+        FROM ORDERS o
+        JOIN SHIPMENTS s ON o.ORDER_ID = s.ORDER_ID
+        WHERE s.SHIPMENT_STATUS = 'C'
+    </select>
+    <!-- 효원코드 제일 많이팔린거 다섯개 들고오는거임-->
+    <select id="getTopAlbum" resultType="map">
+    SELECT o.ALBUM_ID, SUM(o.O_QUANTITY) as SALES_COUNT
+    FROM ORDERS o
+    JOIN SHIPMENTS s ON o.ORDER_ID = s.ORDER_ID
+    WHERE s.SHIPMENT_STATUS = 'C'
+    GROUP BY o.ALBUM_ID
+    ORDER BY SALES_COUNT DESC
+    FETCH FIRST 5 ROWS ONLY
+</select>
+
 </mapper>

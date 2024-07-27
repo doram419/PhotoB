@@ -2,13 +2,16 @@ package himedia.photobook.controllers.users;
 
 
 import himedia.photobook.repositories.vo.UsersVo;
-
-
-
+import himedia.photobook.services.admin.AdminOrderService;
 import himedia.photobook.services.users.UsersService;
 import jakarta.servlet.http.HttpSession;
+
+import java.util.List;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -24,6 +27,8 @@ import org.springframework.web.servlet.ModelAndView;
 public class UsersController {
 	@Autowired
 	private UsersService usersService;
+	@Autowired
+	private AdminOrderService adminOrderService;
 
 	@GetMapping("/login")
 	public String login() {
@@ -31,8 +36,13 @@ public class UsersController {
 		return "/WEB-INF/views/users/users_login.jsp";
 	}
 
+	
+	//홈화면
 	@RequestMapping({ "/home", "/index", "", "/" })
-	public String home() {
+	public String home(Model model) {
+		List<Map<String,Object>> topData = adminOrderService.getTopAlbum();
+        model.addAttribute("topAlmubs",topData);
+        System.out.println("상위 다섯개 앨범id:"+ topData);
 		return "/WEB-INF/views/users/users_index.jsp";
 	}
 
