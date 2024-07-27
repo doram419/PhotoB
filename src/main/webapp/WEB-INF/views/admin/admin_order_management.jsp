@@ -10,11 +10,7 @@ pageEncoding="UTF-8"%>
 <title>주문 관리</title>
 <link type="text/css" rel="stylesheet" href="<c:url value='/css/common_style.css'/>" />
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script>
-function confirmStatusChange() {
-return confirm("상태를 변경하시겠습니까?");
-}
-</script>
+<script src="<c:url value='/javascript/admin/admin.js'/>"></script>
 </head>
 <body>
 <c:import url="/WEB-INF/views/admin/includes/admin_header.jsp"></c:import>
@@ -70,13 +66,13 @@ value="${param.keyword}">
     <td>${orderInfo.ordersVo.total}원</td>
     <td>${orderInfo.status}</td>
     <td>
-		<form action="<c:url value="/admin/order/createShipment"/>" method="post">
+		<form action="<c:url value="/admin/order/createShipment"/>" method="post" id="createShipment">
 			<input type="hidden" name="createOrderId" value="${orderInfo['ordersVo'].orderId}"/>
-			<button type="submit" class="btn btn-primary">배송 생성</button>
+			<button type="submit" class="btn btn-primary" onclick="createShipment(event)">배송 생성</button>
 		</form>
-		<form action="<c:url value="/admin/order/createRefund"/>" method="post">
+		<form action="<c:url value="/admin/order/createRefund"/>" method="post" id="createRefund">
 			<input type="hidden" name="createOrderId" value="${orderInfo['ordersVo'].orderId}"/>
-			<button type="submit" class="btn btn-primary">환불 생성</button>
+			<button type="submit" class="btn btn-primary" onclick="createRefund(event)">환불 생성</button>
 		</form>
 	</td>
 </tr>

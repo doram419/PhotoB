@@ -13,6 +13,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link type="text/css" rel="stylesheet"
 	href='<c:url value="/css/common_style.css"/>' />
+<script src="<c:url value='/javascript/admin/admin.js'/>"></script>
 </head>
 <body>
 	<c:import url="/WEB-INF/views/admin/includes/admin_header.jsp"></c:import>
@@ -44,7 +45,7 @@
             </tr>
          	<tr>
                 <td colspan="6" style="text-align: center;">
-                    <input type="submit" value="확인"> 
+                    <input type="submit" value="확인" onclick="productModify(event)"> 
                     <input type="button" id="listBtn" value="상품목록" style="float: right;"
                         onclick="location.href='<c:url value='/admin/products/search'/>'">
                 </td>

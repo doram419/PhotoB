@@ -43,7 +43,7 @@
 										<a
 											href="<c:url value="/users/board/${postMap['boardVo'].userId}/${postMap['boardVo'].boardId }/modify"/>">수정</a>
 										<a
-											href="<c:url value="/users/board/${postMap['boardVo'].userId}/${postMap['boardVo'].boardId }/delete"/>">삭제</a>
+											href="<c:url value="/users/board/${postMap['boardVo'].userId}/${postMap['boardVo'].boardId }/delete"/>" onclick="boardDelete2(event)">삭제</a>
 									</c:if>
 								</c:if></td>
 						</tr>

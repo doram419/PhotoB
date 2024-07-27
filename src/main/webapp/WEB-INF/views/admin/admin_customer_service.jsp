@@ -57,7 +57,7 @@
 								<td>${postMap['boardVo'].status}</td>
 								<td><a
 									href="<c:url value="/admin/board/post/${postMap['boardVo'].userId}/${postMap['boardVo'].boardId }"/>">
-										<button class="btn btn-primary">상세보기</button>
+										<button class="btn btn-primary" onclick="confirmNavigation(event)">상세보기</button>
 								</a></td>
 							</tr>
 						</c:forEach>
