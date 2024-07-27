@@ -31,8 +31,8 @@ public class AdminController {
 	private AdminRefundServiceImpl adminRefundServiceImpl;
 	@Autowired
 	private AdminCommentServiceImpl adminCommentServiceImpl;
-	
-	private AdminInventoryServiceImpl adminInventoryService;
+	@Autowired
+	private AdminInventoryServiceImpl adminInventoryServiceImpl;
 
 	
 	@RequestMapping({"","/home"})
@@ -83,8 +83,8 @@ public class AdminController {
 	}
 	@RequestMapping("/inventory")
 	public String inventory(@RequestParam(value = "page", defaultValue = "1") int page,@RequestParam(value = "size", defaultValue = "5") int size ,Model md) {
-		List<InventoryVo> list = adminInventoryService.getPagedInventory(page, size);
-		int totalItems =  adminInventoryService.getTotalCount();
+		List<InventoryVo> list = adminInventoryServiceImpl.getPagedInventory(page, size);
+		int totalItems =  adminInventoryServiceImpl.getTotalCount();
 		int totalPages =(int)Math.ceil((double) totalItems/size);
 		
 		md.addAttribute("invenList",list);

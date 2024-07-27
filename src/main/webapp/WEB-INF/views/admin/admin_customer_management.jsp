@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
+ <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
@@ -12,6 +12,7 @@
 <title>고객 관리</title>
 <link type="text/css" rel="stylesheet"
 	href="<c:url value="/css/common_style.css"/>" />
+<script src="<c:url value='/javascript/admin/admin.js'/>"></script>
 </head>
 
 <body>
@@ -73,7 +74,7 @@
 								<td>${user.address}</td>
 								<td>${user.role}</td>
 								<td> 
-								<a href="<c:url value='/admin/update?userId=${user.userId}'/>">
+								<a href="<c:url value='/admin/update?userId=${user.userId}'/>" >
 										<button class="btn btn-primary">수정</button></a>
 								 
 								<a href="<c:url value='/admin/delete?userId=${user.userId}'/>">
