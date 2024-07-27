@@ -7,12 +7,7 @@
 		rel="stylesheet" 
 		href='<c:url value="/css/header_footer.css"/>'>
 </head>
-  
-  <div id='wrapper'>
-  <div>
-    content
-  </div>
-</div>
-<footer>
+
+<footer class="bg-light text-center text-lg-start fixed-bottom py-3 ">
     <p>&copy; 2024 불사조 포토북 제작 서비스 &copy;</p>
 </footer>

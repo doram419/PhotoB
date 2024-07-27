@@ -12,12 +12,9 @@
     <title>PHOTOB</title>
 
       	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-    	<!-- <link type="text/css" 
-        rel="stylesheet" 
-        href='<c:url value="/css/home_index_style.css"/>'> -->
 </head>
 
-<body class="d-flex flex-column min-vh-100">
+<body class="d-flex flex-column min-vh-2000">
     <c:import url="/WEB-INF/views/users/includes/users_header.jsp"></c:import>
 
     <main class="flex-grow-1">
@@ -42,9 +39,9 @@
         	</div>
         </section>
     </main>
- 	<footer class="bg-light text-center text-lg-start fixed-bottom py-2">
+    <footer class="bg-light text-center text-lg-start fixed-bottom py-2">
     <c:import url="/WEB-INF/views/users/includes/users_footer.jsp"></c:import>
-	</footer>
+    </footer>
     <script type="text/javascript">
         function showLoginMessage() {
             alert("로그인 후 이용 가능합니다");
