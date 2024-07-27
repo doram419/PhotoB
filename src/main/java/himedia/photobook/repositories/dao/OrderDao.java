@@ -41,4 +41,10 @@ public interface OrderDao {
 	public OrdersVo selectRecentOrderByUserId(String userId);
 	//미처리 주문 갯수 들고오는
 	public String count();
+	//판매액 조회
+	public Map<String, Object> Salecount();
+	public List<Map<String, Object>> getTopAlbum();
+	
 }
+	
+
