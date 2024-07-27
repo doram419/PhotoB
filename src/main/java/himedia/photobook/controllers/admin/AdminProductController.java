@@ -22,7 +22,9 @@ public class AdminProductController {
 	private AdminProductService adminProductService;
 	
 	@GetMapping("/product")
-	public String product() {
+	public String product(Model md) {
+		List<Map<String, Object>> productMap = adminProductService.getProductInfos();
+        md.addAttribute("ProductMap", productMap);
 		return "/WEB-INF/views/admin/product/admin_product.jsp";
 	}
 	

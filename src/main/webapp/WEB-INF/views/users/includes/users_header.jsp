@@ -13,7 +13,7 @@
 </head>
 
 <header>
-    <h1>PHOTOB</h1>
+    <h1><a href="<c:url value="/users"/>"></a>PHOTOB</h1>
     <nav>
         <ul>
 	    	<li><a href="<c:url value="/users/home"/>"><i class="bi bi-house-heart" style="font-size: 24px;"></i></a></li>
