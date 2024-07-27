@@ -36,11 +36,6 @@
 						</select> <label for="search-input">검색어:</label> <input type="text"
 							name="keyword" placeholder="검색어를 입력하세요">
 					</div>
-					<div class="form-group">
-						<label>가입일</label> 
-						<input type="date" id="start-date" name="start-date">
-						<input type="date" id="end-date" name="end-date">
-					</div>
 					<button type="submit" class="btn btn-primary">검색</button>
 					<button type="reset" class="btn btn-secondary">초기화</button>
 				</form>
@@ -58,8 +53,7 @@
 							<th>이메일</th>
 							<th>핸드폰</th>
 							<th>주소</th>
-							<th>가입일</th>
-							<th>작업</th>
+							<th></th>
 						</tr>
 					</thead>
 					<tbody>
