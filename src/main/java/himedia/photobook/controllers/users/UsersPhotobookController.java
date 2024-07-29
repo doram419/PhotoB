@@ -80,7 +80,7 @@ public class UsersPhotobookController {
 
 		 Long priceDisplay = albumPrice * oQuantity;
 		System.out.println("photobookorder에서 받아오는 수량"+oQuantity);
-		userPhotobookService.orderInsert(userId, albumId, oQuantity);
+		userPhotobookService.orderInsert(userId, albumId, oQuantity, multipartFile);
 
 		boolean success = userPhotobookService.orderInsert(userId, albumId, oQuantity, multipartFile);
 
