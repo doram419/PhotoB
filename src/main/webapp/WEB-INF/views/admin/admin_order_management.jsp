@@ -66,15 +66,19 @@ value="${param.keyword}">
     <td>${orderInfo.ordersVo.total}원</td>
     <td>${orderInfo.status}</td>
     <td>
-		<form action="<c:url value="/admin/order/createShipment"/>" method="post" id="createShipment">
-			<input type="hidden" name="createOrderId" value="${orderInfo['ordersVo'].orderId}"/>
-			<button type="submit" class="btn btn-primary" onclick="createShipment(event)">배송 생성</button>
-		</form>
-		<form action="<c:url value="/admin/order/createRefund"/>" method="post" id="createRefund">
-			<input type="hidden" name="createOrderId" value="${orderInfo['ordersVo'].orderId}"/>
-			<button type="submit" class="btn btn-primary" onclick="createRefund(event)">환불 생성</button>
-		</form>
-	</td>
+        <form action="<c:url value='/admin/order/createShipment'/>" method="post" id="createShipment">
+            <input type="hidden" name="createOrderId" value="${orderInfo.ordersVo.orderId}"/>
+            <button type="submit" class="btn btn-primary" 
+                <c:if test="${orderInfo.status == '배송 대기' || orderInfo.status == '배송 중' || orderInfo.status == '배송 완료'}">disabled</c:if>
+                onclick="createShipment(event)">배송 생성</button>
+        </form>
+        <form action="<c:url value='/admin/order/createRefund'/>" method="post" id="createRefund">
+            <input type="hidden" name="createOrderId" value="${orderInfo.ordersVo.orderId}"/>
+            <button type="submit" class="btn btn-primary" 
+                <c:if test="${orderInfo.status == '환불 대기' || orderInfo.status == '환불 완료'}">disabled</c:if>
+                onclick="createRefund(event)">환불 생성</button>
+        </form>
+    </td>
 </tr>
 </c:forEach>
 </tbody>
