@@ -6,7 +6,7 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>프로필</title>
+    <title>Profile</title>
     <link type="text/css" 
 		rel="stylesheet" 
 		href='<c:url value="/css/profile_style.css"/>'>

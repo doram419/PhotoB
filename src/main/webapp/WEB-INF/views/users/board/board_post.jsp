@@ -16,9 +16,8 @@
     <title>글 내용 페이지</title>
     <!-- 여기 변경 -->
     
-  	<link type="text/css" 
-		rel="stylesheet" 
-		href='<c:url value="/css/common-style.css"/>'>
+  	<link type="text/css" rel="stylesheet"
+	href='<c:url value="/css/board_style.css"/>'>
 </head>
 
 <body>
