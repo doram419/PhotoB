@@ -36,6 +36,7 @@
 
 </head>
 <body>
+	
     <c:import url="/WEB-INF/views/admin/includes/admin_header.jsp"></c:import>
 
     <div class="main-content">
@@ -76,9 +77,6 @@
             </div>
         </div>
     </div>
-
-
-
 <script>
     // 판매 데이터 차트 생성
     var ctx = document.getElementById('salesChart').getContext('2d');

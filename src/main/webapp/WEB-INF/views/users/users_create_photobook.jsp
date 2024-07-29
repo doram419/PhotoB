@@ -6,7 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>포토북 제작 - 사진 업로드 및 미리보기</title>
+<title>사진 업로드 및 미리보기</title>
 <link type="text/css" rel="stylesheet"
 	href='<c:url value="/css/create_photobook_style.css"/>'>
 <link rel="stylesheet" href="<c:url value='/css/header_footer.css'/>">
@@ -54,7 +54,7 @@
 <body>
 	<c:import url="/WEB-INF/views/users/includes/users_header.jsp" />
 
-	<h1>포토북 제작 - 사진 업로드 및 미리보기</h1>
+	<h1>제작</h1>
 
 	<div class="selected-options">
 		<h2>선택된 옵션</h2>
