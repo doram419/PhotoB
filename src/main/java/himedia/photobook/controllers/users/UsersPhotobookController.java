@@ -76,12 +76,12 @@ public class UsersPhotobookController {
 			Long oQuantity = (Long) session.getAttribute("oQuantity");
 
 			Long priceDisplay = albumPrice * oQuantity;
-			userPhotobookService.orderInsert(userId, albumId, oQuantity, multipartFile);
 
-//			boolean success = userPhotobookService.orderInsert(userId, albumId, oQuantity, multipartFile);
+			boolean success = userPhotobookService.orderInsert(userId, albumId, oQuantity, multipartFiles);
 		}
 		else
 		{
+			//TODO: 로그인 처리
 			model.addAttribute("error", "로그인이 필요합니다");
 			return "redirect:/users/order";
 		}
