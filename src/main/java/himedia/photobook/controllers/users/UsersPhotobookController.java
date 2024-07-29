@@ -18,6 +18,7 @@ import himedia.photobook.repositories.vo.UsersVo;
 import himedia.photobook.services.users.UserPhotobookService;
 import jakarta.servlet.http.HttpSession;
 
+
 @Controller
 @RequestMapping("/users")
 public class UsersPhotobookController {
@@ -56,30 +57,36 @@ public class UsersPhotobookController {
 			return "/WEB-INF/views/users/users_create_photobook.jsp";
 		}
 		else 	{
-			 model.addAttribute("error", "재고가 부족합니다."); 
+			model.addAttribute("error", "재고가 부족합니다."); 
 			return "/WEB-INF/views/users/users_photobook.jsp";
 		}
 	}
 
 	@PostMapping("/photobookOrder")
 	public String photobookorder(@RequestParam(value = "albumId", required = false) String albumId,
-			@RequestParam("canvasFiles") List<MultipartFile> multipartFiles,
+			@RequestParam("canvasFiles") List<MultipartFile> multipartFiles, Model model,
 			HttpSession session) {
-		//TODO: if authUser null?
-		UsersVo authUser = (UsersVo) session.getAttribute("authUser");
 		
-		//TODO:사진 조정하기
-		String userId = authUser.getUserId();
-		InventoryVo inventoryVo = userPhotobookService.findAlbumPriceByAlbumId(albumId);
-		Long albumPrice = inventoryVo.getAlbumPrice();
-		Long oQuantity = (Long) session.getAttribute("oQuantity");
+		UsersVo authUser = (UsersVo) session.getAttribute("authUser");
+		if(authUser != null)
+		{
+			String userId = authUser.getUserId();
+			InventoryVo inventoryVo = userPhotobookService.findAlbumPriceByAlbumId(albumId);
+			Long albumPrice = inventoryVo.getAlbumPrice();
+			Long oQuantity = (Long) session.getAttribute("oQuantity");
 
-		 Long priceDisplay = albumPrice * oQuantity;
-		System.out.println("photobookorder에서 받아오는 수량"+oQuantity);
-//		userPhotobookService.orderInsert(userId, albumId, oQuantity, multipartFile);
+			Long priceDisplay = albumPrice * oQuantity;
+			userPhotobookService.orderInsert(userId, albumId, oQuantity, multipartFile);
 
-//		boolean success = userPhotobookService.orderInsert(userId, albumId, oQuantity, multipartFile);
-
+//			boolean success = userPhotobookService.orderInsert(userId, albumId, oQuantity, multipartFile);
+		}
+		else
+		{
+			model.addAttribute("error", "로그인이 필요합니다");
+			return "redirect:/users/order";
+		}
+		
+		model.addAttribute("success", "주문에 성공했습니다");
 		return "redirect:/users/order";
 	}
 

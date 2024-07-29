@@ -12,10 +12,11 @@ window.addEventListener("load", event => {
     const cancelOrderButton = document.getElementById('cancelOrder');
     const confirmOrderButton = document.getElementById('confirmOrder');
     const matarial = document.getElementById('material');
-    const matarialValue = matarial.value;
     const color = document.getElementById('color');
     const albumSize = document.getElementById('albumSize');
     const oQuantity = document.getElementById('oQuantity');
+	const albumId = document.getElementById('albumId');
+	const userId = document.getElementById('userId');
 
     let canvases = [];
     let currentCanvasIndex = 0;
@@ -312,6 +313,8 @@ window.addEventListener("load", event => {
 
     function sendCanvasesToServer() {
         const formData = new FormData();
+        formData.append('albumId', albumId.value);
+        formData.append('userId', userId.value);
 
         canvases.forEach((canvas, index) => {
             // 캔버스의 데이터 URL을 Blob으로 변환
@@ -328,7 +331,7 @@ window.addEventListener("load", event => {
 
         // 모든 캔버스가 처리된 후 서버로 전송
         setTimeout(() => {
-            fetch('/users/photobookOrder', {
+            fetch('/Photobook_team4/users/photobookOrder', {
                 method: 'POST',
                 body: formData
             })
