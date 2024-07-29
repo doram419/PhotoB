@@ -88,8 +88,6 @@
 			</div>
 		</div>
 	</div>
-	  
-	<c:import url="/WEB-INF/views/admin/includes/admin_footer.jsp"></c:import>
 </body>
 <footer>
 	<div class="pagination">
