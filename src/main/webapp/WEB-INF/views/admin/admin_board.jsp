@@ -10,7 +10,7 @@
 <meta charset="UTF-8">
 <title>게시판 - 포토북 제작 서비스</title>
 <link type="text/css" rel="stylesheet"
-	href='<c:url value="/css/header_footer.css"/>'>
+	href='<c:url value="/css/common_style.css"/>'>
 </head>
 
 <body>
