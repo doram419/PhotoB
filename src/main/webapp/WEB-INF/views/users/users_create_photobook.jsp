@@ -8,6 +8,21 @@
     <title>포토북 제작 - 사진 업로드 및 미리보기</title>
     <link type="text/css" rel="stylesheet" href='<c:url value="/css/create_photobook_style.css"/>'>
     <link rel="stylesheet" href="<c:url value='/css/header_footer.css'/>">
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.3/themes/base/jquery-ui.css">
+    <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+    <script src="https://code.jquery.com/ui/1.13.3/jquery-ui.js"></script>
+    <style>
+        .preview-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        .preview-container img {
+            width: 300px;
+            height: auto;
+            margin: 5px;
+        }
+    </style>
     
 </head>
 <body>
@@ -53,6 +68,9 @@
             
         <button type="submit" class="create-button">제작 완료</button>
     </form>
+    
+    <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+    <script src="https://code.jquery.com/ui/1.13.3/jquery-ui.js"></script>
 
     <script>
         const material = "${param.material}";
@@ -84,6 +102,7 @@
                     img.style.width = '300px'; // 미리보기 이미지 크기 조정
                     img.style.height = 'auto';
                     img.style.margin = '5px'; // 이미지 간격 설정
+                    $(img).draggable({ containment: '.preview-container', cursor: 'move' }); // 드래그 가능하도록 설정
                     previewContainer.appendChild(img);
                     if (!imagePages[currentPage]) {
                         imagePages[currentPage] = [];
@@ -139,16 +158,37 @@
             // 이전 페이지의 이미지 배열이 있으면 미리보기에 추가
             if (imagePages[currentPage]) {
                 previewContainer.innerHTML = ''; // 기존 미리보기 삭제
-                imagePages[currentPage].forEach(imageUrl => {
+                imagePages[currentPage].forEach((imageUrl, index) => {
                     const img = document.createElement('img');
                     img.src = imageUrl;
                     img.style.width = '300px'; // 미리보기 이미지 크기 조정
                     img.style.height = 'auto';
                     img.style.margin = '5px'; // 이미지 간격 설정
+                    $(img).draggable({ containment: '.preview-container', cursor: 'move' }); // 드래그 가능하도록 설정
+                    $(img).data('index', index); // 이미지의 인덱스 데이터 설정
                     previewContainer.appendChild(img);
                 });
             }
         }
+     // 드래그 기능 설정
+        $(document).on('mouseenter', '.preview-container img', function() {
+            $(this).draggable({
+                containment: '.preview-container', // 드래그 제한 영역 설정
+                cursor: 'move', // 드래그 커서 설정
+                zIndex: 100,
+                start: function(event, ui) {
+                    $(this).addClass('dragging'); // 드래그 시작 시 클래스 추가
+                },
+                stop: function(event, ui) {
+                    $(this).removeClass('dragging'); // 드래그 종료 시 클래스 제거
+                    const newIndex = $(this).index(); // 새 인덱스 가져오기
+                    const currentPageImages = imagePages[currentPage];
+                    currentPageImages.splice(newIndex, 0, currentPageImages.splice($(this).data('index'), 1)[0]);
+                    imagePages[currentPage] = currentPageImages; // 이미지 배열 갱신
+                }
+            });
+        });
+
         
     </script>
 

@@ -1,0 +1,3 @@
+  $( function() {
+    $( "#preview-container" ).draggable();
+  } );

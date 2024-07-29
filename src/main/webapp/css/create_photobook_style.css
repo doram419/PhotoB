@@ -21,12 +21,19 @@
         .preview-container {
             border: 1px solid #ccc;
             padding: 10px;
+            flex-wrap: wrap;
             position: relative;
             width: 80%;
             max-width: 600px;
             padding-bottom: 56.57%; /* A4 aspect ratio (1/sqrt(2)) */
             overflow: hidden;
             margin: 5px; /* 이미지 사이 간격 설정 */
+        }
+        .preview-container img {
+            width: 300px;
+            height: auto;
+            margin: 5px;
+            cursor: move; /* 드래그 가능하도록 커서 설정 */
         }
         .preview-page {
             display: flex;
@@ -69,3 +76,4 @@
             border: none;
             cursor: pointer;
         }
+        
