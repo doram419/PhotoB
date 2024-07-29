@@ -24,9 +24,13 @@
 	            <li><a href="<c:url value="/users/order"/>">Order</a></li>
 	            <li><a href="<c:url value="/users/boardList"/>">Board</a></li>
         		<li><a href="<c:url value="/users/logout"/>" onclick="logOut(event)">Logout</a></li>
+        		<c:if test="${sessionScope.authUser.role == 'U'}">
+        		<a><b>${userName}</b>님</a>
+        		</c:if>
 		        <c:if test="${sessionScope.authUser.role == 'A'}">
 		            <li><a href="<c:url value='/admin/home' />" class="admin-menu" onclick="goAdmin(event)">Admin Page</a></li>
 		        </c:if>
+		        
     		</c:when>
 		    <c:otherwise>
 		        <li><a href="<c:url value='/users/login' />"><i class="bi bi-person" style="font-size: 24px;"></i></a></li>
