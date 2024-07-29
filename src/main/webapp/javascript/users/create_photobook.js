@@ -7,6 +7,15 @@ window.addEventListener("load", event => {
     const addCanvasButton = document.getElementById('addCanvasButton');
     const canvasGallery = document.getElementById('canvasGallery');
     const createButton = document.getElementById('createButton');
+    const confirmationPopup = document.getElementById('confirmationPopup');
+    const overlay = document.getElementById('overlay');
+    const cancelOrderButton = document.getElementById('cancelOrder');
+    const confirmOrderButton = document.getElementById('confirmOrder');
+    const matarial = document.getElementById('material');
+    const matarialValue = matarial.value;
+    const color = document.getElementById('color');
+    const albumSize = document.getElementById('albumSize');
+    const oQuantity = document.getElementById('oQuantity');
 
     let canvases = [];
     let currentCanvasIndex = 0;
@@ -344,7 +353,26 @@ window.addEventListener("load", event => {
 
     addCanvasButton.addEventListener('click', createNewCanvas);
 
-    createButton.addEventListener('click', sendCanvasesToServer);
-
     createNewCanvas();
+    
+    createButton.addEventListener('click', function() {
+            const orderDetails = document.getElementById('orderDetails');
+            orderDetails.innerHTML = `
+                <p>커버 재질: ${matarial.value}</p>
+                <p>사이즈: ${albumSize.value}</p>
+                <p>색상: ${color.value}</p>
+                <p>주문 수량: ${oQuantity.value}개</p>`;
+            confirmationPopup.style.display = 'block';
+            overlay.style.display = 'block';
+   });
+   
+    // 취소 버튼 클릭 시 팝업 닫기
+    cancelOrderButton.addEventListener('click', function() {
+        confirmationPopup.style.display = 'none';
+        overlay.style.display = 'none';
+    });
+    
+    confirmOrderButton.addEventListener('click', function() {
+        sendCanvasesToServer();
+    });
 });
