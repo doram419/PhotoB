@@ -12,7 +12,6 @@ import org.springframework.web.servlet.ModelAndView;
 
 import org.springframework.web.multipart.MultipartFile;
 
-
 import himedia.photobook.repositories.dao.InventoryDaoImpl;
 import himedia.photobook.repositories.vo.AlbumVo;
 import himedia.photobook.repositories.vo.InventoryVo;
@@ -30,7 +29,6 @@ public class UsersPhotobookController {
 
 	@GetMapping({ "/photobook", "pb", "photo" })
 	public String photobook() {
-		
 		return "/WEB-INF/views/users/users_photobook.jsp";
 	}
 
@@ -45,6 +43,7 @@ public class UsersPhotobookController {
 		
 		
 		if (albumVo == null) {
+			System.out.println(",앨범vo널임"+albumVo);
 			model.addAttribute("error");
 			return "redirect:/users/photobook";
 		}
@@ -55,6 +54,7 @@ public class UsersPhotobookController {
 		if (aQuantity >= oQuantity)	{
 		albumsession.setAttribute("albumId", albumId);
 		albumsession.setAttribute("oQuantity", oQuantity);
+		System.out.println("create_photobook으로 들어오는 수량" + oQuantity);
 		return "/WEB-INF/views/users/users_create_photobook.jsp";
 		}
 		else 	{
@@ -67,22 +67,17 @@ public class UsersPhotobookController {
 
 	@PostMapping("/photobookOrder")
 	public String photobookorder(@RequestParam(value = "albumId", required = false) String albumId,
-			@RequestParam("photoUpload") MultipartFile multipartFile,
 			HttpSession session) {
-		//TODO: if authUser null?
 		UsersVo authUser = (UsersVo) session.getAttribute("authUser");
-		
-		//TODO:사진 조정하기
 		String userId = authUser.getUserId();
 		InventoryVo inventoryVo = userPhotobookService.findAlbumPriceByAlbumId(albumId);
 		Long albumPrice = inventoryVo.getAlbumPrice();
 		Long oQuantity = (Long) session.getAttribute("oQuantity");
-
-		 Long priceDisplay = albumPrice * oQuantity;
-		System.out.println("photobookorder에서 받아오는 수량"+oQuantity);
+		Long priceDisplay = albumPrice * oQuantity;
 		userPhotobookService.orderInsert(userId, albumId, oQuantity);
 
 		boolean success = userPhotobookService.orderInsert(userId, albumId, oQuantity, multipartFile);
+
 
 		return "redirect:/users/order";
 	}

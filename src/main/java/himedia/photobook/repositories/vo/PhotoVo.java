@@ -1,21 +1,20 @@
 package himedia.photobook.repositories.vo;
 
+// 작성자 : 유승원
 public class PhotoVo {
 	private String photoId;
 	private String orderId;
-	private String photoPath;
-	private Long photoSeqNo;
+	private String photoName;
 	
 	public PhotoVo() {
 		
 	}
 
-	public PhotoVo(String photoId, String orderId, String photoPath, Long photoSeqNo) {
+	public PhotoVo(String photoId, String orderId, String photoName) {
 		super();
 		this.photoId = photoId;
 		this.orderId = orderId;
-		this.photoPath = photoPath;
-		this.photoSeqNo = photoSeqNo;
+		this.photoName = photoName;
 	}
 
 	public String getPhotoId() {
@@ -34,26 +33,18 @@ public class PhotoVo {
 		this.orderId = orderId;
 	}
 
-	public String getPhotoPath() {
-		return photoPath;
+	public String getPhotoName() {
+		return photoName;
 	}
 
-	public void setPhotoPath(String photoPath) {
-		this.photoPath = photoPath;
+	public void setPhotoName(String photoName) {
+		this.photoName = photoName;
 	}
 
-
-	public Long getPhotoSeqNo() {
-		return photoSeqNo;
-	}
-
-	public void setPhotoSeqNo(Long photoSeqNo) {
-		this.photoSeqNo = photoSeqNo;
-	}
-	
 	@Override
 	public String toString() {
-		return "PhotoVo [photoId=" + photoId + ", orderId=" + orderId + ", photoPath=" + photoPath +
-				", photoSeqNo=" + photoSeqNo + "]";
+		return "PhotoVo [photoId=" + photoId + ", orderId=" + orderId + ", photoName=" + photoName + "]";
 	}
+	
+
 }
