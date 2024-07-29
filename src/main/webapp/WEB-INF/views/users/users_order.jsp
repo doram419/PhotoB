@@ -9,11 +9,8 @@
 <head>
     <meta charset="UTF-8">
     <title>Order</title>
-   
+   <link rel="stylesheet" href="<c:url value='/css/order_style.css' />">
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
- <link type="text/css" 
-		rel="stylesheet" 
-		href='<c:url value="/css/header_footer.css"/>'>
 </head>
 
 <body>
@@ -43,10 +40,12 @@
                         <td>${infoMap['ordersVo'].oQuantity}</td>
                         <td>${infoMap['status']}</td>
                         <td> 
-	                        <form method="post" 
+	                        <form method="post"
 	                        	action="<c:url value="/users/order/detail"/>">
 	                        	<input type="hidden" name="ordersId" 
 	                        		value="${infoMap['ordersVo'].orderId}"/>
+	                        	<input type="hidden" name="userId" 
+	                        		value="${infoMap['ordersVo'].userId}"/>
 	                        	<input type="hidden" name="albumId" 
 	                        		value="${infoMap['ordersVo'].albumId}"/>
 	                        	<input type="hidden" name="orderDate"

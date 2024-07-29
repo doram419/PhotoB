@@ -21,7 +21,7 @@
 
 	<div class="main-content">
 		<div class="header">
-			<h2>고객 센터</h2>
+			<h2>재고 관리</h2>
 		</div>
 		<div class="card">
 			<div class="card-header">재고 검색</div>

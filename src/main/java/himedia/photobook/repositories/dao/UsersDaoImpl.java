@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import himedia.photobook.exceptions.UsersDaoException;
+import himedia.photobook.repositories.vo.OrdersVo;
 import himedia.photobook.repositories.vo.ShipmentsVo;
 import himedia.photobook.repositories.vo.UsersVo;
 
@@ -113,7 +114,6 @@ public class UsersDaoImpl implements UsersDao {
 	@Override
 	public List<UsersVo> selectUserByKeyword(String keyword)	{
 		return sqlSession.selectList("users.selectUserByKeyword", keyword);
-	
 	}
 
 }

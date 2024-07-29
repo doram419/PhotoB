@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import himedia.photobook.repositories.dao.OrderDao;
+import himedia.photobook.repositories.dao.PhotoDaoImpl;
 import himedia.photobook.repositories.dao.RefundDaoImpl;
 import himedia.photobook.repositories.dao.ShipmentsDaoImpl;
 import himedia.photobook.repositories.vo.OrdersVo;
@@ -21,6 +22,8 @@ public class UsersOrderServiceImpl {
 	private ShipmentsDaoImpl shipDao;
 	@Autowired
 	private RefundDaoImpl refundDao;
+	@Autowired
+	private PhotoDaoImpl photoDaoImpl;
 	
 	/**
 	 * 주문 조회에 필요한 정보들을 담아서 보내주는 메서드
@@ -84,5 +87,12 @@ public class UsersOrderServiceImpl {
 			word = "비정상적인 값입니다";	
 
 		return word;
+	}
+	
+	/**
+	 * 이미지 출력을 위해 앨범에 등록된 이미지 개수를 출력해주는 메서드
+	 * */
+	public int getOrderedImagesCount(String orderId) {
+		return photoDaoImpl.selectCountByOrderId(orderId);
 	}
 }

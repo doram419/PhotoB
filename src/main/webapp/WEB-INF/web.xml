@@ -9,6 +9,12 @@
   <servlet>
   	<servlet-name>spring</servlet-name>
   	<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+  	<!-- 멀티파트 설정 -->
+  	<multipart-config>
+  		<max-file-size>10485760</max-file-size><!-- 개별 업로드 파일의 최대 크기 : 10MB -->
+  		<max-request-size>20971520</max-request-size><!-- 전체 요청의 최대 크기 : 20MB -->
+  		<file-size-threshold>10485760</file-size-threshold><!-- 업로드를 위한 메모리 사이즈 -->
+  	</multipart-config>
   </servlet>
   
   <!-- 서블릿 매핑 -->
@@ -27,4 +33,14 @@
   	<param-name>contextConfigLocation</param-name>
   	<param-value>/WEB-INF/applicationContext.xml</param-value>
   </context-param>
+  
+  <!-- Multipart filter 설정 -->
+  <filter>
+        <filter-name>multipartFilter</filter-name>
+        <filter-class>org.springframework.web.multipart.support.MultipartFilter</filter-class>
+   </filter>
+   <filter-mapping>
+       <filter-name>multipartFilter</filter-name>
+       <url-pattern>/*</url-pattern>
+   </filter-mapping>
 </web-app>

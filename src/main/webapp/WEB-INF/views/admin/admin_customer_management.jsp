@@ -10,11 +10,11 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>고객 관리</title>
+
 <link type="text/css" rel="stylesheet"
 	href="<c:url value="/css/common_style.css"/>" />
 <script src="<c:url value='/javascript/admin/admin.js'/>"></script>
 </head>
-
 <body>
 	<c:import url="/WEB-INF/views/admin/includes/admin_header.jsp"></c:import>
 
@@ -36,11 +36,6 @@
 							<option value="PHONE_NUMBER">핸드폰</option>
 						</select> <label for="search-input">검색어:</label> <input type="text"
 							name="keyword" placeholder="검색어를 입력하세요">
-					</div>
-					<div class="form-group">
-						<label>가입일</label> 
-						<input type="date" id="start-date" name="start-date">
-						<input type="date" id="end-date" name="end-date">
 					</div>
 					<button type="submit" class="btn btn-primary">검색</button>
 					<button type="reset" class="btn btn-secondary">초기화</button>
@@ -88,6 +83,6 @@
 		</div>
 	</div>
 
-	<c:import url="/WEB-INF/views/admin/includes/admin_footer.jsp"></c:import>
 </body>
+<c:import url="/WEB-INF/views/admin/includes/admin_footer.jsp"></c:import>
 </html>

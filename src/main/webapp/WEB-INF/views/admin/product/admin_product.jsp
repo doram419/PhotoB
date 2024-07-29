@@ -8,7 +8,6 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>제품 관리</title>
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 <link type="text/css" rel="stylesheet"
 	href='<c:url value="/css/common_style.css"/>' />
 </head>
@@ -45,7 +44,7 @@
 							<th>상품코드</th>
 							<th>가격</th>
 							<th>사이즈</th>
-							<th></th>
+							<th colspan="2">편집</th>
 						</tr>
 					</thead>
 
@@ -56,7 +55,7 @@
 								<td>${index}
 									<c:set var="index" value="${index + 1}"/>
 								</td>
-								<td>이미지넣기</td>
+								<td><img width = "200em" src="<c:url value="/photobook-images/album/${entry['albumVo'].albumId}/mainImg.jpg" />" /></td>
 								<td>${entry['albumVo'].albumId}</td>
 								<td>${entry['inventoryVo'].albumPrice}</td>
 								<td>${entry['albumVo'].albumSize}</td>
@@ -74,7 +73,8 @@
 			</div>
 		</div>
 	</div>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </body>
+
 <c:import url="/WEB-INF/views/admin/includes/admin_footer.jsp"></c:import>
+
 </html>

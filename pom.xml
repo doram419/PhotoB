@@ -63,8 +63,6 @@
     <version>1.2</version>
 </dependency>
 
-
-	
 	<dependency>
 	    <groupId>org.glassfish.web</groupId>
 	    <artifactId>jakarta.servlet.jsp.jstl</artifactId>
@@ -97,6 +95,13 @@
 	    <groupId>org.mybatis</groupId>
 	    <artifactId>mybatis-spring</artifactId>
 	    <version>3.0.3</version>
+	</dependency>
+	
+	<!-- commons-fileupload 의존성 -->
+	<dependency>
+	    <groupId>commons-fileupload</groupId>
+	    <artifactId>commons-fileupload</artifactId>
+	    <version>1.4</version>
 	</dependency>
   </dependencies>
 </project>
