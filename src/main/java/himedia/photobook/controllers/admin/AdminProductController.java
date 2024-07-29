@@ -26,7 +26,6 @@ public class AdminProductController {
 
 	public String product(Model model) {
 		model.addAttribute("ProductMap", adminProductService.getProductInfos());
-		
 		return "/WEB-INF/views/admin/product/admin_product.jsp";
 	}
 	
