@@ -10,13 +10,13 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>고객 관리</title>
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+
 <link type="text/css" rel="stylesheet"
 	href="<c:url value="/css/common_style.css"/>" />
 </head>
 <body>
 	<c:import url="/WEB-INF/views/admin/includes/admin_header.jsp"></c:import>
-
+<div class="container">
 	<div class="main-content">
 		<div class="header">
 			<h2>고객 관리</h2>
@@ -86,7 +86,8 @@
 			</div>
 		</div>
 	</div>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+	</div>
+
 </body>
 <c:import url="/WEB-INF/views/admin/includes/admin_footer.jsp"></c:import>
 </html>
