@@ -33,4 +33,14 @@
   	<param-name>contextConfigLocation</param-name>
   	<param-value>/WEB-INF/applicationContext.xml</param-value>
   </context-param>
+  
+  <!-- Multipart filter 설정 -->
+  <filter>
+        <filter-name>multipartFilter</filter-name>
+        <filter-class>org.springframework.web.multipart.support.MultipartFilter</filter-class>
+   </filter>
+   <filter-mapping>
+       <filter-name>multipartFilter</filter-name>
+       <url-pattern>/*</url-pattern>
+   </filter-mapping>
 </web-app>

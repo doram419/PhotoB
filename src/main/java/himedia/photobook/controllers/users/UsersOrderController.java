@@ -57,9 +57,12 @@ public class UsersOrderController {
 		orderVo.setoQuantity(oQuantity);
 		orderVo.setAlbumId(albumId);
 		
+		int imgsCount = orderService.getOrderedImagesCount(ordersId);
+		
 		model.addAttribute("orderVo", orderVo);
 		model.addAttribute("orderDate", orderDate);
 		model.addAttribute("status", status);
+		model.addAttribute("imagesCount", imgsCount);
 		
 		return "/WEB-INF/views/users/order/order_detail.jsp";
 	}

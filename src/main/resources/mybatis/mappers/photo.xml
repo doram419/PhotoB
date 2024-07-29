@@ -6,4 +6,10 @@
 		INSERT INTO PHOTO(PHOTO_ID, ORDER_ID, PHOTO_PATH, PHOTO_SEQ_NO)
 		VALUES(SEQ_PHOTO_PK.nextVal, #{orderId}, #{photoPath}, #{photoSeqNo})
 	</insert>
+	<select id="selectCountByOrderId" parameterType="String"
+		resultType="int">
+		SELECT COUNT(*)
+		FROM PHOTO 
+		WHERE ORDER_ID = #{value}
+	</select>
 </mapper>

@@ -10,6 +10,8 @@
 <title>주문 상세 정보</title>
 <link type="text/css" rel="stylesheet"
 	href='<c:url value="/css/common_style.css"/>' />
+<link type="text/css" rel="stylesheet"
+	href='<c:url value="/css/order_detail.css"/>' />
 </head>
 <body>
 	<c:import url="/WEB-INF/views/admin/includes/admin_header.jsp"></c:import>
@@ -65,6 +67,14 @@
 					<strong>앨범사이즈:</strong> ${orderDetail['album'].albumSize}
 				</p>
 			</div>
+		</div>
+		<div class="card">
+			<div class="card-header">포토북 이미지</div>
+			<div id="gallery" class="card-body">
+	           	<c:forEach var="index" begin="1" end="${orderDetail['imagesCount']}">
+	           		<img src="<c:url value="/photobook-images/order/${orderDetail['user'].userId}/${orderDetail['order'].orderId}/${index}.jpg" />" />
+	       		</c:forEach>
+	        </div>	
 		</div>
 	</div>
 
