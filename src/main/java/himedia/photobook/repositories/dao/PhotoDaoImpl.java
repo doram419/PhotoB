@@ -15,4 +15,9 @@ public class PhotoDaoImpl implements PhotoDao {
 	public int insert(PhotoVo photoVo){
 		return session.insert("photo.insert", photoVo);
 	}
+	
+	@Override
+	public int selectCountByOrderId(String orderId) {
+		return session.selectOne("photo.selectCountByOrderId", orderId);
+	}
 }

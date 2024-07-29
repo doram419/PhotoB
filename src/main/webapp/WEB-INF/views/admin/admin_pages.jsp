@@ -10,14 +10,14 @@
     <title>관리자 대시보드</title>
 
     <link type="text/css" rel="stylesheet" href='<c:url value="/css/common_style.css"/>'/>
-    <link type="text/css" rel="stylesheet" href='<c:url value="/css/admin_home.css"/>' /><!-- 스타일 적용 빡셈 걍 안함 -->
+    <!--<link type="text/css" rel="stylesheet" href='<c:url value="/css/admin_home.css"/>' /> 스타일 적용 빡셈 걍 안함 -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
         .chart-container {
             display: flex;
             justify-content: space-between;
             margin-bottom: 20px;
-        }
+            }
         .chart-item {
             width: 48%;
         }
@@ -37,8 +37,10 @@
 
 
 <script src="<c:url value='/javascript/admin/admin.js'/>"></script>
+
 </head>
 <body>
+	
     <c:import url="/WEB-INF/views/admin/includes/admin_header.jsp"></c:import>
 
     <div class="main-content">
@@ -79,9 +81,6 @@
             </div>
         </div>
     </div>
-
-
-
 <script>
     // 판매 데이터 차트 생성
     var ctx = document.getElementById('salesChart').getContext('2d');
@@ -208,5 +207,6 @@
 
     
 	<c:import url="/WEB-INF/views/admin/includes/admin_footer.jsp"></c:import> 
+
 </body>
 </html>

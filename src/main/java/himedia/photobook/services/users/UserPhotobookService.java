@@ -45,29 +45,31 @@ public class UserPhotobookService {
 	}
 	
 	public boolean orderInsert(String userId, String albumId, Long oQuantity, 
-			MultipartFile file) {
+			List<MultipartFile> files) {
 		boolean result = 1 == orderDaoImpl.orderInsert(userId,albumId,oQuantity);
 		OrdersVo orderVo = orderDaoImpl.selectRecentOrderByUserId(userId);
 		PhotoVo photoVo = null;
 		
 		if(orderVo != null) {
 			String savePath = DEFUALT_PATH + userId + "/" + orderVo.getOrderId();
-			String originalFileName = file.getOriginalFilename();
-			
 			Long number = 1l;
-			String extName = originalFileName.substring(originalFileName.lastIndexOf(".")); 
-			String photoPath = null;
-			try {
-				photoPath = fileModule.saveFile(file, savePath, number.toString(), extName);
-			} catch (Exception e) {
-				e.printStackTrace();
-				// TODO: 에러 연결하기
+			
+			for (MultipartFile file : files) {
+				String originalFileName = file.getOriginalFilename();
+				
+				String extName = originalFileName.substring(originalFileName.lastIndexOf(".")); 
+				String photoPath = null;
+				
+				try {
+					photoPath = fileModule.saveFile(file, savePath, number.toString(), extName);
+				} catch (Exception e) {
+					e.printStackTrace();
+					// TODO: 에러 연결하기
+				}
+				photoVo = new PhotoVo(null, orderVo.getOrderId(), photoPath, number.longValue());
+				result = result && (1 == photoDaoImpl.insert(photoVo));
+				number = number + 1l;
 			}
-			photoVo = new PhotoVo(null, orderVo.getOrderId(), photoPath, number.longValue());
-			
-			
-			result = result && (1 == photoDaoImpl.insert(photoVo));
-			
 		}
 		
 	    return result;
@@ -86,6 +88,4 @@ public class UserPhotobookService {
 		
 		return albumOptions;
 	}
-	
-	
 }

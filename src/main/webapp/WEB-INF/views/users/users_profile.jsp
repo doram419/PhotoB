@@ -17,7 +17,7 @@
     <c:import url="/WEB-INF/views/users/includes/users_header.jsp"></c:import>
 
     <main>
-        <section id="profile">
+        <section class="profile-container">
             <h2>프로필 관리</h2>
              <form action="<c:url value='/users/profile/update'/>" method="post" id="profileUpdate">
                 <div>

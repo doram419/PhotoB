@@ -1,0 +1,12 @@
+@charset "UTF-8";
+
+#gallery {
+  display: flex;
+  overflow-x: auto;
+}
+
+#gallery img {
+	width: 150px;
+    height: 112px;
+    margin-right: 20px;
+}

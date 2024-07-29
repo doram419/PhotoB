@@ -10,7 +10,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>고객 관리</title>
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+
 <link type="text/css" rel="stylesheet"
 	href="<c:url value="/css/common_style.css"/>" />
 <script src="<c:url value='/javascript/admin/admin.js'/>"></script>
@@ -36,11 +36,6 @@
 							<option value="PHONE_NUMBER">핸드폰</option>
 						</select> <label for="search-input">검색어:</label> <input type="text"
 							name="keyword" placeholder="검색어를 입력하세요">
-					</div>
-					<div class="form-group">
-						<label>가입일</label> 
-						<input type="date" id="start-date" name="start-date">
-						<input type="date" id="end-date" name="end-date">
 					</div>
 					<button type="submit" class="btn btn-primary">검색</button>
 					<button type="reset" class="btn btn-secondary">초기화</button>
@@ -87,7 +82,7 @@
 			</div>
 		</div>
 	</div>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+
 </body>
 <c:import url="/WEB-INF/views/admin/includes/admin_footer.jsp"></c:import>
 </html>
