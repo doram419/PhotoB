@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import himedia.photobook.repositories.dao.AlbumDao;
 import himedia.photobook.repositories.dao.InventoryDao;
 import himedia.photobook.repositories.dao.OrderDao;
+import himedia.photobook.repositories.dao.PhotoDaoImpl;
 import himedia.photobook.repositories.dao.RefundDao;
 import himedia.photobook.repositories.dao.RefundDao;
 import himedia.photobook.repositories.dao.ShipmentsDao;
@@ -36,6 +37,8 @@ public class AdminOrderService {
 	private RefundDao refundDaoImpl;
 	@Autowired
 	private InventoryDao inventoryDaoImpl;
+	@Autowired
+	private PhotoDaoImpl photoDaoImpl;
 
 	private DataConverter converter = new DataConverter();
 
@@ -88,6 +91,9 @@ public class AdminOrderService {
 
 		UsersVo user = usersDaoImpl.selectOneUserById(order.getUserId());
 		orderDetail.put("user", user);
+		
+		int photoCount = photoDaoImpl.selectCountByOrderId(order.getOrderId());
+		orderDetail.put("imagesCount", photoCount);
 
 		return orderDetail;
 	}
