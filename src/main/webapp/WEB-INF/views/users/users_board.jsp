@@ -18,7 +18,7 @@
 
 	<main>
 		<section id="board">
-			<h2>Board</h2>
+			<h2>게시판</h2>
 			<table>
 
 				<thead>

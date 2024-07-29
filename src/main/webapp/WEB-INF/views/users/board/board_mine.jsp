@@ -8,9 +8,8 @@
 
 <head>
 <meta charset="UTF-8">
-<title>게시판 - 포토북 제작 서비스</title>
-<link type="text/css" rel="stylesheet"
-	href='<c:url value="/css/header_footer.css"/>'>
+<title>게시판</title>
+<link rel="stylesheet" href="<c:url value='/css/board_style.css' />">
 </head>
 
 <body>

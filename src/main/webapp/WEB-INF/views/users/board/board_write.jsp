@@ -9,7 +9,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>글 작성 페이지</title>
+    <title>글 작성</title>
   	<link rel="stylesheet" href="<c:url value='/css/board_style.css' />">
 	<script src="<c:url value='/javascript/users/user.js'/>"></script>
 </head>
@@ -17,7 +17,7 @@
 <body>
 	<c:import url="/WEB-INF/views/users/includes/users_header.jsp"></c:import>
 	
-    <h1>글 작성 페이지</h1>
+    <h1>글 작성</h1>
     
     <!-- 게시글을 나타낼 수 있는 vo 작성  -->
     <div class="main-content">

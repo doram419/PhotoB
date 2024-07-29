@@ -9,14 +9,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
+    <link rel="stylesheet" href="<c:url value='/css/board_style.css' />">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <!-- TODO: 글 제목과 연결 
     	<title>${title}</title>
     	-->
-    <title>글 내용 페이지</title>
+    <title>글 내용</title>
     <!-- 여기 변경 -->
-    
-  	<link rel="stylesheet" href="<c:url value='/css/board_style.css' />">
+
 </head>
 
 <body>
@@ -32,7 +32,7 @@
     
     <!-- 댓글 기능 지원 -->
     <hr>
-   	<p>관리자 답글</p>
+   	<p>답글</p>
     <table>
     <tr>
 			<td>${commentVo.commentId}</td>
@@ -49,6 +49,7 @@
     <p><a href="<c:url value="/users/boardList"/>">돌아가기</a></p>
  
     <c:import url="/WEB-INF/views/users/includes/users_footer.jsp"></c:import>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </body>
 
 </html>
