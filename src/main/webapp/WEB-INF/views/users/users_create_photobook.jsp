@@ -7,7 +7,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-    <title>Insert title here</title>
+    <title>사진 업로드 및 미리보기</title>
     <link rel="stylesheet" href='<c:url value="/css/new_create_photobook.css"/>'>
     <script type="text/javascript" 
         src='<c:url value="/javascript/users/create_photobook.js"/>'>
@@ -16,7 +16,7 @@
 <body>
 	<c:import url="/WEB-INF/views/users/includes/users_header.jsp"></c:import>
 
-	<h1>포토북 제작 - 사진 업로드 및 미리보기</h1>
+	<h1>제작</h1>
 
 	<div class="selected-options">
 		<h2>선택된 옵션</h2>
