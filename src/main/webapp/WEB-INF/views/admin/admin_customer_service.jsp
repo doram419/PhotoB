@@ -12,7 +12,7 @@
 <title>고객 센터</title>
 <link type="text/css" rel="stylesheet"
 	href='<c:url value="/css/common_style.css"/>' />
-<script src="<c:url value='/javascript/admin/customer_service.js'/>"></script>
+<script src="<c:url value='/javascript/admin/admin.js'/>"></script>
 </head>
 
 <body>
@@ -56,9 +56,8 @@
 								<td>${postMap['boardVo'].title}</td>
 								<td>${postMap['boardVo'].status}</td>
 								<td><a
-									href="<c:url value="/admin/board/post/${postMap['boardVo'].userId}/${postMap['boardVo'].boardId }"/>"
-									onclick="confirmNavigation(event)">
-										<button class="btn btn-primary">상세보기</button>
+									href="<c:url value="/admin/board/post/${postMap['boardVo'].userId}/${postMap['boardVo'].boardId }"/>">
+										<button class="btn btn-primary" onclick="confirmNavigation(event)">상세보기</button>
 								</a></td>
 							</tr>
 						</c:forEach>
@@ -82,29 +81,6 @@
 	<c:import url="/WEB-INF/views/admin/includes/admin_footer.jsp"></c:import>
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </body>
-<footer>
-	<div class="pagination">
-		<c:if test="${currentPage > 1}">
-			<a
-				href="<c:url value='/admin/inventory?page=${currentPage - 1}&size=5'/>">Previous</a>
-		</c:if>
 
-		<c:forEach begin="1" end="${totalPages}" var="pageNum">
-			<c:choose>
-				<c:when test="${pageNum == currentPage}">
-					<span>${pageNum}</span>
-				</c:when>
-				<c:otherwise>
-					<a href="<c:url value='/admin/inventory?page=${pageNum}&size=5'/>">${pageNum}</a>
-				</c:otherwise>
-			</c:choose>
-		</c:forEach>
-
-		<c:if test="${currentPage < totalPages}">
-			<a
-				href="<c:url value='/admin/inventory?page=${currentPage + 1}&size=5'/>">Next</a>
-		</c:if>
-	</div>
-</footer>
 
 </html>

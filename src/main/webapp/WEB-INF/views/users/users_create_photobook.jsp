@@ -56,10 +56,12 @@
 	<div class="popup" id="confirmationPopup">
 		<h2>주문 정보 확인</h2>
 		<div id="orderDetails"></div>
-			<div class="popup-buttons">
-				<button id="cancelOrder">취소</button>
-				<button id="confirmOrder">확인</button>
-			</div>
+
+		<div class="popup-buttons">
+			<button id="cancelOrder">취소</button>
+			<button id="confirmOrder" onclick="orderConfirm(event)">확인</button>
+		</div>
+
 	</div>
 	
    <c:import url="/WEB-INF/views/users/includes/users_footer.jsp"></c:import>  

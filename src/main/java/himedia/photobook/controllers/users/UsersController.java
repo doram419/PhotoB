@@ -39,10 +39,12 @@ public class UsersController {
 	
 	//홈화면
 	@RequestMapping({ "/home", "/index", "", "/" })
-	public String home(Model model) {
+	public String home(Model model,HttpSession session) {
 		List<Map<String,Object>> topData = adminOrderService.getTopAlbum();
-        model.addAttribute("topAlmubs",topData);
-        System.out.println("상위 다섯개 앨범id:"+ topData);
+        model.addAttribute("topAlmubs",topData);      
+       UsersVo userVo =(UsersVo) session.getAttribute("authuser");
+       if(userVo !=null)	{
+       model.addAttribute("userName",userVo.getUserName());}
 		return "/WEB-INF/views/users/users_index.jsp";
 	}
 
@@ -59,9 +61,10 @@ public class UsersController {
 		UsersVo authUser = usersService.login(email, password);
 		
 		if (authUser != null) {
-
+			
 			session.setAttribute("authUser", authUser);
-
+			session.setAttribute("userName",authUser.getUserName());
+			session.setAttribute("success", "환영합니다."+authUser.getUserName()+"님");
 			return new ModelAndView ("redirect:/users/home");
 		} else {
 			ModelAndView mv = new ModelAndView("/WEB-INF/views/users/users_login.jsp");
@@ -100,7 +103,7 @@ public class UsersController {
 		return "/WEB-INF/views/users/users_profile.jsp";
 	}
 	@PostMapping("/profile/update")
-	public String updateUser(UsersVo updatedUser, HttpSession session) {
+	public String updateUser(UsersVo updatedUser, HttpSession session, Model model) {
 
 		UsersVo currentUser = (UsersVo) session.getAttribute("authUser");
 		if (currentUser != null) {
@@ -108,7 +111,6 @@ public class UsersController {
 			currentUser.setPassword(updatedUser.getPassword());
 			currentUser.setPhoneNumber(updatedUser.getPhoneNumber());
 			currentUser.setAddress(updatedUser.getAddress());
-
 			boolean isUpdated = usersService.updateUser(currentUser);
 			if (isUpdated) {
 				session.setAttribute("authUser", currentUser);
