@@ -62,14 +62,12 @@ public class UserPhotobookService {
 				
 				try {
 					photoPath = fileModule.saveFile(file, savePath, number.toString(), extName);
-					System.out.println(photoPath);
 				} catch (Exception e) {
 					e.printStackTrace();
 					// TODO: 에러 연결하기
 				}
 				photoVo = new PhotoVo(null, orderVo.getOrderId(), photoPath, number.longValue());
 				result = result && (1 == photoDaoImpl.insert(photoVo));
-				System.out.println(number);
 				number = number + 1l;
 			}
 		}
@@ -90,6 +88,4 @@ public class UserPhotobookService {
 		
 		return albumOptions;
 	}
-	
-	
 }

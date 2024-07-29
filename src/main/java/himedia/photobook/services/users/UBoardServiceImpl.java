@@ -29,7 +29,6 @@ public class UBoardServiceImpl implements UBoardService {
 		BoardVo boardVo = uBoardDaoImpl.getContent(userId, boardId);
 		Map<String, Object> contentMap = new HashMap<String, Object>();
 		UsersVo usersVo = usersDaoImpl.selectOneUserById(boardVo.getUserId());
-		System.out.println(usersVo);
 		contentMap.put("boardVo", boardVo);
 		contentMap.put("usersVo", usersVo);
 		return contentMap;
@@ -94,7 +93,6 @@ public class UBoardServiceImpl implements UBoardService {
 				contentList.add(map);
 			}
 		}
-		System.out.println(contentList);
 		return contentList;
 	
 	}

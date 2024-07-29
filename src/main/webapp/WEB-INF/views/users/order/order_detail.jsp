@@ -12,7 +12,9 @@
     <link type="text/css" 
 		rel="stylesheet" 
 		href='<c:url value="/css/header_footer.css"/>'>
-	
+	<link type="text/css" 
+		rel="stylesheet" 
+		href='<c:url value="/css/order_detail.css"/>'>
 </head>
 
 <body>
@@ -43,7 +45,11 @@
             </table>
             <div>
             	<h1>포토북 이미지</h1>
-            	<img src="<c:url value="/photobook-images/order/${orderVo.userId}/${orderVo.orderId}/1.jpg" />" />
+            	<div id="gallery">
+            	<c:forEach var="index" begin="1" end="${imagesCount}">
+            		<img src="<c:url value="/photobook-images/order/${orderVo.userId}/${orderVo.orderId}/${index}.jpg" />" />
+        		</c:forEach>	
+        		</div> 
             </div>
         </section>
     </main>
