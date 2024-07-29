@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
+
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -34,6 +35,8 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 
 
+
+<script src="<c:url value='/javascript/admin/admin.js'/>"></script>
 </head>
 <body>
     <c:import url="/WEB-INF/views/admin/includes/admin_header.jsp"></c:import>
@@ -63,16 +66,16 @@
             </div>
 
             <div class="card-header">
-                <a href="<c:url value='/admin/Norder'/>">미처리 주문 ${OrderCount}건이 있습니다</a>
+                <a href="<c:url value='/admin/Norder'/>" onclick="dashBoard1(event)">미처리 주문 ${OrderCount}건이 있습니다</a>
             </div>
             <div class="card-header">
-                <a href="<c:url value='/admin/Nshipment'/>">미처리 배송 ${ShipCount}건이 있습니다</a>
+                <a href="<c:url value='/admin/Nshipment'/>" onclick="dashBoard2(event)">미처리 배송 ${ShipCount}건이 있습니다</a>
             </div>
             <div class="card-header">
-                <a href="<c:url value='/admin/Nrefund'/>">미처리 환불 ${RefCount}건이 있습니다</a>
+                <a href="<c:url value='/admin/Nrefund'/>" onclick="dashBoard3(event)">미처리 환불 ${RefCount}건이 있습니다</a>
             </div>
             <div class="card-header">
-                <a href="<c:url value='/admin/cs'/>">미처리 문의 ${CsCount}건이 있습니다</a>
+                <a href="<c:url value='/admin/cs'/>" onclick="dashBoard4(event)">미처리 문의 ${CsCount}건이 있습니다</a>
             </div>
         </div>
     </div>
@@ -205,7 +208,5 @@
 
     
 	<c:import url="/WEB-INF/views/admin/includes/admin_footer.jsp"></c:import> 
-	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-
 </body>
 </html>

@@ -17,6 +17,8 @@
 <script type="text/javascript" 
 	src='<c:url value="/javascript/admin/productAdd.js"/>'>
 </script>
+<script src="<c:url value='/javascript/admin/admin.js'/>"></script>
+
 </head>
 <body>
 	<c:import url="/WEB-INF/views/admin/includes/admin_header.jsp"></c:import>
@@ -51,7 +53,8 @@
          	<tr>
          		<td><input type="file" name="changeImg" id="fileUploader"></td>
                 <td colspan="5" style="text-align: center;">
-                    <input type="submit" value="확인"> 
+                   <input type="submit" value="확인" onclick="productModify(event)"> 
+
                     <input type="button" id="listBtn" value="상품목록" style="float: right;"
                         onclick="location.href='<c:url value='/admin/products/search'/>'">
                 </td>
@@ -60,7 +63,6 @@
       </table>
       </form>
 </div>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </body>
 <c:import url="/WEB-INF/views/admin/includes/admin_footer.jsp"></c:import>
 </html>

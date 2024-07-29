@@ -13,6 +13,7 @@
   	<link type="text/css" 
 		rel="stylesheet" 
 		href='<c:url value="/css/common-style.css"/>'>
+	<script src="<c:url value='/javascript/users/user.js'/>"></script>
 </head>
 
 <body>
@@ -22,17 +23,17 @@
     
     <!-- 게시글을 나타낼 수 있는 vo 작성  -->
     <div class="main-content">
-	    <form method="POST" action="<c:url value="/users/board/write"/>" >
+	    <form method="POST" action="<c:url value="/users/board/write"/>" id="boardWrite" >
 	    	<label for="title">글 제목</label>
 	   		<input type="text" id="title" name="title" required>
 	   		<br>
 	   		<label for="content">글 내용</label>
 	   		<textarea id="content" name="content" rows="5" cols="180">문의사항은 여기 적어주세요</textarea>
-	        <button type="submit">글 작성</button>
+	        <button type="submit" onclick="boardWrite(event)">글 작성</button>
 	    </form>
     </div>
     
-    <p> <a href="<c:url value="/users/boardList"/>">돌아가기</a> </p>
+    <p> <a href="<c:url value="/users/boardList"/>" onclick="boardDelete(event)">돌아가기</a> </p>
     
     <c:import url="/WEB-INF/views/users/includes/users_footer.jsp"></c:import>
 </body>

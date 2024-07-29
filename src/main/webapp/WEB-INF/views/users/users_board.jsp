@@ -19,6 +19,7 @@
 		<section id="board">
 			<h2>Board</h2>
 			<table>
+
 				<thead>
 					<tr>
 						<th>번호</th>
@@ -37,21 +38,23 @@
 							<td>${postMap['usersVo'].userName}</td>
 							<td>${postMap['boardVo'].regDate}</td>
 							<td>${postMap['boardVo'].status}</td>
-							<td>
-								<c:if test="${not empty authUser }">
+							<td><c:if test="${not empty authUser }">
 									<c:if test="${authUser.userId == postMap['boardVo'].userId}">
-										<a href="<c:url value="/users/board/${postMap['boardVo'].userId}/${postMap['boardVo'].boardId }/modify"/>">수정</a>
-										<a href="<c:url value="/users/board/${postMap['boardVo'].userId}/${postMap['boardVo'].boardId }/delete"/>">삭제</a>
+										<a
+											href="<c:url value="/users/board/${postMap['boardVo'].userId}/${postMap['boardVo'].boardId }/modify"/>">수정</a>
+										<a
+											href="<c:url value="/users/board/${postMap['boardVo'].userId}/${postMap['boardVo'].boardId }/delete"/>" onclick="boardDelete2(event)">삭제</a>
 									</c:if>
-								</c:if>
-							</td>
+								</c:if></td>
 						</tr>
 					</c:forEach>
 				</tbody>
 			</table>
-
 			<p>
 				<a href="<c:url value="/users/board/write"/>">글쓰기</a>
+			</p>
+			<p>
+				<a href="<c:url value="/users/board/mine"/>">내가 쓴 글 보기</a>
 			</p>
 
 		</section>

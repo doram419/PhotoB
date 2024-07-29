@@ -126,4 +126,13 @@ public class UsersBoardController {
 		uBoardService.delete(userId, boardVo.getBoardId());
 		return "redirect:/users/boardList";
 	}
+	
+	// 내가 쓴 글로 가기
+	@RequestMapping("/board/mine")
+	public String boardMine(Model md) {
+		List<Map<String, Object>> list = uBoardService.getBoardInfos();
+		md.addAttribute("postList",list);
+		return "/WEB-INF/views/users/board/board_mine.jsp";
+	}
+	
 }

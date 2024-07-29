@@ -99,7 +99,7 @@
 		<div id="orderDetails"></div>
 		<div class="popup-buttons">
 			<button id="cancelOrder">취소</button>
-			<button id="confirmOrder">확인</button>
+			<button id="confirmOrder" onclick="orderConfirm(event)">확인</button>
 		</div>
 	</div>
 
