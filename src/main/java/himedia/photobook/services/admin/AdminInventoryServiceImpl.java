@@ -24,6 +24,7 @@ public class AdminInventoryServiceImpl implements AdminInventoryService {
 	public List<InventoryVo> getPagedInventory(int page, int pageSize) {
         int offset = (page - 1) * pageSize;
         RowBounds rowBounds = new RowBounds(offset, pageSize);
+        System.out.println(rowBounds);
         return inventoryDaoImpl.listPage(rowBounds);
     }
 	

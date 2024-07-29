@@ -5,14 +5,14 @@
 <head>
 	<title>Board</title>
 	<meta http-equiv="content-type" content="text/html; charset=utf-8">
-	<link rel="stylesheet" href="<c:url value='/css/board_style.css' />">
-	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-	
+	<link type="text/css" rel="stylesheet" href="<c:url value='/css/board_style.css' />">
+	<script src="<c:url value='/javascript/users/user.js'/>"></script>
 </head>
 <body>
 <c:import url="/WEB-INF/views/users/includes/users_header.jsp"></c:import>
-	<form method="POST" action="<c:url value="/users/modify"/>">
 
+	
+	<form method="POST" action="<c:url value="/users/modify"/>">
 	<input type="hidden" name="userId" value="${vo['boardVo'].userId }">
 	<input type="hidden" name="boardId" value="${vo['boardVo'].boardId }">
 
@@ -35,8 +35,8 @@
 			</tr>
 			<tr>
 				<td colspan="2">
-					<a href="<c:url value="/users/boardList"/>">취소</a>
-					<input type="submit" value="수정">
+					<a href="<c:url value="/users/boardList"/>" onclick="boardCancel(event)">취소</a>
+					<input type="submit" onclick="boardModify(event)" value="수정">
 				</td>
 			</tr>
 		</table>

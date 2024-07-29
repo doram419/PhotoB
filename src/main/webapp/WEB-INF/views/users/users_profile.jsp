@@ -11,6 +11,7 @@
 		rel="stylesheet" 
 		href='<c:url value="/css/profile_style.css"/>'>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+<script src="<c:url value='/javascript/users/user.js'/>"></script>
 </head>
 <body>
     <c:import url="/WEB-INF/views/users/includes/users_header.jsp"></c:import>
@@ -18,7 +19,7 @@
     <main>
         <section class="profile-container">
             <h2>프로필 관리</h2>
-             <form action="<c:url value='/users/profile/update'/>" method="post">
+             <form action="<c:url value='/users/profile/update'/>" method="post" id="profileUpdate">
                 <div>
                     <label for="userName">이름:</label>
                     <input type="text" id="userName" name="userName" required>
@@ -35,7 +36,7 @@
                     <label for="address">주소:</label>
                     <input type="text" id="address" name="address" required>
                 </div>
-                <button type="submit">프로필 업데이트</button>
+                <button type="submit" onclick="profileUpdate(event)">프로필 업데이트</button>
             </form>
         </section>
     </main>
