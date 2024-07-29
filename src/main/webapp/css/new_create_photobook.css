@@ -1,0 +1,47 @@
+@charset "UTF-8";
+
+#container {
+  display: flex;
+}
+#canvasArea {
+	flex: 2;
+	border: solid 1px black;
+}
+#stickerArea {
+	flex: 1;
+}
+#stickerGallery {
+	display: flex;
+	flex-wrap: wrap;
+	height: 500px;
+	max-height: 500px;
+	width: 500px;
+	overflow-y: auto;
+	border: dotted 1px blue;
+}
+.stickerThumbnail {
+	width: 50px;
+	height: 50px;
+	margin: 5px;
+	cursor: pointer;
+}
+#stickerPreview img {
+	max-width: 100%;
+}
+#stickerPreview{
+  border: 1px red;
+  border-style: groove;
+  width: 300px;
+  height: 300px;
+}
+#canvasGallery {
+  display: flex;
+  overflow-x: auto;
+  margin-top: 20px;
+}
+.canvasThumbnail {
+  width: 150px;
+  height: 112px;
+  margin: 10px;
+  cursor: pointer;
+}

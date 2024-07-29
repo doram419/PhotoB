@@ -30,7 +30,6 @@ public class UsersPhotobookController {
 
 	@GetMapping({ "/photobook", "pb", "photo" })
 	public String photobook() {
-		
 		return "/WEB-INF/views/users/users_photobook.jsp";
 	}
 
@@ -42,27 +41,28 @@ public class UsersPhotobookController {
 			HttpSession albumsession,
 			Model model) {
 		AlbumVo albumVo = userPhotobookService.findAlbumIdByOptions(material, color, albumSize);
-		
-		
+
+		// TODO: 아래 값이 null일때 js 체크하기
 		if (albumVo == null) {
 			model.addAttribute("error");
 			return "redirect:/users/photobook";
 		}
+
 		String albumId = albumVo.getAlbumId();
 		InventoryVo inventoryVo = inventoryDaoImpl.selectOneByAlbumId(albumId);
 		Long aQuantity = inventoryVo.getaQuantity();
-		System.out.println("남은 수량"+aQuantity);
+		
 		if (aQuantity >= oQuantity)	{
-		albumsession.setAttribute("albumId", albumId);
-		albumsession.setAttribute("oQuantity", oQuantity);
-		return "/WEB-INF/views/users/users_create_photobook.jsp";
+			albumsession.setAttribute("albumId", albumId);
+			albumsession.setAttribute("oQuantity", oQuantity);
+			return "/WEB-INF/views/users/users_create_photobook.jsp";
 		}
 		else 	{
 			 model.addAttribute("error", "재고가 부족합니다."); 
 			return "/WEB-INF/views/users/users_photobook.jsp";
 		}
 		
-		
+			
 	}
 
 	@PostMapping("/photobookOrder")
