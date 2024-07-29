@@ -16,7 +16,7 @@
 </head>
 <body>
 	<c:import url="/WEB-INF/views/admin/includes/admin_header.jsp"></c:import>
-<div class="container">
+
 	<div class="main-content">
 		<div class="header">
 			<h2>고객 관리</h2>
@@ -35,11 +35,6 @@
 							<option value="PHONE_NUMBER">핸드폰</option>
 						</select> <label for="search-input">검색어:</label> <input type="text"
 							name="keyword" placeholder="검색어를 입력하세요">
-					</div>
-					<div class="form-group">
-						<label>가입일</label> 
-						<input type="date" id="start-date" name="start-date">
-						<input type="date" id="end-date" name="end-date">
 					</div>
 					<button type="submit" class="btn btn-primary">검색</button>
 					<button type="reset" class="btn btn-secondary">초기화</button>
@@ -85,7 +80,6 @@
 				</table>
 			</div>
 		</div>
-	</div>
 	</div>
 
 </body>
