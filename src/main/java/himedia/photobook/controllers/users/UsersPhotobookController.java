@@ -1,17 +1,15 @@
 package himedia.photobook.controllers.users;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.servlet.ModelAndView;
-
 import org.springframework.web.multipart.MultipartFile;
-
 
 import himedia.photobook.repositories.dao.InventoryDaoImpl;
 import himedia.photobook.repositories.vo.AlbumVo;
@@ -61,13 +59,11 @@ public class UsersPhotobookController {
 			 model.addAttribute("error", "재고가 부족합니다."); 
 			return "/WEB-INF/views/users/users_photobook.jsp";
 		}
-		
-			
 	}
 
 	@PostMapping("/photobookOrder")
 	public String photobookorder(@RequestParam(value = "albumId", required = false) String albumId,
-			@RequestParam("photoUpload") MultipartFile multipartFile,
+			@RequestParam("canvasFiles") List<MultipartFile> multipartFiles,
 			HttpSession session) {
 		//TODO: if authUser null?
 		UsersVo authUser = (UsersVo) session.getAttribute("authUser");
@@ -80,9 +76,9 @@ public class UsersPhotobookController {
 
 		 Long priceDisplay = albumPrice * oQuantity;
 		System.out.println("photobookorder에서 받아오는 수량"+oQuantity);
-		userPhotobookService.orderInsert(userId, albumId, oQuantity, multipartFile);
+//		userPhotobookService.orderInsert(userId, albumId, oQuantity, multipartFile);
 
-		boolean success = userPhotobookService.orderInsert(userId, albumId, oQuantity, multipartFile);
+//		boolean success = userPhotobookService.orderInsert(userId, albumId, oQuantity, multipartFile);
 
 		return "redirect:/users/order";
 	}
