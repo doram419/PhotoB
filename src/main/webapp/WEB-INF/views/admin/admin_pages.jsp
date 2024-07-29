@@ -9,14 +9,14 @@
     <title>관리자 대시보드</title>
 
     <link type="text/css" rel="stylesheet" href='<c:url value="/css/common_style.css"/>'/>
-    <link type="text/css" rel="stylesheet" href='<c:url value="/css/admin_home.css"/>' /><!-- 스타일 적용 빡셈 걍 안함 -->
+    <!--<link type="text/css" rel="stylesheet" href='<c:url value="/css/admin_home.css"/>' /> 스타일 적용 빡셈 걍 안함 -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
         .chart-container {
             display: flex;
             justify-content: space-between;
             margin-bottom: 20px;
-        }
+            }
         .chart-item {
             width: 48%;
         }
@@ -31,11 +31,9 @@
         }
     </style>
 
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-
-
 </head>
 <body>
+	
     <c:import url="/WEB-INF/views/admin/includes/admin_header.jsp"></c:import>
 
     <div class="main-content">
@@ -76,9 +74,6 @@
             </div>
         </div>
     </div>
-
-
-
 <script>
     // 판매 데이터 차트 생성
     var ctx = document.getElementById('salesChart').getContext('2d');
@@ -205,7 +200,6 @@
 
     
 	<c:import url="/WEB-INF/views/admin/includes/admin_footer.jsp"></c:import> 
-	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 
 </body>
 </html>
