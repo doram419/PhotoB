@@ -7,7 +7,6 @@
 	href='<c:url value="/css/common_style.css"/>' />
 </head>
 <body>
-<div class="container">
 <div class="sidebar">
 	<div class="sidebar-header">
 		<h3>관리자 패널</h3>
@@ -29,5 +28,5 @@
 		<li><a href="<c:url value="/users/home"/>">홈</a></li>
 	</ul>
 </div>
-</div>
+
 </body>
