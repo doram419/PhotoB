@@ -27,7 +27,7 @@ public class AdminProductService {
 	@Autowired
 	private AlbumPhotoDao albumPhotoDaoImpl;
 	private FileModule fileModule = new FileModule();
-	private static String DEFUALT_PATH = "C:/photobook/album/";
+	private String DEFUALT_PATH = "C:/photobook/album/";
 	
 	// 앨범 및 가격 목록
 	public List<AlbumVo> searchAlbum(String searchCategory, String keyword) {
@@ -41,8 +41,6 @@ public class AdminProductService {
 	/**
 	 * 제품 관리에 필요한 정보
 	 */
-
-
 	public boolean updateAlbum(AlbumVo vo) {
 		int updatedCount = albumDaoImpl.updateAlbum(vo);
 		return updatedCount == 1;
@@ -161,6 +159,10 @@ public class AdminProductService {
  		int inventoryInsertedCount = inventoryDaoImpl.insertInventory(inventoryVo);
  		
  		result = result && (1 == inventoryInsertedCount);
+ 		
+ 		if(fileModule.getOsName().contains("nux")) {
+ 			DEFUALT_PATH = "/photobook/album/";
+ 		}
  		
 		AlbumPhotoVo albumPhotoVo = null;
  		if(result) {

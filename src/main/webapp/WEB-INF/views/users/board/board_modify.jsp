@@ -5,14 +5,14 @@
 <head>
 	<title>Board</title>
 	<meta http-equiv="content-type" content="text/html; charset=utf-8">
-	<link type="text/css" rel="stylesheet" href="<c:url value='/css/board_style.css' />">
+	<link rel="stylesheet" href="<c:url value='/css/board_style.css' />">
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+	<link type="text/css" rel="stylesheet" href="<c:url value="/css/board.css"/>">
 	<script src="<c:url value='/javascript/users/user.js'/>"></script>
 </head>
 <body>
-<c:import url="/WEB-INF/views/users/includes/users_header.jsp"></c:import>
 
-	
-	<form method="POST" action="<c:url value="/users/modify"/>">
+	<form method="POST" action="<c:url value="/users/modify"/>" id="boardModify">
 	<input type="hidden" name="userId" value="${vo['boardVo'].userId }">
 	<input type="hidden" name="boardId" value="${vo['boardVo'].boardId }">
 

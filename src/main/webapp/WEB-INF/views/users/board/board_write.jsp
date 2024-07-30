@@ -9,9 +9,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>글 작성</title>
-  	<link rel="stylesheet" href="<c:url value='/css/board_style.css' />">
-	<script src="<c:url value='/javascript/users/user.js'/>"></script>
+  	<link type="text/css" 
+		rel="stylesheet" 
+		href='<c:url value="/css/common-style.css"/>'>
+    <link rel="stylesheet" href="<c:url value='/css/board_style.css' />">
+	  <script src="<c:url value='/javascript/users/user.js'/>"></script>
+
 </head>
 
 <body>

@@ -12,6 +12,7 @@ body {
     flex-direction: row;
     min-height: 100vh;
 }
+
 .sidebar {
     width: 250px;
     background-color: #343a40;

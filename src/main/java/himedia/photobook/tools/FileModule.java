@@ -13,11 +13,20 @@ import org.springframework.web.multipart.MultipartFile;
 
 public class FileModule {
 	/**
+	 * os 종류를 파악해서 String으로 돌려주는 함수
+	 * return : String - os의 이름
+	 * */
+	public String getOsName() {
+		String os = System.getProperty("os.name").toLowerCase();
+		
+		return os;
+	}	
+	/**
 	 * Param1 : MultipartFile multipartFile - 저장할 파일
 	 * Param2 : String path - 저장할 경로
 	 * Param3 : String saveFilename - 저장할 파일의 이름
 	 * myPortal에서 들고 온 소스
-	 * String : 서버에 파일이 저장된 경로
+	 * return : String - 서버에 파일이 저장된 경로
 	 * */
 	public String saveFile(MultipartFile multipartFile, String path, String filename, String extName) 
 			throws IOException {

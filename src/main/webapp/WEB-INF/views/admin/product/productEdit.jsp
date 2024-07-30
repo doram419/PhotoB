@@ -13,10 +13,11 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link type="text/css" rel="stylesheet"
 	href='<c:url value="/css/common_style.css"/>' />
+<script src="<c:url value='/javascript/admin/admin.js'/>"></script>
 <script type="text/javascript" 
 	src='<c:url value="/javascript/admin/productAdd.js"/>'>
 </script>
-<script src="<c:url value='/javascript/admin/admin.js'/>"></script>
+
 </head>
 <body>
 	<c:import url="/WEB-INF/views/admin/includes/admin_header.jsp"></c:import>
@@ -49,13 +50,12 @@
                 <td><input type="text" name="albumSize" id="albumSize" value="${ProductMap['album'].albumSize}"></td>
             </tr>
          	<tr>
-
-         		<td><input type="file" name="changeImg" id="fileUploader"></td>
-                <td colspan="5" style="text-align: center;">
-                    <input type="submit" value="확인"> 
-
                 <td colspan="6" style="text-align: center;">
                     <input type="submit" value="확인" onclick="productModify(event)"> 
+         		<td><input type="file" name="changeImg" id="fileUploader"></td>
+                <td colspan="5" style="text-align: center;">
+                   <input type="submit" value="확인" onclick="productModify(event)"> 
+
 
                     <input type="button" id="listBtn" value="상품목록" style="float: right;"
                         onclick="location.href='<c:url value='/admin/products/search'/>'">

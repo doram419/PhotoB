@@ -9,8 +9,9 @@
 <head>
     <meta charset="UTF-8">
     <title>${orderVo.orderId}</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="stylesheet" href="<c:url value='/css/order_style.css' />">
-	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+	  <link type="text/css" rel="stylesheet" href='<c:url value="/css/order_detail.css"/>'>
 </head>
 
 <body>
@@ -41,7 +42,11 @@
             </table>
             <div>
             	<h1>포토북 이미지</h1>
-            	<img src="<c:url value="/photobook-images/order/${orderVo.userId}/${orderVo.orderId}/1.jpg" />" />
+            	<div id="gallery">
+            	<c:forEach var="index" begin="1" end="${imagesCount}">
+            		<img src="<c:url value="/photobook-images/order/${orderVo.userId}/${orderVo.orderId}/${index}.jpg" />" />
+        		</c:forEach>	
+        		</div> 
             </div>
         </section>
     </main>
