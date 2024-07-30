@@ -141,16 +141,6 @@ public class AdminOrderService {
 
 	}
 
-
-	
-
-
-
-
-
-
-
-
 //user id로 주문리스트 가져옴
 	public List<OrdersVo> getOrdersByUserId(String userId) {
 		return orderDaoImpl.selectAllOrdersByUserId(userId);
