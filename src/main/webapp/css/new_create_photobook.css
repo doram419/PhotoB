@@ -2,19 +2,22 @@
 
 #container {
   display: flex;
+  align-items: left;
+  border: solid 1px black;
+  flex: 2;
 }
+
 #canvasArea {
-	flex: 2;
-	border: solid 1px black;
+	
 }
 #stickerArea {
-	flex: 1;
+	margin: 10px;
 }
 #stickerGallery {
 	display: flex;
 	flex-wrap: wrap;
-	height: 500px;
-	max-height: 500px;
+	height: 100px;
+	max-height: 100px;
 	width: 500px;
 	overflow-y: auto;
 	border: dotted 1px blue;
@@ -28,6 +31,11 @@
 #stickerPreview img {
 	max-width: 100%;
 }
+
+#canvasPreview {
+	margin-top:40px;
+	margin-left:20px;
+}
 #stickerPreview{
   border: 1px red;
   border-style: groove;
@@ -35,9 +43,10 @@
   height: 300px;
 }
 #canvasGallery {
-  display: flex;
-  overflow-x: auto;
+  overflow-y: auto;
   margin-top: 20px;
+  max-width : 170px;
+  max-height : 600px;
 }
 .canvasThumbnail {
   width: 150px;

@@ -33,9 +33,13 @@
         <div id="canvasArea">
           <h2>포토북 제작</h2>
           <h3>현재 캔버스</h3>
-          <canvas id="mainCanvas"></canvas>
-          <button id="addCanvasButton">새 캔버스 추가</button>
+          <canvas id="mainCanvas"></canvas> 
         </div>
+    	<div id="canvasPreview">
+       		<button id="addCanvasButton">새 캔버스 추가</button>
+  			<h3>추가된 캔버스</h3>	
+  			<div id="canvasGallery"></div>
+        </div>>
         <div id="stickerArea">
           <h3>파일 선택</h3>
           <input type="file" id="stickerUpload" accept=".jpg, .jpeg" multiple>
@@ -44,9 +48,7 @@
           <div id="stickerPreview"></div>
         </div>
     </div>
-    
-  <h3>추가된 캔버스</h3>		
-  <div id="canvasGallery"></div>
+
   <button type="button" id="createButton" class="create-button" form="orderForm">제작 완료</button>
       
   <input type="hidden" id="albumId" name="albumId" value="${sessionScope.albumId}">
@@ -56,15 +58,11 @@
 	<div class="popup" id="confirmationPopup">
 		<h2>주문 정보 확인</h2>
 		<div id="orderDetails"></div>
-
 		<div class="popup-buttons">
 			<button id="cancelOrder">취소</button>
 			<button id="confirmOrder" onclick="orderConfirm(event)">확인</button>
 		</div>
-
 	</div>
-	
-   <c:import url="/WEB-INF/views/users/includes/users_footer.jsp"></c:import>  
 </body>
 
 </html>

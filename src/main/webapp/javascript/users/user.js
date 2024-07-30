@@ -55,11 +55,9 @@ function boardDelete2(event) {
 function orderConfirm(event) {
     event.preventDefault(); 
     const userConfirmed = confirm("주문이 완료되었습니다.");
-     const popup = document.getElementById('confirmationPopup');
+    const popup = document.getElementById('confirmationPopup');
     popup.style.display = 'none';
 }
-
-
 
 function profileUpdate(event) {
     event.preventDefault(); 
