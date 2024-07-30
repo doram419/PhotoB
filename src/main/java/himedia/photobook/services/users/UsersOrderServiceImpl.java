@@ -89,6 +89,8 @@ public class UsersOrderServiceImpl {
 		if (refundDaoImpl.selectStatusByOrderID(orderId) == null) {
 			result = 1 == refundDaoImpl.insert(orderId);
 		}
+		if(shipDao.selectStatusByOrderID(orderId) !=null)	{
+			shipDao.delete(orderId);}
 
 		return result;
 	}
@@ -108,3 +110,4 @@ public class UsersOrderServiceImpl {
 		return imgSrc;
 	}
 }
+

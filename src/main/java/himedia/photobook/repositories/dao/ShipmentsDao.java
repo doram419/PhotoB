@@ -45,5 +45,7 @@ public interface ShipmentsDao {
 	 * */
 	public int insert(String orderId);
 	public String count();
+	
+	public int delete(String orderId);
 }
 	

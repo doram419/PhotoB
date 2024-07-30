@@ -63,6 +63,8 @@
 			<button id="confirmOrder" onclick="orderConfirm(event)">확인</button>
 		</div>
 	</div>
+
+
 </body>
 
 </html>
