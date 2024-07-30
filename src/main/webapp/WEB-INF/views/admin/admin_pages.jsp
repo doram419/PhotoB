@@ -26,7 +26,7 @@
                 flex-direction: column;
             }
             .chart-item {
-                width: 100%;
+                ㅋwidth: 100%;
                 margin-bottom: 20px;
             }
         }
