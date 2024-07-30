@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
 <!DOCTYPE html>
 
@@ -67,8 +67,8 @@ h1 {
 }
 
 .icon-large {
-	height: 132px;
-	width: 132px;
+	height: 50px;
+	width: 50px;
 }
 
 .description-text {
@@ -105,8 +105,8 @@ to {
 			<div class="col">
 				<div class="animate__animated animate__fadeIn"></div>
 				<h1 class="animate__animated animate__fadeIn">Internal Server Error</h1>
-				<div
-					class="description-text animate__animated animate__fadeIn animate__delay-1s">
+				<div class="description-text animate__animated animate__fadeIn animate__delay-1s">
+				<img src="<c:url value='/images/logo.jpg'/>" >
 					<p>Oh! Something went wrong at our end.</p>
 					<p>Don't worry, it's not you - it's us.</p>
 					<section class="footer">

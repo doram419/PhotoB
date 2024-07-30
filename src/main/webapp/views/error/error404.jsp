@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
 <!DOCTYPE html>
 
@@ -105,8 +105,8 @@ to {
 			<div class="col">
 				<div class="animate__animated animate__fadeIn"></div>
 				<h1 class="animate__animated animate__fadeIn">Page Not Found</h1>
-				<div
-					class="description-text animate__animated animate__fadeIn animate__delay-1s">
+				<div class="description-text animate__animated animate__fadeIn animate__delay-1s">
+				<img src="<c:url value='/images/logo.jpg'/>" >
 					<p>Oops! We couldn't find the page that you're looking for.</p>
 					<p>Please check the address and try again.</p>
 					<section class="footer">
