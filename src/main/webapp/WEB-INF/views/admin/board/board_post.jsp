@@ -18,7 +18,7 @@
     
   	<link type="text/css" 
 		rel="stylesheet" 
-		href='<c:url value="/css/common-style.css"/>'>
+		href='<c:url value="/css/board_style.css"/>'>
 </head>
 
 <body>

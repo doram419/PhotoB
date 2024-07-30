@@ -5,7 +5,7 @@
 <head>
 	<title>My Homepage</title>
 	<meta http-equiv="content-type" content="text/html; charset=utf-8">
-	<link type="text/css" rel="stylesheet" href="<c:url value="/css/board.css"/>">
+	<link type="text/css" rel="stylesheet" href="<c:url value="/css/board_modify.css"/>">
 </head>
 <body>
 	<form method="POST" action="<c:url value="/admin/modify"/>">

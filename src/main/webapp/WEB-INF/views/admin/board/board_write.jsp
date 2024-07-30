@@ -12,7 +12,7 @@
     <title>글 작성 페이지</title>
   	<link type="text/css" 
 		rel="stylesheet" 
-		href='<c:url value="/css/common-style.css"/>'>
+		href='<c:url value="/css/board_modify.css"/>'>
 </head>
 
 <body>

@@ -72,7 +72,7 @@ value="${param.keyword}">
 		</form>
 		<form action="<c:url value="/admin/order/createRefund"/>" method="post" id="createRefund">
 			<input type="hidden" name="createOrderId" value="${orderInfo['ordersVo'].orderId}"/>
-			<button type="submit" class="btn btn-primary" onclick="createRefund(event)">환불 생성</button>
+			<button type="submit" class="btn btn-secondary" onclick="createRefund(event)">환불 생성</button>
 		</form>
 	</td>
 </tr>

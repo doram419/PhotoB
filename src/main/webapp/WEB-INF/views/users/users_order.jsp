@@ -22,7 +22,7 @@
                 <thead class="table-light">
                     <tr>
                         <th>주문 번호</th>
-                        <th>제품 이름</th>
+                        <th>제품</th>
                         <th>주문 일자</th> 
                         <th>가격</th>
                         <th>수량</th>
