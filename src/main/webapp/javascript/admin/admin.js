@@ -1,3 +1,4 @@
+window.addEventListener("load", event => {
 // 고객 관리 페이지로 이동전
 function confirmNavigation(event) {
     event.preventDefault(); // 기본 동작 방지
@@ -77,5 +78,5 @@ function createRefund(event) {
     }
 }
 
-
+});
 

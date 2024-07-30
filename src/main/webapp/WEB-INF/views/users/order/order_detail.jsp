@@ -17,10 +17,10 @@
     <c:import url="/WEB-INF/views/users/includes/users_header.jsp"></c:import>
 
     <main>
-        <section id="order">
-            <h2>주문 상세</h2>
-            <table>
-                <thead>
+        <section id="order" class="my-5">
+            <h2 class="mb-4">주문 상세</h2>
+            <table class="table table-striped table-hover">
+                <thead class="table-light">
                     <tr>
                         <th>주문 번호</th>
                         <th>제품</th>
