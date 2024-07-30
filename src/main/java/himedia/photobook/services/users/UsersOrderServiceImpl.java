@@ -14,6 +14,7 @@ import himedia.photobook.repositories.dao.RefundDaoImpl;
 import himedia.photobook.repositories.dao.ShipmentsDaoImpl;
 import himedia.photobook.repositories.vo.OrdersVo;
 import himedia.photobook.tools.DataConverter;
+import himedia.photobook.tools.FileModule;
 
 @Service("userOrderService")
 public class UsersOrderServiceImpl {
@@ -29,6 +30,7 @@ public class UsersOrderServiceImpl {
 	private RefundDaoImpl refundDaoImpl;
 	
 	private DataConverter dataConverter = new DataConverter();
+	private FileModule fileModule = new FileModule();
 	
 	/**
 	 * 주문 조회에 필요한 정보들을 담아서 보내주는 메서드
@@ -89,5 +91,20 @@ public class UsersOrderServiceImpl {
 		}
 
 		return result;
+	}
+	
+	/**
+	 * 이미지 출력을 앨범 기초 경로를 잡아주는 메서드
+	 * */
+	public String getOrderedImagePath(String userId, String orderId) {
+		String imgSrc = userId + "/" + orderId ;
+		if(fileModule.getOsName().contains("nux")) {
+ 			imgSrc = "/nux/photobook-images/order/" + imgSrc; 
+ 		}
+ 		else {
+    		imgSrc = "/win/photobook-images/order/" + imgSrc; 
+ 		}
+		
+		return imgSrc;
 	}
 }

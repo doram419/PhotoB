@@ -72,7 +72,7 @@
 			<div class="card-header">포토북 이미지</div>
 			<div id="gallery" class="card-body">
 	           	<c:forEach var="index" begin="1" end="${orderDetail['imagesCount']}">
-	           		<img src="<c:url value="/photobook-images/order/${orderDetail['user'].userId}/${orderDetail['order'].orderId}/${index}.jpg" />" />
+	           		<img src="<c:url value="${orderDetail['imgSrc']}/${index}.jpg" />" />
 	       		</c:forEach>
 	        </div>	
 		</div>

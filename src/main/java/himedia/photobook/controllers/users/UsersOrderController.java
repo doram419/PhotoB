@@ -64,6 +64,7 @@ public class UsersOrderController {
 		model.addAttribute("orderDate", orderDate);
 		model.addAttribute("status", status);
 		model.addAttribute("imagesCount", imgsCount);
+		model.addAttribute("imgSrc", orderService.getOrderedImagePath(userId, ordersId));
 		
 		return "/WEB-INF/views/users/order/order_detail.jsp";
 	}
