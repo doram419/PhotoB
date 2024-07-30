@@ -25,7 +25,7 @@ window.addEventListener("load", event => {
     let activeSticker = null;
     let stickerId = 0;
 
-    mainCanvas.width = 800;
+    mainCanvas.width = 400;
     mainCanvas.height = 600;
 
     function createNewCanvas() {
@@ -62,8 +62,8 @@ window.addEventListener("load", event => {
     
     function isPointInRotateHandle(x, y, sticker) {
         const handleRadius = 5;
-        const handleX = sticker.x + sticker.width / 2;
-        const handleY = sticker.y - 20;
+        const handleX = sticker.x + (sticker.width / 2);
+        const handleY = (sticker.y - 20);
         return Math.sqrt((x - handleX) ** 2 + (y - handleY) ** 2) <= handleRadius;
     }
     
