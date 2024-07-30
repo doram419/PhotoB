@@ -44,4 +44,8 @@ public class ShipmentsDaoImpl implements ShipmentsDao{
     public String count() {
     	return session.selectOne("shipments.countShipment");
     }
-}
+    
+    @Override
+	public int delete(String orderId) {
+		return session.delete("shipments.delete", orderId);
+}}

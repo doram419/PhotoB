@@ -79,5 +79,4 @@ window.addEventListener("load", event => {
 		}
 	}
 
-});
-
+	});
