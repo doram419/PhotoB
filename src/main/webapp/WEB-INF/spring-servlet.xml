@@ -17,6 +17,13 @@
     </context:component-scan>
 
     <mvc:annotation-driven/>
-    
+    <mvc:resources mapping="/win/photobook-images/order/**"
+    	location="file:c:/photobook/order/" />
+    <mvc:resources mapping="/win/photobook-images/album/**"
+    	location="file:c:/photobook/album/" />
+   	<mvc:resources mapping="/nux/photobook-images/order/**"
+    	location="file:/photobook/order/" />
+    <mvc:resources mapping="/nux/photobook-images/album/**"
+    	location="file:/photobook/album/" />
     <mvc:default-servlet-handler/>
 </beans>

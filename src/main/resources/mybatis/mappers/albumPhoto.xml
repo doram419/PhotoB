@@ -13,4 +13,10 @@
 		SET PHOTO_PATH = #{photoPath}
 		WHERE ALBUM_ID = #{albumId}
 	</update>
+	<select id="getAlbumPhotoPath" parameterType="String" resultType="String">
+		SELECT 
+			PHOTO_PATH
+		FROM ALBUM_PHOTO
+		WHERE ALBUM_ID = #{value}
+	</select>
 </mapper>

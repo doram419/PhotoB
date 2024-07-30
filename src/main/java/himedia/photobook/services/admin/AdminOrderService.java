@@ -21,6 +21,7 @@ import himedia.photobook.repositories.vo.InventoryVo;
 import himedia.photobook.repositories.vo.OrdersVo;
 import himedia.photobook.repositories.vo.UsersVo;
 import himedia.photobook.tools.DataConverter;
+import himedia.photobook.tools.FileModule;
 
 @Service
 public class AdminOrderService {
@@ -41,6 +42,7 @@ public class AdminOrderService {
 	private PhotoDaoImpl photoDaoImpl;
 
 	private DataConverter converter = new DataConverter();
+	private FileModule fileModule = new FileModule();
 
 	//관리자 주문 조회
 	public List<Map<String, Object>> getOrderAdmin() {
@@ -94,6 +96,15 @@ public class AdminOrderService {
 		
 		int photoCount = photoDaoImpl.selectCountByOrderId(order.getOrderId());
 		orderDetail.put("imagesCount", photoCount);
+		
+		String imgSrc = order.getUserId() + "/" + orderId ;
+		if(fileModule.getOsName().contains("nux")) {
+ 			imgSrc = "/nux/photobook-images/order/" + imgSrc; 
+ 		}
+ 		else {
+    		imgSrc = "/win/photobook-images/order/" + imgSrc; 
+ 		}
+		orderDetail.put("imgSrc", imgSrc);
 
 		return orderDetail;
 	}
@@ -140,16 +151,6 @@ public class AdminOrderService {
 		return orderInfo;
 
 	}
-
-
-	
-
-
-
-
-
-
-
 
 //user id로 주문리스트 가져옴
 	public List<OrdersVo> getOrdersByUserId(String userId) {
