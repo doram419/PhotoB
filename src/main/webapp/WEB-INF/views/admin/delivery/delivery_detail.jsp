@@ -35,7 +35,7 @@
 	               </td>
 	               <td>
 	               <!-- Date는 서비스에서 "yyyy-MM-dd" 형식으로 변환 필요 -->
-	               <input type="date" 
+	               <input type="datetime-local"
 	               		value="${deliveryDetailInfos['shipmentDate']}" 
 	              			disabled/>
 	               <input type="hidden" 
@@ -92,7 +92,7 @@
 	               <td>주문 일자</td>
 	               <td>
 	               <!-- Date는 서비스에서 "yyyy-MM-dd" 형식으로 변환 필요 -->
-	               <input type="date" value="${deliveryDetailInfos['orderDate']}" disabled/>
+	               <input type="datetime-local" value="${deliveryDetailInfos['orderDate']}" disabled/>
 	               <input type="hidden" 
 	               		name="stringOrderDate" value="${deliveryDetailInfos['orderDate']}"/>
 	               </td>
