@@ -87,7 +87,7 @@ public class AdminOrderController {
 // TODO: 여기서도 결과가 되는지 안 되는지 체크
 		boolean createResult = adminOrderService.createRefundByOrderId(orderId);
 		
-		return "redirect:/admin/NOrder";
+		return "redirect:/admin/Norder";
 	}
 	
 	@PostMapping("/order/cancel")
