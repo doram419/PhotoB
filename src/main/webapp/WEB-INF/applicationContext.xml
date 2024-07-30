@@ -44,6 +44,4 @@
 
     <!-- MyBatis Mapper 스캔 설정 추가 -->
     <mybatis-spring:scan base-package="himedia.photobook.repositories"/>
-    
-    
 </beans>
