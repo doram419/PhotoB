@@ -28,6 +28,7 @@
 						<th>작성자</th>
 						<th>작성일</th>
 						<th>상태</th>
+						<th></th>
 					</tr>
 				</thead>
 				<tbody>
@@ -39,7 +40,8 @@
 							<td>${postMap['usersVo'].userName}</td>
 							<td>${postMap['boardVo'].regDate}</td>
 							<td>${postMap['boardVo'].status}</td>
-							<td><c:if test="${not empty authUser }">
+							<td class="action-links">
+							<c:if test="${not empty authUser }">
 									<c:if test="${authUser.userId == postMap['boardVo'].userId}">
 										<a
 											href="<c:url value="/users/board/${postMap['boardVo'].userId}/${postMap['boardVo'].boardId }/modify"/>">수정</a>
@@ -51,13 +53,16 @@
 					</c:forEach>
 				</tbody>
 			</table>
+			<div class="board-actions">
 			<p>
-				<a href="<c:url value="/users/board/write"/>">글쓰기</a>
+				<a href="<c:url value="/users/board/write"/>" >글쓰기</a>
+				
+				
 			</p>
 			<p>
 				<a href="<c:url value="/users/board/mine"/>">내가 쓴 글 보기</a>
 			</p>
-
+		</div>
 		</section>
 	</main>
 	<c:import url="/WEB-INF/views/users/includes/users_footer.jsp"></c:import>
