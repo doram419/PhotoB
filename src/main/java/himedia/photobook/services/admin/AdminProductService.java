@@ -117,6 +117,11 @@ public class AdminProductService {
  		inventoryVo.setAlbumId(albumVo.getAlbumId());
  		
  		result = result && (1 == inventoryDaoImpl.updateProduct(inventoryVo));
+ 		
+ 		if(fileModule.getOsName().contains("nux")) {
+ 			DEFUALT_PATH = "/photobook/album/";
+ 		}
+ 		
  		// 파일 덧씌우기 
  		AlbumPhotoVo albumPhotoVo = null;
  		if(result) {

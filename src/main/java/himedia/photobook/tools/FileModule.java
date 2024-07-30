@@ -38,7 +38,7 @@ public class FileModule {
 		if(!extName.equals(".jpg"))
 			extName = ".jpg";
 		String finalFileName = filename + extName;
-		String finalPath = saveFile.getPath() + "\\";
+		String finalPath = saveFile.getPath() + "/";
 		Path filePath = Paths.get(finalPath, finalFileName);
 		//TODO : 문제 있으면 exception처리
 		Files.write(filePath, fileData);

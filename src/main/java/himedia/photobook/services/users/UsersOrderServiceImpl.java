@@ -25,6 +25,8 @@ public class UsersOrderServiceImpl {
 	private RefundDaoImpl refundDao;
 	@Autowired
 	private PhotoDaoImpl photoDaoImpl;
+	@Autowired
+	private RefundDaoImpl refundDaoImpl;
 	
 	private DataConverter dataConverter = new DataConverter();
 	
@@ -73,5 +75,19 @@ public class UsersOrderServiceImpl {
 	 * */
 	public int getOrderedImagesCount(String orderId) {
 		return photoDaoImpl.selectCountByOrderId(orderId);
+	}
+	
+	/**
+	 * 받은 orderId를 기준으로 환불을 만들어주는 테이블 이미 해당 orderId로 만들어진 refund가 만들어져 있으면 만들어지지
+	 * 않는다. 기본 refund는 P이다. param : String - 주문 아이디 return : boolean - 성공/실패 여부
+	 */
+	public boolean createRefundByOrderId(String orderId) {
+		boolean result = false;
+
+		if (refundDaoImpl.selectStatusByOrderID(orderId) == null) {
+			result = 1 == refundDaoImpl.insert(orderId);
+		}
+
+		return result;
 	}
 }

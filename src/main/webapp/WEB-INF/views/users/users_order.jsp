@@ -10,7 +10,13 @@
     <meta charset="UTF-8">
     <title>Order</title>
    <link rel="stylesheet" href="<c:url value='/css/order_style.css' />">
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+	<script> 
+		var error = "${error}"
+	</script>
+	<script type="text/javascript" 
+		src='<c:url value="/javascript/users/order.js"/>'>
+    </script>
 </head>
 
 <body>
@@ -56,7 +62,15 @@
 	                        		value="${infoMap['status']}"/>
 	                      		<button>조회</button> 
 	                      	</form>
-                      	</td> 
+                      	</td>
+                      	<td>
+                      		<form method="post"
+	                        	action="<c:url value="/users/order/createRefund"/>">
+								<input type="hidden" name="createOrderId" 
+	                        		value="${infoMap['ordersVo'].orderId}"/>
+                      		    <button>환불 요청</button>
+                      		</form>
+                      	</td>
                 	</tr>
                 </c:forEach>             
                 </tbody>
