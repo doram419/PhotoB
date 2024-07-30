@@ -47,8 +47,8 @@ public class AdminDeliveryController {
 			@ModelAttribute("stringOrderDate") String orderDate,
 			@ModelAttribute("targetOrderId") String targetOrderId) {
 		try {
-			shipmentsVo.setShipmentDate(dataConverter.StringToDate(shipmentDate));
-			ordersVo.setOrderDate(dataConverter.StringToDate(orderDate));
+			shipmentsVo.setShipmentDate(dataConverter.LocalToKst(shipmentDate));
+			ordersVo.setOrderDate(dataConverter.LocalToKst(orderDate));
 		} catch (ParseException e) {
 			e.printStackTrace();
 			// TODO: custom Error throw 하기

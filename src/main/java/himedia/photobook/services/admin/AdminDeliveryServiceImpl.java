@@ -54,7 +54,7 @@ public class AdminDeliveryServiceImpl {
 			usersVo = usersDaoImpl.selectOneUserById(ordersVo.getUserId());
 
 			deliveryInfos.put("shipmentsVo", shipmentsVo);
-			deliveryInfos.put("shipmentDate", dataConverter.kstToYYYY(shipmentsVo.getShipmentDate()));
+			deliveryInfos.put("shipmentDate", dataConverter.kstToLocal(shipmentsVo.getShipmentDate()));
 			deliveryInfos.put("status", status);
 			deliveryInfos.put("ordersVo", ordersVo);
 			deliveryInfos.put("usersVo", usersVo);
@@ -77,8 +77,8 @@ public class AdminDeliveryServiceImpl {
 
 		deliveryDetailInfo.put("ordersVo", ordersVo);
 		deliveryDetailInfo.put("usersVo", usersVo);
-		deliveryDetailInfo.put("shipmentDate", dataConverter.kstToYYYY(shipmentsVo.getShipmentDate()));
-		deliveryDetailInfo.put("orderDate", dataConverter.kstToYYYY(ordersVo.getOrderDate()));
+		deliveryDetailInfo.put("shipmentDate", dataConverter.kstToLocal(shipmentsVo.getShipmentDate()));
+		deliveryDetailInfo.put("orderDate", dataConverter.kstToLocal(ordersVo.getOrderDate()));
 		deliveryDetailInfo.put("shipmentsVo", shipmentsVo);
 		deliveryDetailInfo.put("albumVo", albumVo);
 		deliveryDetailInfo.put("albumList", albumList);
@@ -94,9 +94,11 @@ public class AdminDeliveryServiceImpl {
 		ShipmentsVo shipmentsVo = null;
 		OrdersVo ordersVo = null;
 		String targetOrderId = (String) updateDeliveryInfo.get("targetOrderId");
-
-		if (updateDeliveryInfo.get("shipmentsVo") instanceof ShipmentsVo)
+		
+		if (updateDeliveryInfo.get("shipmentsVo") instanceof ShipmentsVo) {
 			shipmentsVo = (ShipmentsVo) updateDeliveryInfo.get("shipmentsVo");
+		}
+			
 		result = 1 == shipmentsDaoImpl.updateDateAndStatusByShipmentId(shipmentsVo);
 
 		if (updateDeliveryInfo.get("ordersVo") instanceof OrdersVo)
@@ -127,7 +129,7 @@ public class AdminDeliveryServiceImpl {
 
 			infoMap.put("usersVo", usersVo);
 			infoMap.put("shipmentsVo", shipmentsVo);
-			infoMap.put("shipmentDate", dataConverter.kstToYYYY(shipmentsVo.getShipmentDate()));
+			infoMap.put("shipmentDate", dataConverter.kstToLocal(shipmentsVo.getShipmentDate()));
 			infoMap.put("status", status);
 
 			searchInfos.add(infoMap);
@@ -159,7 +161,7 @@ public class AdminDeliveryServiceImpl {
 
 					infoMap.put("usersVo", usersVo);
 					infoMap.put("shipmentsVo", shipmentsVo);
-					infoMap.put("shipmentDate", dataConverter.kstToYYYY(shipmentsVo.getShipmentDate()));
+					infoMap.put("shipmentDate", dataConverter.kstToLocal(shipmentsVo.getShipmentDate()));
 					infoMap.put("status", status);
 					searchInfos.add(infoMap);
 				}
