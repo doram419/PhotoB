@@ -20,5 +20,10 @@ public class AlbumPhotoDaoImpl implements AlbumPhotoDao{
 	public int updatePath(AlbumPhotoVo albumPhotoVo) {
 		return session.insert("albumPhoto.updatePath", albumPhotoVo);
 	}
-
+	
+	@Override
+	public String getAlbumPhotoPath(String albumId) {
+		return session.selectOne("albumPhoto.getAlbumPhotoPath", albumId);
+		
+	}
 }
