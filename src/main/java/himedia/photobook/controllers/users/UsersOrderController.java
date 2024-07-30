@@ -15,6 +15,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import himedia.photobook.repositories.vo.OrdersVo;
 import himedia.photobook.repositories.vo.UsersVo;
+import himedia.photobook.services.admin.AdminOrderService;
 import himedia.photobook.services.users.UsersOrderServiceImpl;
 import jakarta.servlet.http.HttpSession;
 
@@ -23,6 +24,8 @@ import jakarta.servlet.http.HttpSession;
 public class UsersOrderController {
 	@Autowired
 	private UsersOrderServiceImpl orderService;
+	@Autowired
+	private AdminOrderService adminOrderService;
 	
 	@GetMapping({"/order"})
 	public String order(Model model, HttpSession session) {
@@ -84,4 +87,10 @@ public class UsersOrderController {
 		
 		return "redirect:/users/order";
 	}
+	@PostMapping("/order/cancel")
+	public String cancel(@RequestParam("orderId") String orderId) {
+		System.out.println(orderId);
+		adminOrderService.delete(orderId);
+		return "redirect:/users/order";
+		}
 }

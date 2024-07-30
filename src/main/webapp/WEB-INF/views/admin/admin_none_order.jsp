@@ -73,6 +73,12 @@
 												value="${orderInfo.ordersVo.orderId}" />
 											<button type="submit" class="btn btn-primary">환불 생성</button>
 										</form>
+										<form action="<c:url value='/admin/acancel'/>"
+											method="post">
+											<input type="hidden" name="orderId"
+												value="${orderInfo.ordersVo.orderId}" />
+											<button type="submit" class="btn btn-primary">주문 취소</button>
+										</form>
 									</td>
 								</tr>
 							</c:if>

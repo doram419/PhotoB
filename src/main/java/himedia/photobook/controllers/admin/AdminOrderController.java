@@ -94,7 +94,13 @@ public class AdminOrderController {
 	public String cancel(@RequestParam("orderId") String orderId) {
 		System.out.println(orderId);
 		adminOrderService.delete(orderId);
-		return "redirect:/";
+		return "redirect:/admin/om";
 		}
 	
+	@PostMapping("/acancel")
+	public String acancel(@RequestParam("orderId") String orderId) {
+		System.out.println(orderId);
+		adminOrderService.delete(orderId);
+		return "redirect:/admin/Norder";
+		}
 }
