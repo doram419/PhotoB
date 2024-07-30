@@ -1,16 +1,18 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
 
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>관리자 대시보드</title>
-
-    <link type="text/css" rel="stylesheet" href='<c:url value="/css/common_style.css"/>'/>
-    <!--<link type="text/css" rel="stylesheet" href='<c:url value="/css/admin_home.css"/>' /> 스타일 적용 빡셈 걍 안함 -->
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>관리자 대시보드</title>
+<link type="text/css" rel="stylesheet"
+	href='<c:url value="/css/common_style.css"/>' />
+    <script src="<c:url value='/javascript/admin/admin.js'/>"></script>
+    
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
         .chart-container {
@@ -33,28 +35,20 @@
     </style>
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-
-
-
-<script src="<c:url value='/javascript/admin/admin.js'/>"></script>
-
 </head>
-<body>
-	
+<body>	
     <c:import url="/WEB-INF/views/admin/includes/admin_header.jsp"></c:import>
 
-    <div class="main-content">
-        <div class="header">
-            <h2>대시보드</h2>
-        </div>
-
+   <div class="main-content">
+		<div class="header">
+			<h2>대시보드</h2>
+    </div>
         <div class="chart-container">
             <!-- 판매 데이터 차트 -->
             <div class="chart-item">
                 <h3>판매 현황</h3>
                 <canvas id="salesChart" style="width: 100%; height: 300px;"></canvas>
             </div>
-
             <!-- 상위 판매 앨범 차트 -->
             <div class="chart-item">
                 <h3>상위 판매 앨범</h3>
@@ -62,25 +56,24 @@
             </div>
         </div>
 
-        <div class="card">
-            <div class="card-body">
-                <a>미처리 내역</a>
-            </div>
-
-            <div class="card-header">
-                <a href="<c:url value='/admin/Norder'/>" onclick="dashBoard1(event)">미처리 주문 ${OrderCount}건이 있습니다</a>
-            </div>
-            <div class="card-header">
-                <a href="<c:url value='/admin/Nshipment'/>" onclick="dashBoard2(event)">미처리 배송 ${ShipCount}건이 있습니다</a>
-            </div>
-            <div class="card-header">
-                <a href="<c:url value='/admin/Nrefund'/>" onclick="dashBoard3(event)">미처리 환불 ${RefCount}건이 있습니다</a>
-            </div>
-            <div class="card-header">
-                <a href="<c:url value='/admin/cs'/>" onclick="dashBoard4(event)">미처리 문의 ${CsCount}건이 있습니다</a>
-            </div>
+       <div class="card">
+        <div class="card-header">
+          <a href="<c:url value='/admin/Norder'/>" onclick="dashBoard1(event)">미처리
+            주문 ${OrderCount}건이 있습니다</a>
         </div>
-    </div>
+        <div class="card-header">
+          <a href="<c:url value='/admin/Nshipment'/>" onclick="dashBoard2(event)">미처리 배송
+            ${ShipCount}건이 있습니다</a>
+        </div>
+        <div class="card-header">
+          <a href="<c:url value='/admin/Nrefund'/>" onclick="dashBoard3(event)">미처리 환불 ${RefCount}건이
+            있습니다</a>
+        </div>
+        <div class="card-header">
+          <a href="<c:url value='/admin/cs'/>" onclick="dashBoard4(event)">미처리 문의 ${CsCount}건이 있습니다</a>
+        </div>
+      </div>
+   </div>
 <script>
     // 판매 데이터 차트 생성
     var ctx = document.getElementById('salesChart').getContext('2d');

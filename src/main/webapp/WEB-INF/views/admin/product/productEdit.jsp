@@ -14,10 +14,10 @@
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 <link type="text/css" rel="stylesheet"
 	href='<c:url value="/css/common_style.css"/>' />
+<script src="<c:url value='/javascript/admin/admin.js'/>"></script>
 <script type="text/javascript" 
 	src='<c:url value="/javascript/admin/productAdd.js"/>'>
 </script>
-<script src="<c:url value='/javascript/admin/admin.js'/>"></script>
 
 </head>
 <body>
@@ -51,6 +51,8 @@
                 <td><input type="text" name="albumSize" id="albumSize" value="${ProductMap['album'].albumSize}"></td>
             </tr>
          	<tr>
+                <td colspan="6" style="text-align: center;">
+                    <input type="submit" value="확인" onclick="productModify(event)"> 
          		<td><input type="file" name="changeImg" id="fileUploader"></td>
                 <td colspan="5" style="text-align: center;">
                    <input type="submit" value="확인" onclick="productModify(event)"> 

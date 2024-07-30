@@ -13,7 +13,7 @@
 <link type="text/css" rel="stylesheet"
 	href='<c:url value="/css/common_style.css"/>' />
 <link type="text/css" rel="stylesheet"
-	href='<c:url value="/css/pagination.style.css"/>' />
+	href='<c:url value="/css/pagination_style.css"/>' />
 </head>
 
 <body>
@@ -87,32 +87,30 @@
 				</table>
 			</div>
 		</div>
+		<footer>
+			<div class="pagination">
+				<c:if test="${currentPage > 1}">
+					<a
+						href="<c:url value='/admin/inventory?page=${currentPage - 1}&size=5'/>"> < </a>
+				</c:if>
+		
+				<c:forEach begin="1" end="${totalPages}" var="pageNum">
+					<c:choose>
+						<c:when test="${pageNum == currentPage}">
+							<span>${pageNum}</span>
+						</c:when>
+						<c:otherwise>
+							<a href="<c:url value='/admin/inventory?page=${pageNum}&size=5'/>">${pageNum}</a>
+						</c:otherwise>
+					</c:choose>
+				</c:forEach>
+		
+				<c:if test="${currentPage < totalPages}">
+					<a
+						href="<c:url value='/admin/inventory?page=${currentPage + 1}&size=5'/>">></a>
+				</c:if>
+			</div>
+		</footer>
 	</div>
-	  
-	<c:import url="/WEB-INF/views/admin/includes/admin_footer.jsp"></c:import>
 </body>
-<footer>
-	<div class="pagination">
-		<c:if test="${currentPage > 1}">
-			<a
-				href="<c:url value='/admin/inventory?page=${currentPage - 1}&size=5'/>"> < </a>
-		</c:if>
-
-		<c:forEach begin="1" end="${totalPages}" var="pageNum">
-			<c:choose>
-				<c:when test="${pageNum == currentPage}">
-					<span>${pageNum}</span>
-				</c:when>
-				<c:otherwise>
-					<a href="<c:url value='/admin/inventory?page=${pageNum}&size=5'/>">${pageNum}</a>
-				</c:otherwise>
-			</c:choose>
-		</c:forEach>
-
-		<c:if test="${currentPage < totalPages}">
-			<a
-				href="<c:url value='/admin/inventory?page=${currentPage + 1}&size=5'/>">></a>
-		</c:if>
-	</div>
-</footer>
 </html>
