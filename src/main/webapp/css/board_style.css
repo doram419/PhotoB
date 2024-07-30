@@ -41,10 +41,8 @@ main {
     
 h1 {
     color: black;
-    margin-bottom: 1.5rem;
     font-weight: bold;
-    max-width: 800px;
-    width: 100%;
+   
 }
 
 h2 {
