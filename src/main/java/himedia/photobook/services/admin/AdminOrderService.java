@@ -42,7 +42,7 @@ public class AdminOrderService {
 
 	private DataConverter converter = new DataConverter();
 
-//관리자 주문 조회
+	//관리자 주문 조회
 	public List<Map<String, Object>> getOrderAdmin() {
 		List<Map<String, Object>> orderInfoList = new ArrayList<>();
 		List<OrdersVo> orderList = orderDaoImpl.selectAllOrders();
@@ -67,7 +67,6 @@ public class AdminOrderService {
 				status = converter.statusToWord(status);
 				orderMap.put("status", status);
 				orderInfoList.add(orderMap);
-
 			}
 			else	{
 				status = converter.statusToWord(status);
