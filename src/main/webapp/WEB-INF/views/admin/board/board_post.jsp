@@ -18,12 +18,11 @@
     
   	<link type="text/css" 
 		rel="stylesheet" 
-		href='<c:url value="/css/board_style.css"/>'>
+		href='<c:url value="/css/board_modify.css"/>'>
 </head>
 
 <body>
 	<c:import url="/WEB-INF/views/users/includes/users_header.jsp"></c:import>
-	
 	<div class="main-content">
 	<!-- postVo 요청 혹은 각 데이터를 요청 -->
 	

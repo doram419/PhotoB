@@ -87,6 +87,10 @@ h1 {
 	animation-delay: 1s;
 }
 
+image {
+	width: 300px;
+}
+
 @
 keyframes fadeIn {from { opacity:0;
 	
@@ -95,6 +99,7 @@ keyframes fadeIn {from { opacity:0;
 to {
 	opacity: 1;
 }
+
 }
 </style>
 </head>

@@ -17,7 +17,6 @@
 
 <body>
 	<c:import url="/WEB-INF/views/users/includes/users_header.jsp"></c:import>
-	
     <h1>글 작성 페이지</h1>
     
     <!-- 게시글을 나타낼 수 있는 vo 작성  -->
@@ -33,6 +32,7 @@
     </div>
     
     <p> <a href="<c:url value="/admin/boardList"/>">돌아가기</a> </p>
+    <p><a href="<c:url value="/admin/cs"/>">관리자 페이지로</a></p>
     
     <c:import url="/WEB-INF/views/users/includes/users_footer.jsp"></c:import>
 </body>

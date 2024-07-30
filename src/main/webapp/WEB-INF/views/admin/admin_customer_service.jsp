@@ -11,7 +11,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>고객 센터</title>
 <link type="text/css" rel="stylesheet"
-	href='<c:url value="/css/board_modify.css"/>' />
+	href='<c:url value="/css/common_style.css"/>' />
 <script src="<c:url value='/javascript/admin/admin.js'/>"></script>
 </head>
 
