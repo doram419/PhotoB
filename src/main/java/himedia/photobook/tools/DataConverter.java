@@ -62,4 +62,27 @@ public class DataConverter {
 		
 		return dateFormat.parse(src);
 	}
+	
+	/**
+	 * java.util.date 타입을 쓰면 Mon Jul 15 13:11:37 KST 2024 식으로 나옴
+	 * 그래서 그걸 "yyyy-MM-dd'T'HH:mm"식으로 나오게 해주는 메서드
+	 * parameter : Date 타입
+	 * return : String - datetime-local 
+	 * */
+	public String kstToLocal(Date date) {
+		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm");
+		
+		return dateFormat.format(date);
+	}
+	
+	/**
+	 * String("yyyy-MM-dd'T'HH:mm")으로 날짜가 들어오면 java.util.date 타입으로 변환시켜주는 메서드
+	 * parameter : String - datetime-local 
+	 * return : Date
+	 * */
+	public Date LocalToKst(String src) throws ParseException {
+		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm");
+		
+		return dateFormat.parse(src);
+	}
 }

@@ -57,7 +57,7 @@
 	                		<td>${infoMap['shipmentsVo'].orderId}</td>
 	                        <td>${infoMap['usersVo'].userName}</td>
 	                        <td>${infoMap['shipmentsVo'].shipmentId}</td>
-	                        <td>${infoMap['shipmentDate']}</td>
+	                        <td>${infoMap['shipmentsVo'].shipmentDate}</td>
 	                        <td>${infoMap['status']}</td>
 	                        <td>
 	                        	<form action="<c:url value="/admin/delivery/detail"/>" method="GET">

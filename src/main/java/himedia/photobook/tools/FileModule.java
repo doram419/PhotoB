@@ -26,7 +26,7 @@ public class FileModule {
 	 * Param2 : String path - 저장할 경로
 	 * Param3 : String saveFilename - 저장할 파일의 이름
 	 * myPortal에서 들고 온 소스
-	 * return : String - 서버에 파일이 저장된 경로
+	 * return : String finalFileName - 서버에 파일이 저장된 이름
 	 * */
 	public String saveFile(MultipartFile multipartFile, String path, String filename, String extName) 
 			throws IOException {
@@ -38,7 +38,7 @@ public class FileModule {
 		if(!extName.equals(".jpg"))
 			extName = ".jpg";
 		String finalFileName = filename + extName;
-		String finalPath = saveFile.getPath() + "\\";
+		String finalPath = saveFile.getPath() + "/";
 		Path filePath = Paths.get(finalPath, finalFileName);
 		//TODO : 문제 있으면 exception처리
 		Files.write(filePath, fileData);
@@ -56,6 +56,6 @@ public class FileModule {
 	         Files.setPosixFilePermissions(filePath, perms);
 	      }
 		
-		return finalPath + finalFileName;
+		return finalFileName;
 	}
 }

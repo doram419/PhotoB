@@ -11,8 +11,6 @@
 <title>관리자 대시보드</title>
 <link type="text/css" rel="stylesheet"
 	href='<c:url value="/css/common_style.css"/>' />
-    <script src="<c:url value='/javascript/admin/admin.js'/>"></script>
-    
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
         .chart-container {

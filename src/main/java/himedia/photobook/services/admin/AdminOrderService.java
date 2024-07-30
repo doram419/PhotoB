@@ -21,6 +21,7 @@ import himedia.photobook.repositories.vo.InventoryVo;
 import himedia.photobook.repositories.vo.OrdersVo;
 import himedia.photobook.repositories.vo.UsersVo;
 import himedia.photobook.tools.DataConverter;
+import himedia.photobook.tools.FileModule;
 
 @Service
 public class AdminOrderService {
@@ -41,11 +42,13 @@ public class AdminOrderService {
 	private PhotoDaoImpl photoDaoImpl;
 
 	private DataConverter converter = new DataConverter();
+	private FileModule fileModule = new FileModule();
 
-//관리자 주문 조회
+	//관리자 주문 조회
 	public List<Map<String, Object>> getOrderAdmin() {
 		List<Map<String, Object>> orderInfoList = new ArrayList<>();
 		List<OrdersVo> orderList = orderDaoImpl.selectAllOrders();
+		System.out.println("orderList + " + orderList);
 
 		for (OrdersVo order : orderList) {
 			Map<String, Object> orderMap = new HashMap<>();
@@ -67,7 +70,6 @@ public class AdminOrderService {
 				status = converter.statusToWord(status);
 				orderMap.put("status", status);
 				orderInfoList.add(orderMap);
-
 			}
 			else	{
 				status = converter.statusToWord(status);
@@ -94,6 +96,15 @@ public class AdminOrderService {
 		
 		int photoCount = photoDaoImpl.selectCountByOrderId(order.getOrderId());
 		orderDetail.put("imagesCount", photoCount);
+		
+		String imgSrc = order.getUserId() + "/" + orderId ;
+		if(fileModule.getOsName().contains("nux")) {
+ 			imgSrc = "/nux/photobook-images/order/" + imgSrc; 
+ 		}
+ 		else {
+    		imgSrc = "/win/photobook-images/order/" + imgSrc; 
+ 		}
+		orderDetail.put("imgSrc", imgSrc);
 
 		return orderDetail;
 	}
@@ -141,16 +152,6 @@ public class AdminOrderService {
 
 	}
 
-
-	
-
-
-
-
-
-
-
-
 //user id로 주문리스트 가져옴
 	public List<OrdersVo> getOrdersByUserId(String userId) {
 		return orderDaoImpl.selectAllOrdersByUserId(userId);
@@ -195,8 +196,13 @@ public class AdminOrderService {
 				result = 1 == shipmentsDaoImpl.insert(orderId);
 				inventoryDaoImpl.updateQuantity(inventoryVo);
 			}
+			
 		}
-
+		// 배송생성시, 환불상태가 있다면 환불상태 삭제.
+		if (refundDaoImpl.selectStatusByOrderID(orderId)!= null)	{
+			refundDaoImpl.delete(orderId);
+		}
+				
 		return result;
 	}
 
@@ -207,8 +213,12 @@ public class AdminOrderService {
 	public boolean createRefundByOrderId(String orderId) {
 		boolean result = false;
 
+		
 		if (refundDaoImpl.selectStatusByOrderID(orderId) == null) {
 			result = 1 == refundDaoImpl.insert(orderId);
+		}
+		if(shipmentsDaoImpl.selectStatusByOrderID(orderId) !=null)	{
+			shipmentsDaoImpl.delete(orderId);
 		}
 
 		return result;
@@ -226,5 +236,8 @@ public class AdminOrderService {
 	}
 	public List<Map<String,Object>> getTopAlbum()	{
 		return orderDaoImpl.getTopAlbum();
+	}
+	public int delete(String orderId)	{
+		return orderDaoImpl.delete(orderId);
 	}
 }

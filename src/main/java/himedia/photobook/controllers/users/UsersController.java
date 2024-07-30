@@ -61,7 +61,6 @@ public class UsersController {
 		UsersVo authUser = usersService.login(email, password);
 		
 		if (authUser != null) {
-			
 			session.setAttribute("authUser", authUser);
 			session.setAttribute("userName",authUser.getUserName());
 			session.setAttribute("success", "환영합니다."+authUser.getUserName()+"님");

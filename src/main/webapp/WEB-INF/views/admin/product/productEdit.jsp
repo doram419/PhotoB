@@ -41,7 +41,7 @@
         </thead>
         <tbody>
             <tr>
-                <td><img width="200em" src="<c:url value="/photobook-images/album/${ProductMap['album'].albumId}/mainImg.jpg"/>" /></td>
+                <td><img width="200em" src="<c:url value="${ProductMap['imgSrc']}"/>" /></td>
                 <td><input type="hidden" name="albumId" id="albumId" value="${ProductMap['album'].albumId}">
                 	<input type="text" value="${ProductMap['album'].albumId}" disabled></td>
                 <td><input type="text" name="price" id="price" value="${ProductMap['inventory'].albumPrice}"></td>
@@ -50,17 +50,17 @@
                 <td><input type="text" name="albumSize" id="albumSize" value="${ProductMap['album'].albumSize}"></td>
             </tr>
          	<tr>
-                <td colspan="6" style="text-align: center;">
-                    <input type="submit" value="확인" onclick="productModify(event)"> 
          		<td><input type="file" name="changeImg" id="fileUploader"></td>
                 <td colspan="5" style="text-align: center;">
-                   <input type="submit" value="확인" onclick="productModify(event)"> 
-
-
                     <input type="button" id="listBtn" value="상품목록" style="float: right;"
                         onclick="location.href='<c:url value='/admin/products/search'/>'">
                 </td>
-            </tr>
+			</tr>
+			<tr>
+                <td colspan="6" style="text-align: center;">
+                    <input type="submit" value="확인" onclick="productModify(event)"> 
+         		
+         	</tr>
         </tbody>
       </table>
       </form>

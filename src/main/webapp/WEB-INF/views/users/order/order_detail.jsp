@@ -46,7 +46,7 @@
             	<h2>포토북 이미지</h2>
             	<div id="gallery">
             	<c:forEach var="index" begin="1" end="${imagesCount}">
-            		<img src="<c:url value="/photobook-images/order/${orderVo.userId}/${orderVo.orderId}/${index}.jpg" />" />
+            		<img src="<c:url value="${imgSrc}/${index}.jpg" />" />
         		</c:forEach>	
         		</div> 
             </div>

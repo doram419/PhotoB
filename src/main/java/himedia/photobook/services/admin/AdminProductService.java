@@ -51,7 +51,7 @@ public class AdminProductService {
 	}
     
     /**
-   * 제품 관리에 필요한 정보
+   * 제품 관리에 필요한 정보들을 가져와주는 메서드
    * */
     public List<Map<String, Object>>getProductInfos() {
     	List<Map<String, Object>> productInfoList = new ArrayList<Map<String, Object>>();
@@ -60,9 +60,18 @@ public class AdminProductService {
     	for(AlbumVo albumVo : albumlist) {
     		Map<String, Object> productMap = new HashMap<String, Object>();
     		InventoryVo inventoryVo = inventoryDaoImpl.selectOneByAlbumId(albumVo.getAlbumId());
+    		String imgSrc = albumPhotoDaoImpl.getAlbumPhotoPath(albumVo.getAlbumId());
     		
     		productMap.put("albumVo", albumVo);
     		productMap.put("inventoryVo", inventoryVo);
+    		
+     		if(fileModule.getOsName().contains("nux")) {
+     			imgSrc = "/nux/photobook-images/album/" + imgSrc; 
+     		}
+     		else {
+        		imgSrc = "/win/photobook-images/album/" + imgSrc; 
+     		}
+    		productMap.put("imgSrc", imgSrc);
     		
     		productInfoList.add(productMap);
     		
@@ -72,7 +81,7 @@ public class AdminProductService {
     }
     
     /**
-     * 제품 관리에 필요한 정보
+     * 제품 관리 검색에 필요한 정보들을 가져와주는 메서드
      * */
       public List<Map<String, Object>>getProductInfos(String keyword) {
       	List<Map<String, Object>> productInfoList = new ArrayList<Map<String, Object>>();
@@ -81,9 +90,17 @@ public class AdminProductService {
       	for(AlbumVo albumVo : albumlist) {
       		Map<String, Object> productMap = new HashMap<String, Object>();
       		InventoryVo inventoryVo = inventoryDaoImpl.selectOneByAlbumId(albumVo.getAlbumId());
+      		String imgSrc = albumPhotoDaoImpl.getAlbumPhotoPath(albumVo.getAlbumId());
       		
       		productMap.put("albumVo", albumVo);
       		productMap.put("inventoryVo", inventoryVo);
+     		if(fileModule.getOsName().contains("nux")) {
+     			imgSrc = "/nux/photobook-images/album/" + imgSrc; 
+     		}
+     		else {
+        		imgSrc = "/win/photobook-images/album/" + imgSrc; 
+     		}
+    		productMap.put("imgSrc", imgSrc);
       		
       		productInfoList.add(productMap);
       		
@@ -95,12 +112,20 @@ public class AdminProductService {
     public Map<String, Object> getAlbumInfoMap(String albumId) {
         AlbumVo albumVo = albumDaoImpl.selectByAlbumId(albumId);
         InventoryVo inventory = inventoryDaoImpl.selectOneByAlbumId(albumId);
+        String imgSrc = albumPhotoDaoImpl.getAlbumPhotoPath(albumVo.getAlbumId());
     	
         Map<String, Object> productMap = new HashMap<String, Object>();
         
         if (inventory != null) {
         	productMap.put("album", albumVo);
         	productMap.put("inventory", inventory);
+        	if(fileModule.getOsName().contains("nux")) {
+     			imgSrc = "/nux/photobook-images/album/" + imgSrc; 
+     		}
+     		else {
+        		imgSrc = "/win/photobook-images/album/" + imgSrc; 
+     		}
+    		productMap.put("imgSrc", imgSrc);
         }
 
         return productMap;
@@ -113,10 +138,15 @@ public class AdminProductService {
  		result = 1 == updatedCount;
  		
  		InventoryVo inventoryVo = new InventoryVo();
- 		inventoryVo.setAlbumPrice(albumPrice);
  		inventoryVo.setAlbumId(albumVo.getAlbumId());
+ 		inventoryVo.setAlbumPrice(albumPrice);
  		
  		result = result && (1 == inventoryDaoImpl.updateProduct(inventoryVo));
+ 		
+ 		if(fileModule.getOsName().contains("nux")) {
+ 			DEFUALT_PATH = "/photobook/album/";
+ 		}
+ 		
  		// 파일 덧씌우기 
  		AlbumPhotoVo albumPhotoVo = null;
  		if(result) {
@@ -131,6 +161,7 @@ public class AdminProductService {
 				e.printStackTrace();
 				// TODO: 에러 연결하기
 			}
+			photoPath = "/" + albumVo.getAlbumId() + "/" + photoPath;
 			albumPhotoVo = new AlbumPhotoVo(null, albumVo.getAlbumId(), photoPath, null);
 			
 			result = result && (1 == albumPhotoDaoImpl.updatePath(albumPhotoVo));
@@ -149,7 +180,6 @@ public class AdminProductService {
  		boolean result = false;
  		
  		int albumInsertedCount = albumDaoImpl.insertAlbum(albumVo);
- 		
  		result = 1 == albumInsertedCount;
  		
  		InventoryVo inventoryVo = new InventoryVo();
@@ -177,6 +207,7 @@ public class AdminProductService {
 				e.printStackTrace();
 				// TODO: 에러 연결하기
 			}
+			photoPath = "/" + albumVo.getAlbumId() + "/" + photoPath;
 			albumPhotoVo = new AlbumPhotoVo(null, albumVo.getAlbumId(), photoPath, "M");
 			
 			result = result && (1 == albumPhotoDaoImpl.insert(albumPhotoVo));
