@@ -56,7 +56,7 @@ pageEncoding="UTF-8"%>
                     <span id="price">0</span>원
                 </div>
 				<div class="form-group">
-					<button type="submit">제작</button>
+					<button type="submit">만들기</button>
 				</div>
 			</form>
 		</section>

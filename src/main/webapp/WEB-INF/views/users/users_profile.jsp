@@ -36,7 +36,7 @@
                     <label for="address">주소:</label>
                     <input type="text" id="address" name="address" value="${user.address}" required>
                 </div>
-                <button type="submit" onclick="profileUpdate(event)">프로필 업데이트</button>
+                <button type="submit" onclick="profileUpdate(event)">업데이트</button>
             </form>
         </section>
     </main>
