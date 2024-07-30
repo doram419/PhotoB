@@ -52,6 +52,7 @@ public class AdminOrderController {
 		// TODO: service에서 order를 위해 map으로 보낼 때, 해당 order_id로 배송을 만들 수 있는지 없는지 체크 해야함 
 		
 		// TODO: 여기서도 결과가 되는지 안 되는지 체크
+		
 		boolean createResult = adminOrderService.createShipmentByOrderId(orderId);
 		
 		return "redirect:/admin/om";
@@ -73,6 +74,7 @@ public class AdminOrderController {
 	public String acreateOrder(@ModelAttribute("createOrderId") String orderId) {
 		// TODO: service에서 order를 위해 map으로 보낼 때, 해당 order_id로 배송을 만들 수 있는지 없는지 체크 해야함 
 		
+		
 	// TODO: 여기서도 결과가 되는지 안 되는지 체크
 	boolean createResult = adminOrderService.createShipmentByOrderId(orderId);
 		
@@ -87,5 +89,12 @@ public class AdminOrderController {
 		
 		return "redirect:/admin/NOrder";
 	}
+	
+	@PostMapping("/order/cancel")
+	public String cancel(@RequestParam("orderId") String orderId) {
+		System.out.println(orderId);
+		adminOrderService.delete(orderId);
+		return "redirect:/";
+		}
 	
 }

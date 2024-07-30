@@ -78,6 +78,10 @@ value="${param.keyword}">
                 <c:if test="${orderInfo.status == '환불 대기' || orderInfo.status == '환불 완료'}">disabled</c:if>
                 onclick="createRefund(event)">환불 생성</button>
         </form>
+        <form action="<c:url value='/admin/order/cancel'/>" method="post" id="cancel">
+            <input type="hidden" name="orderId" value="${orderInfo.ordersVo.orderId}"/>
+            <button type="submit" class="btn btn-primary" >주문 취소</button>
+            </form>
     </td>
 </tr>
 </c:forEach>

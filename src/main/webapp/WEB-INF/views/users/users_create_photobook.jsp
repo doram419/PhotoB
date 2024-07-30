@@ -64,7 +64,7 @@
 
 	</div>
 	
-   <c:import url="/WEB-INF/views/users/includes/users_footer.jsp"></c:import>  
+  <!--<c:import url="/WEB-INF/views/users/includes/users_footer.jsp"></c:import>-->
 </body>
 
 </html>

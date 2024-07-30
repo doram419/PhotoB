@@ -46,6 +46,7 @@ public class AdminOrderService {
 	public List<Map<String, Object>> getOrderAdmin() {
 		List<Map<String, Object>> orderInfoList = new ArrayList<>();
 		List<OrdersVo> orderList = orderDaoImpl.selectAllOrders();
+		System.out.println("orderList + " + orderList);
 
 		for (OrdersVo order : orderList) {
 			Map<String, Object> orderMap = new HashMap<>();
@@ -195,8 +196,13 @@ public class AdminOrderService {
 				result = 1 == shipmentsDaoImpl.insert(orderId);
 				inventoryDaoImpl.updateQuantity(inventoryVo);
 			}
+			
 		}
-
+		// 배송생성시, 환불상태가 있다면 환불상태 삭제.
+		if (refundDaoImpl.selectStatusByOrderID(orderId)!= null)	{
+			refundDaoImpl.delete(orderId);
+		}
+				
 		return result;
 	}
 
@@ -207,8 +213,12 @@ public class AdminOrderService {
 	public boolean createRefundByOrderId(String orderId) {
 		boolean result = false;
 
+		
 		if (refundDaoImpl.selectStatusByOrderID(orderId) == null) {
 			result = 1 == refundDaoImpl.insert(orderId);
+		}
+		if(shipmentsDaoImpl.selectStatusByOrderID(orderId) !=null)	{
+			shipmentsDaoImpl.delete(orderId);
 		}
 
 		return result;
@@ -226,5 +236,8 @@ public class AdminOrderService {
 	}
 	public List<Map<String,Object>> getTopAlbum()	{
 		return orderDaoImpl.getTopAlbum();
+	}
+	public int delete(String orderId)	{
+		return orderDaoImpl.delete(orderId);
 	}
 }

@@ -81,4 +81,7 @@ public class OrderDaoImpl implements OrderDao {
 	 public List<Map<String, Object>> getTopAlbum() {
 	        return sqlSession.selectList("order.getTopAlbum");
 	}
+	 public int delete(String orderId)	{
+		 return sqlSession.delete("order.delete",orderId);
+	 }
 }
