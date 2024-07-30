@@ -81,9 +81,9 @@ public class UsersPhotobookController {
 		}
 		else
 		{
-			//TODO: 로그인 처리
+			//TODO: 로그인 에러 처리
 			model.addAttribute("error", "로그인이 필요합니다");
-			return "redirect:/users/order";
+			return "/WEB-INF/views/users/users_login.jsp";
 		}
 		
 		model.addAttribute("success", "주문에 성공했습니다");

@@ -30,7 +30,7 @@ public class UserPhotobookService {
 	@Autowired
 	private PhotoDao photoDaoImpl;
 	
-	private static String DEFUALT_PATH = "C:/photobook/order/";
+	private String DEFUALT_PATH = "C:/photobook/order/";
 	private FileModule fileModule = new FileModule();
 	private VoConfiguration voConfiguration = new VoConfiguration();
 
@@ -50,6 +50,10 @@ public class UserPhotobookService {
 		OrdersVo orderVo = orderDaoImpl.selectRecentOrderByUserId(userId);
 		PhotoVo photoVo = null;
 		
+ 		if(fileModule.getOsName().contains("nux")) {
+ 			DEFUALT_PATH = "/photobook/album/";
+ 		}
+ 		
 		if(orderVo != null) {
 			String savePath = DEFUALT_PATH + userId + "/" + orderVo.getOrderId();
 			Long number = 1l;
