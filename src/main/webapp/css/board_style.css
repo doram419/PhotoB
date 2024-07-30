@@ -12,6 +12,10 @@ main {
     width: 100%;
     margin: 0 auto;
 }
+.main-content{
+	max-width: 800px;
+    width: 100%;
+}
 
 #board {
 	background-color: #fff;
@@ -34,6 +38,8 @@ h1 {
     color: black;
     margin-bottom: 1.5rem;
     font-weight: bold;
+    max-width: 800px;
+    width: 100%;
 }
 
 h2 {
