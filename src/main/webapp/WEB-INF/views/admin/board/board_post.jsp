@@ -23,6 +23,8 @@
 
 <body>
 	<c:import url="/WEB-INF/views/users/includes/users_header.jsp"></c:import>
+	<main>
+	<section id="board">
 	<div class="main-content">
 	<!-- postVo 요청 혹은 각 데이터를 요청 -->
 	
@@ -47,7 +49,7 @@
 	    <form method="POST" action="<c:url value="/admin/comment/write"/>" >
 	    <input type="hidden" name="boardId" value="${vo['boardVo'].boardId }">
 	   		<label for="content">관리자 코멘트</label>
-	   		<textarea id="content" name="content" rows="5" cols="175">댓글은 여기 적어주세요</textarea>
+	   		<textarea id="content" name="content" rows="5" cols="100">댓글은 여기 적어주세요</textarea>
 	        <button type="submit">작성하기</button>
 	    </form>
 	   </c:if>
@@ -55,11 +57,13 @@
 	   	<p>이미 댓글을 작성했습니다.</p>
 	   </c:if>
     </div>    
-    
+    <div class="board-actions">
     <p><a href="<c:url value="/admin/boardList"/>">돌아가기</a></p><br>
     <p><a href="<c:url value="/admin/cs"/>">관리자 페이지로</a></p>
- 
+ 	</div>
     <c:import url="/WEB-INF/views/users/includes/users_footer.jsp"></c:import>
+	</section>
+	</main>
 </body>
 
 </html>
