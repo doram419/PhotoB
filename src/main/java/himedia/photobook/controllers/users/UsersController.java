@@ -98,7 +98,15 @@ public class UsersController {
 	}
 
 	@RequestMapping({ "/profile" })
-	public String profile() {
+	public String profile(HttpSession session, Model model) {
+		UsersVo currentUser = (UsersVo) session.getAttribute("authUser");
+		if (currentUser != null) {
+			model.addAttribute("user",currentUser);
+		}
+		else {
+			return "redirect:/users/login";
+		}
+		
 		return "/WEB-INF/views/users/users_profile.jsp";
 	}
 	@PostMapping("/profile/update")

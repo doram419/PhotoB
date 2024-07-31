@@ -28,7 +28,7 @@
                 	enctype="Multipart/form-data">
                     <div class="form-group">
                         <label for="albumId">상품코드</label>
-                        <input type="text" id="albumId" name="albumId" placeholder="상품코드 입력" required>
+                        <input type="text" id="albumId" name="albumId" placeholder="A000" required>
                     </div>
                     <div class="form-group">
                         <label for="albumPrice">가격</label>
@@ -44,7 +44,7 @@
                     </div>
                     <div class="form-group">
                         <label for="albumSize">사이즈</label>
-                        <input type="text" id="albumSize" name="albumSize" placeholder="사이즈 입력" required>
+                        <input type="text" id="albumSize" name="albumSize" placeholder="S/M/B" required>
                     </div>
                     <div class="form-group">
                         <label for="fileUploader">이미지 업로드</label>

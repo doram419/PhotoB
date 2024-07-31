@@ -14,6 +14,7 @@
             ALBUM_PRICE as albumPrice,
             A_QUANTITY as aQuantity
         FROM inventory
+        order by albumId
     </select>
     
     <update id="updateQuantity" parameterType="InventoryVo">

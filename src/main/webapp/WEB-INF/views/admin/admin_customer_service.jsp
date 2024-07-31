@@ -13,6 +13,16 @@
 <link type="text/css" rel="stylesheet"
 	href='<c:url value="/css/common_style.css"/>' />
 <script src="<c:url value='/javascript/admin/admin.js'/>"></script>
+<script>
+function confirmNavigation(event) {
+	event.preventDefault(); // 기본 동작 방지
+	console.log(event.currentTarget.href);
+	const adminConfirmed = confirm("해당 게시글로 이동하시겠습니까?");
+	if (adminConfirmed) {
+		window.location.href = event.currentTarget.href; // 사용자가 확인할 경우 링크로 이동
+	}
+}
+</script>
 </head>
 
 <body>
@@ -69,7 +79,7 @@
 								<td>${postMap['boardVo'].status}</td>
 								<td><a
 									href="<c:url value="/admin/board/post/${postMap['boardVo'].userId}/${postMap['boardVo'].boardId }"/>"><button
-											class="btn btn-primary">상세보기</button></a></td>
+											class="btn btn-primary" >상세보기</button></a></td>
 
 							</tr>
 						</c:forEach>

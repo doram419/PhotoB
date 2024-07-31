@@ -14,6 +14,7 @@
 	href='<c:url value="/css/common_style.css"/>' />
 <link type="text/css" rel="stylesheet"
 	href='<c:url value="/css/pagination_style.css"/>' />
+	<script src="<c:url value='/javascript/admin/admin.js'/>"></script>
 </head>
 
 <body>
@@ -28,7 +29,7 @@
 			<div class="card-body">
 				<form action="<c:url value="/admin/inventory/search"/>" method="GET">
 					<div class="form-group">
-						<input type="text" name="keyword" placeholder="고객 이름 검색">
+						<input type="text" name="keyword" placeholder="상품 번호 검색">
 					</div>
 					<button type="submit" class="btn btn-primary">검색</button>
 				</form>
@@ -50,61 +51,62 @@
 						</tr>
 					</thead>
 					<tbody>
-						<%-- 여기에 문의 데이터를 동적으로 생성하는 Java 코드를 추가할 수 있습니다 --%>
-						<c:forEach items="${invenList }" var="invenVo" varStatus="status">
-							
-							<tr>
-								<td>${invenVo.albumId }</td>
-								<td>${invenVo.albumPrice }</td>
-								<td>${invenVo.aQuantity }</td>
-								<td>
-									<form action="<c:url value="/admin/inventory/store"/>"
-										method="GET">
-										<input type="number" name="aQuantity" value="0" min="0"
-											step="10"> <input type="hidden" name="albumId"
-											value="${invenVo.albumId }">
-										<button class="btn btn-primary">입고</button>
-									</form>
-
-								</td>
-							</tr>
-						</c:forEach>
-						<tr>
-							
-								<!-- 마지막 항목일 때 버튼을 숨김 -->
-								
-
-								<td>${invenDetail.albumId }</td>
-								<td>${invenDetail.albumPrice }</td>
-								<td>${invenDetail.aQuantity }</td>
-								<td>
-									<button class="btn btn-primary">입고</button>
-								</td>
-							
-						</tr>
-
-					</tbody>
-				</table>
-			</div>
-		</div>
+						 <!-- 검색 결과가 있을 경우 검색된 항목을 표시 -->
+                        <c:if test="${not empty invenDetail}">
+                            <tr>
+                                <td>${invenDetail.albumId}</td>
+                                <td>${invenDetail.albumPrice}</td>
+                                <td>${invenDetail.aQuantity}</td>
+                                <td>
+                                    <form action="<c:url value='/admin/inventory/store'/>"
+                                        method="GET" id="store">
+                                        <input type="number" name="aQuantity" value="0" min="0" step="10" id="aQuantity">
+                                        <input type="hidden" name="albumId" value="${invenDetail.albumId}">
+                                        <button class="btn btn-primary" onclick="store(event)">입고</button>
+                                    </form>
+                                </td>
+                            </tr>
+                        </c:if>
+                        <!-- 전체 재고 목록을 표시 -->
+                        <c:forEach items="${invenList}" var="invenVo">
+                            <tr>
+                                <td>${invenVo.albumId}</td>
+                                <td>${invenVo.albumPrice}</td>
+                                <td>${invenVo.aQuantity}</td>
+                                <td>
+                                    <form action="<c:url value='/admin/inventory/store'/>"
+                                        method="GET">
+                                        <input type="number" name="aQuantity" value="0" min="0" step="10" id="aQuantity">
+                                        <input type="hidden" name="albumId" value="${invenVo.albumId}">
+                                        <button class="btn btn-primary" onclick="store(event)">입고</button>
+                                    </form>
+                                </td>
+                            </tr>
+                        </c:forEach>
+                    </tbody>
+                </table>
+            </div>
+        </div>
 		<footer>
 			<div class="pagination">
 				<c:if test="${currentPage > 1}">
 					<a
-						href="<c:url value='/admin/inventory?page=${currentPage - 1}&size=5'/>"> < </a>
+						href="<c:url value='/admin/inventory?page=${currentPage - 1}&size=5'/>">
+						< </a>
 				</c:if>
-		
+
 				<c:forEach begin="1" end="${totalPages}" var="pageNum">
 					<c:choose>
 						<c:when test="${pageNum == currentPage}">
 							<span>${pageNum}</span>
 						</c:when>
 						<c:otherwise>
-							<a href="<c:url value='/admin/inventory?page=${pageNum}&size=5'/>">${pageNum}</a>
+							<a
+								href="<c:url value='/admin/inventory?page=${pageNum}&size=5'/>">${pageNum}</a>
 						</c:otherwise>
 					</c:choose>
 				</c:forEach>
-		
+
 				<c:if test="${currentPage < totalPages}">
 					<a
 						href="<c:url value='/admin/inventory?page=${currentPage + 1}&size=5'/>">></a>
