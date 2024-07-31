@@ -20,7 +20,7 @@
 
     <main>
         <section class="hero position-relative">
-            <div class="container-fluid p-0">
+            <div>
             <div class="row">
             <div class="col d-flex justify-content-end">
             <c:choose>
