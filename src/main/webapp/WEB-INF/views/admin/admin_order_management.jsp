@@ -48,53 +48,50 @@
 						</tr>
 					</thead>
 					<tbody>
-						<c:forEach var="orderInfo" items="${orderList}">
-							<tr>
-								<td><a
-									href="<c:url value='/admin/order/detail'>
-    <c:param name='orderId' value='${orderInfo.ordersVo.orderId}'/>
-    </c:url>">
-										${orderInfo.ordersVo.orderId} </a></td>
-								<td><c:choose>
-										<c:when test="${not empty orderInfo.userName}">
-            ${orderInfo.userName}
-        </c:when>
-										<c:otherwise>
-            ${orderInfo.usersVo.userName}
-        </c:otherwise>
+    <c:forEach var="orderInfo" items="${orderList}" varStatus="status">
+        <tr>
+            <td><a href="<c:url value='/admin/order/detail'>
+                <c:param name='orderId' value='${orderInfo.ordersVo.orderId}'/>
+                </c:url>">
+                    ${orderInfo.ordersVo.orderId} </a></td>
+            <td><c:choose>
+                    <c:when test="${not empty orderInfo.userName}">
+                        ${orderInfo.userName}
+                    </c:when>
+                    <c:otherwise>
+                        ${orderInfo.usersVo.userName}
+                    </c:otherwise>
+                </c:choose></td>
+            <td>${orderInfo.ordersVo.orderDate}</td>
+            <td>${orderInfo.ordersVo.oQuantity}</td>
+            <td>${orderInfo.ordersVo.total}원</td>
+            <td>${orderInfo.status}</td>
+            <td>
+                <form id="orderActionForm_${status.index}" method="post">
+                    <input type="hidden" name="createOrderId"
+                        value="${orderInfo.ordersVo.orderId}" /> 
+                    <input type="hidden" name="orderId"
+                        value="${orderInfo.ordersVo.orderId}" />
+                    
+                    <select id="orderActionDropdown_${status.index}" class="form-select"
+                        onchange="handleOrderActionChange(${status.index})">
+                        <option value="">선택하세요</option>
+                        <option value="createShipment"
+                            <c:if test="${orderInfo.status == '배송 준비' || orderInfo.status == '배송 중' || orderInfo.status == '배송 완료' || orderInfo.status == '환불 대기' || orderInfo.status == '환불 완료'}">disabled</c:if>>
+                            배송 생성</option>
+                        <option value="createRefund"
+                            <c:if test="${orderInfo.status == '환불 대기' || orderInfo.status == '환불 완료'}">disabled</c:if>>
+                            환불 생성</option>
+                        <option value="cancel"
+                            <c:if test="${orderInfo.status == '배송 준비' || orderInfo.status == '배송 중' || orderInfo.status == '배송 완료' || orderInfo.status == '환불 대기' || orderInfo.status == '환불 완료'}">disabled</c:if>>
+                            주문 취소</option>
+                    </select>
+                </form>
+            </td>
+        </tr>
+    </c:forEach>
+</tbody>
 
-									</c:choose></td>
-								<td>${orderInfo.ordersVo.orderDate}</td>
-								<td>${orderInfo.ordersVo.oQuantity}</td>
-								<td>${orderInfo.ordersVo.total}원</td>
-								<td>${orderInfo.status}</td>
-								<td>
-									<form id="orderActionForm" method="post">
-										<input type="hidden" name="createOrderId"
-											value="${orderInfo.ordersVo.orderId}" /> <input
-											type="hidden" name="orderId"
-											value="${orderInfo.ordersVo.orderId}" />
-										
-											<select id="orderActionDropdown" class="form-select"
-												onchange="handleOrderActionChange()">
-												<option value="">선택하세요</option>
-												<option value="createShipment"
-													<c:if test="${orderInfo.status == '배송 준비' || orderInfo.status == '배송 중' || orderInfo.status == '배송 완료' || orderInfo.status == '환불 대기' || orderInfo.status == '환불 완료'}">disabled</c:if>>
-													배송 생성</option>
-												<option value="createRefund"
-													<c:if test="${orderInfo.status == '환불 대기' || orderInfo.status == '환불 완료'}">disabled</c:if>>
-													환불 생성</option>
-												<option value="cancel"
-													<c:if test="${orderInfo.status == '배송 준비' || orderInfo.status == '배송 중' || orderInfo.status == '배송 완료' || orderInfo.status == '환불 대기' || orderInfo.status == '환불 완료'}">disabled</c:if>>
-													주문 취소</option>
-
-											</select>
-										
-									</form>
-								</td>
-							</tr>
-						</c:forEach>
-					</tbody>
 				</table>
 			</div>
 		</div>
@@ -102,22 +99,23 @@
 
 	<c:import url="/WEB-INF/views/admin/includes/admin_footer.jsp"></c:import>
 	<script>
-		function handleOrderActionChange() {
-			var dropdown = document.getElementById("orderActionDropdown");
-			var selectedValue = dropdown.value;
-			var form = document.getElementById("orderActionForm");
+	function handleOrderActionChange(index) {
+	    var dropdown = document.getElementById("orderActionDropdown_" + index);
+	    var selectedValue = dropdown.value;
+	    var form = document.getElementById("orderActionForm_" + index);
 
-			if (selectedValue) {
-				if (selectedValue === "createShipment") {
-					form.action = "<c:url value='/admin/order/createShipment'/>";
-				} else if (selectedValue === "createRefund") {
-					form.action = "<c:url value='/admin/order/createRefund'/>";
-				} else if (selectedValue === "cancel") {
-					form.action = "<c:url value='/admin/order/cancel'/>";
-				}
-				form.submit();
-			}
-		}
+	    if (selectedValue) {
+	        if (selectedValue === "createShipment") {
+	            form.action = "<c:url value='/admin/order/createShipment'/>";
+	        } else if (selectedValue === "createRefund") {
+	            form.action = "<c:url value='/admin/order/createRefund'/>";
+	        } else if (selectedValue === "cancel") {
+	            form.action = "<c:url value='/admin/order/cancel'/>";
+	        }
+	        form.submit();
+	    }
+	}
+
 	</script>
 </body>
 </html>
