@@ -53,7 +53,7 @@
          		<td><input type="file" name="changeImg" id="fileUploader"></td>
                 <td colspan="5" style="text-align: center;">
                     <input type="button" id="listBtn" value="상품목록" style="float: right;"
-                        onclick="location.href='<c:url value='/admin/products/search'/>'">
+                        onclick="location.href='<c:url value='/admin/product'/>'">
                 </td>
 			</tr>
 			<tr>
