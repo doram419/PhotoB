@@ -47,9 +47,13 @@
             		<img src="<c:url value="/photobook-images/order/${orderVo.userId}/${orderVo.orderId}/${index}.jpg" />" />
         		</c:forEach>	
         		</div> 
-            </div>
+            </div><br>
+             <p>
+				<a href="<c:url value="/users/order"/>">뒤로 가기</a>
+			</p>
         </section>
     </main>
+    
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
  	<c:import url="/WEB-INF/views/users/includes/users_footer.jsp"></c:import>
 </body>

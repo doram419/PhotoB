@@ -58,7 +58,7 @@
                    <input type="submit" value="확인" onclick="productModify(event)"> 
 
                     <input type="button" id="listBtn" value="상품목록" style="float: right;"
-                        onclick="location.href='<c:url value='/admin/products/search'/>'">
+                        onclick="location.href='<c:url value='/admin/product'/>'">
                 </td>
             </tr>
         </tbody>
