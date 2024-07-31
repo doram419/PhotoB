@@ -67,6 +67,7 @@ public class UsersOrderController {
 		model.addAttribute("orderDate", orderDate);
 		model.addAttribute("status", status);
 		model.addAttribute("imagesCount", imgsCount);
+		model.addAttribute("imgSrc", orderService.getOrderedImagePath(userId, ordersId));
 		
 		return "/WEB-INF/views/users/order/order_detail.jsp";
 	}
@@ -89,8 +90,13 @@ public class UsersOrderController {
 	}
 	@PostMapping("/order/cancel")
 	public String cancel(@RequestParam("orderId") String orderId) {
-		System.out.println(orderId);
 		adminOrderService.delete(orderId);
 		return "redirect:/users/order";
-		}
+	}
+	
+	@PostMapping("/acancel")
+	public String acancel(@RequestParam("orderId") String orderId) {
+		adminOrderService.delete(orderId);
+		return "redirect:/admin/Norder";
+	}
 }

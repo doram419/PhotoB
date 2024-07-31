@@ -11,7 +11,6 @@
 <title>제품 수정</title>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 <link type="text/css" rel="stylesheet"
 	href='<c:url value="/css/common_style.css"/>' />
 <script src="<c:url value='/javascript/admin/admin.js'/>"></script>
@@ -42,7 +41,7 @@
         </thead>
         <tbody>
             <tr>
-                <td><img width="200em" src="<c:url value="/photobook-images/album/${ProductMap['album'].albumId}/mainImg.jpg"/>" /></td>
+                <td><img width="200em" src="<c:url value="${ProductMap['imgSrc']}"/>" /></td>
                 <td><input type="hidden" name="albumId" id="albumId" value="${ProductMap['album'].albumId}">
                 	<input type="text" value="${ProductMap['album'].albumId}" disabled></td>
                 <td><input type="text" name="price" id="price" value="${ProductMap['inventory'].albumPrice}"></td>
@@ -51,16 +50,17 @@
                 <td><input type="text" name="albumSize" id="albumSize" value="${ProductMap['album'].albumSize}"></td>
             </tr>
          	<tr>
-                <td colspan="6" style="text-align: center;">
-                    <input type="submit" value="확인" onclick="productModify(event)"> 
          		<td><input type="file" name="changeImg" id="fileUploader"></td>
                 <td colspan="5" style="text-align: center;">
-                   <input type="submit" value="확인" onclick="productModify(event)"> 
-
                     <input type="button" id="listBtn" value="상품목록" style="float: right;"
                         onclick="location.href='<c:url value='/admin/product'/>'">
                 </td>
-            </tr>
+			</tr>
+			<tr>
+                <td colspan="6" style="text-align: center;">
+                    <input type="submit" value="확인" onclick="productModify(event)"> 
+         		
+         	</tr>
         </tbody>
       </table>
       </form>

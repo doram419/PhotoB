@@ -9,7 +9,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Internal Server Error</title>
+<title>Bad Request</title>
 <style>
 body {
 	background-color: #f5f5f5;
@@ -67,8 +67,8 @@ h1 {
 }
 
 .icon-large {
-	height: 50px;
-	width: 50px;
+	height: 132px;
+	width: 132px;
 }
 
 .description-text {
@@ -87,10 +87,6 @@ h1 {
 	animation-delay: 1s;
 }
 
-image {
-	width: 300px;
-}
-
 @
 keyframes fadeIn {from { opacity:0;
 	
@@ -99,7 +95,6 @@ keyframes fadeIn {from { opacity:0;
 to {
 	opacity: 1;
 }
-
 }
 </style>
 </head>
@@ -109,14 +104,14 @@ to {
 		<div class="row">
 			<div class="col">
 				<div class="animate__animated animate__fadeIn"></div>
-				<h1 class="animate__animated animate__fadeIn">Internal Server Error</h1>
+				<h1 class="animate__animated animate__fadeIn">Bad Request</h1>
 				<div class="description-text animate__animated animate__fadeIn animate__delay-1s">
 				<img src="<c:url value='/images/logo.jpg'/>" >
-					<p>Oh! Something went wrong at our end.</p>
-					<p>Don't worry, it's not you - it's us.</p>
+					<p>We're sorry. This is an invalid request.</p>
+					<p>Please check your request and try again.</p>
 					<section class="footer">
 						<strong>Error Code:</strong>
-						"500"
+						"400"
 					</section>
 				</div>
 			</div>

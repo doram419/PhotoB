@@ -87,19 +87,17 @@ public class AdminOrderController {
 // TODO: 여기서도 결과가 되는지 안 되는지 체크
 		boolean createResult = adminOrderService.createRefundByOrderId(orderId);
 		
-		return "redirect:/admin/NOrder";
+		return "redirect:/admin/Norder";
 	}
 	
 	@PostMapping("/order/cancel")
 	public String cancel(@RequestParam("orderId") String orderId) {
-		System.out.println(orderId);
 		adminOrderService.delete(orderId);
 		return "redirect:/admin/om";
 		}
 	
 	@PostMapping("/acancel")
 	public String acancel(@RequestParam("orderId") String orderId) {
-		System.out.println(orderId);
 		adminOrderService.delete(orderId);
 		return "redirect:/admin/Norder";
 		}

@@ -55,7 +55,7 @@
 								<td>${index}
 									<c:set var="index" value="${index + 1}"/>
 								</td>
-								<td><img width = "200em" src="<c:url value="/photobook-images/album/${entry['albumVo'].albumId}/mainImg.jpg" />" /></td>
+								<td><img width = "200em" src="<c:url value="${entry['imgSrc']}"/>"/></td>
 								<td>${entry['albumVo'].albumId}</td>
 								<td>${entry['inventoryVo'].albumPrice}</td>
 								<td>${entry['albumVo'].albumSize}</td>

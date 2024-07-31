@@ -10,12 +10,11 @@
 <meta charset="UTF-8">
 <title>게시판</title>
 <link type="text/css" rel="stylesheet"
-	href='<c:url value="/css/common_style.css"/>'>
+	href='<c:url value="/css/board_modify.css"/>'>
 </head>
 
 <body>
-	<c:import url="/WEB-INF/views/users/includes/users_header.jsp"></c:import>
-
+<c:import url="/WEB-INF/views/users/includes/users_header.jsp"></c:import>
 	<main>
 		<section id="board">
 			<h2>게시판</h2>
@@ -27,6 +26,7 @@
 						<th>작성자</th>
 						<th>작성일</th>
 						<th>상태</th>
+						<th></th>
 					</tr>
 				</thead>
 				<tbody>
@@ -50,11 +50,12 @@
 					</c:forEach>
 				</tbody>
 			</table>
-
+			<div class="board-actions">
 			<p>
 				<a href="<c:url value="/admin/board/write"/>">글쓰기</a>
+				<p><a href="<c:url value="/admin/cs"/>">관리자 페이지로</a></p>
 			</p>
-
+			</div>
 		</section>
 	</main>
 	<c:import url="/WEB-INF/views/users/includes/users_footer.jsp"></c:import>

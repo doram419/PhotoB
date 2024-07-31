@@ -40,8 +40,8 @@ public class UsersController {
 	//홈화면
 	@RequestMapping({ "/home", "/index", "", "/" })
 	public String home(Model model,HttpSession session) {
-		List<Map<String,Object>> topData = adminOrderService.getTopAlbum();
-        model.addAttribute("topAlmubs",topData);      
+		//List<Map<String,Object>> topData = adminOrderService.getTopAlbum();
+       // model.addAttribute("topAlmubs",topData);      
        UsersVo userVo =(UsersVo) session.getAttribute("authuser");
        if(userVo !=null)	{
        model.addAttribute("userName",userVo.getUserName());}

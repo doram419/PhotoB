@@ -11,32 +11,35 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PHOTOB</title>
 
-      	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+
 </head>
 
-<body class="d-flex flex-column min-vh-2000">
+<body class="d-flex flex-column min-vh-150">
     <c:import url="/WEB-INF/views/users/includes/users_header.jsp"></c:import>
 
-    <main class="flex-grow-1">
-        <section class="hero">
+    <main>
+        <section class="hero position-relative">
             <div class="container-fluid p-0">
             <div class="row">
             <div class="col d-flex justify-content-end">
             <c:choose>
             	<c:when test="${not empty sessionScope.authUser}">
                     <a href="photobook">
-                    <img src="<c:url value='/images/photobook1.jpg'/>" alt="photo" class="img-fluid w-100" style="height: auto; max-width: 100vh; max-height: 150vh;">
+                    <img src="<c:url value='/images/photobook1.jpg'/>" alt="photo" class="img-fluid w-100" style="height: auto; max-height: 80vh;">
                     </a>
                 </c:when>
                 <c:otherwise>
                 	<a href="javascript:void(0)" onclick="showLoginMessage()">
-                	<img src="<c:url value='/images/photobook1.jpg'/>" alt="photo" class="img-fluid w-100" style="height: auto; max-width: 100vh; max-height: 150vh;">
+                	<img src="<c:url value='/images/photobook1.jpg'/>" alt="photo" class="img-fluid w-100" style="height: auto; max-height: 80vh;">
                 	</a>
                 </c:otherwise>
                 </c:choose>
                 </div>
                 </div>
         	</div>
+        	
+        	
         </section>
     </main>
     <footer class="bg-light text-center text-lg-start fixed-bottom py-2">
