@@ -22,7 +22,7 @@
              <form action="<c:url value='/users/profile/update'/>" method="post" id="profileUpdate">
                 <div>
                     <label for="userName">이름:</label>
-                    <input type="text" id="userName" name="userName" value="${user.userName}" required>
+                    <input type="text" id="userName" name="userName" value="${authuser.userName}" required>
                 </div>
                 <div>
                     <label for="password">비밀번호:</label>
@@ -30,11 +30,11 @@
                 </div>
                 <div>
                     <label for="phoneNumber">전화번호:</label>
-                    <input type="text" id="phoneNumber" name="phoneNumber" value="${user.phoneNumber}" required>
+                    <input type="text" id="phoneNumber" name="phoneNumber" value="${authuser.phoneNumber}" required>
                 </div>
                 <div>
                     <label for="address">주소:</label>
-                    <input type="text" id="address" name="address" value="${user.address}" required>
+                    <input type="text" id="address" name="address" value="${authuser.address}" required>
                 </div>
                 <button type="submit" onclick="profileUpdate(event)">업데이트</button>
             </form>

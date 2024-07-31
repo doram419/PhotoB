@@ -23,6 +23,7 @@ public class AdminCustomerController {
 	
 	@GetMapping({"/customerManagement", "/customerManage", "/cm"})
 	public String customerManagement() {
+		
 		return "/WEB-INF/views/admin/admin_customer_management.jsp";
 	}
 	
@@ -39,6 +40,7 @@ public class AdminCustomerController {
 	public String updateUsersPage(Model model, 
 			@RequestParam("userId") String userId) {
 		model.addAttribute("userId", userId);
+		model.addAttribute("user", adminCustomerService.getUserById(userId));
 		return "/WEB-INF/views/admin/admin_customer_update.jsp";
 	}
 	
@@ -50,7 +52,7 @@ public class AdminCustomerController {
 		//if (currentUser.getRole().equals("A")) {
 			boolean isUpdated = adminCustomerService.updateUsers(updatedUser);
 			if (isUpdated) {
-				return "redirect:/admin/cm";
+				return "redirect:/admin/search";
 			}else {
 				return "redirect:/admin/update?error=1";
 			}

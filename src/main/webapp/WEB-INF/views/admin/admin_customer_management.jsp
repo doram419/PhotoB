@@ -54,7 +54,6 @@
 							<th>이메일</th>
 							<th>핸드폰</th>
 							<th>주소</th>
-							<th>가입일</th>
 							<th>작업</th>
 						</tr>
 					</thead>
@@ -67,7 +66,6 @@
 								<td>${user.email}</td>
 								<td>${user.phoneNumber}</td>
 								<td>${user.address}</td>
-								<td>${user.role}</td>
 								<td> 
 								<a href="<c:url value='/admin/update?userId=${user.userId}'/>" >
 										<button class="btn btn-primary">수정</button></a>

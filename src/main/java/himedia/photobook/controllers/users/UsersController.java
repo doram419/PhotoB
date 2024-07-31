@@ -42,9 +42,9 @@ public class UsersController {
 	public String home(Model model,HttpSession session) {
 		//List<Map<String,Object>> topData = adminOrderService.getTopAlbum();
        // model.addAttribute("topAlmubs",topData);      
-       UsersVo userVo =(UsersVo) session.getAttribute("authuser");
+       UsersVo userVo =(UsersVo) session.getAttribute("authUser");
        if(userVo !=null)	{
-       model.addAttribute("userName",userVo.getUserName());}
+    	   model.addAttribute("userName",userVo.getUserName());}
 		return "/WEB-INF/views/users/users_index.jsp";
 	}
 
@@ -100,11 +100,11 @@ public class UsersController {
 	@RequestMapping({ "/profile" })
 	public String profile(HttpSession session, Model model) {
 		UsersVo currentUser = (UsersVo) session.getAttribute("authUser");
-		if (currentUser != null) {
-			model.addAttribute("user",currentUser);
+		if (currentUser == null) {
+			return "redirect:/users/login";
 		}
 		else {
-			return "redirect:/users/login";
+			model.addAttribute("authuser",currentUser);
 		}
 		
 		return "/WEB-INF/views/users/users_profile.jsp";
@@ -121,7 +121,7 @@ public class UsersController {
 			boolean isUpdated = usersService.updateUser(currentUser);
 			if (isUpdated) {
 				session.setAttribute("authUser", currentUser);
-				return "redirect:/users/profile";
+				return "redirect:/users/home";
 			} else {
 				return "redirect:/users/profile?error=1";
 			}

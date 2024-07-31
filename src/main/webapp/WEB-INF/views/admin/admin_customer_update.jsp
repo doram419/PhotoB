@@ -12,6 +12,8 @@
 <title>고객 정보 수정</title>
 <link type="text/css" rel="stylesheet"
 	href='<c:url value="/css/common_style.css"/>' />
+<link type="text/css" rel="stylesheet"
+	href='<c:url value="/css/profile_style.css"/>' />
 <script src="<c:url value='/javascript/admin/admin.js'/>"></script>
 </head>
 <body>
