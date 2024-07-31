@@ -29,6 +29,6 @@ public class AlbumPhotoDaoImpl implements AlbumPhotoDao{
 	
 	@Override
 	public int delete(String albumId) {
-		return session.selectOne("albumPhoto.delete", albumId);
+		return session.delete("albumPhoto.delete", albumId);
 	}
 }
