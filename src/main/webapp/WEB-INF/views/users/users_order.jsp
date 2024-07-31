@@ -39,6 +39,7 @@
                         <th>수량</th>
                         <th>주문 상태</th>
                         <th>비고</th>
+                        <th></th>
                     </tr>
                 </thead>
                 <tbody>
