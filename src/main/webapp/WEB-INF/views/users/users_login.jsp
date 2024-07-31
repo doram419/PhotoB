@@ -24,7 +24,9 @@
 			<button type="submit">OK</button>
 		</form>
 		<div class="signup-link">
-			<a href="<c:url value='/users/register' />">Create Account</a>
+			<a href="<c:url value='/users/register' />">Create Account</a></br></br>
+			
+			<a href="<c:url value='/users/home' />">Home</a>
 		</div>
 	</div>
 	<c:choose>
