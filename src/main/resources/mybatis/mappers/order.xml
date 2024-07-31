@@ -34,6 +34,7 @@
 		ORDERS
 		WHERE
 		USER_ID = #{value}
+		order by order_date desc
 	</select>
 	<select id="selectAllOrders" resultType="OrdersVo">
 		SELECT
@@ -82,7 +83,7 @@
 		U.USER_NAME LIKE CONCAT('%', #{keyword}, '%')
 		OR O.ORDER_ID LIKE CONCAT('%', #{keyword}, '%')
 		ORDER BY
-		O.ORDER_DATE DESC;
+		O.ORDER_DATE DESC
 	</select>
 
 	<select id="getAlbumIdByOrderId" parameterType="String"
