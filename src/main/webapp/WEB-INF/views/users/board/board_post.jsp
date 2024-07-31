@@ -9,7 +9,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="<c:url value='/css/board_style.css' />">
+    <link rel="stylesheet" href="<c:url value='/css/board_modify.css' />">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <!-- TODO: 글 제목과 연결 
     	<title>${title}</title>
@@ -20,8 +20,10 @@
 </head>
 
 <body>
+
 	<c:import url="/WEB-INF/views/users/includes/users_header.jsp"></c:import>
-	
+	<main>
+	<section id="board">
 	<div class="main-content">
 	<!-- postVo 요청 혹은 각 데이터를 요청 -->
 	
@@ -50,6 +52,8 @@
  
     <c:import url="/WEB-INF/views/users/includes/users_footer.jsp"></c:import>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+</section>
+	</main>
 </body>
 
 </html>
