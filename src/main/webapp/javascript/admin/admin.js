@@ -80,7 +80,6 @@
 		}
 	}
 
-<<<<<<< HEAD
 // 환불 완료
 function adminRefund(event) {
 		event.preventDefault();
@@ -118,10 +117,7 @@ function deleteProduct(event) {
 			window.location.href = event.currentTarget.href;
 		}
 	}
-=======
 
 
-});
 
 
->>>>>>> cb27a4a109eb85d3e1bf5e8ce221a140e7d84ad9
