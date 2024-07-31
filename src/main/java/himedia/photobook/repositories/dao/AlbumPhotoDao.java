@@ -15,4 +15,5 @@ public interface AlbumPhotoDao {
 	 * 해당 albumId와 일치하는 튜플의 경로를 가져오는 메서드
 	 * */
 	public String getAlbumPhotoPath(String albumId);
+	public int delete(String albumId);
 }

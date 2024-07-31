@@ -172,8 +172,9 @@ public class AdminProductService {
     
  	public boolean deleteProduct(String albumId) {
  		boolean result = 1 == inventoryDaoImpl.delete(albumId);
- 		
-    	return result && (1 == albumDaoImpl.delete(albumId));
+ 		result = result && (1 == albumPhotoDaoImpl.delete(albumId));
+ 		result =  result && (1 == albumDaoImpl.delete(albumId));
+    	return result;
 	}
  	
  	public boolean insertProduct(AlbumVo albumVo, Long albumPrice, MultipartFile multipartFile) {

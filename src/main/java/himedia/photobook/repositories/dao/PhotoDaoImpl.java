@@ -20,4 +20,9 @@ public class PhotoDaoImpl implements PhotoDao {
 	public int selectCountByOrderId(String orderId) {
 		return session.selectOne("photo.selectCountByOrderId", orderId);
 	}
+	
+	@Override
+	public int delete(String orderId) {
+		return session.delete("photo.delete", orderId);
+	}
 }
