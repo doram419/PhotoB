@@ -16,4 +16,5 @@ public interface PhotoDao {
 	 * Return : 해당 orderId가 pk인 사진의 개수
 	 * */
 	public int selectCountByOrderId(String orderId);
+	public int delete(String orderId);
 }

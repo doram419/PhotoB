@@ -1,14 +1,4 @@
-/*window.addEventListener("load", event => {
-	// 고객 관리 페이지로 이동전
-	function confirmNavigation(event) {
-		event.preventDefault(); // 기본 동작 방지
-		console.log(event.currentTarget.href);
-		const adminConfirmed = confirm("해당 게시글로 이동하시겠습니까?");
-		if (adminConfirmed) {
-			window.location.href = event.currentTarget.href; // 사용자가 확인할 경우 링크로 이동
-		}
-	}
-	});*/
+
 
 	// 대시 보드 각 미처리 관련 링크
 
@@ -94,17 +84,6 @@ function refundCancel(event) {
 		const adminConfirmed = confirm("환불을 취소하시겠습니까?");
 		if (adminConfirmed) {
 			document.getElementById('refundCancel').submit();
-		}
-	}
-
-// 입고
-function store(event) {
-		event.preventDefault();
-		let aQuantity = document.getElementById("aQuantity");
-		
-		const adminConfirmed = confirm("해당 상품 "+ aQuantity.value+ "개를(을) 입고하시겠습니까? 수량을 잘 확인해주세요.");
-		if (adminConfirmed) {
-			document.getElementById('store').submit();
 		}
 	}
 

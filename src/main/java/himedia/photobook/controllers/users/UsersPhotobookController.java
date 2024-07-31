@@ -72,6 +72,7 @@ public class UsersPhotobookController {
 		{
 			String userId = authUser.getUserId();
 			InventoryVo inventoryVo = userPhotobookService.findAlbumPriceByAlbumId(albumId);
+			
 			Long albumPrice = inventoryVo.getAlbumPrice();
 			Long oQuantity = (Long) session.getAttribute("oQuantity");
 

@@ -11,7 +11,6 @@
 <link type="text/css" rel="stylesheet"
 	href="<c:url value='/css/common_style.css'/>" />
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script src="<c:url value='/javascript/admin/admin.js'/>"></script>
 </head>
 <body>
 	<c:import url="/WEB-INF/views/admin/includes/admin_header.jsp"></c:import>

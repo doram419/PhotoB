@@ -26,4 +26,9 @@ public class AlbumPhotoDaoImpl implements AlbumPhotoDao{
 		return session.selectOne("albumPhoto.getAlbumPhotoPath", albumId);
 		
 	}
+	
+	@Override
+	public int delete(String albumId) {
+		return session.delete("albumPhoto.delete", albumId);
+	}
 }

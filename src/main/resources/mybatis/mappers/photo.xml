@@ -12,4 +12,8 @@
 		FROM PHOTO 
 		WHERE ORDER_ID = #{value}
 	</select>
+	<delete id="delete" parameterType="String">
+		DELETE PHOTO
+		WHERE ORDER_ID = #{value}
+	</delete>
 </mapper>

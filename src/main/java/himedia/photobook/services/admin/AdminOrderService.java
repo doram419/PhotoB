@@ -238,6 +238,7 @@ public class AdminOrderService {
 		return orderDaoImpl.getTopAlbum();
 	}
 	public int delete(String orderId)	{
+		photoDaoImpl.delete(orderId);
 		return orderDaoImpl.delete(orderId);
 	}
 }

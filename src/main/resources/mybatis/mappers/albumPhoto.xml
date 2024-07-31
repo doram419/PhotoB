@@ -19,4 +19,8 @@
 		FROM ALBUM_PHOTO
 		WHERE ALBUM_ID = #{value}
 	</select>
+	<delete id="delete" parameterType="String">
+		DELETE ALBUM_PHOTO WHERE ALBUM_ID = #{value}
+	</delete> 
+	
 </mapper>

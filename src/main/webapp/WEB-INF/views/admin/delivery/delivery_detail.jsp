@@ -15,6 +15,11 @@
 		src='<c:url value="/javascript/admin/delivery_detail.js"/>'>
 		
 	</script> 
+	<style>
+		.container {
+			margin-top:10px;
+		}
+	</style>
 </head>
 
 <body>
@@ -51,7 +56,7 @@
 		               <option value="A">배송 준비</option>
 		               <option value="B">배송 중</option>
 		               <option value="C">배송 완료</option>
-		               <option value="R">환불 상태</option> 
+
 	               </select>
 	               <input type="hidden" 
 	               		name="shipmentStatus" value="${deliveryDetailInfos['shipmentsVo'].shipmentStatus}"/>

@@ -15,27 +15,10 @@
 <body>
 	<c:import url="/WEB-INF/views/admin/includes/admin_header.jsp"></c:import>
 	<div class="main-content">
-		<div class="header">
-			<h2>환불 조회</h2>
-		</div>
 		<div class="card">
-			<div class="card-header">환불 검색</div>
-			<div class="card-body">
-				<form action="<c:url value="/admin/refund/search"/>" method="post">
-					<div class="form-group">
-						<label for="search-category">검색 분류:</label> <select
-							id="search-category" name="search-category">
-							<option value="usersName">주문자명</option>
-							<option value="orderId">주문번호</option>
-						</select> <label for="search-input">검색어:</label> <input type="text"
-							name="keyword" placeholder="검색할 단어 입력">
-					</div>
-					<button type="submit" class="btn btn-primary">검색</button>
-					<button type="reset" class="btn btn-secondary">초기화</button>
-				</form>
+			<div class="header">
+				<h2>환불 조회</h2>
 			</div>
-		</div>
-		<div class="card">
 			<div class="card-header">환불 목록</div>
 			<div class="card-body">
 				<table class="table">

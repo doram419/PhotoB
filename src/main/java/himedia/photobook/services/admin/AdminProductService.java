@@ -171,9 +171,14 @@ public class AdminProductService {
  	}
     
  	public boolean deleteProduct(String albumId) {
+ 		System.out.println("album delete 실행");
  		boolean result = 1 == inventoryDaoImpl.delete(albumId);
- 		
-    	return result && (1 == albumDaoImpl.delete(albumId));
+ 		System.out.println("inventoryDaoImpl delete 결과 " + result);
+ 		result = result && (1 == albumPhotoDaoImpl.delete(albumId));
+ 		System.out.println("albumPhotoDaoImpl delete 결과 " + result);
+ 		result =  result && (1 == albumDaoImpl.delete(albumId));
+ 		System.out.println("albumDaoImpl delete 결과 " + result);
+    	return result;
 	}
  	
  	public boolean insertProduct(AlbumVo albumVo, Long albumPrice, MultipartFile multipartFile) {
