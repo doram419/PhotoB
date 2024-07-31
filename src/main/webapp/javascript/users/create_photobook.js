@@ -331,7 +331,7 @@ window.addEventListener("load", event => {
 
         // 모든 캔버스가 처리된 후 서버로 전송
         setTimeout(() => {
-            fetch('/Photobook_team4/users/photobookOrder', {
+            fetch('/Photobook/users/photobookOrder', {
                 method: 'POST',
                 body: formData
             })

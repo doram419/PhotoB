@@ -97,7 +97,7 @@ public class AdminProductController {
             e.printStackTrace();
             model.addAttribute("error", "앨범 삭제 중 오류가 발생했습니다.");
         }
-        return "/WEB-INF/views/admin/product/admin_product.jsp"; // 삭제 후 목록으로 리디렉션
+        return "redirect:/admin/product"; 
     }
 	
 	 @GetMapping("/product/add")

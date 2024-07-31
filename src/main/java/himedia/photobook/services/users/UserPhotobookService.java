@@ -51,7 +51,7 @@ public class UserPhotobookService {
 		PhotoVo photoVo = null;
 		
  		if(fileModule.getOsName().contains("nux")) {
- 			DEFUALT_PATH = "/photobook/album/";
+ 			DEFUALT_PATH = "/photobook/order/";
  		}
  		
 		if(orderVo != null) {

@@ -26,8 +26,8 @@
     <!-- Oracle DataSource -->
     <bean id="oracleDatasource" class="oracle.jdbc.pool.OracleDataSource">
         <property name="URL" value="jdbc:oracle:thin:@localhost:1521:xe"/>
-        <property name="user" value="himedia"/>
-        <property name="password" value="himedia"/>
+        <property name="user" value="team4"/>
+        <property name="password" value="team4"/>
         <property name="implicitCachingEnabled" value="true"/>
     </bean>
 
