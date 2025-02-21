@@ -24,16 +24,18 @@
     </context:component-scan>
 
     <!-- Oracle DataSource -->
-    <bean id="oracleDatasource" class="oracle.jdbc.pool.OracleDataSource">
-        <property name="URL" value="jdbc:oracle:thin:@localhost:1521:xe"/>
-        <property name="user" value="himedia"/>
-        <property name="password" value="himedia"/>
-        <property name="implicitCachingEnabled" value="true"/>
-    </bean>
+    <!-- MySQL DataSource (HikariCP 사용) -->
+	<bean id="mysqlDataSource" class="com.zaxxer.hikari.HikariDataSource">
+	    <property name="driverClassName" value="com.mysql.cj.jdbc.Driver"/>
+	    <property name="jdbcUrl" value="jdbc:mysql://localhost:3306/team4?useSSL=false?serverTimezone=UTC?characterEncoding=UTF-8"/>
+	    <property name="username" value="root"/>
+	    <property name="password" value="manager"/>
+	    <property name="maximumPoolSize" value="10"/>
+	</bean>
 
     <!-- MyBatis SqlSessionFactoryBean -->
     <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
-        <property name="dataSource" ref="oracleDatasource"/>
+        <property name="dataSource" ref="mysqlDataSource"/>
         <property name="configLocation" value="classpath:/mybatis/configuration.xml"/>
     </bean>
 

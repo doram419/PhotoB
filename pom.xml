@@ -78,6 +78,13 @@
 	    <version>9.2.0</version>
 	</dependency>
 	
+	<!-- MySQL JDBC Driver HikariCP -->
+	<dependency>
+	   <groupId>com.zaxxer</groupId>
+	   <artifactId>HikariCP</artifactId>
+	   <version>6.2.1</version>
+	</dependency>
+	
 	<!-- MyBatis -->
 	<dependency>
 	    <groupId>org.mybatis</groupId>
