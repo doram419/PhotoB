@@ -3,16 +3,18 @@
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="albumPhoto">
-	<insert id="insert" parameterType="AlbumPhotoVo">
-		INSERT INTO ALBUM_PHOTO(ALBUM_PHOTO_ID, ALBUM_ID, PHOTO_PATH, ALBUM_PHOTO_TYPE)
+	<insert id="insert" parameterType="AlbumPhotoVo" useGeneratedKeys="true" keyProperty="albumPhotoId">
+		INSERT INTO ALBUM_PHOTO(ALBUM_ID, PHOTO_PATH, ALBUM_PHOTO_TYPE)
 		VALUES
-		(SEQ_ALBUM_PHOTO_PK.nextval, #{albumId}, #{photoPath}, #{albumPhotoType})
+		(#{albumId}, #{photoPath}, #{albumPhotoType})
 	</insert>
+	
 	<update id="updatePath" parameterType="AlbumPhotoVo">
 		UPDATE ALBUM_PHOTO 
 		SET PHOTO_PATH = #{photoPath}
 		WHERE ALBUM_ID = #{albumId}
 	</update>
+	
 	<select id="getAlbumPhotoPath" parameterType="String" resultType="String">
 		SELECT 
 			PHOTO_PATH

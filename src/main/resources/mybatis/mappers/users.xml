@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="users">
-	<insert id="insert" parameterType="UsersVo">
-     	INSERT INTO USERS (USER_ID, EMAIL, PASSWORD, USER_NAME, ADDRESS, PHONE_NUMBER, ROLE) 
-        VALUES ('USER' || LPAD((SELECT NVL(MAX(TO_NUMBER(SUBSTR(USER_ID, 5))) + 1, 1) FROM USERS), 4, '0'),
-        	 #{email}, #{password}, #{userName}, #{address}, #{phoneNumber}, #{role})
+   
+<mapper namespace="himedia.photobook.mappers.UsersMapper">
+    <insert id="insert" parameterType="UsersVo" useGeneratedKeys="true" keyProperty="userId">
+        INSERT INTO USERS (EMAIL, PASSWORD, USER_NAME, ADDRESS, PHONE_NUMBER, ROLE)
+        VALUES (#{email}, #{password}, #{userName}, #{address}, #{phoneNumber}, #{role});
     </insert>
+    
     <select id="selectUserByEmail" parameterType="String" resultType="UsersVo">
         SELECT 
         	USER_ID as userId, EMAIL, PASSWORD, 
@@ -14,8 +15,7 @@
         	PHONE_NUMBER as phoneNumber, ROLE 
         FROM USERS
         WHERE EMAIL = #{value}
-    </select>
-
+    </select> 
     <select id="selectUserByEmailAndPassword" parameterType="map" resultType="UsersVo">
         SELECT 
         	USER_ID as userId, EMAIL, PASSWORD, 
@@ -23,8 +23,7 @@
         	PHONE_NUMBER as phoneNumber, ROLE 
         FROM USERS
         WHERE EMAIL = #{email} AND PASSWORD = #{password}
-    </select>
-    
+    </select>   
     <select id="searchUsers" parameterType="string" resultType="UsersVo">
           SELECT 
         	USER_ID as userId, EMAIL,  
@@ -33,16 +32,14 @@
         	ADDRESS as address
         FROM USERS
         WHERE 
-            USER_NAME LIKE ('%' || #{value} || '%')
-            OR USER_ID LIKE ('%' || #{value} || '%')
-        	OR EMAIL LIKE ('%' || #{value} || '%')
-        	OR PHONE_NUMBER LIKE ('%' || #{value} || '%')
-        	OR ADDRESS LIKE ('%' || #{value} || '%')
-
+            USER_NAME LIKE ('%' OR #{value} OR '%')
+            OR USER_ID LIKE ('%' OR #{value} OR '%')
+        	OR EMAIL LIKE ('%' OR #{value} OR '%')
+        	OR PHONE_NUMBER LIKE ('%' OR #{value} OR '%')
+        	OR ADDRESS LIKE ('%' OR #{value} OR '%')
         ORDER BY USER_ID
     </select>
- 	
- 	<!-- 게시판 유저 아이디 조회용 -->
+    <!-- 게시판 유저 아이디 조회용 -->
     <select id="selectUserById" parameterType="String" resultType="UsersVo">
         SELECT 
         	USER_ID as userId, EMAIL, 
@@ -50,23 +47,21 @@
         	PHONE_NUMBER as phoneNumber
         FROM USERS
         WHERE 
-            USER_NAME LIKE ('%' || #{value} || '%')
-            OR USER_ID LIKE ('%' || #{value} || '%')
-        	OR EMAIL LIKE ('%' || #{value} || '%')
-        	OR PHONE_NUMBER LIKE ('%' || #{value} || '%')
-        	OR ADDRESS LIKE ('%' || #{value} || '%')
+            USER_NAME LIKE ('%' OR #{value} OR '%')
+            OR USER_ID LIKE ('%' OR #{value} OR '%')
+        	OR EMAIL LIKE ('%' OR #{value} OR '%')
+        	OR PHONE_NUMBER LIKE ('%' OR #{value} OR '%')
+        	OR ADDRESS LIKE ('%' OR #{value} OR '%')
         ORDER BY USER_ID
     </select>
-
-      <select id="selectUserByName" parameterType="String" resultType="UsersVo">
+    <select id="selectUserByName" parameterType="String" resultType="UsersVo">
         SELECT 
         	USER_ID as userId, EMAIL, 
         	USER_NAME as userName, ADDRESS, 
         	PHONE_NUMBER as phoneNumber
         FROM USERS
-        WHERE USER_Name LIKE ('%' || #{value} || '%')
+        WHERE USER_Name LIKE ('%' OR #{value} OR '%')
     </select>
-
     <select id="getUserById" parameterType="string" resultType="UsersVo">
     	SELECT 
         	USER_ID as userId, EMAIL,  
@@ -77,6 +72,27 @@
         WHERE
         	USER_ID = #{value}
     </select>
+    <select id="getUserIdByUserName" parameterType="string" resultType="string">
+	    SELECT
+	        USER_ID as userId
+	    FROM USERS
+	    WHERE
+	        USER_NAME LIKE '%' OR #{keyword} OR '%'
+	</select>
+	<select id="getUserNameByUserId" parameterType="map" resultType="String">
+        SELECT 
+        	USER_NAME as userName
+        FROM USERS
+        WHERE USER_ID = #{userId}
+    </select>
+    <select id="selectUserByKeyword" parameterType="String" resultType="UsersVo">
+        SELECT 
+        	USER_ID as userId, EMAIL, 
+        	USER_NAME as userName, ADDRESS, 
+        	PHONE_NUMBER as phoneNumber
+        FROM USERS
+        WHERE USER_Name  LIKE '%' OR #{keyword} OR '%'
+    </select>
     
     <delete id="deleteUsers" parameterType="string">
     	DELETE FROM USERS
@@ -86,45 +102,22 @@
     <update id="updateUsers" parameterType="UsersVo">
        UPDATE USERS
         SET
-            PASSWORD = 'encrypted_' || #{password},
+            PASSWORD = 'encrypted_' OR #{password},
             USER_NAME = #{userName},
             EMAIL = #{email},
             ADDRESS = #{address},
             PHONE_NUMBER = #{phoneNumber}
         WHERE USER_ID = #{userId}
     </update>
-
+    
     <update id="updateUser" parameterType="UsersVo">
        UPDATE USERS
         SET
-            PASSWORD = CONCAT('encrypted_', #{password, jdbcType=VARCHAR}),
-            USER_NAME = #{userName, jdbcType=VARCHAR},
-            ADDRESS = #{address, jdbcType=VARCHAR},
-            PHONE_NUMBER = #{phoneNumber, jdbcType=VARCHAR}
-        WHERE USER_ID = #{userId, jdbcType=VARCHAR}
-    </update>
-     <select id="getUserIdByUserName" parameterType="string" resultType="string">
-    SELECT
-        USER_ID as userId
-    FROM USERS
-    WHERE
-        USER_NAME LIKE '%' || #{keyword} || '%'
-</select>
-    
-    <select id="getUserNameByUserId" parameterType="map" resultType="String">
-        SELECT 
-        	USER_NAME as userName
-        FROM USERS
+            PASSWORD = CONCAT('encrypted_', #{password}),
+            USER_NAME = #{userName},
+            ADDRESS = #{address},
+            PHONE_NUMBER = #{phoneNumber}
         WHERE USER_ID = #{userId}
-    </select>
-    
-    <select id="selectUserByKeyword" parameterType="String" resultType="UsersVo">
-        SELECT 
-        	USER_ID as userId, EMAIL, 
-        	USER_NAME as userName, ADDRESS, 
-        	PHONE_NUMBER as phoneNumber
-        FROM USERS
-        WHERE USER_Name  LIKE '%' || #{keyword} || '%'
-    </select>
-    
+    </update>
+   
 </mapper>

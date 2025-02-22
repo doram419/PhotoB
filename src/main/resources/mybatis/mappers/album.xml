@@ -7,7 +7,7 @@
         FROM ALBUM
         WHERE MATERIAL = #{material}  AND COLOR = #{color} AND ALBUM_SIZE = #{albumSize}
     </select>
-	<select id="selectByID" parameterType="String" resultType="AlbumVo">
+    <select id="selectByID" parameterType="String" resultType="AlbumVo">
 		SELECT 
 			ALBUM_ID as albumId, MATERIAL,
 			COLOR, ALBUM_SIZE as albumSize
@@ -16,8 +16,7 @@
 		WHERE
 			ALBUM_ID = #{value}
 	</select>
-	<!-- 새로운 메서드에 대한 매핑 추가 -->
-    <select id="getProductById" parameterType="String" resultType="AlbumVo">
+	<select id="getProductById" parameterType="String" resultType="AlbumVo">
         SELECT 
             ALBUM_ID as albumId, MATERIAL,
 			COLOR, ALBUM_SIZE as albumSize
@@ -25,16 +24,14 @@
         WHERE
             ALBUM_ID = #{value}
     </select>
-
     <select id="albumList" parameterType="string" resultType="AlbumVo">
         SELECT 
             ALBUM_ID as albumId, MATERIAL,
 			COLOR, ALBUM_SIZE as albumSize
         FROM ALBUM
         WHERE
-            ALBUM_ID LIKE ('%' || #{value} || '%')
+            ALBUM_ID LIKE ('%' OR #{value} OR '%')
     </select>
-
     <select id="selectAll" resultType="AlbumVo">
         SELECT 
             ALBUM_ID as albumId, MATERIAL,
@@ -42,7 +39,7 @@
         FROM ALBUM
         ORDER BY albumId
     </select>
-	<select id="selectByAlbumId" parameterType="String" resultType="AlbumVo">
+    <select id="selectByAlbumId" parameterType="String" resultType="AlbumVo">
         SELECT 
             ALBUM_ID as albumId, 
             MATERIAL as material,
@@ -54,7 +51,7 @@
             ALBUM_ID = #{albumId}
     </select>
     
-	<insert id="insertAlbum" parameterType="AlbumVo">
+    <insert id="insertAlbum" parameterType="AlbumVo">
 		INSERT INTO ALBUM (ALBUM_ID, MATERIAL, COLOR, ALBUM_SIZE)
 		VALUES (
 			#{albumId},

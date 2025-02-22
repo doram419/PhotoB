@@ -23,7 +23,6 @@
         <context:include-filter type="annotation" expression="org.springframework.stereotype.Repository"/>
     </context:component-scan>
 
-    <!-- Oracle DataSource -->
     <!-- MySQL DataSource (HikariCP 사용) -->
 	<bean id="mysqlDataSource" class="com.zaxxer.hikari.HikariDataSource">
 	    <property name="driverClassName" value="com.mysql.cj.jdbc.Driver"/>
