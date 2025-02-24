@@ -13,7 +13,7 @@ import himedia.photobook.repositories.vo.InventoryVo;
 public class AdminInventoryServiceImpl implements AdminInventoryService {
 	@Autowired
 	private InventoryDao inventoryDaoImpl;
-	
+
 	@Override
 	public List<InventoryVo> getInvenInfos() {
 		List<InventoryVo> invenList = inventoryDaoImpl.listInventory();
@@ -22,28 +22,28 @@ public class AdminInventoryServiceImpl implements AdminInventoryService {
 	}
 
 	public List<InventoryVo> getPagedInventory(int page, int pageSize) {
-        int offset = (page - 1) * pageSize;
-        RowBounds rowBounds = new RowBounds(offset, pageSize);
-        System.out.println(rowBounds);
-        return inventoryDaoImpl.listPage(rowBounds);
-    }
-	
+		int offset = (page - 1) * pageSize;
+		RowBounds rowBounds = new RowBounds(offset, pageSize);
+		System.out.println(rowBounds);
+		return inventoryDaoImpl.listPage(rowBounds);
+	}
+
 	@Override
 	public InventoryVo findAlbumPriceByAlbumId(String albumId) {
 		InventoryVo inventoryVo = inventoryDaoImpl.findAlbumPriceByAlbumId(albumId);
-		System.out.println("service:"+inventoryVo);
+		System.out.println("service:" + inventoryVo);
 		return inventoryVo;
 	}
 
 	@Override
 	public boolean updateQuantity(InventoryVo inventoryVo) {
 		InventoryVo invenVo = inventoryDaoImpl.findAlbumPriceByAlbumId(inventoryVo.getAlbumId());
-		
+
 //		Long originQ = invenVo.getaQuantity();
 //		Long changeQ = inventoryVo.getaQuantity()+originQ;
 //		inventoryVo.setaQuantity(changeQ);
 		inventoryVo.setaQuantity(inventoryVo.getaQuantity() + invenVo.getaQuantity());
-		
+
 		int updatedCount = inventoryDaoImpl.updateQuantity(inventoryVo);
 		return updatedCount == 1;
 	}
@@ -52,6 +52,5 @@ public class AdminInventoryServiceImpl implements AdminInventoryService {
 	public int getTotalCount() {
 		return inventoryDaoImpl.getTotalCount();
 	}
-	
-	
+
 }

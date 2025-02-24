@@ -1,6 +1,5 @@
 package himedia.photobook.controllers.users;
 
-
 import himedia.photobook.repositories.vo.UsersVo;
 import himedia.photobook.services.admin.AdminOrderService;
 import himedia.photobook.services.users.UsersService;
@@ -18,8 +17,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-
-
 // 로그인, 회원가입, 로그아웃, 프로필업데이트기능 여기에 다 넣었습니다.
 
 @Controller
@@ -36,18 +33,17 @@ public class UsersController {
 		return "/WEB-INF/views/users/users_login.jsp";
 	}
 
-	
-	//홈화면
+	// 홈화면
 	@RequestMapping({ "/home", "/index", "", "/" })
-	public String home(Model model,HttpSession session) {
-		List<Map<String,Object>> topData = adminOrderService.getTopAlbum();
-        model.addAttribute("topAlmubs",topData);      
-       UsersVo userVo =(UsersVo) session.getAttribute("authuser");
-       if(userVo !=null)	{
-       model.addAttribute("userName",userVo.getUserName());}
+	public String home(Model model, HttpSession session) {
+		List<Map<String, Object>> topData = adminOrderService.getTopAlbum();
+		model.addAttribute("topAlmubs", topData);
+		UsersVo userVo = (UsersVo) session.getAttribute("authuser");
+		if (userVo != null) {
+			model.addAttribute("userName", userVo.getUserName());
+		}
 		return "/WEB-INF/views/users/users_index.jsp";
 	}
-
 
 	@PostMapping("/login")
 	public ModelAndView loginAction(@RequestParam(value = "email", required = false, defaultValue = "") String email,
@@ -59,12 +55,12 @@ public class UsersController {
 		}
 
 		UsersVo authUser = usersService.login(email, password);
-		
+
 		if (authUser != null) {
 			session.setAttribute("authUser", authUser);
-			session.setAttribute("userName",authUser.getUserName());
-			session.setAttribute("success", "환영합니다."+authUser.getUserName()+"님");
-			return new ModelAndView ("redirect:/users/home");
+			session.setAttribute("userName", authUser.getUserName());
+			session.setAttribute("success", "환영합니다." + authUser.getUserName() + "님");
+			return new ModelAndView("redirect:/users/home");
 		} else {
 			ModelAndView mv = new ModelAndView("/WEB-INF/views/users/users_login.jsp");
 			mv.addObject("error", "이메일이나 비밀번호 틀림. 다시.");
@@ -93,7 +89,7 @@ public class UsersController {
 	public String logout(HttpSession session) {
 		session.removeAttribute("authUser");
 		session.invalidate();
-		
+
 		return "redirect:/";
 	}
 
@@ -101,6 +97,7 @@ public class UsersController {
 	public String profile() {
 		return "/WEB-INF/views/users/users_profile.jsp";
 	}
+
 	@PostMapping("/profile/update")
 	public String updateUser(UsersVo updatedUser, HttpSession session, Model model) {
 

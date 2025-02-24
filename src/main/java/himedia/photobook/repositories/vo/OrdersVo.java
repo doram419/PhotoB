@@ -9,9 +9,9 @@ public class OrdersVo {
 	private Date orderDate;
 	private String total;
 	private Long oQuantity;
-	
+
 	public OrdersVo() {
-		
+
 	}
 
 	public OrdersVo(String orderId, String userId, String albumId, Date orderDate, String total, Long oQuantity) {
@@ -77,6 +77,5 @@ public class OrdersVo {
 		return "OrdersVo [orderId=" + orderId + ", userId=" + userId + ", albumId=" + albumId + ", orderDate="
 				+ orderDate + ", total=" + total + ", oQuantity=" + oQuantity + "]";
 	}
-	
-	
+
 }

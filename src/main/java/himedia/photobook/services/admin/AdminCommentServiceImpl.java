@@ -7,15 +7,15 @@ import himedia.photobook.repositories.dao.CommentsDao;
 import himedia.photobook.repositories.vo.CommentsVo;
 
 @Service
-public class AdminCommentServiceImpl implements AdminCommentService{
+public class AdminCommentServiceImpl implements AdminCommentService {
 	@Autowired
 	private CommentsDao commentsDaoImpl;
-	
+
 	@Override
 	public boolean write(CommentsVo commentsVo) {
 		int insertedCount = commentsDaoImpl.insert(commentsVo);
 		commentsDaoImpl.updateStatus(commentsVo.getBoardId());
-		return insertedCount==1;
+		return insertedCount == 1;
 	}
 
 	@Override
@@ -29,6 +29,7 @@ public class AdminCommentServiceImpl implements AdminCommentService{
 		CommentsVo comment = commentsDaoImpl.getCommentsByBoardId(boardId);
 		return comment != null;
 	}
+
 	@Override
 	public String count() {
 		String count = commentsDaoImpl.count();

@@ -4,13 +4,10 @@ public class InventoryVo {
 	private String albumId;
 	private Long albumPrice;
 	private Long aQuantity;
-	
+
 	public InventoryVo() {
-		
+
 	}
-
-
-
 
 	public InventoryVo(String albumId, Long albumPrice, Long aQuantity) {
 		super();
@@ -47,5 +44,5 @@ public class InventoryVo {
 	public String toString() {
 		return "InventoryVo [albumId=" + albumId + ", albumPrice=" + albumPrice + ", aQuantity=" + aQuantity + "]";
 	}
-	
+
 }

@@ -16,16 +16,16 @@ import himedia.photobook.services.admin.AdminCustomerService;
 import jakarta.servlet.http.HttpSession;
 
 @Controller
-@RequestMapping({"/admin"})
+@RequestMapping({ "/admin" })
 public class AdminCustomerController {
 	@Autowired
 	private AdminCustomerService adminCustomerService;
-	
-	@GetMapping({"/customerManagement", "/customerManage", "/cm"})
+
+	@GetMapping({ "/customerManagement", "/customerManage", "/cm" })
 	public String customerManagement() {
 		return "/WEB-INF/views/admin/admin_customer_management.jsp";
 	}
-	
+
 	@GetMapping("/search")
 	public String searchUSers(@RequestParam Map<String, String> params, Model model) {
 		String searchCategory = params.getOrDefault("search-category", null);
@@ -34,32 +34,29 @@ public class AdminCustomerController {
 		model.addAttribute("userList", userList);
 		return "/WEB-INF/views/admin/admin_customer_management.jsp";
 	}
-	
+
 	@GetMapping("/update")
-	public String updateUsersPage(Model model, 
-			@RequestParam("userId") String userId) {
+	public String updateUsersPage(Model model, @RequestParam("userId") String userId) {
 		model.addAttribute("userId", userId);
 		return "/WEB-INF/views/admin/admin_customer_update.jsp";
 	}
-	
+
 	@PostMapping("/updateUsers")
-	public String updateUsers(UsersVo updatedUser, HttpSession session,
-			@RequestParam("userId") String userId) {
+	public String updateUsers(UsersVo updatedUser, HttpSession session, @RequestParam("userId") String userId) {
 		UsersVo currentUser = (UsersVo) session.getAttribute("authUser");
 		updatedUser.setUserId(userId);
-		//if (currentUser.getRole().equals("A")) {
-			boolean isUpdated = adminCustomerService.updateUsers(updatedUser);
-			if (isUpdated) {
-				return "redirect:/admin/cm";
-			}else {
-				return "redirect:/admin/update?error=1";
-			}
-		//} else {
-		//	return "redirect:/admin/cm";
-		//}
+		// if (currentUser.getRole().equals("A")) {
+		boolean isUpdated = adminCustomerService.updateUsers(updatedUser);
+		if (isUpdated) {
+			return "redirect:/admin/cm";
+		} else {
+			return "redirect:/admin/update?error=1";
+		}
+		// } else {
+		// return "redirect:/admin/cm";
+		// }
 	}
 
-	
 //	관리자 고객관리 고객목록 삭제확인페이지(구현X)	
 //	@GetMapping("/customerDelete")
 //	public String customerDelete(@RequestParam ("userId") String userId, Model model) {
@@ -67,9 +64,9 @@ public class AdminCustomerController {
 //		model.addAttribute("users", users);
 //		return "/WEB-INF/views/admin/admin_customer_delete.jsp";
 //	}
-	
+
 	@GetMapping("/delete")
-	public String deleteUsers(@RequestParam("userId")String userId) {
+	public String deleteUsers(@RequestParam("userId") String userId) {
 		System.out.println("deleteUsers userId: " + userId);
 		adminCustomerService.deleteUsers(userId);
 		return "redirect:/admin/cm";

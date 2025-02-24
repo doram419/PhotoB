@@ -20,6 +20,14 @@
         <version>3.2.3</version>
       </plugin>
     </plugins>
+    <resources>
+        <resource>
+            <directory>src/main/resources</directory>
+            <includes>
+                <include>**/*</include>
+            </includes>
+        </resource>
+    </resources>
   </build>
   
   <!-- 스프링 프레임워크 관련 Propertis 등록 -->

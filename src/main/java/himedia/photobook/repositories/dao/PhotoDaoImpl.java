@@ -10,12 +10,12 @@ import himedia.photobook.repositories.vo.PhotoVo;
 public class PhotoDaoImpl implements PhotoDao {
 	@Autowired
 	private SqlSession session;
-	
+
 	@Override
-	public int insert(PhotoVo photoVo){
+	public int insert(PhotoVo photoVo) {
 		return session.insert("photo.insert", photoVo);
 	}
-	
+
 	@Override
 	public int selectCountByOrderId(String orderId) {
 		return session.selectOne("photo.selectCountByOrderId", orderId);

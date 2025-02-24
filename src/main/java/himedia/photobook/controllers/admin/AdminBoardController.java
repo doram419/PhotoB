@@ -35,7 +35,7 @@ public class AdminBoardController {
 	private AdminCommentServiceImpl adminCommentServiceImpl;
 	@Autowired
 	private AdminInventoryServiceImpl adminInventoryServiceImpl;
-	
+
 	@RequestMapping("/boardList")
 	public String list(Model md) {
 		List<Map<String, Object>> list = uBoardServiceImpl.getBoardInfos();
@@ -141,31 +141,31 @@ public class AdminBoardController {
 		return "redirect:/admin/boardList";
 //		return "/WEB-INF/views/admin/board/board_post.jsp";
 	}
+
 // 관리자 이름 검색 ( 고객센터 )
 	@GetMapping("/customerService/search")
 	public String searchBoard(@RequestParam(value = "keyword") String keyword, Model md) {
 		List<Map<String, Object>> boardDetail = uBoardServiceImpl.getContentByName(keyword);
-		md.addAttribute("boardDetail",boardDetail);
+		md.addAttribute("boardDetail", boardDetail);
 		return "/WEB-INF/views/admin/admin_customer_service.jsp";
 	}
-	
+
 // 재고 가격으로 검색 ( 재고 관리 )
 	@GetMapping("/inventory/search")
 	public String searchInventory(@RequestParam(value = "keyword") String keyword, Model md) {
 		InventoryVo invenDetail = adminInventoryServiceImpl.findAlbumPriceByAlbumId(keyword);
-		md.addAttribute("invenDetail",invenDetail);
+		md.addAttribute("invenDetail", invenDetail);
 		return "/WEB-INF/views/admin/admin_inventory.jsp";
 	}
-	
-	
 
 // 제품 입고 
 	@GetMapping("/inventory/store")
-	public String putStore(@ModelAttribute InventoryVo inventoryVo,HttpSession session, RedirectAttributes redirectAtt) {
+	public String putStore(@ModelAttribute InventoryVo inventoryVo, HttpSession session,
+			RedirectAttributes redirectAtt) {
 		adminInventoryServiceImpl.updateQuantity(inventoryVo);
-		
+
 		System.out.println(inventoryVo);
-		
+
 		return "redirect:/admin/inventory";
 	}
 

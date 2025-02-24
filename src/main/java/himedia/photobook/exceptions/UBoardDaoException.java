@@ -11,12 +11,12 @@ public class UBoardDaoException extends RuntimeException {
 	public UBoardDaoException() {
 
 	}
-	
+
 	public UBoardDaoException(String message) {
 		super(message);
 	}
-	
-	public UBoardDaoException(String message,BoardVo UboardVo) {
+
+	public UBoardDaoException(String message, BoardVo UboardVo) {
 		super(message);
 		this.UboardVo = UboardVo;
 	}

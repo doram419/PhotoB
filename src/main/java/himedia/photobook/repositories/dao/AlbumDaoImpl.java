@@ -2,7 +2,6 @@ package himedia.photobook.repositories.dao;
 
 import java.util.HashMap;
 
-
 import java.util.List;
 import java.util.Map;
 
@@ -50,10 +49,10 @@ public class AlbumDaoImpl implements AlbumDao {
 		return sqlSession.selectList("album.selectAll");
 	}
 
-	 @Override
-	 public String findOptionsByOrderId(String orderId)	{
-		 return sqlSession.selectOne("album.findOptionsByOrderId", orderId);
-	 }
+	@Override
+	public String findOptionsByOrderId(String orderId) {
+		return sqlSession.selectOne("album.findOptionsByOrderId", orderId);
+	}
 
 	@Override
 	public AlbumVo selectByAlbumId(String albumId) {
@@ -68,19 +67,19 @@ public class AlbumDaoImpl implements AlbumDao {
 	@Override
 	public int updateAlbum(AlbumVo albumVo) {
 		try {
-            int updatedCount = sqlSession.update("album.updateAlbum", albumVo);
-            return updatedCount;
+			int updatedCount = sqlSession.update("album.updateAlbum", albumVo);
+			return updatedCount;
 		} catch (Exception e) {
-        	e.printStackTrace();
-            throw new UsersAlbumException("업데이트 도중 예외 발생!");
-        }
+			e.printStackTrace();
+			throw new UsersAlbumException("업데이트 도중 예외 발생!");
+		}
 	}
 
 	@Override
 	public int delete(String albumId) {
 		return sqlSession.delete("album.deleteAlbum", albumId);
 	}
-	
+
 	@Override
 	public int insertAlbum(AlbumVo vo) {
 		return sqlSession.insert("album.insertAlbum", vo);

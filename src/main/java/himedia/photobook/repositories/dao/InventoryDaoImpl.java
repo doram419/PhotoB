@@ -20,9 +20,10 @@ public class InventoryDaoImpl implements InventoryDao {
 
 	@Override
 	public List<InventoryVo> listInventory() {
-		
+
 		return sqlSession.selectList("inventory.listInventory");
 	}
+
 	@Override
 	public InventoryVo findAlbumPriceByAlbumId(String albumId) {
 		Map<String, String> ai = new HashMap<>();
@@ -31,7 +32,6 @@ public class InventoryDaoImpl implements InventoryDao {
 
 		return inventoryVo;
 	}
-
 
 	@Override
 	public int updateProduct(InventoryVo vo) {
@@ -43,23 +43,22 @@ public class InventoryDaoImpl implements InventoryDao {
 			throw new UsersAlbumException("업데이트 도중 예외 발생!");
 		}
 	}
-	
+
 	@Override
 	public List<InventoryVo> listPage(RowBounds rowBounds) {
-		 return sqlSession.selectList("inventory.listInventory", null, rowBounds);
+		return sqlSession.selectList("inventory.listInventory", null, rowBounds);
 	}
+
 	@Override
 	public int getTotalCount() {
 		return sqlSession.selectOne("inventory.getTotalCount");
 	}
-	
 
-	
 	@Override
-	public int delete(String albumId) {        
+	public int delete(String albumId) {
 		return sqlSession.delete("inventory.deleteInventory", albumId); // 변경된 메소드 이름
-    }
-	
+	}
+
 	@Override
 	public int insertInventory(InventoryVo inventoryVo) {
 		return sqlSession.insert("inventory.insertInventory", inventoryVo);
@@ -68,11 +67,11 @@ public class InventoryDaoImpl implements InventoryDao {
 	public int updateQuantity(InventoryVo inventoryVo) {
 		return sqlSession.update("inventory.updateQuantity", inventoryVo);
 	}
-	
+
 	@Override
 	public InventoryVo selectOneByAlbumId(String albumId) {
 		return sqlSession.selectOne("inventory.selectOneByAlbumId", albumId);
 
 	}
-	
+
 }

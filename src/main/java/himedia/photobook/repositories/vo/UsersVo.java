@@ -1,6 +1,5 @@
 package himedia.photobook.repositories.vo;
 
-
 public class UsersVo {
 	private String userId;
 	private String email;
@@ -8,10 +7,10 @@ public class UsersVo {
 	private String userName;
 	private String address;
 	private String phoneNumber;
-	private String role;  /*  -- 사용자 : U / 관리자 : A   */
-	
+	private String role; /* -- 사용자 : U / 관리자 : A */
+
 	public UsersVo() {
-		
+
 	}
 
 	public UsersVo(String userId, String email, String password, String userName, String address, String phoneNumber,
@@ -87,8 +86,5 @@ public class UsersVo {
 		return "UsersVo [userId=" + userId + ", email=" + email + ", password=" + password + ", userName=" + userName
 				+ ", address=" + address + ", phoneNumber=" + phoneNumber + ", role=" + role + "]";
 	}
-	
-	
-	
-	
+
 }

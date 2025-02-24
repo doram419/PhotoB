@@ -18,7 +18,6 @@ import himedia.photobook.repositories.vo.UsersVo;
 import himedia.photobook.services.users.UserPhotobookService;
 import jakarta.servlet.http.HttpSession;
 
-
 @Controller
 @RequestMapping("/users")
 public class UsersPhotobookController {
@@ -36,8 +35,7 @@ public class UsersPhotobookController {
 	public String createPhotobook(@RequestParam(value = "material", required = false) String material,
 			@RequestParam(value = "color", required = false) String color,
 			@RequestParam(value = "albumSize", required = false) String albumSize,
-			@RequestParam(value = "oQuantity", required = false) Long oQuantity,
-			HttpSession albumsession,
+			@RequestParam(value = "oQuantity", required = false) Long oQuantity, HttpSession albumsession,
 			Model model) {
 		AlbumVo albumVo = userPhotobookService.findAlbumIdByOptions(material, color, albumSize);
 
@@ -50,26 +48,23 @@ public class UsersPhotobookController {
 		String albumId = albumVo.getAlbumId();
 		InventoryVo inventoryVo = inventoryDaoImpl.selectOneByAlbumId(albumId);
 		Long aQuantity = inventoryVo.getaQuantity();
-		
-		if (aQuantity >= oQuantity)	{
+
+		if (aQuantity >= oQuantity) {
 			albumsession.setAttribute("albumId", albumId);
 			albumsession.setAttribute("oQuantity", oQuantity);
 			return "/WEB-INF/views/users/users_create_photobook.jsp";
-		}
-		else 	{
-			model.addAttribute("error", "재고가 부족합니다."); 
+		} else {
+			model.addAttribute("error", "재고가 부족합니다.");
 			return "/WEB-INF/views/users/users_photobook.jsp";
 		}
 	}
 
 	@PostMapping("/photobookOrder")
 	public String photobookorder(@RequestParam(value = "albumId", required = false) String albumId,
-			@RequestParam("canvasFiles") List<MultipartFile> multipartFiles, Model model,
-			HttpSession session) {
-		
+			@RequestParam("canvasFiles") List<MultipartFile> multipartFiles, Model model, HttpSession session) {
+
 		UsersVo authUser = (UsersVo) session.getAttribute("authUser");
-		if(authUser != null)
-		{
+		if (authUser != null) {
 			String userId = authUser.getUserId();
 			InventoryVo inventoryVo = userPhotobookService.findAlbumPriceByAlbumId(albumId);
 			Long albumPrice = inventoryVo.getAlbumPrice();
@@ -78,14 +73,12 @@ public class UsersPhotobookController {
 			Long priceDisplay = albumPrice * oQuantity;
 
 			boolean success = userPhotobookService.orderInsert(userId, albumId, oQuantity, multipartFiles);
-		}
-		else
-		{
-			//TODO: 로그인 에러 처리
+		} else {
+			// TODO: 로그인 에러 처리
 			model.addAttribute("error", "로그인이 필요합니다");
 			return "/WEB-INF/views/users/users_login.jsp";
 		}
-		
+
 		model.addAttribute("success", "주문에 성공했습니다");
 		return "redirect:/users/order";
 	}

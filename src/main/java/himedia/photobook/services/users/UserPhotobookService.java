@@ -29,7 +29,7 @@ public class UserPhotobookService {
 	private OrderDao orderDaoImpl;
 	@Autowired
 	private PhotoDao photoDaoImpl;
-	
+
 	private String DEFUALT_PATH = "C:/photobook/order/";
 	private FileModule fileModule = new FileModule();
 	private VoConfiguration voConfiguration = new VoConfiguration();
@@ -43,27 +43,26 @@ public class UserPhotobookService {
 		InventoryVo inventoryVo = inventoryDaoImpl.findAlbumPriceByAlbumId(albumId);
 		return inventoryVo;
 	}
-	
-	public boolean orderInsert(String userId, String albumId, Long oQuantity, 
-			List<MultipartFile> files) {
-		boolean result = 1 == orderDaoImpl.orderInsert(userId,albumId,oQuantity);
+
+	public boolean orderInsert(String userId, String albumId, Long oQuantity, List<MultipartFile> files) {
+		boolean result = 1 == orderDaoImpl.orderInsert(userId, albumId, oQuantity);
 		OrdersVo orderVo = orderDaoImpl.selectRecentOrderByUserId(userId);
 		PhotoVo photoVo = null;
-		
- 		if(fileModule.getOsName().contains("nux")) {
- 			DEFUALT_PATH = "/photobook/album/";
- 		}
- 		
-		if(orderVo != null) {
+
+		if (fileModule.getOsName().contains("nux")) {
+			DEFUALT_PATH = "/photobook/album/";
+		}
+
+		if (orderVo != null) {
 			String savePath = DEFUALT_PATH + userId + "/" + orderVo.getOrderId();
 			Long number = 1l;
-			
+
 			for (MultipartFile file : files) {
 				String originalFileName = file.getOriginalFilename();
-				
-				String extName = originalFileName.substring(originalFileName.lastIndexOf(".")); 
+
+				String extName = originalFileName.substring(originalFileName.lastIndexOf("."));
 				String photoPath = null;
-				
+
 				try {
 					photoPath = fileModule.saveFile(file, savePath, number.toString(), extName);
 				} catch (Exception e) {
@@ -75,21 +74,20 @@ public class UserPhotobookService {
 				number = number + 1l;
 			}
 		}
-		
-	    return result;
+
+		return result;
 	}
-	
+
 	/**
-	 * repositories의 VoConfiguration에를 참조하여 앨범의 속성을 
-	 * 불러와주는 메서드
-	 * */
+	 * repositories의 VoConfiguration에를 참조하여 앨범의 속성을 불러와주는 메서드
+	 */
 	public Map<String, List<String>> getAlbumOptions() {
 		Map<String, List<String>> albumOptions = new HashMap<String, List<String>>();
-		
-		albumOptions.put("colorList" ,voConfiguration.getAlbumColorList());
-		albumOptions.put("materialList" ,voConfiguration.getAlbumMaterialList());
-		albumOptions.put("sizeList" ,voConfiguration.getAlbumSizeList());
-		
+
+		albumOptions.put("colorList", voConfiguration.getAlbumColorList());
+		albumOptions.put("materialList", voConfiguration.getAlbumMaterialList());
+		albumOptions.put("sizeList", voConfiguration.getAlbumSizeList());
+
 		return albumOptions;
 	}
 }

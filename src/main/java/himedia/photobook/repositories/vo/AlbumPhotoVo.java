@@ -5,12 +5,11 @@ public class AlbumPhotoVo {
 	private String albumId;
 	private String photoPath;
 	private String albumPhotoType; // L : Inner Left, R : Inner Right, M : Main Imgs
-	
-	public AlbumPhotoVo()
-	{
-		
+
+	public AlbumPhotoVo() {
+
 	}
-			
+
 	public AlbumPhotoVo(String albumPhotoId, String albumId, String photoPath, String albumPhotoType) {
 		super();
 		this.albumPhotoId = albumPhotoId;

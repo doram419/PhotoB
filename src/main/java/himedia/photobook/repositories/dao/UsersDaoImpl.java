@@ -1,7 +1,6 @@
 package himedia.photobook.repositories.dao;
+
 import java.util.HashMap;
-
-
 
 import java.util.List;
 import java.util.Map;
@@ -21,9 +20,9 @@ public class UsersDaoImpl implements UsersDao {
 
 	@Override
 	// 유저 정보 저장하는거
-	public int insert(UsersVo vo) {		
+	public int insert(UsersVo vo) {
 		try {
-			vo.setRole("U");	
+			vo.setRole("U");
 			return sqlSession.insert("users.insert", vo);
 
 		} catch (Exception e) {
@@ -34,13 +33,13 @@ public class UsersDaoImpl implements UsersDao {
 
 	@Override // 이메일 조회, 중복체크에 쓸거
 	public UsersVo selectUserByEmail(String email) {
-	    List<UsersVo> userList = sqlSession.selectList("users.selectUserByEmail", email);
-	    if (userList != null && !userList.isEmpty()) {
-	        return userList.get(0);
-	    }
-	    return null;
+		List<UsersVo> userList = sqlSession.selectList("users.selectUserByEmail", email);
+		if (userList != null && !userList.isEmpty()) {
+			return userList.get(0);
+		}
+		return null;
 	}
-	
+
 	@Override
 	// 비번, 이메일로 조회. 로그인에 쓸거
 	public UsersVo selectUserByEmailAndPassword(String email, String password) {
@@ -50,7 +49,6 @@ public class UsersDaoImpl implements UsersDao {
 		userMap.put("password", password);
 		UsersVo userVo = sqlSession.selectOne("users.selectUserByEmailAndPassword", userMap);
 
-	
 		return userVo;
 	}
 
@@ -58,18 +56,18 @@ public class UsersDaoImpl implements UsersDao {
 	public UsersVo getUserById(String userId) {
 		return sqlSession.selectOne("users.getUserById", userId);
 	}
-	
+
 	@Override
 	public List<UsersVo> searchUsers(String keyword) {
-		//파라미터
-		return sqlSession.selectList("users.searchUsers", keyword)  ;
+		// 파라미터
+		return sqlSession.selectList("users.searchUsers", keyword);
 	}
-	
+
 	@Override
 	public void deleteUsers(String userId) {
 		sqlSession.delete("users.deleteUsers", userId);
 	}
-	
+
 	@Override
 	public int updateUsers(UsersVo user) {
 		try {
@@ -84,35 +82,35 @@ public class UsersDaoImpl implements UsersDao {
 
 	// 프로필 업데이트에 쓸거
 	@Override
-    public int updateUser(UsersVo user) {
-        try {
-            int updatedCount = sqlSession.update("users.updateUser", user);
-            return updatedCount;
-        } catch (Exception e) {
-        	e.printStackTrace();
-            throw new UsersDaoException("예외 발생!");
-        }
-    }
-	 
-    @Override
+	public int updateUser(UsersVo user) {
+		try {
+			int updatedCount = sqlSession.update("users.updateUser", user);
+			return updatedCount;
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw new UsersDaoException("예외 발생!");
+		}
+	}
+
+	@Override
 	public UsersVo selectOneUserById(String Id) {
 		UsersVo est = sqlSession.selectOne("users.selectUserById", Id);
 		return est;
 	}
 
-    @Override
-    public List<String> getUserNameByUserId(String userId)	{
-    	
-    	return sqlSession.selectList("users.getUserNameByUserId", userId); 
-    }
+	@Override
+	public List<String> getUserNameByUserId(String userId) {
 
+		return sqlSession.selectList("users.getUserNameByUserId", userId);
+	}
 
 	@Override
 	public List<UsersVo> selectUserByName(String userName) {
 		return sqlSession.selectList("users.selectUserByName", userName);
 	}
+
 	@Override
-	public List<UsersVo> selectUserByKeyword(String keyword)	{
+	public List<UsersVo> selectUserByKeyword(String keyword) {
 		return sqlSession.selectList("users.selectUserByKeyword", keyword);
 	}
 

@@ -2,12 +2,12 @@ package himedia.photobook.repositories.vo;
 
 public class AlbumVo {
 	private String albumId;
-	private String material;  /* Linen, Leather, Hard, Soft */
-	private String color;       /* Gray, Blue, Brown*/
-	private String albumSize;  /* Small Middle Big*/
-	
+	private String material; /* Linen, Leather, Hard, Soft */
+	private String color; /* Gray, Blue, Brown */
+	private String albumSize; /* Small Middle Big */
+
 	public AlbumVo() {
-		
+
 	}
 
 	public AlbumVo(String albumId, String material, String color, String albumSize) {
@@ -55,6 +55,5 @@ public class AlbumVo {
 		return "AlbumVo [albumId=" + albumId + ", material=" + material + ", color=" + color + ", albumSize="
 				+ albumSize + "]";
 	}
-	
 
 }

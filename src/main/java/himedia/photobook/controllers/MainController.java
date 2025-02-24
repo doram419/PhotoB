@@ -5,9 +5,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 public class MainController {
-    @RequestMapping({"/"})
-    public String welcome() { 
-        return "/WEB-INF/views/users/users_index.jsp";
-       
-    }
+	@RequestMapping({ "/" })
+	public String welcome() {
+		return "/WEB-INF/views/users/users_index.jsp";
+
+	}
 }

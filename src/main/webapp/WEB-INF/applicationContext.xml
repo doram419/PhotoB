@@ -20,7 +20,6 @@
     <context:annotation-config/>
     <context:component-scan base-package="himedia.photobook">
         <context:include-filter type="annotation" expression="org.springframework.stereotype.Service"/>
-        <context:include-filter type="annotation" expression="org.springframework.stereotype.Repository"/>
     </context:component-scan>
 
     <!-- MySQL DataSource (HikariCP 사용) -->
@@ -45,4 +44,5 @@
 
     <!-- MyBatis Mapper 스캔 설정 추가 -->
     <mybatis-spring:scan base-package="himedia.photobook.repositories"/>
+    
 </beans>

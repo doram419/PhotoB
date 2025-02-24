@@ -8,18 +8,15 @@ public class ShipmentsVo {
 	private String orderId;
 	private Date shipmentDate;
 	/**
-	 * 주문 상태는 기본적으로 배송 상태를 봐야한다. R가 나오면 환불에서 보기 
-	 * A(Application): 준비 
-	 * B(Before Shipping): 배송중 
-	 * C(Complete):배송완료, 
-	 * R(Refund): 환불
+	 * 주문 상태는 기본적으로 배송 상태를 봐야한다. R가 나오면 환불에서 보기 A(Application): 준비 B(Before
+	 * Shipping): 배송중 C(Complete):배송완료, R(Refund): 환불
 	 **/
 	private String shipmentStatus;
-	
+
 	// 생성자
 	public ShipmentsVo() {
 	}
-	
+
 	public ShipmentsVo(Long shipmentId, String orderId, Date shipmentDate, String shipmentStatus) {
 		super();
 		this.shipmentId = shipmentId;

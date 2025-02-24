@@ -18,20 +18,6 @@
 		FROM
 		 	REFUND
 	</select>
-	<insert id="insert" parameterType="String">
-		INSERT INTO REFUND (REFUND_ID, ORDER_ID, REFUND_STATUS)
-			VALUES (NVL(NULL, SEQ_REFUND_PK.NEXTVAL), #{value},'P'
-			)
-    </insert>
-    <update id="updateStatus" parameterType="RefundVo">
-		UPDATE REFUND 
-			SET REFUND_STATUS = #{refundStatus}
-		WHERE ORDER_ID = #{orderId}
-	</update>
-	<delete id="delete">
-		DELETE FROM REFUND
-		WHERE ORDER_ID = #{orderId}
-	</delete>
 	<select id="selectOneByOrderId" parameterType="String" resultType="RefundVo">
 		SELECT 
 			REFUND_ID as refundId,
@@ -42,11 +28,25 @@
 		WHERE
 			ORDER_ID = #{value}
 	</select>
-	
 	<select id ="countRefund" resultType="String">
-	SELECT COUNT(REFUND_ID) AS refund_count
-	FROM refund
-	where refund_status ='P'
+		SELECT COUNT(REFUND_ID) AS refund_count
+		FROM refund
+		where refund_status ='P'
 	</select>
 	
+	<insert id="insertRefund" parameterType="map">
+	    INSERT INTO REFUND (ORDER_ID, REFUND_STATUS)
+	    VALUES (#{value}, 'P');
+    </insert>
+    
+    <update id="updateStatus" parameterType="RefundVo">
+		UPDATE REFUND 
+			SET REFUND_STATUS = #{refundStatus}
+		WHERE ORDER_ID = #{orderId}
+	</update>
+	
+	<delete id="delete">
+		DELETE FROM REFUND
+		WHERE ORDER_ID = #{orderId}
+	</delete>
 </mapper>

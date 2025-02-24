@@ -23,8 +23,10 @@ public interface AlbumDao {
 	public String findOptionsByOrderId(String orderId);
 
 	public AlbumVo selectByAlbumId(String albumId);
-	
+
 	public int delete(String albumId);
+
 	public int insertAlbum(AlbumVo vo);
+
 	public int updateAlbum(AlbumVo albumVo);
 }
