@@ -113,15 +113,5 @@
 	    <artifactId>commons-fileupload</artifactId>
 	    <version>1.4</version>
 	</dependency>
-	
-	<!-- @PostConstruct 의존성 -->
-	<!-- https://mvnrepository.com/artifact/jakarta.annotation/jakarta.annotation-api -->
-	<dependency>
-	    <groupId>jakarta.annotation</groupId>
-	    <artifactId>jakarta.annotation-api</artifactId>
-	    <version>3.0.0</version>
-	</dependency>
   </dependencies>
-
-
 </project>
