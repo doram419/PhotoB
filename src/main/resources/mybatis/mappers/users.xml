@@ -14,7 +14,7 @@
         	USER_NAME as userName, ADDRESS, 
         	PHONE_NUMBER as phoneNumber, ROLE 
         FROM USERS
-        WHERE EMAIL = #{value}
+        WHERE EMAIL = #{email}
     </select> 
     <select id="selectUserByEmailAndPassword" parameterType="map" resultType="UsersVo">
         SELECT 

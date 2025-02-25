@@ -30,7 +30,7 @@
 			COLOR, ALBUM_SIZE as albumSize
         FROM ALBUM
         WHERE
-            ALBUM_ID LIKE ('%' OR #{value} OR '%')
+            ALBUM_ID LIKE CONCAT('%' OR #{value} OR '%')
     </select>
     <select id="selectAll" resultType="AlbumVo">
         SELECT 
